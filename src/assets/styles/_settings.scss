@@ -1,0 +1,178 @@
+@import 'variable';
+html{
+    font-size: 100%;
+}
+
+body{
+    @include fontStyle(
+        $fontFamily:$font_RobotoCondensed,
+        $size:$font12,
+        $weight:$regularFont,
+        $color: $color_black,
+        $lineHeight: $lineHeight16
+    );
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    a{
+        text-decoration: none;
+        &:hover,&:active,&:focus,&:visited{
+          text-decoration: none;
+          cursor: pointer;
+          outline: 0;
+        }
+    }
+    img{
+        max-width: 100%;
+    }
+    .flexCentered{
+        display: flex;
+        display: -webkit-flex;
+        flex-flow: wrap;
+        -webkit-flex-flow: wrap;
+        align-items: center;
+        &:before,&:after{
+          width: 0;
+        }
+    }
+    .flexNotCentered{
+        display: flex;
+        display: -webkit-flex;
+        flex-flow: wrap;
+        -webkit-flex-flow: wrap;
+        &:before,&:after{
+          width: 0;
+        }
+    }
+    .backgroundProp{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .hidden{
+        display: none !important;
+    }
+    .heading1{
+        @include fontStyle(
+          $fontFamily:$font_RobotoCondensed,
+          $size:$font32,
+          $weight:$boldFont,
+          $color: $color_primary,
+          $lineHeight: $lineHeight36
+        );
+    }
+    .heading2{
+        @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font24,
+            $weight:$boldFont,
+            $color: $color_primary,
+            $lineHeight: $lineHeight30
+        );
+    }
+    .heading3{
+        @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font16,
+            $weight:$boldFont,
+            $color: $color_black,
+            $lineHeight: $lineHeight20
+        );
+    }
+    .subHeading{
+        @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font12,
+            $weight:$boldFont,
+            $color: $color_black,
+            $lineHeight: $lineHeight16
+        );
+    }
+    .paragraph{
+        @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font12,
+            $weight:$regularFont,
+            $color: $color_black,
+            $lineHeight: $lineHeight16
+        );
+    }
+    .secondaryText{
+        @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font10,
+            $weight:$boldFont,
+            $color: $color_black,
+            $lineHeight: $lineHeight16
+        );
+    }
+    .primaryBtn{
+        @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font10,
+            $weight:$boldFont,
+            $color: $color_white,
+            $lineHeight: $lineHeight16
+        );
+        text-transform: uppercase;
+        background: $color_blue;
+        @include transitionForAll($time: 0.4s,$transProp: ease-out);
+        padding: 8px 16px;
+        outline: none;
+        text-align: center;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        border-radius: 40px;
+        // &:hover,&:focus,&:active{
+        //     background: $color_blue;
+        //     @include transitionForAll($time: 0.3s,$transProp: ease-in);
+        //     outline: none;
+        // }
+        &.disabled{
+            border: none;
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+    .secondaryBtn{
+        @include fontStyle(
+          $fontFamily:$font_WorkSans,
+          $size:$font10,
+          $weight:$boldFont,
+          $color: $color_blue,
+          $lineHeight: $lineHeight16
+        );
+        background: $color_white;
+        border-radius: 4px;
+        border: 1px solid $color_blue;
+        padding: 7px 16px;
+        &.disabled{
+            border: none;
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+    .listUnstyled{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .listInline{
+        list-style: none;
+        .listInlineItem{
+          display: inline-block;
+          width: auto;
+          .MuiTouchRipple-root{
+            display: none;
+          }
+        }
+    }
+    .textCenter{
+        text-align: center;
+    }
+}
