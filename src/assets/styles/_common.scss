@@ -1,5 +1,25 @@
 @import 'variable';
 
 body{
-
+    margin: 0;
+    .App{
+        padding-top: 64px;
+    }
+    .errorBoundary{
+        
+    }
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 64px;
+        background: $color_primary;
+        text-align: center;
+        vertical-align: middle;
+        width: 100%;
+        .logo{
+            vertical-align: middle;
+            margin-top: 14px;
+        }
+    }
 }

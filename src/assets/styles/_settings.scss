@@ -140,7 +140,7 @@ body{
     }
     .secondaryBtn{
         @include fontStyle(
-          $fontFamily:$font_WorkSans,
+          $fontFamily:$font_RobotoCondensed,
           $size:$font10,
           $weight:$boldFont,
           $color: $color_blue,
