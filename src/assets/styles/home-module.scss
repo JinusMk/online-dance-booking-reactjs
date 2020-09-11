@@ -4,6 +4,26 @@ body{
     .home-section{
         .home-container{
             padding: 0;
+            .introduction-blk{
+                .carousel-container{
+                    .carousel-item{
+                        img{
+                            width: 100%;
+                            margin-bottom: 8px;
+                        }
+                    }
+                    .react-multiple-carousel__arrow{
+                        margin-bottom: 50px;
+                        background: $color_white;
+                        min-width: 30px;
+                        min-height: 30px;
+                        &::before{
+                            font-size: 15px;
+                            color: $color_primary
+                        }
+                    }
+                }
+            }
         }
     }
 }
