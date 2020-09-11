@@ -125,7 +125,10 @@ body{
         display: inline-block;
         border: none;
         cursor: pointer;
-        border-radius: 40px;
+        border-radius: 4px;
+        &.round{
+            border-radius: 40px;
+        }
         // &:hover,&:focus,&:active{
         //     background: $color_blue;
         //     @include transitionForAll($time: 0.3s,$transProp: ease-in);
@@ -164,7 +167,7 @@ body{
     }
     .listInline{
         list-style: none;
-        .listInlineItem{
+        li{
           display: inline-block;
           width: auto;
           .MuiTouchRipple-root{

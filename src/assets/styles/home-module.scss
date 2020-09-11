@@ -4,7 +4,26 @@ body{
     .home-section{
         .home-container{
             padding: 0;
+            .title{
+                position: relative;
+                margin-bottom: 16px;
+                a{
+                    position: absolute;
+                    right: 16px;
+                    top: 7px;
+                    color: $color_primary;
+                    span,img{
+                        vertical-align: middle;
+                    }
+                    img{
+                        margin-top: 1px;
+                    }
+                }
+            }
             .introduction-blk{
+                padding-bottom: 8px;
+                margin-bottom: 16px;
+                box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
                 .carousel-container{
                     .carousel-item{
                         img{
@@ -22,6 +41,104 @@ body{
                             color: $color_primary
                         }
                     }
+                }
+            }
+            .upcoming-classes-blk{
+                padding-left: 16px;
+                position: relative;
+                padding-bottom: 44px;
+                margin-bottom: 24px;
+                border-bottom: 1px solid #FFE5E9;
+                .partially-visible-carousel-container{
+                    .carousel-item{
+                        .card{
+                            border-radius: 8px;
+                            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                            .top-blk{
+                                position: relative;
+                                .logo{
+                                    width: 100%;
+                                }
+                                span{
+                                    background: $color_primary;
+                                    position: absolute;
+                                    color: $color_white;
+                                    right: 8px;
+                                    border-radius: 4px;
+                                    top: 8px;
+                                    padding: 2px 8px;
+                                }
+                                p{
+                                    color: $color_white;
+                                    position: absolute;
+                                    bottom: 10px;
+                                    left: 16px;
+                                }
+                            }
+                            .info-blk{
+                                padding: 16px 16px 12px;
+                                margin-top: -4px;
+                                border: 1px solid #DDDDDD;
+                                border-radius: 0 0 8px 8px;
+                                position: relative;
+                                h3{
+                                    color: $color_primary;
+                                    margin-bottom: 8px;
+                                    img, span{
+                                        vertical-align: middle;
+                                    }
+                                    img{
+                                        margin-top: -2px;
+                                    }
+                                    span{
+                                        margin-left: 5px;
+                                        &.rating{
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                                p{
+                                    &.cost{
+                                        position: absolute;
+                                        right: 16px;
+                                        top: 17px;
+                                        span{
+                                            text-decoration: line-through;
+                                            color: $color_info_text;
+                                            font-weight: $regularFont;
+                                            margin-right: 5px;
+                                            font-size: 12px;
+                                        }
+                                    }
+                                }
+                                .subHeading{
+                                    color: $color_info_text;
+                                    font-weight: $regularFont;
+                                    margin-bottom: 16px;
+                                }
+                                ul{
+                                    li{
+                                        margin-right: 8px;
+                                        p{
+                                            text-align: center;
+                                            margin-top: 5px;
+                                            font-size: 8px;
+                                            text-transform: capitalize;
+                                            &.alert_red{
+                                                color: $color_primary;
+                                            }
+                                            &.alert_orange{
+                                                color: $color_warning;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .custom-dot-list{
+                    bottom: 18px;
                 }
             }
         }

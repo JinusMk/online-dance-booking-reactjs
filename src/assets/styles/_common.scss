@@ -6,7 +6,18 @@ body{
         padding-top: 64px;
     }
     .errorBoundary{
-        
+        min-height: 85vh;
+        background: url('../images/bg_image.svg');
+        img{
+            margin-bottom: 16px;
+        }
+        h3{
+            color: $color_gray;
+            margin-bottom: 24px;
+        }
+        .primaryBtn{
+            width: 140px;
+        }
     }
     header{
         position: fixed;
@@ -17,9 +28,35 @@ body{
         text-align: center;
         vertical-align: middle;
         width: 100%;
+        z-index: 9999;
         .logo{
             vertical-align: middle;
             margin-top: 14px;
+        }
+    }
+    .partially-visible-carousel-container{
+        .carousel-item{
+            padding-right: 16px;
+            box-sizing: border-box;
+        }
+    }
+    .custom-dot-list{
+        bottom: -22px;
+        .react-multi-carousel-dot{
+            button{
+                background: #CCCCCC;
+                border-color: #CCCCCC;
+                height: 8px;
+                width: 8px;
+            }
+            &.react-multi-carousel-dot--active{
+                button{
+                    background: $color_primary;
+                    border-color: $color_primary;
+                    border-radius: 8px;
+                    width: 24px;
+                }
+            }
         }
     }
 }

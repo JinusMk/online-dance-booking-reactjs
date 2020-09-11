@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Container } from '@material-ui/core';
 import { Link, withRouter } from 'react-router-dom'
+import { Header } from '../shared_elements';
 // import { Header, Footer, SideBar } from '../shared_elements';
 
 class ErrorBoundary extends Component{
@@ -32,7 +33,8 @@ class ErrorBoundary extends Component{
     render() {
         if (this.state.hasError) {
             return (
-                <section className="errorBoundary flexCentered">
+                <section className="errorBoundary flexCentered backgroundProp">
+                    <Header type="home"/>
                     <Container fixed>
                         <Grid container justify="center" alignItems="center" spacing={2}>
                             <Grid item xs={12} className="textCenter">
