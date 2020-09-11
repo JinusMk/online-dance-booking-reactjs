@@ -151,13 +151,19 @@ body{
         );
         background: $color_white;
         border-radius: 4px;
+        text-align: center;
         border: 1px solid $color_blue;
+        cursor: pointer;
         padding: 7px 16px;
+        outline: none;
+        display: inline-block;
         &.disabled{
-            border: none;
             pointer-events: none;
             opacity: 0.5;
             cursor: not-allowed;
+        }
+        &.round{
+            border-radius: 40px;
         }
     }
     .listUnstyled{
