@@ -125,4 +125,19 @@ body{
             }
         }
     }
+    .common-questions-blk{
+        .common-questions-accordion{
+            border: 1px solid #999999;
+            box-sizing: border-box;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            box-shadow: none;
+            .MuiAccordionDetails-root{
+                padding-top: 0;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
 }

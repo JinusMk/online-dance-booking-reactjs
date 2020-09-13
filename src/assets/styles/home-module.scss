@@ -231,6 +231,13 @@ body{
                     }
                 }
             }
+            .common-questions-blk{
+                background: rgba(255, 225, 228, 0.2);
+                padding: 24px 16px 24px;
+                .common-questions-accordion{
+                    background: unset;
+                }
+            }
         }
     }
 }

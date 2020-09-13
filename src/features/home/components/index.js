@@ -7,6 +7,7 @@ import ExpertInstructors from './ExpertInstructors'
 import InstructorCard from './InstructorCard'
 import WhyLetzdance from './WhyLetzdance'
 import HowWorks from './HowWorks'
+import CommonQuestions from './CommonQuestions'
 
 export {
     Introduction,
@@ -17,5 +18,6 @@ export {
     InstructorCard,
     ExpertInstructors,
     WhyLetzdance,
-    HowWorks
+    HowWorks,
+    CommonQuestions
 }
