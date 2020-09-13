@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Container } from '@material-ui/core';
 import { Link, withRouter } from 'react-router-dom'
-import { Header } from '../shared_elements';
+import { Header, BottomNavigation } from '../shared_elements';
 // import { Header, Footer, SideBar } from '../shared_elements';
 
 class ErrorBoundary extends Component{
@@ -18,6 +18,7 @@ class ErrorBoundary extends Component{
     }
 
     componentDidCatch(error, errorInfo) {
+        console.log('error, errorInfo',[error, errorInfo])
         // You can also log the error to an error reporting service
         this.setState({
             hasError: true
@@ -44,6 +45,7 @@ class ErrorBoundary extends Component{
                             </Grid>
                         </Grid>
                     </Container>
+                    <BottomNavigation/>
                 </section>
             )
         }else{

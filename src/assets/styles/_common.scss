@@ -6,7 +6,7 @@ body{
         padding-top: 64px;
     }
     .errorBoundary{
-        min-height: 85vh;
+        min-height: 80vh;
         background: url('../images/bg_image.svg');
         img{
             margin-bottom: 16px;
@@ -33,6 +33,38 @@ body{
             vertical-align: middle !important;
             margin-top: 14px !important;
         }
+    }
+    .bottom-navigation{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 4px 0;
+        box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        .MuiBottomNavigationAction-root{
+            // padding: 6px 6px 8px;
+            // min-width: 55px;
+            .MuiBottomNavigationAction-wrapper{
+              img{
+                width: 24px;
+                margin-bottom: 4px;
+              }
+              .MuiBottomNavigationAction-label{
+                @include fontStyle(
+                  $fontFamily:$font_RobotoCondensed,
+                  $size:$font12,
+                  $weight:$regularFont,
+                  $color: $color_info_text,
+                  $lineHeight: $lineHeight16
+                );
+                &.Mui-selected{
+                    color: $color_primary;
+                    font-weight: $boldFont;
+                }
+              }
+            }
+          }
     }
     .partially-visible-carousel-container{
         .carousel-item{
@@ -126,6 +158,8 @@ body{
         }
     }
     .common-questions-blk{
+        margin-bottom: 24px;
+        padding: 0 16px 24px;
         .common-questions-accordion{
             border: 1px solid #999999;
             box-sizing: border-box;
@@ -138,6 +172,22 @@ body{
             &:last-child{
                 margin-bottom: 0;
             }
+        }
+    }
+    .contact-us-blk{
+        padding: 0 16px 30px;
+        text-align: center;
+        ul{
+            margin-bottom: 18px;
+            li{
+                padding-right: 24px;
+                &:last-child{
+                    padding: 0;
+                }
+            }
+        }
+        p{
+            color: $color_info_text;
         }
     }
 }
