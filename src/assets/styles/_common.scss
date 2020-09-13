@@ -30,8 +30,8 @@ body{
         width: 100%;
         z-index: 9999;
         .logo{
-            vertical-align: middle;
-            margin-top: 14px;
+            vertical-align: middle !important;
+            margin-top: 14px !important;
         }
     }
     .partially-visible-carousel-container{
@@ -41,7 +41,7 @@ body{
         }
     }
     .custom-dot-list{
-        bottom: -22px;
+        bottom: 16px;
         .react-multi-carousel-dot{
             button{
                 background: #CCCCCC;
@@ -57,6 +57,21 @@ body{
                     width: 24px;
                 }
             }
+        }
+    }
+    .who-we-are-blk{
+        padding-left: 16px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid $color_FFE5E9;
+        margin-bottom: 24px;
+        position: relative;
+        .bg-img{
+            position: absolute;
+            width: 89px;
+            transform: rotateY(180deg);
+            top: -16px;
+            right: -22px;
+            opacity: 0.1;
         }
     }
 }

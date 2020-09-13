@@ -2,6 +2,7 @@
 
 body{
     .home-section{
+        overflow: hidden;
         .home-container{
             padding: 0;
             .title{
@@ -140,6 +141,32 @@ body{
                 }
                 .custom-dot-list{
                     bottom: 18px;
+                }
+            }
+            .last-week-recap-blk{
+                padding-left: 16px;
+                padding-bottom: 44px;
+                position: relative;
+                margin-bottom: 24px;
+                border-bottom: 1px solid #FFE5E9;
+                .last-week-recap{
+                    .custom-dot-list{
+                        bottom: 18px;
+                    }
+                    .carousel-item{
+                        padding-right: 0;
+                    }
+                }
+                .last-wek-recap-item{
+                    img{
+                        margin-left: -10px;
+                    }
+                    h3{
+                        margin-bottom: 4px;
+                    }
+                    p{
+                        color: $color_gray;
+                    }
                 }
             }
         }

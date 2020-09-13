@@ -21,7 +21,7 @@ export default function DanceFormCard(props){
                         {
                             dance.slots.map((item, index) => (index < (dance.slots.length <= 3 ? 3 : 2)) &&  <li key={index}>
                                 <a className="primaryBtn round">{item.time}</a>
-                                <p className="alert_red">{item.status}</p>
+                                <p className={item.status == "ALMOST FULL" ? "alert_red" : 'alert_orange'}>{item.status}</p>
                             </li>)
                         }
                         {
