@@ -21,6 +21,13 @@ body{
                     }
                 }
             }
+            .block{
+                padding-left: 16px;
+                position: relative;
+                padding-bottom: 44px;
+                margin-bottom: 24px;
+                border-bottom: 1px solid #FFE5E9;
+            }
             .introduction-blk{
                 padding-bottom: 8px;
                 margin-bottom: 16px;
@@ -44,12 +51,7 @@ body{
                     }
                 }
             }
-            .upcoming-classes-blk{
-                padding-left: 16px;
-                position: relative;
-                padding-bottom: 44px;
-                margin-bottom: 24px;
-                border-bottom: 1px solid #FFE5E9;
+            .upcoming-classes{
                 .partially-visible-carousel-container{
                     .carousel-item{
                         .card{
@@ -143,13 +145,8 @@ body{
                     bottom: 18px;
                 }
             }
-            .last-week-recap-blk{
-                padding-left: 16px;
-                padding-bottom: 44px;
-                position: relative;
-                margin-bottom: 24px;
-                border-bottom: 1px solid #FFE5E9;
-                .last-week-recap{
+            .last-week-recap{
+                .partially-visible-carousel-container{
                     .custom-dot-list{
                         bottom: 18px;
                     }
@@ -166,6 +163,71 @@ body{
                     }
                     p{
                         color: $color_gray;
+                    }
+                }
+            }
+            .expert-instructors{
+                
+            }
+            .instructor-card{
+                box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                border-radius: 8px;
+                border: 1px solid #DDDDDD;
+                .title-blk{
+                    padding: 26px 16px 24px;
+                    border-bottom: 1px solid #DDDDDD;
+                    position: relative;
+                    .profile-img{
+                        position: absolute;
+                        top: 16px;
+                    }
+                    h3,p{
+                        margin-left: 80px;
+                    }
+                    h3{
+                        margin-bottom: 6px;
+                    }
+                    p{
+                        color: $color_primary;
+                        img, span{
+                            vertical-align: middle;
+                        }
+                        img{
+                            margin-top: -4px;
+                            position: static;
+                            margin-right: 5px;
+                        }
+                        .rating{
+                            font-size: 10px;
+                            margin-left: 5px;
+                        }
+                    }
+                    color: $color_primary;
+                                    
+                }
+                .info-blk{
+                    padding: 16px;
+                    p{
+                        margin-bottom: 8px;
+                        &:last-child{
+                            margin: 0;
+                        }
+                        img, span{
+                            vertical-align: middle;
+                        }
+                        img{
+                            margin-right: 5px;
+                        }
+                        span{
+                            &.status{
+                                background: $color_primary;
+                                padding: 0px 3px 1px;
+                                font-size: 6px;
+                                color: $color_white;
+                                border-radius: 1px;
+                                margin-right: 5px;
+                            }
+                        }
                     }
                 }
             }

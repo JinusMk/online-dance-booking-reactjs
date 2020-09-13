@@ -10,7 +10,7 @@ export default function LastWeekRecap(props){
         {id: 3, img: require('../../../assets/images/last_week_recap_zumba.svg'), category: 'HipHop', instructor: 'Angel Bensy', participants: '55', date: '22 may 2020' },
     ])
     return(
-        <div className="last-week-recap-blk">
+        <div className="last-week-recap block">
             <h3 className="heading2 title">Last week recap</h3>
             <Carousel 
                 responsive={responsiveCarousel}

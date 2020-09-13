@@ -74,4 +74,55 @@ body{
             opacity: 0.1;
         }
     }
+    .why-letzdance-blk{
+        padding-left: 16px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid $color_FFE5E9;
+        margin-bottom: 24px;
+        position: relative;
+        ul{
+            margin-left: -8px;
+            margin-right: 8px;
+            li{
+                img{
+                    width: 32px;
+                    margin-right: 16px;
+                }
+                margin-bottom: 8px;
+                border-radius: 4px;
+                p{
+                    color: $color_gray;
+                }
+                &.point-one{
+                    background: rgba(255, 225, 228, 0.2);
+                }
+                &.point-two{
+                    background: rgba(255, 243, 207, 0.2);
+                }
+                &.point-three{
+                    background: rgba(250, 223, 255, 0.2);
+                }
+                &.point-four{
+                    background: rgba(226, 255, 223, 0.2);
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .how-it-works-blk{
+        padding: 0 16px 24px;
+        ul{
+            li{
+                position: relative;
+                padding: 8px 0;
+                .icon{
+                    margin-right: 16px;
+                    width: 32px;
+                }
+            }
+            .down-arrow{
+                padding-left: 12px;    
+            }
+        }
+    }
 }
