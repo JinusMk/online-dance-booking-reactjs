@@ -1,9 +1,10 @@
 import React from 'react'
-
+import { useHistory } from 'react-router-dom'
 export default function DanceFormCard(props){
+    let history = useHistory()
     const { dance } = props
     return(
-        <div className="card">
+        <div className="card" onClick={() => history.push('/dance/1')}>
                 <div className="top-blk">
                     <img src={dance.img} className="logo" />
                     <span className="secondaryText">Live & interactive</span>

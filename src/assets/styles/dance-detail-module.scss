@@ -1,0 +1,31 @@
+@import 'variable';
+
+body{
+    .dance-detail-section{
+        overflow: hidden;
+        .dance-detail-container{
+            padding: 0;
+            .block{
+                padding: 16px 0 16px 16px;
+                border-bottom: 1px solid #FFE5E9;
+            }
+            .gallery{
+                .gallery-carousel{
+                    .gallery-item{
+                        img{
+                            border-radius: 8px;
+                            margin-bottom: 8px;
+                            height: 150px;
+                        }
+                        .heading3{
+                            margin-bottom: 4px;
+                        }
+                        .paragraph{
+                            color: $color_gray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

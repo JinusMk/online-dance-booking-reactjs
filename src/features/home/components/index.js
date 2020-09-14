@@ -9,6 +9,8 @@ import WhyLetzdance from './WhyLetzdance'
 import HowWorks from './HowWorks'
 import CommonQuestions from './CommonQuestions'
 import ContactUs from './ContactUs'
+import Gallery from './Gallery'
+import DanceInfo from './DanceInfo'
 
 export {
     Introduction,
@@ -21,5 +23,7 @@ export {
     WhyLetzdance,
     HowWorks,
     CommonQuestions,
-    ContactUs
+    ContactUs,
+    Gallery,
+    DanceInfo
 }
