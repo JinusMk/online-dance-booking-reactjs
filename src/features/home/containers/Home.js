@@ -15,7 +15,7 @@ const ContactUs = React.lazy(() => import('../components/ContactUs'));
 export default function Home(props){
     return(
         <section className="home-section">
-            <Header type="home"/>
+            <Header/>
             <Container maxWidth={false} className="home-container">
                 <Introduction />
                 <UpComingClasses />

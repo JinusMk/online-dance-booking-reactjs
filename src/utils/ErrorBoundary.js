@@ -35,7 +35,7 @@ class ErrorBoundary extends Component{
         if (this.state.hasError) {
             return (
                 <section className="errorBoundary flexCentered backgroundProp">
-                    <Header type="home"/>
+                    <Header/>
                     <Container fixed>
                         <Grid container justify="center" alignItems="center" spacing={2}>
                             <Grid item xs={12} className="textCenter">

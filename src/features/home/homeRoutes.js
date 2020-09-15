@@ -5,7 +5,7 @@ export const homeRoutes = [
     {
         path: '/',
         component : Home,
-        key: ''
+        key: 'home'
     },
     {
         path: '/home',

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel } from '../../../constants'
 import { DanceFormCard } from './index'
@@ -12,7 +13,7 @@ export default function UpComingClasses(props){
     ])
     return(
         <div className="upcoming-classes block">
-            <h3 className="heading2 title">Upcoming dances <a className="see-all paragraph"><span>See all </span><img src={require('../../../assets/images/right_arrow_icon.svg')} /></a></h3>
+            <h3 className="heading2 title">Upcoming dances <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={require('../../../assets/images/right_arrow_icon.svg')} /></Link></h3>
             <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
