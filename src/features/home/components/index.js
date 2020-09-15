@@ -11,6 +11,7 @@ import CommonQuestions from './CommonQuestions'
 import ContactUs from './ContactUs'
 import Gallery from './Gallery'
 import DanceInfo from './DanceInfo'
+import TimeSlots from './TimeSlots'
 
 export {
     Introduction,
@@ -25,5 +26,6 @@ export {
     CommonQuestions,
     ContactUs,
     Gallery,
-    DanceInfo
+    DanceInfo,
+    TimeSlots
 }

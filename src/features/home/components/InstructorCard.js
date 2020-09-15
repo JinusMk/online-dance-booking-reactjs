@@ -23,7 +23,7 @@ export default function InstructorCard(props){
                     <span>{instructor.experience} experience</span>
                 </p>
                 <p className="paragraph">
-                    <span className="status">LIVE</span>
+                    <span className="live">LIVE</span>
                     <span>{instructor.classes} classes on Letzdance</span>
                 </p>
             </div>
