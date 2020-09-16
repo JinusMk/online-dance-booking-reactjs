@@ -258,4 +258,28 @@ body{
             }
         }
     }
+    .time-slots-wrapper{
+        margin-bottom: 16px;
+        .secondaryText{
+            margin-bottom: 8px;
+        }
+        ul{
+            display: flex;
+            li{
+                margin-right: 8px;
+                p{
+                    text-align: center;
+                    margin-top: 5px;
+                    font-size: 8px;
+                    text-transform: capitalize;
+                    &.alert_red{
+                        color: $color_primary;
+                    }
+                    &.alert_orange{
+                        color: $color_warning;
+                    }
+                }
+            }
+        }
+    }
 }

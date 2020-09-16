@@ -1,15 +1,16 @@
 import Home from './containers/Home'
 import DanceDetail from './containers/DanceDetail';
+import { pageLayoutHoc } from '../../hocs'
 
 export const homeRoutes = [
     {
         path: '/',
-        component : Home,
+        component : pageLayoutHoc(Home),
         key: 'home'
     },
     {
         path: '/home',
-        component : Home,
+        component : pageLayoutHoc(Home),
         key: 'home'
     },
     {

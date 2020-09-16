@@ -1,9 +1,10 @@
 import Profile from './containers/Profile'
+import { pageLayoutHoc } from '../../hocs'
 
 export const profileRoutes = [
     {
         path: '/profile',
-        component : Profile,
+        component : pageLayoutHoc(Profile),
         key: 'profile'
     }
 ]

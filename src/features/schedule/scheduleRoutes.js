@@ -1,9 +1,10 @@
 import Schedule from './containers/Schedule'
+import { pageLayoutHoc } from '../../hocs'
 
 export const scheduleRoutes = [
     {
         path: '/schedule',
-        component: Schedule,
+        component: pageLayoutHoc(Schedule, {title: 'Schedule'}),
         key: 'schedule'
     }
 ]

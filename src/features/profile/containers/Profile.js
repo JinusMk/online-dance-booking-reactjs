@@ -6,8 +6,7 @@ import '../../../assets/styles/profile-module.scss'
 export default function Profile(props){
     return(
         <section className="profile-section">
-            <Header/>
-            <BottomNavigation/>
+            
         </section>
     )
 }

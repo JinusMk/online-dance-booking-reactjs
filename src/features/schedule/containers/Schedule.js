@@ -6,8 +6,7 @@ import '../../../assets/styles/schedule-module.scss'
 export default function Schedule(props){
     return(
         <section className="schedule-section">
-            <Header title="Schedule"/>
-            <BottomNavigation/>
+            
         </section>
     )
 }
