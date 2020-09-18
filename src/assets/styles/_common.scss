@@ -282,4 +282,63 @@ body{
             }
         }
     }
+    .dance-information-card{ //dance information
+        .top-blk{
+            margin-bottom: 16px;
+            .logo{
+                width: 72px;
+                height: 72px;
+                border-radius: 4px;
+            }
+            .content{
+                padding-left: 16px;
+                .heading2{
+                    color: $color_black;
+                    margin-bottom: 8px;
+                }
+                .heading3{
+                    color: $color_primary;
+                    margin-bottom: 8px;
+                    img, span{
+                        vertical-align: middle;
+                    }
+                    img{
+                        margin-top: -2px;
+                    }
+                    span{
+                        margin-left: 5px;
+                        &.rating{
+                            font-size: 10px;
+                        }
+                    }
+                }
+            }
+        }
+        .bottom-blk{
+            position: relative;
+            padding-bottom: 16px;
+            li{
+                margin-bottom: 4px;
+                &:last-child{
+                    margin: 0;
+                }
+                .paragraph{
+                    img, span{
+                        vertical-align: middle;
+                    }
+                    img{
+                        margin-right: 5px;
+                    }
+                    .live{
+                        background: $color_primary;
+                        padding: 0px 3px 1px;
+                        font-size: 6px;
+                        color: $color_white;
+                        border-radius: 1px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
 }

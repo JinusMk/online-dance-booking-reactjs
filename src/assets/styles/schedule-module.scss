@@ -4,6 +4,61 @@ body{
     .schedule-section{
         .schedule-container{
             padding: 0;
+            .dance-listing-wrapper{
+                margin-top: 16px;
+                .dance-item-date-wrapper{
+                    .title{
+                        color: $color_primary;
+                        margin: 0 16px;
+                        overflow: hidden;
+                        &::after{
+                            content:'';
+                            display:inline-block;
+                            width:100%; 
+                            height:100%;
+                            margin-right:-100%;
+                            border-bottom:4px solid #FFE5E9;
+                            margin-left: 16px;
+                            margin-bottom: 5px;
+                        }
+                    }
+                    .dance-information-card{
+                        padding: 24px 16px 8px;
+                        border-bottom: 4px solid #FFE5E9;
+                        .bottom-blk{
+                            position: relative;
+                            .cost{
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                color: $color_black;
+                                text-align: right;
+                                span{
+                                    text-decoration: line-through;
+                                    color: $color_info_text;
+                                    font-weight: $regularFont;
+                                    display: block;
+                                    line-height: 15px;
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                        &:last-child{
+                            border-bottom: none;
+                        }
+                    }
+                }
+                .list-footer{
+                    padding: 24px 24px 44px;
+                    img{
+                        width: 32px;
+                        margin-bottom: 5px;
+                    }
+                    p{
+                        color: $color_info_text
+                    }
+                }
+            }
         }
     }
 }

@@ -65,32 +65,38 @@ body{
                     right: 16px;
                     top: 17px;
                     color: $color_black;
+                    text-align: right;
                     span{
                         text-decoration: line-through;
                         color: $color_info_text;
                         font-weight: $regularFont;
-                        margin-right: 5px;
+                        display: block;
+                        line-height: 15px;
                         font-size: 12px;
                     }
                 }
-                .paragraph{
-                    margin-bottom: 4px;
-                    &:last-child{
-                        margin: 0;
-                    }
-                    img, span{
-                        vertical-align: middle;
-                    }
-                    img{
-                        margin-right: 5px;
-                    }
-                    .live{
-                        background: $color_primary;
-                        padding: 0px 3px 1px;
-                        font-size: 6px;
-                        color: $color_white;
-                        border-radius: 1px;
-                        margin-right: 5px;
+                ul{
+                    li{
+                        margin-bottom: 4px;
+                        &:last-child{
+                            margin: 0;
+                        }
+                        .paragraph{
+                            img, span{
+                                vertical-align: middle;
+                            }
+                            img{
+                                margin-right: 5px;
+                            }
+                            .live{
+                                background: $color_primary;
+                                padding: 0px 3px 1px;
+                                font-size: 6px;
+                                color: $color_white;
+                                border-radius: 1px;
+                                margin-right: 5px;
+                            }
+                        }
                     }
                 }
             }
