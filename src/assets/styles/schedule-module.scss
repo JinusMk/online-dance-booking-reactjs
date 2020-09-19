@@ -26,11 +26,11 @@ body{
                                         // padding-top: 28px;
                                         li{
                                             a{
-                                                .month{
+                                                .month-wrapper{
                                                     display: none;
                                                 }
                                                 &.is-current{
-                                                    .month{
+                                                    .month-wrapper{
                                                         display: block;
                                                         position: fixed;
                                                         top: 76px;
