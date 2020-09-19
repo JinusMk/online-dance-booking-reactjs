@@ -41,14 +41,14 @@ export default function Schedule(props){
                             >
                                 <ScrollspyNav
                                         scrollTargetIds={['date-1', 'date-2', 'date-3', 'date-4', 'date-5', 'date-6', 'date-7']}
-                                        offset={-135}
+                                        offset={-140}
                                         activeNavClass="is-current"
                                         headerBackground="true"
                                         scrollDuration={500}
                                     >
                                      <ul>
                                         {Object.keys(scheduleData).map((item, index) => <li><a href={`#date-${index+1}`} onChange={e => console.log('e.target', e.target)}>
-                                            <h3 className="heading3 month">{moment(item).format('MMMM')}</h3>
+                                            <h3 className="heading3 month" style={{position: 'fixed'}}>{moment(item).format('MMMM')}</h3>
                                             <Tab key={index} label={<div className="date-item">
                                                 <h3 className="heading1">{moment(item).format('D') < 10 ? `0${moment(item).format('D')}` : moment(item).format('D')}</h3>
                                                 <p className="secondaryText">{moment(item).format('ddd')}</p>
