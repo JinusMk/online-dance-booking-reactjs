@@ -20,10 +20,20 @@ body{
                                     ul{
                                         display: flex;
                                         list-style: none;
+                                        position: relative;
+                                        padding-top: 28px;
                                         li{
-                                            // margin-right: 20px;
                                             a{
+                                                .month{
+                                                    display: none;
+                                                }
                                                 &.is-current{
+                                                    .month{
+                                                        display: block;
+                                                        position: absolute;
+                                                        top: 0;
+                                                        left: 0;
+                                                    }
                                                     .date-item{
                                                         box-shadow: none;
                                                         background: $color_primary;
