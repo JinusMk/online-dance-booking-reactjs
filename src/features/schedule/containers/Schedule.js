@@ -18,35 +18,21 @@ export default function Schedule(props){
             [moment().add(6, 'day')] : [{id: 1, rating: 4.5, img: require('../../../assets/images/bollywood_logo_card.svg'), title: 'Bollywood',ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86', morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]}, {id: 2, rating: 4.5,title: 'Zumba', img: require('../../../assets/images/zumba_logo_card.svg'), ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86', morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]}, {id: 3, title: 'HipHop', rating: 4.5, img: require('../../../assets/images/bollywood_logo_card.svg'), ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86', date: moment(), morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]}],
         }
     )
-    const scrolllist = useRef(null);
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-    const [value, setValue] = useState(0);
     useEffect(() => {
         window.scrollTo({
             top: 1,
             behavior: 'smooth'
         });
     }, [])
-    const activeItem = () => {
-        // const indexActive = scrolllist.current.state.inViewState.findIndex(
-        //   (x) => x === true
-        // );
-        // console.log(scrolllist.current.props.items[indexActive]);
-      };
-      activeItem()
-      console.log(scrolllist);
+    
     return(
         <section className="schedule-section">
             <Container className="schedule-container">
                 <div className="dance-listing-wrapper">
                     <div className="date-picker-wrapper">
                         <div className="time-slots-tabs-wrapper">
-                            {/* <h3 className="heading3 month">{moment(activeDate.date).format('MMMM')}</h3> */}
-                            {/* <h3 className="heading3 month">{getActiveDate()}</h3> */}
                             <Tabs
-                                // value={value}
+                                // value={6}
                                 // onChange={handleChange}
                                 variant="scrollable"
                                 scrollButtons="on"
@@ -55,15 +41,14 @@ export default function Schedule(props){
                             >
                                 <ScrollspyNav
                                         scrollTargetIds={['date-1', 'date-2', 'date-3', 'date-4', 'date-5', 'date-6', 'date-7']}
-                                        offset={-115}
+                                        offset={-135}
                                         activeNavClass="is-current"
                                         headerBackground="true"
                                         scrollDuration={500}
-                                        ref={scrolllist}
                                     >
                                      <ul>
                                         {Object.keys(scheduleData).map((item, index) => <li><a href={`#date-${index+1}`} onChange={e => console.log('e.target', e.target)}>
-                                            <h3 className="heading3 month">{'September'}</h3>
+                                            <h3 className="heading3 month">{moment(item).format('MMMM')}</h3>
                                             <Tab key={index} label={<div className="date-item">
                                                 <h3 className="heading1">{moment(item).format('D') < 10 ? `0${moment(item).format('D')}` : moment(item).format('D')}</h3>
                                                 <p className="secondaryText">{moment(item).format('ddd')}</p>

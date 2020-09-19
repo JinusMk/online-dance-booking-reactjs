@@ -10,18 +10,20 @@ body{
                     position: -webkit-sticky;
                     top: 64px; /* required */
                     background: #fff;
-                    padding: 16px 0 16px 16px;
+                    padding: 40px 0 16px 16px;
                     z-index: 999;
                     .time-slots-tabs-wrapper{
                         .time-slots-tabs{
                             margin-bottom: 0;
+                            // .MuiTabScrollButton-root{
+                            //     top: 48px;
+                            // }
                             .MuiTabs-scrollable{
                                 .MuiTabs-flexContainer{
                                     ul{
                                         display: flex;
                                         list-style: none;
-                                        position: relative;
-                                        padding-top: 28px;
+                                        // padding-top: 28px;
                                         li{
                                             a{
                                                 .month{
@@ -30,9 +32,9 @@ body{
                                                 &.is-current{
                                                     .month{
                                                         display: block;
-                                                        position: absolute;
-                                                        top: 0;
-                                                        left: 0;
+                                                        position: fixed;
+                                                        top: 76px;
+                                                        left: 16px;
                                                     }
                                                     .date-item{
                                                         box-shadow: none;
