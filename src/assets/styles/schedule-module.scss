@@ -5,7 +5,41 @@ body{
         .schedule-container{
             padding: 0;
             .dance-listing-wrapper{
-                margin-top: 16px;
+                .date-picker-wrapper{
+                    position: sticky;
+                    position: -webkit-sticky;
+                    top: 64px; /* required */
+                    background: #fff;
+                    padding: 16px 0 16px 16px;
+                    z-index: 999;
+                    .time-slots-tabs-wrapper{
+                        .time-slots-tabs{
+                            margin-bottom: 0;
+                            .MuiTabs-scrollable{
+                                .MuiTabs-flexContainer{
+                                    ul{
+                                        display: flex;
+                                        list-style: none;
+                                        li{
+                                            // margin-right: 20px;
+                                            a{
+                                                &.is-current{
+                                                    .date-item{
+                                                        box-shadow: none;
+                                                        background: $color_primary;
+                                                        .heading1,.secondaryText{
+                                                            color: $color_white;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 .dance-item-date-wrapper{
                     .title{
                         color: $color_primary;

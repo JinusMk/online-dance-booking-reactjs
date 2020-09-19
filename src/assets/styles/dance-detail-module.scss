@@ -104,65 +104,8 @@ body{
                 padding: 16px 16px 24px 16px;
                 .time-slots-tabs-wrapper{
                     margin-right: -16px;
-                    .month{
-                        color: $color_primary;
-                        margin-bottom: 8px;
-                    }
                     .time-slots-tabs{
-                        position: relative;
-                        margin-bottom: 24px;
-                        .MuiTabScrollButton-root{
-                            position: absolute;
-                            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.3);
-                            background: $color_white;
-                            z-index: 99999;
-                            &:last-child{
-                                right: 10px;
-                                left: unset;
-                            }
-                            left: 10px;
-                            top: 20px;
-                            color: $color_primary;
-                            // color: $color_white;
-                            // background: $color_primary;
-                            border-radius: 50%;
-                            border: 1px solid $color_primary;
-                            width: 16px;
-                            height: 16px;
-                        }
-                        .MuiTabs-scrollable{
-                            .MuiTabs-flexContainer{
-                                .MuiTab-textColorInherit{
-                                    opacity: 1;
-                                    min-width: unset;
-                                    padding: 0;
-                                    padding-right: 10px;
-                                    &.Mui-selected{
-                                        .date-item{
-                                            box-shadow: none;
-                                            background: $color_primary;
-                                            .heading1,.secondaryText{
-                                                color: $color_white;
-                                            }
-                                        }
-                                    }
-                                }
-                                .date-item{
-                                    min-width: 50px;
-                                    box-sizing: border-box;
-                                    padding: 3px 7px;
-                                    border-radius: 8px;
-                                    border: 1px solid #FFE5E9;
-                                    box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
-                                    .secondaryText{
-                                        color: $color_primary;
-                                    }
-                                }
-                            }
-                            .MuiTabs-indicator{
-                                background-color: transparent;
-                            }
-                        }
+                        
                     }
                     .time-slots-tab-panel-wrapper{
 
