@@ -6,6 +6,7 @@ import ErrorBoundary from './utils/ErrorBoundary'
 import { homeRoutes } from './features/home/homeRoutes';
 import { scheduleRoutes } from './features/schedule/scheduleRoutes';
 import { profileRoutes } from './features/profile/profileRoutes';
+import { bookingRoutes } from './features/booking/bookingRoutes';
 import './assets/styles/app.scss';
 
 const store = configureStore();
@@ -24,6 +25,9 @@ function App() {
                   <Route exact path={path} component={component} key={key} />
                 )}
                 { profileRoutes.map(({path, component, key}, index) =>
+                  <Route exact path={path} component={component} key={key} />
+                )}
+                { bookingRoutes.map(({path, component, key}, index) =>
                   <Route exact path={path} component={component} key={key} />
                 )}
               </Switch>

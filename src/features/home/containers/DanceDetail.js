@@ -18,7 +18,7 @@ export default function DanceDetail(props){
             <Container maxWidth={false} className="dance-detail-container">
                 <Gallery/>
                 <DanceInfo dance={dance}/>
-                <TimeSlots/>
+                <TimeSlots danceId={dance.id}/>
                 <Suspense fallback={<div>Loading...</div>}>
                     <div className="instructor block">
                         <h3 className="heading2 title">Instructor</h3>

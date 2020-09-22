@@ -30,8 +30,8 @@ export default function DanceInformationCard(props){
             </ul>
             {
                 type == "schedule" && <>
-                    <TimeSlotList title="MORNING" timeSlots={dance.morning} />
-                    <TimeSlotList title="EVENING" timeSlots={dance.evening} />
+                    <TimeSlotList title="MORNING" timeSlots={dance.morning} danceId={dance.id}/>
+                    <TimeSlotList title="EVENING" timeSlots={dance.evening} danceId={dance.id}/>
                 </>
             }
         </div>
