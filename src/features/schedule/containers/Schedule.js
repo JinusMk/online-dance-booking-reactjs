@@ -48,18 +48,17 @@ export default function Schedule(props){
                                     >
                                      <ul>
                                         {Object.keys(scheduleData).map((item, index) => <li><a href={`#date-${index+1}`} onChange={e => console.log('e.target', e.target)}>
-                                            <div className="month-wrapper">
-                                                <h3 className="heading3 month">{moment(item).format('MMMM')}</h3>
-                                            </div>
-                                            <Tab key={index} label={<div className="date-item">
-                                                <h3 className="heading1">{moment(item).format('D') < 10 ? `0${moment(item).format('D')}` : moment(item).format('D')}</h3>
-                                                <p className="secondaryText">{moment(item).format('ddd')}</p>
+                                            <Tab key={index} label={<div className="date-item-wrapper">
+                                                <p className="secondaryText month">{moment(item).format('MMM')}</p>
+                                                <div className="day-wrapper">
+                                                    <h3 className="heading1">{moment(item).format('D') < 10 ? `0${moment(item).format('D')}` : moment(item).format('D')}</h3>
+                                                    <p className="secondaryText">{moment(item).format('ddd')}</p>
+                                                </div>
                                         </div>}/></a> </li>)}
                                     </ul>
                                 </ScrollspyNav>
                             </Tabs>
                         </div>
-                        
                     </div>
                     {
                         Object.keys(scheduleData).map((item, index) => 

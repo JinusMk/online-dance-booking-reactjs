@@ -10,7 +10,7 @@ body{
                     position: -webkit-sticky;
                     top: 64px; /* required */
                     background: #fff;
-                    padding: 40px 0 16px 16px;
+                    padding: 16px 0 16px 16px;
                     z-index: 999;
                     .time-slots-tabs-wrapper{
                         .time-slots-tabs{
@@ -26,21 +26,14 @@ body{
                                         // padding-top: 28px;
                                         li{
                                             a{
-                                                .month-wrapper{
-                                                    display: none;
-                                                }
                                                 &.is-current{
-                                                    .month-wrapper{
-                                                        display: block;
-                                                        position: fixed;
-                                                        top: 76px;
-                                                        left: 16px;
-                                                    }
-                                                    .date-item{
-                                                        box-shadow: none;
-                                                        background: $color_primary;
-                                                        .heading1,.secondaryText{
-                                                            color: $color_white;
+                                                    .date-item-wrapper{
+                                                        .day-wrapper{
+                                                            box-shadow: none;
+                                                            background: $color_primary;
+                                                            .heading1,.secondaryText{
+                                                                color: $color_white;
+                                                            }
                                                         }
                                                     }
                                                 }

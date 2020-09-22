@@ -41,7 +41,7 @@ export default function TimeSlots(props){
     return(
         <div className="time-slots block">
             <div className="time-slots-tabs-wrapper">
-                <h3 className="heading3 month">{moment(activeDate.date).format('MMMM')}</h3>
+                {/* <h3 className="heading3 month">{moment(activeDate.date).format('MMMM')}</h3> */}
                 <Tabs
                     value={value}
                     onChange={handleChange}
@@ -51,9 +51,12 @@ export default function TimeSlots(props){
                     aria-label="scrollable force tabs example"
                 >
                     {
-                        dates.map((item, index) => <Tab key={index} label={<div className="date-item">
-                            <h3 className="heading1">{moment(item.date).format('D') < 10 ? `0${moment(item.date).format('D')}` : moment(item.date).format('D')}</h3>
-                            <p className="secondaryText">{moment(item.date).format('ddd')}</p>
+                        dates.map((item, index) => <Tab key={index} label={<div className="date-item-wrapper">
+                            <p className="secondaryText month">{moment(activeDate.date).format('MMM')}</p>
+                            <div className="day-wrapper">
+                                <h3 className="heading1">{moment(item.date).format('D') < 10 ? `0${moment(item.date).format('D')}` : moment(item.date).format('D')}</h3>
+                                <p className="secondaryText">{moment(item.date).format('ddd')}</p>
+                            </div>
                         </div>}/>)
                     }
                 </Tabs>
