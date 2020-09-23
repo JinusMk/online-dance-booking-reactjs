@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function TimeSlots(props){
-    const { title, timeSlots=[], danceId, sectionId, date } = props
+    const { title, timeSlots=[], danceId, sectionId="", date } = props
     return(
         <div className="time-slots-wrapper">
             <p className="secondaryText">{title}</p>
