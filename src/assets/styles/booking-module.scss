@@ -1,8 +1,42 @@
 @import 'variable';
 body{
     .booking-section{
+        padding: 16px 0;
         .booking-container{
             padding: 0;
+            .metaText{
+                padding: 0 16px;
+                margin-bottom: 8px;
+            }
+            .dance-information-card{
+                padding: 0 16px;
+                border-bottom: 1px solid #FFE5E9;
+            }
+            .dance-attributes{
+                padding: 0 16px;
+                border-bottom: 1px solid #FFE5E9;
+                p{
+                    margin-bottom: 8px;
+                }
+                h3{
+                    &.cost{
+                        span{
+                            text-decoration: line-through;
+                            color: $color_info_text;
+                            font-weight: $regularFont;
+                            margin-right: 10px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .timeWrapper{
+                    padding: 16px 0;
+                    border-right: 1px solid #FFE5E9;
+                }
+                .amountWrapper{
+                    padding: 16px 0 16px 16px;
+                }
+            }
         }
     }
 }

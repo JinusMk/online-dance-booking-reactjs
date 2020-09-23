@@ -10,11 +10,11 @@ const ContactUs = React.lazy(() => import('../components/ContactUs'));
 
 export default function DanceDetail(props){
     const [ dance, setDance ] = useState({
-        id: 1, rating: 4.5, ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86'
+        id: 1, rating: 4.5, title: "Zumba", ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86'
     })
     return(
         <section className="dance-detail-section">
-            <Header onBack={() => props.history.push('/')} title="Zumba"/>
+            <Header onBack={() => props.history.push('/')} title={dance.title}/>
             <Container maxWidth={false} className="dance-detail-container">
                 <Gallery/>
                 <DanceInfo dance={dance}/>

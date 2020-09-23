@@ -72,7 +72,7 @@ export default function Schedule(props){
                             <div className="dance-item-date-wrapper" id={`date-${index+1}`} key={index}>
                                 <h3 className="heading2 title">{moment(item).format('DD MMM')}</h3>
                                 {
-                                    scheduleData[item].length && scheduleData[item].map((dance, dindex) => <DanceInformationCard key={dindex} type="schedule" dance={dance} sectionId={`date-${index+1}`}/>)
+                                    scheduleData[item].length && scheduleData[item].map((dance, dindex) => <DanceInformationCard key={dindex} type="schedule" dance={dance} sectionId={`date-${index+1}`} activeDate={item}/>)
                                 }
                             </div>)
                     }
