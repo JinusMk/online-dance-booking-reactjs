@@ -19,10 +19,17 @@ export default function Schedule(props){
         }
     )
     useEffect(() => {
-        window.scrollTo({
-            top: 1,
-            behavior: 'smooth'
-        });
+        const location = props.location
+        let hash = location.hash;
+        hash = hash.substring(1, hash.length);
+        const element = document.getElementById(`${hash}`);
+        if(element){
+            const yOffset = -170; 
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        }else{
+            window.scrollTo({ top: 1, behavior: 'smooth' });
+        }
     }, [])
     
     return(
@@ -41,7 +48,7 @@ export default function Schedule(props){
                             >
                                 <ScrollspyNav
                                         scrollTargetIds={['date-1', 'date-2', 'date-3', 'date-4', 'date-5', 'date-6', 'date-7']}
-                                        offset={-140}
+                                        offset={-115}
                                         activeNavClass="is-current"
                                         headerBackground="true"
                                         scrollDuration={500}
@@ -65,7 +72,7 @@ export default function Schedule(props){
                             <div className="dance-item-date-wrapper" id={`date-${index+1}`} key={index}>
                                 <h3 className="heading2 title">{moment(item).format('DD MMM')}</h3>
                                 {
-                                    scheduleData[item].length && scheduleData[item].map((dance, dindex) => <DanceInformationCard key={dindex} type="schedule" dance={dance}/>)
+                                    scheduleData[item].length && scheduleData[item].map((dance, dindex) => <DanceInformationCard key={dindex} type="schedule" dance={dance} sectionId={`date-${index+1}`}/>)
                                 }
                             </div>)
                     }

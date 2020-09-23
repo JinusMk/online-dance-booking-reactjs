@@ -2,7 +2,7 @@ import React from   'react'
 import TimeSlotList from './TimeSlotList'
 
 export default function DanceInformationCard(props){
-    const { dance, type="" } = props
+    const { dance, type="", sectionId } = props
     return(
         <div className="dance-information-card">
             <div className="top-blk flexCentered">
@@ -30,8 +30,8 @@ export default function DanceInformationCard(props){
             </ul>
             {
                 type == "schedule" && <>
-                    <TimeSlotList title="MORNING" timeSlots={dance.morning} danceId={dance.id}/>
-                    <TimeSlotList title="EVENING" timeSlots={dance.evening} danceId={dance.id}/>
+                    <TimeSlotList title="MORNING" timeSlots={dance.morning} danceId={dance.id} sectionId={sectionId}/>
+                    <TimeSlotList title="EVENING" timeSlots={dance.evening} danceId={dance.id} sectionId={sectionId}/>
                 </>
             }
         </div>
