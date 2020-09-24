@@ -14,6 +14,7 @@ body{
             }
             .dance-attributes{
                 padding: 0 16px;
+                margin-bottom: 16px;
                 border-bottom: 1px solid #FFE5E9;
                 p{
                     margin-bottom: 8px;
@@ -35,6 +36,19 @@ body{
                 }
                 .amountWrapper{
                     padding: 16px 0 16px 16px;
+                }
+            }
+            .user-information-form-wrapper{
+                padding: 0 16px;
+                .form-title{
+                    margin-bottom: 16px;
+                    h3{
+                        margin-bottom: 4px;
+                        color: $color_gray;
+                    }
+                    p{
+                        color: $color_gray;
+                    }
                 }
             }
         }

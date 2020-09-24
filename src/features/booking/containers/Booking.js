@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Header, DanceInformationCard } from  '../../../shared_elements'
 import { Container, Grid } from '@material-ui/core';
 import moment from 'moment'
+import { UserInformationForm } from '../components'
 import '../../../assets/styles/booking-module.scss'
 
 export default function Booking(props){
@@ -45,6 +46,7 @@ export default function Booking(props){
                         </div>
                     </Grid>
                 </Grid>
+                <UserInformationForm />
             </Container>
         </section>
     )
