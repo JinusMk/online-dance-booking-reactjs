@@ -46,6 +46,10 @@ export default function Booking(props){
                         </div>
                     </Grid>
                 </Grid>
+                <div className="login-button-wrapper">
+                    <p className="secondaryText">HAVE AN ACCOUNT ?</p>
+                    <p><a className="secondaryBtn">TAP HERE TO LOGIN</a></p>
+                </div>
                 <UserInformationForm />
             </Container>
         </section>

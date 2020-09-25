@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { TextField } from '@material-ui/core';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 export default function UserInformationForm(props){
     const [userInfo, setUserInfo] = useState({
@@ -29,7 +31,7 @@ export default function UserInformationForm(props){
             </div>
             <form onSubmit={handleSubmit}>
                 <div className={'inputGroup'}>
-                    <label className={error.name ? 'error': ''}>YOUR NAME</label>
+                    <label className={error.name ? 'error': ''}>{error.name ? error.name : "YOUR NAME"}</label>
                     <TextField 
                         value={userInfo.name}
                         onChange={(e) => handleChange('name',e.target.value)}
@@ -38,12 +40,32 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className={'inputGroup'}>
-                    <label className={error.email ? 'error': ''}>YOUR EMAIL</label>
+                    <label className={error.email ? 'error': ''}>{error.email ? error.email : 'YOUR EMAIL'}</label>
                     <TextField 
                         value={userInfo.email}
                         onChange={(e) => handleChange('email',e.target.value)}
                         error={error.email ? true : false}
                         placeholder="Your email address"
+                    />
+                </div>
+                <div className="inputGroup">
+                    <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR PHONE NUMBER'}</label>
+                    <PhoneInput
+                        // country={'in'}
+                        disableSearchIcon={true}
+                        value={userInfo.phone}
+                        onChange={phone => handleChange('phone', phone)}
+                        preferredCountries={['in', 'ae', 'sg']}
+                        placeholder="Your phone number"
+                        inputProps={
+                            {
+                                required: true,
+                                className: error.phone ? 'error' : ''
+                            }
+                        }
+                        searchPlaceholder="Search countries"
+                        enableSearch={true}
+                        
                     />
                 </div>
             </form>

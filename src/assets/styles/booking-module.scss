@@ -14,7 +14,6 @@ body{
             }
             .dance-attributes{
                 padding: 0 16px;
-                margin-bottom: 16px;
                 border-bottom: 1px solid #FFE5E9;
                 p{
                     margin-bottom: 8px;
@@ -38,8 +37,22 @@ body{
                     padding: 16px 0 16px 16px;
                 }
             }
+            .login-button-wrapper{
+                padding: 16px;
+                // width: 100%;
+                border-bottom: 1px solid #FFE5E9;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
+                .secondaryBtn{
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 11px 16px;
+                    font-size: 12px;
+                }
+            }
             .user-information-form-wrapper{
-                padding: 0 16px;
+                padding: 16px;
                 .form-title{
                     margin-bottom: 16px;
                     h3{

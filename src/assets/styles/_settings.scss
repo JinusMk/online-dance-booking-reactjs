@@ -215,6 +215,14 @@ body{
                 border: 1px solid $color_error;
             }
         }
+        .react-tel-input{
+            input{
+                padding-left: 50px;
+            }
+            .flag-dropdown{
+                
+            }
+        }
         input, textarea, select{
             width: 100%;
             @include fontStyle(
