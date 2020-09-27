@@ -65,7 +65,6 @@ export default function UserInformationForm(props){
                         }
                         searchPlaceholder="Search countries"
                         enableSearch={true}
-                        
                     />
                 </div>
             </form>
