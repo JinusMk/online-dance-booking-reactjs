@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Header, DanceInformationCard } from  '../../../shared_elements'
+import { Header, DanceInformationCard, AuthPopup } from  '../../../shared_elements'
 import { Container, Grid } from '@material-ui/core';
 import moment from 'moment'
 import { UserInformationForm } from '../components'
@@ -11,6 +11,7 @@ export default function Booking(props){
     })
     const [selectedDate, setSelectedDate] = useState(moment())
     const [selectedTime, setSelectedTime] = useState('')
+    const [openAuthPopup, setOpenAuthPopup] = useState(false)
     useEffect(() => {
         console.log(props.location.state)
         if(props.location.state){
@@ -48,10 +49,16 @@ export default function Booking(props){
                 </Grid>
                 <div className="login-button-wrapper">
                     <p className="secondaryText">HAVE AN ACCOUNT ?</p>
-                    <p><a className="secondaryBtn">TAP HERE TO LOGIN</a></p>
+                    <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
                 </div>
                 <UserInformationForm />
             </Container>
+            {
+                <AuthPopup 
+                    open={openAuthPopup}
+                    handleClose={() => setOpenAuthPopup(false)}
+                />
+            }
         </section>
     )
 }

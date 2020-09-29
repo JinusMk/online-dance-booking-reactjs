@@ -51,7 +51,7 @@ export default function UserInformationForm(props){
                 <div className="inputGroup">
                     <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR PHONE NUMBER'}</label>
                     <PhoneInput
-                        // country={'in'}
+                        country={'in'}
                         disableSearchIcon={true}
                         value={userInfo.phone}
                         onChange={phone => handleChange('phone', phone)}

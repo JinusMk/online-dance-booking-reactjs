@@ -424,4 +424,93 @@ body{
 
         }
     }
+    .custom-drawer{
+        .MuiDrawer-paper{
+            border-radius: 4px 4px 0 0;
+            padding: 16px;
+        }
+    }
+    .auth-popup-wrapper{
+        .line{
+            width: 110px;
+            height: 5px;
+            margin: 0 auto;
+            background: #CCCCCC;
+            border-radius: 10px;
+            margin-top: -10px;
+        }
+        .heading2{
+            margin-top: 24px;
+            margin-bottom: 22px;
+        }
+        .loginBtnGroup{
+            li{
+                margin-bottom: 16px;
+                &:last-child{
+                    margin: 0;
+                }
+                .btn{
+                    width: 100%;
+                    @include fontStyle(
+                        $fontFamily:$font_RobotoCondensed,
+                        $size:$font12,
+                        $weight:$boldFont,
+                        $color: $color_white,
+                        $lineHeight: $lineHeight16
+                    );
+                    padding: 12px 32px;
+                    box-sizing: border-box;
+                    border-radius: 4px ;
+                    border: 1px solid transparent; 
+                    outline: none;
+                    &.phone{
+                        background: #0E7ACB;
+                    }
+                    &.facebook{
+                        background: #4267B2;
+                    }
+                    &.google{
+                        background: #4285F4;
+                    }
+                    &.email{
+                        border: 1px solid #0E7ACB;
+                        color: #0E7ACB;
+                    }
+                }
+            }
+        }
+        .phone-auth-wrapper{
+            .paragraph{
+                &.info{
+                    color: $color_gray;
+                    margin-bottom: 25px;
+                }
+            }
+            .footer{
+                padding: 12px 16px;
+                margin: 0 -16px -16px;
+                box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+                li{
+                    width: 50%;
+                    p{
+                        margin-right: 8px;
+                        a{
+                            width: 100%;
+                            box-sizing: border-box;
+                            padding: 11px 16px;
+                            font-size: 12px;
+                            &.primaryBtn{
+                                padding: 12px 16px;
+                            }
+                        }
+                    }
+                    &:last-child{
+                        p{
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
