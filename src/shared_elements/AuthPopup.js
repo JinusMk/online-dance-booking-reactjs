@@ -16,8 +16,18 @@ export default function AuthPopup(props){
         firebase.default.auth().onAuthStateChanged(user => {
             console.log('user', user)
             setUser(!!user)
+            if(user){
+                localStorage.setItem('userInfo', JSON.stringify(user))
+                props.handleClose(false)
+            }else{
+                localStorage.removeItem('userInfo')
+            }
         })
-    }, [])
+        if(props.open){
+            setPhoneAuth(false)
+            setEmailAuth(false)
+        }
+    }, [props.open])
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -82,7 +92,7 @@ export default function AuthPopup(props){
                     <div className="auth-popup-wrapper">
                         <div class="line"></div>
                         {
-                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)}/> : emailAuth ? 'email' : <>
+                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)} handleSuccess={toggleDrawer(anchor, false)}/> : emailAuth ? 'email' : <>
                                 <h2 className="heading2">Login</h2>
                                 <ul className="listUnstyled loginBtnGroup">
                                     <li>
