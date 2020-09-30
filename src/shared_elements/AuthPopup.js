@@ -62,23 +62,9 @@ export default function AuthPopup(props){
             setEmailAuth(true)
         }
     }
-    const uiConfig = {
-        signInFlow: "popup",
-        signInOptions: [
-            {
-                provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-                recaptchaParameters: {
-                    size: 'invisible'
-                },
-                defaultCountry: 'IN'
-            },
-            firebase.default.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.default.auth.FacebookAuthProvider.PROVIDER_ID,
-            firebase.default.auth.EmailAuthProvider.PROVIDER_ID,
-        ],
-        callbacks: {
-            signInSuccess: (...params) => console.log('callBack', params)
-        }
+    const handleLoginSuccess = (user) => {
+        console.log('user handleLoginSuccess', user)
+        props.handleClose()
     }
     return(
         <>
@@ -92,7 +78,7 @@ export default function AuthPopup(props){
                     <div className="auth-popup-wrapper">
                         <div class="line"></div>
                         {
-                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)} handleSuccess={toggleDrawer(anchor, false)}/> : emailAuth ? 'email' : <>
+                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)} handleSuccess={handleLoginSuccess}/> : emailAuth ? 'email' : <>
                                 <h2 className="heading2">Login</h2>
                                 <ul className="listUnstyled loginBtnGroup">
                                     <li>
@@ -110,10 +96,6 @@ export default function AuthPopup(props){
                                 </ul>
                             </>
                         }
-                        {/* <StyledFirebaseAuth 
-                            uiConfig={uiConfig}
-                            firebaseAuth={firebase.default.auth()}
-                        /> */}
                     </div>
                 </SwipeableDrawer>
             ))}
