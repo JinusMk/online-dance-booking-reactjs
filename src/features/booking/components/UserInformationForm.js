@@ -116,7 +116,7 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className="footer">
-                    <input type="submit" className={`primaryBtn ${(loader || !(userInfo.name && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} value="CONTINUE"/>
+                    <p><a onClick={handleSubmit} className={`primaryBtn ${(loader || !(userInfo.name && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >CONTINUE</a></p>
                 </div>
             </form>
         </div>
