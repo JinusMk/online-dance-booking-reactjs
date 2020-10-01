@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { TextField } from '@material-ui/core';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { fieldValidation } from '../../../utils/formValidation';
+import { regExpression } from '../../../constants'
 
 export default function UserInformationForm(props){
     const [userInfo, setUserInfo] = useState({
@@ -9,7 +11,40 @@ export default function UserInformationForm(props){
         email: '',
         phone: ''
     })
+    const [loader, setLoader] = useState(false)
     const [error, setError] = useState({})
+    const [errorCode] = useState({
+        name: {
+            0: '',
+            1: 'ENTER YOUR NAME',
+            4: 'ETER A VALID NAME'
+        },
+        nameObj: {
+            requiredFlag: true,
+            regexPattern: regExpression.name
+        },
+        email: {
+            0: '',
+            1: 'ENTER YOUR EMAIL',
+            4: 'ENTER A VALID EMAIL'
+        },
+        emailObj: {
+            requiredFlag: true,
+            regexPattern: regExpression.email
+        },
+        phone: {
+            0: '',
+            1: 'ENTER YOUR MOBILE NUMBER',
+            2: 'ENTER A VALID MOBILE NUMBER',
+            3: 'ENTER A VALID MOBILE NUMBER',
+            4: 'ENTER A VALID MOBILE NUMBER'
+        },
+        phoneObj: {
+            requiredFlag: true,
+            minLength: 5,
+            maxLength: 15
+        }
+    })
     const handleChange = (key, val) => {
         setUserInfo({
             ...userInfo,
@@ -22,6 +57,18 @@ export default function UserInformationForm(props){
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+        setLoader(true)
+        let validateNewInput = {
+            name: errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: userInfo.name})],
+            email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: userInfo.email})],
+            phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})],
+        }
+        if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
+
+        }else{
+            setLoader(false)
+            setError(validateNewInput)
+        }
     }
     return(
         <div className="user-information-form-wrapper">
@@ -49,14 +96,14 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className="inputGroup">
-                    <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR PHONE NUMBER'}</label>
+                    <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
                     <PhoneInput
                         country={'in'}
                         disableSearchIcon={true}
                         value={userInfo.phone}
                         onChange={phone => handleChange('phone', phone)}
                         preferredCountries={['in', 'ae', 'sg']}
-                        placeholder="Your phone number"
+                        placeholder="Your mobile number"
                         inputProps={
                             {
                                 required: true,
@@ -65,7 +112,11 @@ export default function UserInformationForm(props){
                         }
                         searchPlaceholder="Search countries"
                         enableSearch={true}
+                        isValid={error.phone ? false : true}
                     />
+                </div>
+                <div className="footer">
+                    <input type="submit" className={`primaryBtn ${(loader || !(userInfo.name && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} value="CONTINUE"/>
                 </div>
             </form>
         </div>

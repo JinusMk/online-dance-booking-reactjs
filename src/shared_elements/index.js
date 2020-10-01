@@ -4,6 +4,7 @@ import TimeSlotList from './TimeSlotList'
 import DanceInformationCard from './DanceInformationCard'
 import AuthPopup from './AuthPopup'
 import PhoneAuth from './PhoneAuth'
+import EmailAuth from './EmailAuth'
 
 export {
     Header,
@@ -11,5 +12,6 @@ export {
     TimeSlotList,
     DanceInformationCard,
     AuthPopup,
-    PhoneAuth
+    PhoneAuth,
+    EmailAuth
 }

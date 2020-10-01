@@ -3,6 +3,8 @@ import { TextField, CircularProgress } from '@material-ui/core';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import firebase from '../utils/firebase'
+import { fieldValidation } from '../utils/formValidation';
+import { regExpression } from '../constants'
 
 export default function PhoneAuth(props){
     const [ Continue, setContinue ] = useState(false)
@@ -12,7 +14,31 @@ export default function PhoneAuth(props){
     const [loader, setLoader] = useState(false)
     const [verificationId, setVerificationId] = useState("")
     const [resend, setResend] = useState(false)
-
+    const [errorCode] = useState({
+        phone: {
+            0: '',
+            1: 'ENTER YOUR MOBILE NUMBER',
+            2: 'ENTER A VALID MOBILE NUMBER',
+            3: 'ENTER A VALID MOBILE NUMBER',
+            4: 'ENTER A VALID MOBILE NUMBER'
+        },
+        phoneObj: {
+            requiredFlag: true,
+            minLength: 5,
+            maxLength: 15
+        },
+        otp: {
+            0: '',
+            1: 'ENTER YOUR OTP',
+            2: 'ENTER A VALID OTP',
+            3: 'ENTER A VALID OTP'
+        },
+        otpObj: {
+            requiredFlag: true,
+            minLength: 6,
+            maxLength: 6
+        }
+    })
     const handleVerification = () => {
         setLoader(true)
         var appVerifier = new firebase.auth.RecaptchaVerifier(
@@ -27,7 +53,10 @@ export default function PhoneAuth(props){
                 },
             }
         )
-        if(phone && phone.length > 5 && phone.length < 15){
+        let validateNewInput = {
+            phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: phone})]
+        }
+        if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             let phoneNumber = `+${phone}`;
             firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
             .then(response => {
@@ -41,32 +70,38 @@ export default function PhoneAuth(props){
                 setLoader(false)
                 appVerifier.clear();
                 if(err.code == 'auth/invalid-phone-number'){
-                    setError({'phone': 'INVALID MOBILE NUMBER'})
+                    setError({'phone': 'ENTER A VALID MOBILE NUMBER'})
                 }
                 console.log('err signInWithPhoneNumber', err)
             })
         }else{
-            setError({'phone': 'INVALID MOBILE NUMBER'})
+            setError(validateNewInput)
             setLoader(false)
         }
     }
     const handleOtp = () => {
         setLoader(true)
-        var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, otp)
-        firebase.auth().signInWithCredential(credential)
-        .then(res => {
-            setLoader(false)
-            console.log("res phoneAuth", res)
-            localStorage.setItem('userInfo', res)
-            props.handleSuccess()
-        })
-        .catch(err => {
-            setLoader(false)
-            console.log('err phoneAuth', err)
-            setError({
-                'otp' : 'WRONG OTP, TRY AGAIN'
+        let validateNewInput = {
+            otp: errorCode['otp'][fieldValidation({...errorCode['otpObj'], fieldval: otp})]
+        }
+        if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
+            var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, otp)
+            firebase.auth().signInWithCredential(credential)
+            .then(res => {
+                setLoader(false)
+                props.handleSuccess(res)
             })
-        })
+            .catch(err => {
+                setLoader(false)
+                // console.log('err phoneAuth', err)
+                setError({
+                    'otp' : 'WRONG OTP, TRY AGAIN'
+                })
+            })
+        }else{
+            setError(validateNewInput)
+            setLoader(false)
+        }
     }   
     const handleResend = () => {
         setLoader(true)
@@ -100,7 +135,7 @@ export default function PhoneAuth(props){
         }
     }; 
     return(
-        <div className="phone-auth-wrapper">
+        <div className="auth-outer-wrapper phone">
             {
                 Continue ? <>
                     <h2 className="heading2">Enter 6 digit OTP</h2>
@@ -132,7 +167,7 @@ export default function PhoneAuth(props){
                             disabled={loader}
                             onChange={phone => {setPhone(phone); setError({'phone': ''})}}
                             preferredCountries={['in', 'ae', 'sg']}
-                            placeholder="Your phone number"
+                            placeholder="Your mobile number"
                             inputProps={
                                 {
                                     required: true,
@@ -141,6 +176,7 @@ export default function PhoneAuth(props){
                             }
                             searchPlaceholder="Search countries"
                             enableSearch={true}
+                            isValid={error.phone ? false : true}
                         />
                         {loader ? <CircularProgress className="loader"/> : null}
                     </div>
@@ -149,7 +185,7 @@ export default function PhoneAuth(props){
                 </>
             }
             <ul className="listInline footer">
-                <li><p><a className={`secondaryBtn ${loader ? 'disabled': ''}`} onClick={() => {props.handleBack(); setPhone(''); setError({})}}>BACK</a></p></li>
+                <li><p><a className={`secondaryBtn ${loader ? 'disabled': ''}`} onClick={() => {props.handleBack(); setPhone('');setOtp('');setError({})}}>BACK</a></p></li>
                 <li><p><a className={`primaryBtn ${(loader || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} onClick={() => Continue ? handleOtp(): handleVerification()}>{Continue ? 'LOGIN' : 'CONTINUE'}</a></p></li>
             </ul>
         </div>

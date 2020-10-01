@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { useLocation } from 'react-router-dom'
 import firebase from '../utils/firebase'
-import { PhoneAuth } from './index'
+import { PhoneAuth, EmailAuth } from './index'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
 export default function AuthPopup(props){
@@ -64,6 +64,7 @@ export default function AuthPopup(props){
     }
     const handleLoginSuccess = (user) => {
         console.log('user handleLoginSuccess', user)
+        localStorage.setItem('userInfo', JSON.stringify(user))
         props.handleClose()
     }
     return(
@@ -78,7 +79,7 @@ export default function AuthPopup(props){
                     <div className="auth-popup-wrapper">
                         <div class="line"></div>
                         {
-                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)} handleSuccess={handleLoginSuccess}/> : emailAuth ? 'email' : <>
+                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)} handleSuccess={handleLoginSuccess}/> : emailAuth ? <EmailAuth handleBack={() => setEmailAuth(false)} handleSuccess={handleLoginSuccess}/> : <>
                                 <h2 className="heading2">Login</h2>
                                 <ul className="listUnstyled loginBtnGroup">
                                     <li>

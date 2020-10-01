@@ -451,6 +451,7 @@ body{
                 }
                 .btn{
                     width: 100%;
+                    cursor: pointer;
                     @include fontStyle(
                         $fontFamily:$font_RobotoCondensed,
                         $size:$font12,
@@ -479,14 +480,35 @@ body{
                 }
             }
         }
-        .phone-auth-wrapper{
-            .paragraph{
-                &.info{
-                    color: $color_gray;
-                    margin-bottom: 25px;
-                    span{
-                        color: $color_blue;
-                        cursor: pointer;
+        .auth-outer-wrapper{
+            &.phone{
+                .paragraph{
+                    &.info{
+                        color: $color_gray;
+                        margin-bottom: 25px;
+                        span{
+                            color: $color_blue;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .inputGroup{
+                    position: relative;
+                    .loader{
+                        position: absolute;
+                        right: 10px;
+                        top: 30px;
+                        color: #DC354B;
+                        width: 24px !important;
+                        height: 24px !important;
+                    }
+                    label{
+                        &.otp{
+                            color: $color_black;
+                            span{
+                                color: $color_error;
+                            }
+                        }
                     }
                 }
             }
@@ -514,24 +536,8 @@ body{
                     }
                 }
             }
-            .inputGroup{
-                position: relative;
-                .loader{
-                    position: absolute;
-                    right: 10px;
-                    top: 30px;
-                    color: #DC354B;
-                    width: 24px !important;
-                    height: 24px !important;
-                }
-                label{
-                    &.otp{
-                        color: $color_black;
-                        span{
-                            color: $color_error;
-                        }
-                    }
-                }
+            &.email{
+
             }
         }
     }
