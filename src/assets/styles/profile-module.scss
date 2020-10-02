@@ -3,6 +3,65 @@ body{
     .profile-section{
         .profile-container{
             padding: 0;
+            .top-blk{
+                background: url('../images/profile_bg_icon.svg');
+                min-height: 200px;
+                background-repeat: repeat-x;
+                padding: 0 16px 16px;
+                border-bottom:  1px solid #FFE5E9;
+                .login-btn-wrapper{
+                    padding-top: 110px;
+                    .heading3{
+                        color: $color_primary;
+                        margin-bottom: 16px;
+                    }
+                }
+                .logged-in-user-info{
+                    padding-top: 16px;
+                    text-align: center;
+                    .user-avatar{
+                        width: 128px;
+                        height: 128px;
+                        margin: 0 auto;
+                        margin-bottom: 16px;
+                        background: $color_primary;
+                        color: $color_white;
+                        font-size: 60px;
+                    }
+                    .heading3{
+                        margin-bottom: 8px;
+                    }
+                    .paragraph{
+                        color: $color_gray;
+                    }
+                }
+            }
+            .links{
+                margin-bottom: 60px;
+                li{
+                    border-bottom:  1px solid #FFE5E9;
+                    position: relative;
+                    p{
+                        a{
+                            padding: 16px;
+                            width: 100%;
+                            display: inline-block;
+                            box-sizing: border-box;
+                        }
+                    }
+                    .arrow{
+                        position: absolute;
+                        right: 16px;
+                        top: 23px;
+                        width: 12px;
+                    }
+                    &.disabled{
+                        cursor: not-allowed;
+                        pointer-events: none;
+                        opacity: 0.5;
+                    }
+                }
+            }
         }
     }
 }

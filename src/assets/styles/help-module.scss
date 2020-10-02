@@ -1,0 +1,33 @@
+@import 'variable';
+
+body{
+    .help-section{
+        overflow: hidden;
+        .help-container{
+            padding: 0;
+            .heading2{
+                &.title{
+                    margin-bottom: 16px;
+                }
+            }
+            .who-we-are-blk{
+                padding-top: 16px;
+                .bg-img{
+                    top: 0;
+                }
+            }
+            .how-it-works-blk{
+                border-bottom: 1px solid #FFE5E9;
+                margin-bottom: 24px;
+            }
+            .add-to-home-screen-blk{
+                padding: 0 16px 24px;
+                border-bottom: 1px solid #FFE5E9;
+                margin-bottom: 24px;
+            }
+            .contact-us-blk{
+                padding-bottom: 0;
+            }
+        }
+    }
+}

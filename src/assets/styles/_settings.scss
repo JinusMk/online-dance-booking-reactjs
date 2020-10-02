@@ -110,6 +110,7 @@ body{
     }
     .primaryBtn{
         box-sizing: border-box;
+        width: 100%;
         @include fontStyle(
             $fontFamily:$font_RobotoCondensed,
             $size:$font12,
@@ -146,6 +147,7 @@ body{
     }
     .secondaryBtn{
         box-sizing: border-box;
+        width: 100%;
         @include fontStyle(
           $fontFamily:$font_RobotoCondensed,
           $size:$font12,

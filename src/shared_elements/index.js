@@ -5,6 +5,8 @@ import DanceInformationCard from './DanceInformationCard'
 import AuthPopup from './AuthPopup'
 import PhoneAuth from './PhoneAuth'
 import EmailAuth from './EmailAuth'
+import DanceAlert from './DanceAlert'
+import AddToHomeScreen from './AddToHomeScreen'
 
 export {
     Header,
@@ -13,5 +15,7 @@ export {
     DanceInformationCard,
     AuthPopup,
     PhoneAuth,
-    EmailAuth
+    EmailAuth,
+    DanceAlert,
+    AddToHomeScreen
 }
