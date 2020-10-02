@@ -10,14 +10,11 @@ body{
                     position: -webkit-sticky;
                     top: 64px; /* required */
                     background: #fff;
-                    padding: 16px 0 16px 16px;
+                    padding: 16px 0 16px 0px;
                     z-index: 999;
                     .time-slots-tabs-wrapper{
                         .time-slots-tabs{
                             margin-bottom: 0;
-                            // .MuiTabScrollButton-root{
-                            //     top: 48px;
-                            // }
                             .MuiTabs-scrollable{
                                 .MuiTabs-flexContainer{
                                     ul{
@@ -37,6 +34,9 @@ body{
                                                         }
                                                     }
                                                 }
+                                            }
+                                            &:first-child{
+                                                padding-left: 16px;
                                             }
                                         }
                                     }
