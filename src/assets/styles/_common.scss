@@ -573,4 +573,45 @@ body{
             }
         }
     }
+    .custom-toast-wrapper{
+        .MuiSnackbar-anchorOriginBottomCenter{
+            bottom: 72px;
+            z-index: 99999;
+            .MuiSnackbarContent-root{
+                background: $color_success;
+                flex-grow: inherit;
+                box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                border-radius: 4px;
+                .MuiSnackbarContent-message{
+                    padding: 5px 0;
+                    .toast-message{
+                        p{
+                            span{
+                                @include fontStyle(
+                                    $fontFamily:$font_RobotoCondensed,
+                                    $size:$font12,
+                                    $weight:$boldFont,
+                                    $color: $color_white,
+                                    $lineHeight: $lineHeight16
+                                );
+                                vertical-align: middle;
+                            }
+                            img{
+                                vertical-align: middle;
+                                margin-right: 8px;
+                                width: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.error{
+            .MuiSnackbar-anchorOriginBottomCenter{
+                .MuiSnackbarContent-root{
+                    background: $color_error;
+                }
+            }
+        }
+    }
 }

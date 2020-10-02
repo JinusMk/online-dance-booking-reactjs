@@ -7,8 +7,8 @@ import { homeRoutes } from './features/home/homeRoutes';
 import { scheduleRoutes } from './features/schedule/scheduleRoutes';
 import { profileRoutes } from './features/profile/profileRoutes';
 import { bookingRoutes } from './features/booking/bookingRoutes';
-import { helpRoutes } from './features/help/helpRoutes';
 import './assets/styles/app.scss';
+import { ToastNotify } from './shared_elements';
 
 const store = configureStore();
 
@@ -16,6 +16,7 @@ function App() {
   return (
     <div className="App">
        <Provider store={store}>
+          <ToastNotify />
           <Router>
             <ErrorBoundary>
               <Switch>
@@ -29,9 +30,6 @@ function App() {
                   <Route exact path={path} component={component} key={key} />
                 )}
                 { bookingRoutes.map(({path, component, key}, index) =>
-                  <Route exact path={path} component={component} key={key} />
-                )}
-                { helpRoutes.map(({path, component, key}, index) =>
                   <Route exact path={path} component={component} key={key} />
                 )}
               </Switch>

@@ -4,6 +4,7 @@ import { ContactUs } from '../../home/components'
 import { Container, Avatar } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import firebase from '../../../utils/firebase'
+import { toastFlashMessage } from '../../../utils'
 import '../../../assets/styles/profile-module.scss'
 
 export default function Profile(props){
