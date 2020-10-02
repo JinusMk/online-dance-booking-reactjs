@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import '../../../assets/styles/help-module.scss'
 import { Container } from '@material-ui/core';
 import { WhoWeAre, WhyLetzdance } from '../../home/components'
@@ -10,6 +10,9 @@ const ContactUs = React.lazy(() => import('../../home/components/ContactUs'));
 const AddToHomeScreen = React.lazy(() => import ('../../../shared_elements/AddToHomeScreen'))
 
 export default function Help(props){
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
     return(
         <section className="help-section">
             <Header onBack={() => props.history.push('/profile')} title="Help" />
