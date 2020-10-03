@@ -4,7 +4,8 @@ import produce from 'immer';
 export default function(
     state = {
       toastLists: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      userInfo: ''
     }, action){
         switch(action.type){
             case actions.CLEAR_TOAST:
@@ -45,6 +46,11 @@ export default function(
                 return {
                     ...state,
                     isLoggedIn: action.payload
+            }
+            case actions.UPDATE_USERINFO: 
+                return {
+                    ...state,
+                    userInfo: action.payload
                 }
             default:
                 return state;

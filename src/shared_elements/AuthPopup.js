@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { useLocation } from 'react-router-dom'
 import firebase from '../utils/firebase'
 import { PhoneAuth, EmailAuth } from './index'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import { connect } from 'react-redux'
+import { AUTH_STATUS_UPDATE } from './actions'
+import { toastFlashMessage } from '../utils'
 
-export default function AuthPopup(props){
+function AuthPopup(props){
     const [state, setState] = useState({
         bottom: false,
     })
@@ -13,16 +14,9 @@ export default function AuthPopup(props){
     const [phoneAuth, setPhoneAuth] = useState(false)
     const [emailAuth, setEmailAuth] = useState(false)
     useEffect(() => {
-        firebase.default.auth().onAuthStateChanged(user => {
-            console.log('user', user)
-            setUser(!!user)
-            if(user){
-                localStorage.setItem('userInfo', JSON.stringify(user))
-                props.handleClose(false)
-            }else{
-                localStorage.removeItem('userInfo')
-            }
-        })
+        if(props.isLoggedIn){
+            props.handleClose()
+        }
         if(props.open){
             setPhoneAuth(false)
             setEmailAuth(false)
@@ -42,8 +36,9 @@ export default function AuthPopup(props){
         }else if(type == "facebook"){
             var provider = new firebase.auth.FacebookAuthProvider();
             firebase.auth().signInWithPopup(provider)
-            .then(response => {
-                console.log('response fb', response)
+            .then(user => {
+                console.log('response fb', user)
+                handleLoginSuccess(user)
             })
             .catch(error => {
                 console.log('error fb', error)
@@ -54,6 +49,7 @@ export default function AuthPopup(props){
             firebase.auth().signInWithPopup(provider)
             .then(response => {
                 console.log('response google', response)
+                handleLoginSuccess(response)
             })
             .catch(error => {
                 console.log('error google', error)
@@ -63,8 +59,7 @@ export default function AuthPopup(props){
         }
     }
     const handleLoginSuccess = (user) => {
-        console.log('user handleLoginSuccess', user)
-        localStorage.setItem('userInfo', JSON.stringify(user))
+        toastFlashMessage(`YOU'RE NOW LOGGED IN`, 'success')
         props.handleClose()
     }
     return(
@@ -103,3 +98,14 @@ export default function AuthPopup(props){
         </>
     )
 }
+const mapStateToProps = state => ({
+    isLoggedIn: state.sharedReducers.isLoggedIn
+})
+// const mapDispatchToProps = (dispath) => ({
+//     updateAuthStatus : (flag) => dispath({
+//         type: AUTH_STATUS_UPDATE,
+//         payload: flag
+//     }),
+//     updateUserInfo : (user) => 
+// })
+export default connect(mapStateToProps)(AuthPopup)

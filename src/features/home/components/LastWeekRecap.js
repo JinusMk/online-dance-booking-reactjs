@@ -26,7 +26,7 @@ export default function LastWeekRecap(props){
                 renderDotsOutside={true}
             >
                 {
-                    dances.map((item, index) => <div className="last-wek-recap-item">
+                    dances.map((item, index) => <div className="last-wek-recap-item" key={index}>
                         <img src={item.img}/>
                         <h3 className="heading3">{`${item.category} | ${item.instructor}`}</h3>
                         <p className="paragraph">{`${item.participants} dancers | ${item.date}`}</p>

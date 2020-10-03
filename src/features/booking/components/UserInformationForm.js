@@ -115,7 +115,7 @@ export default function UserInformationForm(props){
                         isValid={error.phone ? false : true}
                     />
                 </div>
-                <div className="footer">
+                <div className="booking-fixed-footer">
                     <p><a onClick={handleSubmit} className={`primaryBtn ${(loader || !(userInfo.name && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >CONTINUE</a></p>
                 </div>
             </form>

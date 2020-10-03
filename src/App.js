@@ -7,12 +7,36 @@ import { homeRoutes } from './features/home/homeRoutes';
 import { scheduleRoutes } from './features/schedule/scheduleRoutes';
 import { profileRoutes } from './features/profile/profileRoutes';
 import { bookingRoutes } from './features/booking/bookingRoutes';
-import './assets/styles/app.scss';
 import { ToastNotify } from './shared_elements';
+import firebase from './utils/firebase'
+import './assets/styles/app.scss';
+import { AUTH_STATUS_UPDATE, UPDATE_USERINFO } from './shared_elements/actions'
 
 const store = configureStore();
 
 function App() {
+  firebase.auth().onAuthStateChanged(user => {
+    console.log('inside onAUthState app.js', user)
+    if(user){
+      store.dispatch({
+        type: AUTH_STATUS_UPDATE,
+        payload: true
+      })
+      store.dispatch({
+        type: UPDATE_USERINFO,
+        payload: user
+      })
+    }else{
+      store.dispatch({
+        type: UPDATE_USERINFO,
+        payload: ''
+      })
+      store.dispatch({
+        type: AUTH_STATUS_UPDATE,
+        payload: false
+      })
+    }
+  })
   return (
     <div className="App">
        <Provider store={store}>

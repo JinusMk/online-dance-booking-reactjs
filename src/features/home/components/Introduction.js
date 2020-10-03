@@ -4,7 +4,6 @@ import { responsiveCarousel } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Introduction(props){
-    console.log('this.props.deviceType', props.deviceType)
     return(
         <div className="introduction-blk">
             <Carousel 
