@@ -44,6 +44,9 @@ function Booking(props){
             })
         }
     }
+    const handleSubmit = (userInfo) => {
+        console.log('booking continue clicked', userInfo)
+    }
     return(
         <section className="booking-section">
             <Header onBack={onBack} title="Just one more step"/>
@@ -64,11 +67,11 @@ function Booking(props){
                         </div>
                     </Grid>
                 </Grid>
-                {props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={() => console.log('handleSubmit clicked booking')}/>: <><div className="login-button-wrapper">
+                {props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: <><div className="login-button-wrapper">
                         <p className="secondaryText">HAVE AN ACCOUNT ?</p>
                         <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
                     </div>
-                    <UserInformationForm />                    
+                    <UserInformationForm handleSubmit={handleSubmit}/>                    
                     </>
                 }
             </Container>

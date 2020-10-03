@@ -530,7 +530,15 @@ body{
                 }
             }
             &.email{
-
+                .signup-link{
+                    margin-bottom: 16px;
+                    p{
+                        a{
+                            color: $color_blue;
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
         }
     }

@@ -11,14 +11,13 @@ import '../../../assets/styles/profile-module.scss'
 
 function Profile(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
-    const [user, setUser] = useState('')
-    useEffect(() => {
-        if(props.isLoggedIn && props.userInfo){
-            setUser(props.userInfo)
-        }else{
-            setUser('')
-        }   
-    }, [props.isLoggedIn])
+    // useEffect(() => {
+    //     if(props.isLoggedIn){
+    //         setUser(props.userInfo)
+    //     }else{
+    //         setUser('')
+    //     }   
+    // }, [props.isLoggedIn])
     const logout = () => {
         if(window.confirm('ARE YOU SURE YOU WANT TO LOGOUT ?')){
             firebase.auth().signOut()
@@ -37,11 +36,12 @@ function Profile(props){
             <Container className="profile-container">
                 <div className="top-blk">
                     {props.isLoggedIn ? <><div className="logged-in-user-info">
-                        <Avatar className="user-avatar">P</Avatar>
-                        <h3 className="heading3">Prasanna</h3>
+                        {props.userInfo.photoURL ? <Avatar src={props.userInfo.photoURL} className="user-avatar"/>:<Avatar className="user-avatar">{props.userInfo.displayName ? props.userInfo.displayName[0] : props.userInfo.email ? props.userInfo.email[0]: 'L'}</Avatar>}
+                        <h3 className="heading3" style={props.userInfo.displayName ? {textTransform: 'capitalize'} : {}}>{props.userInfo.displayName ? props.userInfo.displayName : props.userInfo.email ? props.userInfo.email : props.userInfo.phoneNumber ? props.userInfo.phoneNumber : ''}</h3>
                         <p className="paragraph">Letzdancer since 2020</p>
                     </div>
-                    <DanceAlert /></> : <div className="login-btn-wrapper">
+                    {/* <DanceAlert /> */}
+                    </> : <div className="login-btn-wrapper">
                         <h3 className="heading3">Login and get started towards your journey of fun and fitness!</h3>
                         <p><a className="primaryBtn" onClick={() => setOpenAuthPopup(true)}>LOGIN / REGISTER</a></p>
                     </div>

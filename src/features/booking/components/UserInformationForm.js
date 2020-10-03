@@ -64,7 +64,7 @@ export default function UserInformationForm(props){
             phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})],
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
-
+            props.handleSubmit(userInfo)
         }else{
             setLoader(false)
             setError(validateNewInput)
