@@ -19,7 +19,7 @@ function Profile(props){
     //     }   
     // }, [props.isLoggedIn])
     const logout = () => {
-        if(window.confirm('ARE YOU SURE YOU WANT TO LOGOUT ?')){
+        if(window.confirm('Are you sure you want to logout ?')){
             firebase.auth().signOut()
             .then(res => {
                 console.log('logout success', res)

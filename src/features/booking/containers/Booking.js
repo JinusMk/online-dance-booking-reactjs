@@ -32,7 +32,7 @@ function Booking(props){
         }
     }
     const logout = () => {
-        if(window.confirm('ARE YOU SURE YOU WANT TO LOGOUT ?')){
+        if(window.confirm('Are you sure you want to logout ?')){
             firebase.auth().signOut()
             .then(res => {
                 console.log('logout success', res)
@@ -49,7 +49,7 @@ function Booking(props){
     }
     return(
         <section className="booking-section">
-            <Header onBack={onBack} title="Just one more step"/>
+            <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Just one more step"}/>
             <Container className="booking-container">
                 <p className="secondaryText metaText">SELECTED CLASS</p>
                 <DanceInformationCard dance={dance} />
