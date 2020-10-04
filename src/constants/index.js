@@ -27,3 +27,5 @@ export const regExpression = {
   digits: /^(0|[1-9][0-9]{0,9})$/,
   name: /^[a-zA-ZÀ-ÖØ-öø-ÿ -]{1,100}$/,
 }
+
+export const imageBasePath = 'https://letzdance-fe.s3.us-east-2.amazonaws.com/'

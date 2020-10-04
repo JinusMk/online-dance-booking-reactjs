@@ -26,6 +26,10 @@ function App() {
         type: UPDATE_USERINFO,
         payload: user
       })
+      firebase.auth().currentUser.getIdToken(true)
+      .then(idToken => {
+        localStorage.setItem('idToken', JSON.stringify(idToken))
+      })
     }else{
       store.dispatch({
         type: UPDATE_USERINFO,

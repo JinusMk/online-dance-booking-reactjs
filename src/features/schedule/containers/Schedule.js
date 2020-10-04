@@ -5,8 +5,10 @@ import { Tabs, Tab } from '@material-ui/core'
 import moment from 'moment'
 import '../../../assets/styles/schedule-module.scss'
 import ScrollspyNav from "react-scrollspy-nav";
+import { globalGetService } from '../../../utils/globalApiServices';
 
 export default function Schedule(props){
+    const [loader, setLoader] = useState(true)
     const [scheduleData, setScheduleData] = useState(
         {
             [moment()] : [{id: 1, title: 'Bollywood', rating: 4.5, img: require('../../../assets/images/bollywood_logo_card.svg'), ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86', morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]}, {id: 2, rating: 4.5,title: 'Zumba', img: require('../../../assets/images/zumba_logo_card.svg'), ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86', morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]}, {id: 3, rating: 4.5,title: 'HipHop', img: require('../../../assets/images/zumba_logo_card.svg'), ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86', date: moment(), morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]}],
@@ -30,6 +32,10 @@ export default function Schedule(props){
         }else{
             window.scrollTo({ top: 1, behavior: 'smooth' });
         }
+        globalGetService('dance-classes', {})
+        .then(response => {
+            console.log('response', response)
+        })
     }, [])
     
     return(

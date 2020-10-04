@@ -1,0 +1,14 @@
+@import 'variable';
+body{
+    .edit-profile-section{
+        .edit-profile-container{
+            padding: 0;
+            .top-blk{
+                background: url('../images/profile_bg_icon.svg');
+                min-height: 200px;
+                background-repeat: repeat-x;
+                padding: 0 16px 16px;
+            }
+        }
+    }
+}

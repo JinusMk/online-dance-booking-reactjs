@@ -5,7 +5,6 @@ import { Container, Avatar } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
-import { AUTH_STATUS_UPDATE } from '../../../shared_elements/actions'
 import { connect } from 'react-redux'
 import '../../../assets/styles/profile-module.scss'
 

@@ -17,11 +17,11 @@ export default function Introduction(props){
             >
                 <div className="carousel-item">
                     <img src={require('../../../assets/images/intro_picture1.svg')}/>
-                    <p className="heading3 textCenter">Dance online, 1000 happy feet <br/> and counting.</p>
+                    <p className="heading1">Dance online, 1000 happy feet <br/> and counting.</p>
                 </div>
                 <div className="carousel-item">
                     <img src={require('../../../assets/images/intro_picture2.svg')}/>
-                    <p className="heading3 textCenter">Groove to the beats right in your <br/>living room.</p>
+                    <p className="heading1">Groove to the beats right in your <br/>living room.</p>
                 </div>
             </Carousel>
         </div>
