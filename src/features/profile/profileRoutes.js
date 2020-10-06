@@ -1,6 +1,7 @@
 import Profile from './containers/Profile'
 import Help from './containers/Help'
 import EditProfile from './containers/EditProfile'
+import DanceHistory from './containers/DanceHistory'
 import { pageLayoutHoc } from '../../hocs'
 
 export const profileRoutes = [
@@ -18,5 +19,10 @@ export const profileRoutes = [
         path: '/edit-profile',
         component: EditProfile,
         key: 'EditProfile'
-    }
+    },
+    {
+        path: '/dance-history',
+        component: DanceHistory,
+        key: 'DanceHistory'
+    },
 ]

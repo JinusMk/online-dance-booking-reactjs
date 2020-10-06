@@ -49,7 +49,7 @@ function Profile(props){
                 </div>
                 <ul className="listUnstyled links">
                     <li className={props.isLoggedIn ? '' : 'disabled'}>
-                        <p><Link to="/user/dance-history" className="heading2">Dance history</Link></p>
+                        <p><Link to="/dance-history" className="heading2">Dance history</Link></p>
                         <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
                     </li>
                     <li className="">
