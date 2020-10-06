@@ -6,6 +6,7 @@ import moment from 'moment'
 import '../../../assets/styles/schedule-module.scss'
 import ScrollspyNav from "react-scrollspy-nav";
 import { globalGetService } from '../../../utils/globalApiServices';
+import { imageBasePath } from '../../../constants';
 
 export default function Schedule(props){
     const [loader, setLoader] = useState(true)
@@ -83,7 +84,7 @@ export default function Schedule(props){
                             </div>)
                     }
                     <div className="list-footer textCenter">
-                        <img src={require('../../../assets/images/dancing_emoji.svg')}/>
+                        <img src={`${imageBasePath}dancing_emoji.svg`}/>
                         <p className="paragraph">That’s all for this day</p>
                     </div>
                 </div>

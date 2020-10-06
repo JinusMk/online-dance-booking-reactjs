@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Container } from '@material-ui/core';
 import { Link, withRouter } from 'react-router-dom'
 import { Header, BottomNavigation } from '../shared_elements';
+import { imageBasePath } from '../constants';
 // import { Header, Footer, SideBar } from '../shared_elements';
 
 class ErrorBoundary extends Component{
@@ -39,7 +40,7 @@ class ErrorBoundary extends Component{
                     <Container fixed>
                         <Grid container justify="center" alignItems="center" spacing={2}>
                             <Grid item xs={12} className="textCenter">
-                                <img src={require('../assets/images/technical_error.svg')}/>
+                                <img src={`${imageBasePath}technical_error_icon.svg`}/>
                                 <h3 className="heading3">Technical error is inevitable</h3>
                                 <Link to="/" onClick={() => this.setState({hasError: false})} className="primaryBtn">RETRY</Link>
                             </Grid>

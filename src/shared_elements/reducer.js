@@ -5,7 +5,12 @@ export default function(
     state = {
       toastLists: [],
       isLoggedIn: false,
-      userInfo: ''
+      userInfo: '',
+    //   selectedDance: '',
+    //   selectedDate: {
+    //       date: '',
+    //       time: ''
+    //   }
     }, action){
         switch(action.type){
             case actions.CLEAR_TOAST:
@@ -46,12 +51,22 @@ export default function(
                 return {
                     ...state,
                     isLoggedIn: action.payload
-            }
+                }
             case actions.UPDATE_USERINFO: 
                 return {
                     ...state,
                     userInfo: action.payload
                 }
+            // case actions.UPDATE_SELECTED_DANCE: 
+            //     return{
+            //         ...state,
+            //         selectedDance: action.payload
+            //     }
+            // case actions.UPDATE_SELECTED_DATE: 
+            //     return{
+            //         ...state,
+            //         selectedTime: action.payload
+            //     }
             default:
                 return state;
     

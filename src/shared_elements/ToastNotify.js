@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Snackbar, Slide } from '@material-ui/core';
 import { connect } from 'react-redux'
+import { imageBasePath } from '../constants';
 
 function SlideTransition(props) {
     return <Slide {...props} direction="up" />;
@@ -29,7 +30,7 @@ function ToastNotify(props){
                 TransitionComponent={SlideTransition}
                 message={<div className={`toast-message ${props.toastLists.length ? props.toastLists[0].toastType : ''}`}>
                     <p className="paragraph">
-                        {props.toastLists.length ? <><img src={require(`../assets/images/toast_icon_${props.toastLists[0].toastType}.svg`)}/>
+                        {props.toastLists.length ? <><img src={`${imageBasePath}toast_icon_${props.toastLists[0].toastType}.svg`}/>
                         <span>{props.toastLists[0].message}</span>
                         </> : null}
                     </p>

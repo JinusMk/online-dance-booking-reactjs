@@ -61,8 +61,8 @@ export default function TimeSlots(props){
                     }
                 </Tabs>
                 <TabPanel value={value} index={value}>
-                    <TimeSlotList title="MORNING" timeSlots={activeDate.morning} danceId={props.danceId} date={moment(activeDate.date).format()}/>
-                    <TimeSlotList title="EVENING" timeSlots={activeDate.evening} danceId={props.danceId} date={moment(activeDate.date).format()}/>
+                    <TimeSlotList title="MORNING" timeSlots={activeDate.morning} dance={props.dance} date={moment(activeDate.date).format()}/>
+                    <TimeSlotList title="EVENING" timeSlots={activeDate.evening} dance={props.dance} date={moment(activeDate.date).format()}/>
                 </TabPanel>
             </div>
             <div className="see-all-blk">

@@ -7,6 +7,7 @@ import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
 import { connect } from 'react-redux'
 import '../../../assets/styles/profile-module.scss'
+import { imageBasePath } from '../../../constants';
 
 function Profile(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
@@ -49,15 +50,15 @@ function Profile(props){
                 <ul className="listUnstyled links">
                     <li className={props.isLoggedIn ? '' : 'disabled'}>
                         <p><Link to="/user/dance-history" className="heading2">Dance history</Link></p>
-                        <img src={require('../../../assets/images/right_arrow_icon.svg')} className="arrow"/>
+                        <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
                     </li>
                     <li className="">
                         <p><Link to="/help" className="heading2">Help</Link></p>
-                        <img src={require('../../../assets/images/right_arrow_icon.svg')} className="arrow"/>
+                        <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
                     </li>
                     {props.isLoggedIn ? <li className="">
                         <p><a onClick={logout} className="heading2">Logout</a></p>
-                        <img src={require('../../../assets/images/right_arrow_icon.svg')} className="arrow"/>
+                        <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
                     </li> : null
                     }
                 </ul>

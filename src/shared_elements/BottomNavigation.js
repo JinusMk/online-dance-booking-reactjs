@@ -4,7 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { imageBasePath } from '../constants';
 
 export default function BottomNavigationComponent(props){
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState(null);
     let history = useHistory();
     let location = useLocation();
     useEffect(() => {

@@ -1,0 +1,59 @@
+@import 'variable';
+body{
+    .booking-success-section{
+        .booking-success-container{
+            padding: 0;
+            .success-wrapper{
+                background-repeat: repeat-x;
+                padding: 120px 16px 16px;
+                border-bottom:  1px solid #FFE5E9;
+                text-align: center;
+                margin-top: -30px;
+                img{
+                    width: 32px;
+                }
+                .success, .heading3{
+                    color: $color_success;
+                    margin-bottom: 16px;
+                }
+                .reminder-text{
+                    background: rgba(3, 148, 69, 0.03);
+                    border: 1px solid $color_success;
+                    box-sizing: border-box;
+                    border-radius: 8px;
+                    padding: 16px;
+                    display: flex;
+                    img{
+                        width: 16px;
+                        margin-right: 8px;
+                    }
+                    .paragraph{
+                        color: $color_success;
+                        text-align: left;
+                    }
+                }
+            }
+            .dance-information-card{
+                padding: 16px 16px 0;
+                border-bottom:  1px solid #FFE5E9;
+            }
+            .selectedDate{
+                padding: 16px;
+                border-bottom:  1px solid #FFE5E9;
+            }
+            .add-to-home-screen-blk{
+                padding: 16px;
+                border-bottom:  1px solid #FFE5E9;
+            }
+            .need-help{
+                padding: 16px;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
+                .link{
+                    color: $color_gray;
+                }
+            }
+        }
+    }
+}

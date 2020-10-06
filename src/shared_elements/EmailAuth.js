@@ -8,7 +8,7 @@ import { toastFlashMessage } from '../utils';
 export default function EmailAuth(props){
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState({})
-    const [signUpFlag, setSignUpFlag] = useState(false)
+    const [registerFlag, setRegisterFlag] = useState(false)
     const [errorCode] = useState({
         email: {
             0: '',
@@ -24,6 +24,13 @@ export default function EmailAuth(props){
             1: 'ENTER YOUR PASSWORD'
         },
         passwordObj: {
+            requiredFlag: true
+        },
+        displayName: {
+            0: '',
+            1: 'ENTER YOUR DISPLAY NAME'
+        },
+        displayNameObj: {
             requiredFlag: true
         }
     })
@@ -44,15 +51,21 @@ export default function EmailAuth(props){
         let validateNewInput = {
             email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: userInfo.email})],
             password: errorCode['password'][fieldValidation({...errorCode['passwordObj'], fieldval: userInfo.password})],
-            displayName: '',
+            displayName: registerFlag ? errorCode['displayName'][fieldValidation({...errorCode['displayNameObj'], fieldval: userInfo.displayName})]:'',
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
-            if(signUpFlag){
+            if(registerFlag){
                 firebase.auth().createUserWithEmailAndPassword(userInfo.email.trim(), userInfo.password)
                 .then(response => {
                     setLoader(false)
                     console.log("res emailAuth signup", response)
-                    props.handleSuccess(response)
+                    if(response.user){
+                        response.user.updateProfile({
+                          displayName: userInfo.displayName
+                        }).then((s)=> {
+                            props.handleSuccess(response)   
+                        })
+                      }
                 })
                 .catch(error => {
                     setLoader(false)
@@ -81,8 +94,8 @@ export default function EmailAuth(props){
     }
     return(
         <div className="auth-outer-wrapper email">
-            <h2 className="heading2">{signUpFlag ? 'Register' : 'Login'}</h2>  
-            {/* {signUpFlag ? <div className="inputGroup">
+            <h2 className="heading2">{registerFlag ? 'Register' : 'Login'}</h2>  
+            {registerFlag ? <div className="inputGroup">
                 <label className={error.displayName ? 'error': ''}>{error.displayName ? error.displayName : 'DISPLAY NAME'}</label>
                 <TextField 
                     value={userInfo.displayName}
@@ -92,7 +105,7 @@ export default function EmailAuth(props){
                     error={error.displayName}
                 />
             </div> : null
-            } */}
+            }
             <div className="inputGroup">
                 <label className={error.email ? 'error': ''}>{error.email ? error.email : 'EMAIL'}</label>
                 <TextField 
@@ -116,11 +129,11 @@ export default function EmailAuth(props){
                 />
             </div>
             <div className="signup-link">
-                <p className="paragraph"><a onClick={() => setSignUpFlag(!signUpFlag)}>{signUpFlag ? `ALready have an acoount ? Login now`: `Don't have an account ? Register now`}</a></p>
+                <p className="paragraph"><a onClick={() => setRegisterFlag(!registerFlag)}>{registerFlag ? `ALready have an acoount ? Login now`: `Don't have an account ? Register now`}</a></p>
             </div>
             <ul className="listInline footer">
                 <li><p><a className={`secondaryBtn ${loader ? 'disabled': ''}`} onClick={() => {props.handleBack(); setUserInfo({email: '', password: ''}); setError({})}}>BACK</a></p></li>
-                <li><p><a className={`primaryBtn ${(loader || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} onClick={handleSubmit}>{signUpFlag ? 'REGISTER' : 'LOGIN'}</a></p></li>
+                <li><p><a className={`primaryBtn ${(loader || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} onClick={handleSubmit}>{registerFlag ? 'REGISTER' : 'LOGIN'}</a></p></li>
             </ul>
         </div>
     )
