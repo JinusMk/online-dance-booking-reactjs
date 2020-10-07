@@ -83,7 +83,13 @@ function EditProfile(props){
             return false
         }
     }
-    const handleSubmit = () => {
+    const handleSave = () => {
+
+    }
+    const handleDisconnect = (type) => {
+
+    }
+    const handleConnect = (type) => {
 
     }
     return(<section className="edit-profile-section">
@@ -170,14 +176,26 @@ function EditProfile(props){
                 </div>
                 <Grid item xs={12}>
                     {
-                        !isVerified('google.com') ? <div className="social-account-wrapper">
+                        isVerified('google.com') ? <div className="social-account-wrapper">
                             <img src={`${imageBasePath}google_icon.svg`} className="icon"/>
                             <div className="info-blk">
                                 <p className="secondaryText">CONNECTED AS</p>
                                 <h3 className="heading3">{props.userInfo.providerData.find(item => item.providerId == "google.com").email}</h3>
                             </div>
-                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon"/>
-                        </div> : <p className="social-btn"><a className="primaryBtn google">CONNECT WITH GOOGLE</a></p>
+                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon" onClick={() => handleDisconnect('google')}/>
+                        </div> : <p className="social-btn"><a className="primaryBtn google" onClick={() => handleConnect("google")}>CONNECT WITH GOOGLE</a></p>
+                    }
+                </Grid>
+                <Grid item xs={12}>
+                    {
+                        isVerified('fecebook.com') ? <div className="social-account-wrapper">
+                            <img src={`${imageBasePath}facebook_icon.svg`} className="icon"/>
+                            <div className="info-blk">
+                                <p className="secondaryText">CONNECTED AS</p>
+                                <h3 className="heading3">{props.userInfo.providerData.find(item => item.providerId == "facebook.com").displayName}</h3>
+                            </div>
+                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon" onClick={() => handleDisconnect('facebook')}/>
+                        </div> : <p className="social-btn"><a className="primaryBtn facebook" onClick={() => handleConnect("facebook")}>CONNECT WITH FACEBOOK</a></p>
                     }
                 </Grid>
             </Grid>
