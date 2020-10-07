@@ -101,7 +101,6 @@ export default function EmailAuth(props){
                     value={userInfo.displayName}
                     onChange={(e) => handleChange('displayName', e.target.value)}
                     placeholder="Your display name"
-                    type="email"
                     error={error.displayName}
                 />
             </div> : null

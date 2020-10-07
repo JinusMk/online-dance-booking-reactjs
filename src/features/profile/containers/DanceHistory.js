@@ -4,6 +4,7 @@ import { DanceHistoryCard } from '../components'
 import moment from 'moment'
 import { DanceAlert, Header } from '../../../shared_elements';
 import '../../../assets/styles/dance-history-module.scss'
+import { imageBasePath } from '../../../constants';
 
 export default function DanceHistory(props){
     const [dances, setDances] = useState({
@@ -22,6 +23,12 @@ export default function DanceHistory(props){
                             dances[item].map((dance, index) => dance.isFinished ? <DanceHistoryCard key={index} date={moment(item).format('DD MMM')} dance={dance}/> : <DanceAlert dance={dance} />)
                         }
                     </div>)
+                }
+                {
+                    <div className="end-wrapper textCenter">
+                        <img src={`${imageBasePath}dance_group.svg`}/>
+                        <p className="paragraph">This is not the end, my friend</p>
+                    </div>
                 }
             </Container>
         </section>

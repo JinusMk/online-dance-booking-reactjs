@@ -226,6 +226,9 @@ body{
         .react-tel-input{
             input{
                 padding-left: 50px;
+                &:disabled{
+                  opacity: 0.5;
+                }
             }
             .flag-dropdown{
                 .country-list{

@@ -50,6 +50,15 @@ body{
                     }
                 }
             }
+            .end-wrapper{
+                margin-top: 32px;
+                img{
+                    width: 32px;
+                }
+                .paragraph{
+                   color: $color_info_text; 
+                }
+            }
         }
     }
 }

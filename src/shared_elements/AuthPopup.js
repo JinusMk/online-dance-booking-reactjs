@@ -14,12 +14,16 @@ function AuthPopup(props){
     const [phoneAuth, setPhoneAuth] = useState(false)
     const [emailAuth, setEmailAuth] = useState(false)
     useEffect(() => {
-        if(props.isLoggedIn){
+        if(props.isLoggedIn && props.type!="verifyPhone"){
             props.handleClose()
         }
         if(props.open){
-            setPhoneAuth(false)
             setEmailAuth(false)
+            if(props.type == "verifyPhone"){
+                setPhoneAuth(true)
+            }else{
+                setPhoneAuth(false)
+            }
         }
     }, [props.open])
 
@@ -59,7 +63,11 @@ function AuthPopup(props){
         }
     }
     const handleLoginSuccess = (user) => {
-        toastFlashMessage(`YOU'RE NOW LOGGED IN`, 'success')
+        if(props.type == "verifyPhone"){
+            toastFlashMessage(`PONE NUMBER LINKED SUCCESSFULLY`, 'success')
+        }else{
+            toastFlashMessage(`YOU'RE NOW LOGGED IN`, 'success')
+        }
         props.handleClose()
     }
     return(
@@ -74,7 +82,13 @@ function AuthPopup(props){
                     <div className="auth-popup-wrapper">
                         <div class="line"></div>
                         {
-                            phoneAuth ? <PhoneAuth handleBack={() => setPhoneAuth(false)} handleSuccess={handleLoginSuccess}/> : emailAuth ? <EmailAuth handleBack={() => setEmailAuth(false)} handleSuccess={handleLoginSuccess}/> : <>
+                            phoneAuth ? <PhoneAuth handleBack={() => {
+                                if(props.type == "verifyPhone"){
+                                    props.handleClose()
+                                }else{
+                                    setPhoneAuth(false)
+                                }
+                            }} handleSuccess={handleLoginSuccess} phone={props.phone} type={props.type}/> : emailAuth ? <EmailAuth handleBack={() => setEmailAuth(false)} handleSuccess={handleLoginSuccess}/> : <>
                                 <h2 className="heading2">Login</h2>
                                 <ul className="listUnstyled loginBtnGroup">
                                     <li>

@@ -5,11 +5,12 @@ import 'react-phone-input-2/lib/style.css'
 import firebase from '../utils/firebase'
 import { fieldValidation } from '../utils/formValidation';
 import { regExpression } from '../constants'
+import { toastFlashMessage } from '../utils';
 
 export default function PhoneAuth(props){
     const [ Continue, setContinue ] = useState(false)
     const [error, setError] = useState({})
-    const [phone, setPhone] = useState('')
+    const [phone, setPhone] = useState(props.phone ? props.phone : '')
     const [otp, setOtp] = useState('')
     const [loader, setLoader] = useState(false)
     const [verificationId, setVerificationId] = useState("")
@@ -58,22 +59,41 @@ export default function PhoneAuth(props){
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             let phoneNumber = `+${phone}`;
-            firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(response => {
-                console.log("response signInWithPhoneNumber", response);
-                setLoader(false)
-                setContinue(true)
-                setVerificationId(response.verificationId)
-                appVerifier.clear();
-            })
-            .catch(err => {
-                setLoader(false)
-                appVerifier.clear();
-                if(err.code == 'auth/invalid-phone-number'){
-                    setError({'phone': 'ENTER A VALID MOBILE NUMBER'})
-                }
-                console.log('err signInWithPhoneNumber', err)
-            })
+            if(props.type == "verifyPhone"){
+                firebase.auth().currentUser.linkWithPhoneNumber(phoneNumber, appVerifier)
+                .then(response => {
+                    console.log('response linkWithPhoneNumber', response)
+                    setLoader(false)
+                    setContinue(true)
+                    setVerificationId(response.verificationId)
+                    appVerifier.clear();
+                })
+                .catch(error => {
+                    console.log('err linkWithPhoneNumber', error)
+                    setLoader(false)
+                    appVerifier.clear();
+                    if(error.code == 'auth/invalid-phone-number'){
+                        setError({'phone': 'ENTER A VALID MOBILE NUMBER'})
+                    }
+                })
+            }else{
+                firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+                .then(response => {
+                    console.log("response signInWithPhoneNumber", response);
+                    setLoader(false)
+                    setContinue(true)
+                    setVerificationId(response.verificationId)
+                    appVerifier.clear();
+                })
+                .catch(err => {
+                    setLoader(false)
+                    appVerifier.clear();
+                    if(err.code == 'auth/invalid-phone-number'){
+                        setError({'phone': 'ENTER A VALID MOBILE NUMBER'})
+                    }
+                    console.log('err signInWithPhoneNumber', err)
+                })
+            }
         }else{
             setError(validateNewInput)
             setLoader(false)
@@ -86,18 +106,37 @@ export default function PhoneAuth(props){
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, otp)
-            firebase.auth().signInWithCredential(credential)
-            .then(res => {
-                setLoader(false)
-                props.handleSuccess(res)
-            })
-            .catch(err => {
-                setLoader(false)
-                // console.log('err phoneAuth', err)
-                setError({
-                    'otp' : 'WRONG OTP, TRY AGAIN'
+            if(props.type == "verifyPhone"){
+                firebase.auth().currentUser.linkWithCredential(credential)
+                .then(res => {
+                    setLoader(false)
+                    console.log("Account linking success", res);
+                    props.handleSuccess(res)
                 })
-            })
+                .catch(err => {
+                    setLoader(false)
+                    if(err.code == "auth/credential-already-in-use"){
+                        toastFlashMessage(err.message, 'error')
+                        props.handleBack()
+                    }else{
+                        setError({
+                            'otp' : 'WRONG OTP, TRY AGAIN'
+                        })
+                    }
+                })
+            }else{
+                firebase.auth().signInWithCredential(credential)
+                .then(res => {
+                    setLoader(false)
+                    props.handleSuccess(res)
+                })
+                .catch(err => {
+                    setLoader(false)
+                    setError({
+                        'otp' : 'WRONG OTP, TRY AGAIN'
+                    })
+                })
+            }
         }else{
             setError(validateNewInput)
             setLoader(false)
@@ -105,6 +144,9 @@ export default function PhoneAuth(props){
     }   
     const handleResend = () => {
         setLoader(true)
+        setError({
+            otp: ''
+        })
         var appVerifier = new firebase.auth.RecaptchaVerifier(
             "recaptcha-container-resend",
             {
@@ -119,17 +161,33 @@ export default function PhoneAuth(props){
           );
         if(!error.phone){
             let phoneNumber = `+${phone}`;
-            firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-            .then(response => {
-                console.log("response signInWithPhoneNumber", response);
-                setLoader(false)
-                setContinue(true)
-                setVerificationId(response.verificationId)
-            })
-            .catch(err => {
-                setLoader(false)
-                console.log('err signInWithPhoneNumber', err)
-            })
+            if(props.type == "verifyPhone"){
+                firebase.auth().currentUser.linkWithPhoneNumber(phoneNumber, appVerifier)
+                .then(response => {
+                    setLoader(false)
+                    setContinue(true)
+                    setVerificationId(response.verificationId)
+                    appVerifier.clear();
+                })
+                .catch(error => {
+                    setLoader(false)
+                    appVerifier.clear();
+                    if(error.code == 'auth/invalid-phone-number'){
+                        setError({'phone': 'ENTER A VALID MOBILE NUMBER'})
+                    }
+                })
+            }else{
+                firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+                .then(response => {
+                    setLoader(false)
+                    setContinue(true)
+                    setVerificationId(response.verificationId)
+                })
+                .catch(err => {
+                    setLoader(false)
+                    // console.log('err signInWithPhoneNumber', err)
+                })
+            }
         }else{
             setLoader(false)
         }
@@ -154,13 +212,10 @@ export default function PhoneAuth(props){
                     <div id="recaptcha-container-resend"></div>
                     <p className="paragraph info">Didn’t receive OTP? <span onClick={() => {handleResend(); setResend(true)}}> Click here to resend</span></p>
                 </> : <>
-                    <h2 className="heading2">{loader ? 'Requesting OTP...' : 'Continue with mobile number'}</h2>
+                    <h2 className="heading2">{loader ? 'Requesting OTP...' : props.type == "verifyPhone" ? 'Verify mobile number' : 'Continue with mobile number'}</h2>
                     <div className="inputGroup">
                         <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
                         <PhoneInput
-                            // isValid={(inputNumber, country, countries) => {
-                            //     console.log('isValid', [inputNumber, country])
-                            // }}
                             country={'in'}
                             disableSearchIcon={true}
                             value={phone}
