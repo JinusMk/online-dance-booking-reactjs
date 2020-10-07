@@ -58,8 +58,51 @@ body{
             }
             .personal-details{
                 padding: 0 16px;
+                border-bottom:  1px solid #FFE5E9;
                 .title{
                     margin-bottom: 16px;
+                }
+            }
+            .link-social-accounts{
+                padding: 16px;
+                .heading{
+                    .title{
+                        margin-bottom: 4px;
+                    }
+                    p{
+                        color: $color_gray;
+                    }
+                }
+                .social-btn{
+                    margin-top: 16px;
+                    .primaryBtn{
+                        &.google{
+                            background: #4285F4;
+                        }
+                        &.facebook{
+                            background: #4267B2;
+                        }
+                    }
+                }
+                .social-account-wrapper{
+                    position: relative;
+                    padding: 16px 0;
+                    border-bottom:  1px solid #FFE5E9;
+                    .icon{
+                        position: absolute;
+                    }
+                    .close-icon{
+                        position: absolute;
+                        right: 0;
+                        top: 28px;
+                    }
+                    .info-blk{
+                        padding-left: 48px;
+                        padding-right: 20px;
+                        p{
+                            color: $color_info_text;
+                        }
+                    }
                 }
             }
         }

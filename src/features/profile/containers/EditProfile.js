@@ -3,7 +3,7 @@ import '../../../assets/styles/edit-profile-module.scss'
 import { Container, Grid, Avatar, TextField } from '@material-ui/core';
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils'
-import { regExpression } from '../../../constants'
+import { regExpression, imageBasePath } from '../../../constants'
 import { fieldValidation } from '../../../utils/formValidation';
 import firebase from '../../../utils/firebase'
 import { Header, AuthPopup } from '../../../shared_elements';
@@ -161,6 +161,24 @@ function EditProfile(props){
                         {/* {loader ? <CircularProgress className="loader"/> : null} */}
                     </div>
                     {isVerified('phone') ? null : <p><a className="secondaryBtn" onClick={() => setVerifyPhone(true)}>VERIFY MOBILE NUMBER</a></p>}
+                </Grid>
+            </Grid>
+            <Grid container className="link-social-accounts">
+                <div className="heading">
+                    <h3 className="heading3 title">Connected accounts</h3>
+                    <p className="paragraph">You can use your Facebok or Google account to login</p>
+                </div>
+                <Grid item xs={12}>
+                    {
+                        !isVerified('google.com') ? <div className="social-account-wrapper">
+                            <img src={`${imageBasePath}google_icon.svg`} className="icon"/>
+                            <div className="info-blk">
+                                <p className="secondaryText">CONNECTED AS</p>
+                                <h3 className="heading3">{props.userInfo.providerData.find(item => item.providerId == "google.com").email}</h3>
+                            </div>
+                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon"/>
+                        </div> : <p className="social-btn"><a className="primaryBtn google">CONNECT WITH GOOGLE</a></p>
+                    }
                 </Grid>
             </Grid>
             </>}
