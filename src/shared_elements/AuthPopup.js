@@ -25,7 +25,7 @@ function AuthPopup(props){
                 setPhoneAuth(false)
             }
         }
-    }, [props.open])
+    }, [props.open, props.isLoggedIn])
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -41,22 +41,24 @@ function AuthPopup(props){
             var provider = new firebase.auth.FacebookAuthProvider();
             firebase.auth().signInWithPopup(provider)
             .then(user => {
-                console.log('response fb', user)
                 handleLoginSuccess(user)
             })
             .catch(error => {
-                console.log('error fb', error)
+                if(error.message){
+                    toastFlashMessage(error.message, 'error')
+                }
             })
 
         }else if(type == "google"){
             var provider = new firebase.auth.GoogleAuthProvider();
             firebase.auth().signInWithPopup(provider)
             .then(response => {
-                console.log('response google', response)
                 handleLoginSuccess(response)
             })
             .catch(error => {
-                console.log('error google', error)
+                if(error.message){
+                    toastFlashMessage(error.message, 'error')
+                }
             })
         }else if(type == "email"){
             setEmailAuth(true)
@@ -64,11 +66,12 @@ function AuthPopup(props){
     }
     const handleLoginSuccess = (user) => {
         if(props.type == "verifyPhone"){
+            props.handleClose(user)
             toastFlashMessage(`PONE NUMBER LINKED SUCCESSFULLY`, 'success')
         }else{
             toastFlashMessage(`YOU'RE NOW LOGGED IN`, 'success')
+            props.handleClose()
         }
-        props.handleClose()
     }
     return(
         <>

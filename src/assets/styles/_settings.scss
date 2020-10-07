@@ -228,6 +228,7 @@ body{
                 padding-left: 50px;
                 &:disabled{
                   opacity: 0.5;
+                  background: $color_light_gray;
                 }
             }
             .flag-dropdown{
@@ -315,7 +316,7 @@ body{
             &.Mui-disabled{
               border: none;
               background: #ddd;
-              opacity: 0.7;
+              opacity: 0.5;
               pointer-events: none;
             }
             &:active, &:focus{

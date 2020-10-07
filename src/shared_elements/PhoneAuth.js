@@ -62,14 +62,14 @@ export default function PhoneAuth(props){
             if(props.type == "verifyPhone"){
                 firebase.auth().currentUser.linkWithPhoneNumber(phoneNumber, appVerifier)
                 .then(response => {
-                    console.log('response linkWithPhoneNumber', response)
+                    // console.log('response linkWithPhoneNumber', response)
                     setLoader(false)
                     setContinue(true)
                     setVerificationId(response.verificationId)
                     appVerifier.clear();
                 })
                 .catch(error => {
-                    console.log('err linkWithPhoneNumber', error)
+                    // console.log('err linkWithPhoneNumber', error)
                     setLoader(false)
                     appVerifier.clear();
                     if(error.code == 'auth/invalid-phone-number'){
@@ -79,7 +79,7 @@ export default function PhoneAuth(props){
             }else{
                 firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
                 .then(response => {
-                    console.log("response signInWithPhoneNumber", response);
+                    // console.log("response signInWithPhoneNumber", response);
                     setLoader(false)
                     setContinue(true)
                     setVerificationId(response.verificationId)
@@ -91,7 +91,7 @@ export default function PhoneAuth(props){
                     if(err.code == 'auth/invalid-phone-number'){
                         setError({'phone': 'ENTER A VALID MOBILE NUMBER'})
                     }
-                    console.log('err signInWithPhoneNumber', err)
+                    // console.log('err signInWithPhoneNumber', err)
                 })
             }
         }else{
@@ -110,8 +110,7 @@ export default function PhoneAuth(props){
                 firebase.auth().currentUser.linkWithCredential(credential)
                 .then(res => {
                     setLoader(false)
-                    console.log("Account linking success", res);
-                    props.handleSuccess(res)
+                    props.handleSuccess(res.user)
                 })
                 .catch(err => {
                     setLoader(false)
@@ -219,7 +218,7 @@ export default function PhoneAuth(props){
                             country={'in'}
                             disableSearchIcon={true}
                             value={phone}
-                            disabled={loader}
+                            // disabled={loader}
                             onChange={phone => {setPhone(phone); setError({'phone': ''})}}
                             preferredCountries={['in', 'ae', 'sg']}
                             placeholder="Your mobile number"

@@ -103,6 +103,9 @@ body{
                             color: $color_info_text;
                         }
                     }
+                    &.facebook{
+                        border-bottom: none;
+                    }
                 }
             }
         }

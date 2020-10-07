@@ -7,6 +7,7 @@ import { regExpression, imageBasePath } from '../../../constants'
 import { fieldValidation } from '../../../utils/formValidation';
 import firebase from '../../../utils/firebase'
 import { Header, AuthPopup } from '../../../shared_elements';
+import { UPDATE_USERINFO } from '../../../shared_elements/actions'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
@@ -14,6 +15,7 @@ function EditProfile(props){
     const [loader, setLoader] = useState(true)
     const [formData, setFormData] =useState({})
     const [error, setError] = useState({})
+    const [providerData, setProviderData] = useState([])
     const [errorCode] = useState({
         email: {
             0: '',
@@ -50,6 +52,7 @@ function EditProfile(props){
                 image: props.userInfo.photoURL,
                 image_display: ''
             })
+            setProviderData(props.userInfo.providerData)
         }else{
             setLoader(true)
             // props.history.push('/profile')
@@ -76,8 +79,8 @@ function EditProfile(props){
         })
     }
     const isVerified = (providerId) => {
-        if(props.isLoggedIn && props.userInfo){
-            const flag = props.userInfo.providerData.find((item => item.providerId == providerId))
+        if(props.isLoggedIn && providerData){
+            const flag = providerData.find((item => item.providerId == providerId))
             return flag ? true : false
         }else{
             return false
@@ -86,11 +89,35 @@ function EditProfile(props){
     const handleSave = () => {
 
     }
-    const handleDisconnect = (type) => {
-
+    const handleDisconnect = (provideID) => {
+        if(window.confirm(`Are you sure you want to unlink your ${provideID == "google.com" ? 'Google' : 'Facebook'} account ?`)){
+            firebase.auth().currentUser.unlink(provideID)
+            .then(response => {
+                props.updateUserInfo(response)
+                setProviderData(response.providerData)
+                toastFlashMessage(`${provideID == "google.com" ? 'GOOGLE' : 'FCEBOOK'} ACCOUNT UNLINKED SUCCESSFULLY`, 'success')
+            })
+            .catch(err => {
+                if(err.message){
+                    toastFlashMessage(err.message, 'error')
+                }
+            })
+        }
     }
     const handleConnect = (type) => {
-
+        var googleProvider = new firebase.auth.GoogleAuthProvider();
+        var facebookProvider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().currentUser.linkWithPopup(type == "google" ? googleProvider : facebookProvider)
+        .then(response => {
+            props.updateUserInfo(response.user)
+            setProviderData(response.user.providerData)
+            toastFlashMessage(`${type == "google" ? 'GOOGLE' : 'FACEBOOK'} ACCOUNT LINKED SUCCESSFULLY`, 'success')
+        })
+        .catch(err => {
+            if(err.message){
+                toastFlashMessage(err.message, 'error')
+            }
+        })
     }
     return(<section className="edit-profile-section">
         <Container maxWidth={false} className="edit-profile-container">
@@ -139,7 +166,9 @@ function EditProfile(props){
                             type="email"
                             error={error.email}
                             required
+                            disabled={props.userInfo.emailVerified ? true : false}
                         />
+                        {props.userInfo.emailVerified ? <span className="verifyLabel secondaryText">VERIFIED</span> :  <span className="verifyLabel error secondaryText">UNVERIFIED</span>}
                     </div>
                 </Grid>
                 <Grid item xs={12}>
@@ -164,7 +193,6 @@ function EditProfile(props){
                             isValid={error.phone ? false : true}
                         />
                         {isVerified('phone') ? <span className="verifyLabel secondaryText">VERIFIED</span> : formData.phone ? <span className="verifyLabel error secondaryText">UNVERIFIED</span>: ''}
-                        {/* {loader ? <CircularProgress className="loader"/> : null} */}
                     </div>
                     {isVerified('phone') ? null : <p><a className="secondaryBtn" onClick={() => setVerifyPhone(true)}>VERIFY MOBILE NUMBER</a></p>}
                 </Grid>
@@ -180,21 +208,21 @@ function EditProfile(props){
                             <img src={`${imageBasePath}google_icon.svg`} className="icon"/>
                             <div className="info-blk">
                                 <p className="secondaryText">CONNECTED AS</p>
-                                <h3 className="heading3">{props.userInfo.providerData.find(item => item.providerId == "google.com").email}</h3>
+                                <h3 className="heading3">{providerData.find(item => item.providerId == "google.com").email}</h3>
                             </div>
-                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon" onClick={() => handleDisconnect('google')}/>
+                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon" onClick={() => handleDisconnect('google.com')}/>
                         </div> : <p className="social-btn"><a className="primaryBtn google" onClick={() => handleConnect("google")}>CONNECT WITH GOOGLE</a></p>
                     }
                 </Grid>
                 <Grid item xs={12}>
                     {
-                        isVerified('fecebook.com') ? <div className="social-account-wrapper">
+                        isVerified('facebook.com') ? <div className="social-account-wrapper facebook">
                             <img src={`${imageBasePath}facebook_icon.svg`} className="icon"/>
                             <div className="info-blk">
                                 <p className="secondaryText">CONNECTED AS</p>
-                                <h3 className="heading3">{props.userInfo.providerData.find(item => item.providerId == "facebook.com").displayName}</h3>
+                                <h3 className="heading3">{providerData.find(item => item.providerId == "facebook.com").displayName}</h3>
                             </div>
-                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon" onClick={() => handleDisconnect('facebook')}/>
+                            <img src={`${imageBasePath}close_icon.svg`} className="close-icon" onClick={() => handleDisconnect('facebook.com')}/>
                         </div> : <p className="social-btn"><a className="primaryBtn facebook" onClick={() => handleConnect("facebook")}>CONNECT WITH FACEBOOK</a></p>
                     }
                 </Grid>
@@ -204,7 +232,7 @@ function EditProfile(props){
         {
             <AuthPopup 
                 open={verifyPhone}
-                handleClose={() => setVerifyPhone(false)}
+                handleClose={(user) => {if(user){props.updateUserInfo(user); setProviderData(user.providerData)}setVerifyPhone(false)}}
                 phone={formData.phone}
                 type="verifyPhone"
             />
@@ -216,5 +244,10 @@ const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
     userInfo: state.sharedReducers.userInfo
 })
-
-export default connect(mapStateToProps)(EditProfile)
+const mapDispatchToProps = dispatch => ({
+    updateUserInfo : (user) => dispatch({
+        type: UPDATE_USERINFO,
+        payload: user
+    })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
