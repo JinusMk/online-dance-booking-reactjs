@@ -20,7 +20,7 @@ export default function BottomNavigationComponent(props){
         history.push(location)
     }
     return(
-        <Hidden only={['lg', 'xl']}>
+        <Hidden only={['lg', 'xl', 'md']}>
             <BottomNavigation
                 // value={location.pathname === '/' || location.pathname == '/home' ? 0 : location.pathname === '/schedule' ? 1 : location.pathname === '/profile' ? 2 : 0}
                 value={value}

@@ -1,5 +1,74 @@
-@media (min-width: 960px) and (max-width: 1279px) {
+// @media (min-width: 960px) and (max-width: 1279px) {
+@media (min-width: 960px){
     body{
-        
+        header{
+            text-align: unset;
+            display: unset;
+            .header-wrapper{
+                height: 100%;
+                .logo-wrapper{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    // height: 100%;
+                }
+                .nav-bar{
+                    padding-left: 60px;
+                    li{
+                        display: inline-block;
+                        margin-right: 30px;
+                        .nav-item{
+                            @include transitionForAll($time: 0.4s,$transProp: ease-out);
+                            cursor: pointer;
+                            padding: 10px 20px;
+                            border-radius: 16px;
+                            display: flex;
+                            align-items: center;
+                            img{
+                                margin-right: 12px;
+                            }
+                            .active{
+                                display: none;
+                            }
+                            .in-active{
+                                display: block;
+                            }
+                            span{
+                                color: #fff;
+                                margin-top: 3px;
+                            }
+                        }
+                        &.active{
+                            .nav-item{
+                                background: #fff;
+                                .active{
+                                    display: block;
+                                }
+                                .in-active{
+                                    display: none;
+                                }
+                                span{
+                                    color: $color_primary;
+                                }
+                            }
+                        }
+                        &:hover{
+                            .nav-item{
+                                background: #fff;
+                                .active{
+                                    display: block;
+                                }
+                                .in-active{
+                                    display: none;
+                                }
+                                span{
+                                    color: $color_primary;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
