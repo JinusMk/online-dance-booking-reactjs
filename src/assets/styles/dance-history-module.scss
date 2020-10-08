@@ -62,3 +62,12 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .dance-history-section{
+            .dance-history-container{
+                padding: 16px 300px 0 204px;
+            }
+        }
+    }
+}

@@ -120,9 +120,9 @@ function EditProfile(props){
         })
     }
     return(<section className="edit-profile-section">
-        <Container maxWidth={false} className="edit-profile-container">
+        <Container className="edit-profile-container">
             <Header onBack={() => props.history.push('/profile')} title="Edit Profile"/>
-            {loader ? 'Loading...' : <><Grid container className="top-blk" alignItems="center">
+            {loader ? 'Loading...' : <><Grid container className="top-blk" justify="center" alignItems="center">
                 <Grid item>
                     {
                         (formData.image_display || formData.image) ? <Avatar src={formData.image_display ? formData.image_display : formData.image} className="user-avatar"/> : <Avatar className="user-avatar">{formData.displayName ? formData.displayName[0] : formData.email ? formData.email[0]: 'L'}</Avatar>

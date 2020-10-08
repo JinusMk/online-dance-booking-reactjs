@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel } from '../../../constants'
 import { InstructorCard } from './index'
+import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
 
 export default function ExpertInstructors(props){
@@ -19,7 +20,7 @@ export default function ExpertInstructors(props){
                 showDots={true}
                 infinite={false}
                 autoPlaySpeed={5000}
-                partialVisible={true}
+                partialVisible={isMobile ? true: false}
                 arrows={false}
                 containerClass="partially-visible-carousel-container last-week-recap"
                 dotListClass="custom-dot-list"

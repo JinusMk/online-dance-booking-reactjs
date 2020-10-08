@@ -31,3 +31,28 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .help-section{
+            .help-container{
+                .who-we-are-blk{
+                    padding-top: 32px;
+                    .bg-img{
+                        top: 70px;
+                    }
+                }
+                .how-it-works-blk{
+                    border-bottom: none;
+                    margin-bottom: 0;
+                }
+                .add-to-home-screen-blk{
+                    padding-left: 208px;
+                    padding-right: 300px;
+                    padding-bottom: 70px;
+                    border-bottom: none;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

@@ -148,3 +148,50 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .dance-detail-section{
+            .dance-detail-container{
+                .block{
+                    padding-left: 208px;
+                    padding-right: 300px;
+                    padding-bottom: 16px;
+                    margin-bottom: 0;
+                    padding-top: 16px;
+                    border-bottom: none;
+                }
+                .gallery{
+                    margin: 0 300px 0 184px;
+                    padding: 32px 24px 32px 24px;
+                    border-bottom: 1px solid #FFE5E9;
+                }
+                .dance-info{
+                    margin: 0 300px 0 184px;
+                    padding: 32px 24px;
+                    margin-bottom: 16px;
+                    border-bottom: 1px solid #FFE5E9;
+                    .cost{
+                        right: 250px;
+                        top: 32px;
+                    }
+                }
+                .time-slots{
+                    .see-all-blk{
+                        margin-top: 32px;
+                    }
+                }
+                .how-it-works-blk{
+                    padding-top: 16px;
+                    padding-bottom: 24px;
+                    margin-bottom: 0;
+                    border-bottom: none;
+                    padding-bottom: 0;
+                }
+                .contact-us-blk{
+                    padding-top: 48px;
+                    padding-bottom: 32px;
+                }
+            }
+        }
+    }
+}

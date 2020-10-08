@@ -70,5 +70,63 @@
                 }
             }
         }
+        .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{
+            padding-left: 208px;
+            padding-bottom: 70px;
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-right: 300px;
+        }
+        .who-we-are-blk{
+            .bg-img{
+                top: 40px;
+                right: 208px;
+            }
+            .paragraph{
+                font-weight: $boldFont;
+            }
+        }
+        .why-letzdance-blk{
+            .list-wrapper{
+                .list-item{
+                    .heading3{
+                        color: $color_black;
+                    }
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+        .how-it-works-blk{
+
+        }
+        .common-questions-blk{
+            padding-bottom: 24px;
+        }
+        .contact-us-blk{
+            padding-top: 60px;
+        }
+        .custom-drawer{
+            .MuiDrawer-paper{
+                border-radius: 0;
+                padding: 16px;
+                min-width: 30%;
+            }
+        }
+        .auth-popup-wrapper{
+            height: 100%;
+            position: relative;
+            .heading2{
+                margin: 16px 0 24px 0;
+            }
+            .line{
+                display: none;
+            }
+            .footer{
+                position: absolute;
+                width: 100%;
+                bottom: 32px;
+            }
+        }
     }
 }

@@ -193,3 +193,39 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .home-section{
+            .home-container{
+                .block{
+                    padding-left: 208px;
+                    padding-bottom: 70px;
+                    border-bottom: none;
+                    margin-bottom: 0;
+                    padding-right: 300px;
+                }
+                .introduction-blk{
+                    margin-bottom: 65px;
+                }
+                .upcoming-classes{
+                    padding-right: 0;
+                    .title{
+                        margin-right: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
+// @media (min-width: 1700px) {
+//     body{
+//         .home-section{
+//             .home-container{
+//                 .block{
+//                     padding-left: 308px;
+//                     padding-right: 400px;
+//                 }
+//             }
+//         }
+//     }
+// }

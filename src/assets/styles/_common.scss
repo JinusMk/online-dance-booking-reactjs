@@ -119,15 +119,21 @@ body{
         border-bottom: 1px solid $color_FFE5E9;
         margin-bottom: 24px;
         position: relative;
-        ul{
-            margin-left: -8px;
-            margin-right: 8px;
-            li{
+        .list-wrapper{
+            .list-item{
+                margin-left: -8px;
+                margin-right: 8px;
+                display: flex;
+                align-items: center;
+                border: 1px solid #DDDDDD;
+                padding: 12px 8px;
+                height: 100%;
+                box-sizing: border-box;
                 img{
                     width: 32px;
                     margin-right: 16px;
                 }
-                margin-bottom: 8px;
+                // margin-bottom: 8px;
                 border-radius: 4px;
                 p{
                     color: $color_gray;
@@ -481,6 +487,7 @@ body{
                     &.email{
                         border: 1px solid #0E7ACB;
                         color: #0E7ACB;
+                        background: #fff;
                     }
                 }
             }

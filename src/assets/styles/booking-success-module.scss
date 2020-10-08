@@ -57,3 +57,27 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .booking-success-section{
+            .booking-success-container{
+                padding: 0px 300px 0 204px;
+                .success-wrapper{
+                    padding-bottom: 24px;
+                }
+                .dance-information-card{
+                    padding: 24px 16px 16px;
+                }
+                .selectedDate{
+                    padding: 24px 16px;
+                }
+                .add-to-home-screen-blk{
+                    padding: 24px 16px;
+                }
+                .need-help{
+                    padding: 24px 16px;
+                }
+            }  
+        }     
+    }
+}

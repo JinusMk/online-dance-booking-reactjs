@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import { DanceFormCard } from './index'
+import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
 
 export default function UpComingClasses(props){
@@ -17,10 +18,9 @@ export default function UpComingClasses(props){
             <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
-                showDots={true}
+                showDots={isMobile ? true : false}
                 infinite={false}
-                autoPlaySpeed={5000}
-                partialVisible={true}
+                partialVisible={isMobile ? true : false}
                 arrows={false}
                 containerClass="partially-visible-carousel-container upcoming-classes"
                 dotListClass="custom-dot-list"

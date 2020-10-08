@@ -3,12 +3,13 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import firebase from '../utils/firebase'
 import { PhoneAuth, EmailAuth } from './index'
 import { connect } from 'react-redux'
-import { AUTH_STATUS_UPDATE } from './actions'
+import { isMobile } from 'react-device-detect'
 import { toastFlashMessage } from '../utils'
 
 function AuthPopup(props){
     const [state, setState] = useState({
         bottom: false,
+        right: false
     })
     const [user, setUser] = useState('')
     const [phoneAuth, setPhoneAuth] = useState(false)
@@ -75,7 +76,7 @@ function AuthPopup(props){
     }
     return(
         <>
-            {['bottom'].map((anchor) => (
+            {[isMobile ? 'bottom': 'right'].map((anchor) => (
                 <SwipeableDrawer
                     anchor={anchor}
                     open={props.open}

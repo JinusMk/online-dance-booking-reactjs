@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TextField } from '@material-ui/core';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -13,6 +13,7 @@ export default function UserInformationForm(props){
     })
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState({})
+    const [formWidth, setFormWidth] = useState(0)
     const [errorCode] = useState({
         name: {
             0: '',
@@ -70,8 +71,17 @@ export default function UserInformationForm(props){
             setError(validateNewInput)
         }
     }
+    useEffect(() => {
+        setTimeout(() => {
+            getClientWidth()
+        }, 500);
+    }, [])
+    const getClientWidth = () => {
+        const width = document.getElementById('user-form').clientWidth
+        setFormWidth(width)
+    }
     return(
-        <div className="user-information-form-wrapper">
+        <div className="user-information-form-wrapper" id="user-form">
             <div className="form-title">
                 <h3 className="heading3">Or, enter your details</h3>
                 <p className="paragraph">Your account will be automatically created on Letzdance</p>
@@ -115,7 +125,7 @@ export default function UserInformationForm(props){
                         isValid={error.phone ? false : true}
                     />
                 </div>
-                <div className="booking-fixed-footer">
+                <div className="booking-fixed-footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
                     <p><a onClick={handleSubmit} className={`primaryBtn ${(loader || !(userInfo.name && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >CONTINUE</a></p>
                 </div>
             </form>

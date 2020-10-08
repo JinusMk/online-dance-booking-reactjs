@@ -66,3 +66,13 @@ body{
         }
     }
 }
+
+@media (min-width: 960px){
+    body{
+        .profile-section{
+            .profile-container{
+                padding: 0px 300px 0 204px;
+            }
+        }
+    }
+}

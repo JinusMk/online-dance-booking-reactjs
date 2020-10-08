@@ -106,3 +106,34 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .booking-section{
+            padding-top: 32px;
+            padding-bottom: 64px;
+            .booking-container{
+                padding: 0px 300px 0 204px;
+                margin-right: 300px;
+                .dance-information-card{
+                    .bottom-blk{
+                        padding-bottom: 24px;
+                    }
+                }
+                .dance-attributes{
+                    .timeWrapper{
+                        padding: 24px 0;
+                    }
+                    .amountWrapper{
+                        padding: 24px 0 24px 16px;
+                    }
+                }
+                .login-button-wrapper{
+                    padding: 24px 16px;
+                }
+                .user-information-form-wrapper{
+                    padding: 24px 16px;
+                }
+            }  
+        }     
+    }
+}

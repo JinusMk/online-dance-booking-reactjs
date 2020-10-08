@@ -28,6 +28,7 @@ body{
                             display: inline-block;
                             opacity: 0;
                             width: 100%;
+                            height: 100%;
                             z-index: 99;
                             position: absolute;
                             cursor: pointer;
@@ -94,6 +95,7 @@ body{
                     .close-icon{
                         position: absolute;
                         right: 0;
+                        cursor: pointer;
                         top: 28px;
                     }
                     .info-blk{
@@ -107,6 +109,15 @@ body{
                         border-bottom: none;
                     }
                 }
+            }
+        }
+    }
+}
+@media (min-width: 960px){
+    body{
+        .edit-profile-section{
+            .edit-profile-container{
+                padding: 20px 300px 20px 204px;
             }
         }
     }

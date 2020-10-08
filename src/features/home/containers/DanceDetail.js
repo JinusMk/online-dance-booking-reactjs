@@ -15,7 +15,7 @@ export default function DanceDetail(props){
     return(
         <section className="dance-detail-section">
             <Header onBack={() => props.history.push('/')} title={dance.title}/>
-            <Container maxWidth={false} className="dance-detail-container">
+            <Container className="dance-detail-container">
                 <Gallery/>
                 <DanceInfo dance={dance}/>
                 <TimeSlots dance={dance}/>
