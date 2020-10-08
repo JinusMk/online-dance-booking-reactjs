@@ -13,10 +13,13 @@
                     // height: 100%;
                 }
                 .nav-bar{
-                    padding-left: 60px;
+                    padding-left: 30px;
                     li{
                         display: inline-block;
                         margin-right: 30px;
+                        &:last-child{
+                            margin-right: 0;
+                        }
                         .nav-item{
                             @include transitionForAll($time: 0.4s,$transProp: ease-out);
                             cursor: pointer;
@@ -126,6 +129,17 @@
                 position: absolute;
                 width: 100%;
                 bottom: 32px;
+            }
+        }
+    }
+}
+@media (min-width: 1279px){
+    body{
+        header{
+            .header-wrapper{
+                .nav-bar{
+                    padding-left: 60px;
+                }
             }
         }
     }

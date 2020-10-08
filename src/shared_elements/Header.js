@@ -27,7 +27,7 @@ export default function Header(props){
                         <li className={location.pathname === "/" ? 'active': ''}>
                             <div className="nav-item" onClick={() => navigateTo('/')}>
                                 <img src={`${imageBasePath}home_icon_active.svg`} className="active"/>
-                                <img src={`${imageBasePath}home_icon.svg`} className="in-active"/>
+                                <img src={`${imageBasePath}home_icon_desktop.svg`} className="in-active"/>
                                 <span className="heading3">HOME</span>
                             </div>
                         </li>
@@ -41,7 +41,7 @@ export default function Header(props){
                         <li className={location.pathname === "/profile" ? 'active': ''}>
                             <div className="nav-item" onClick={() => navigateTo('/profile')}>
                                 <img src={`${imageBasePath}profile_icon_active.svg`} className="active"/>
-                                <img src={`${imageBasePath}profile_icon.svg`} className="in-active"/>
+                                <img src={`${imageBasePath}profile_icon_desktop.svg`} className="in-active"/>
                                 <span className="heading3">YOU</span>
                             </div>
                         </li>
