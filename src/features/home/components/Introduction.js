@@ -6,8 +6,8 @@ import "react-multi-carousel/lib/styles.css";
 export default function Introduction(props){
     const [introductionData] = useState([
         {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Stay home, Get fit'},
-        {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance online, Have fun'},
-        {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Launching Kids Online Dancing Batch'},
+        {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance online, Have fun'},
+        {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Launching Kids Online Dancing Batch'},
     ])
     return(
         <div className="introduction-blk">
