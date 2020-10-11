@@ -1,10 +1,10 @@
-import React, { useStae } from 'react'
+import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Introduction(props){
-    const introductionData = useStae([
+    const [introductionData] = useState([
         {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Stay home, Get fit'},
         {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance online, Have fun'},
         {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Launching Kids Online Dancing Batch'},
