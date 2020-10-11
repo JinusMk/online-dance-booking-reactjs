@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useStae } from 'react'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel } from '../../../constants'
+import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Introduction(props){
+    const introductionData = useStae([
+        {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Stay home, Get fit'},
+        {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance online, Have fun'},
+        {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Launching Kids Online Dancing Batch'},
+    ])
     return(
         <div className="introduction-blk">
             <Carousel 
@@ -15,14 +20,12 @@ export default function Introduction(props){
                 autoPlaySpeed={5000}
                 containerClass="carousel-container home"
             >
-                <div className="carousel-item">
-                    <img src={require('../../../assets/images/intro_picture1.svg')}/>
-                    <p className="heading1">Dance online, 1000 happy feet <br/> and counting.</p>
-                </div>
-                <div className="carousel-item">
-                    <img src={require('../../../assets/images/intro_picture2.svg')}/>
-                    <p className="heading1">Groove to the beats right in your <br/>living room.</p>
-                </div>
+                {
+                    introductionData.map((item, index) => <div className="carousel-item" key={index}>
+                        <img src={item.img}/>
+                        <p className="heading1">{item.value}</p>
+                    </div>)
+                }
             </Carousel>
         </div>
     )
