@@ -113,7 +113,7 @@
             .MuiDrawer-paper{
                 border-radius: 0;
                 padding: 16px;
-                min-width: 30%;
+                width: 30%;
             }
         }
         .auth-popup-wrapper{
@@ -130,6 +130,9 @@
                 width: 100%;
                 bottom: 32px;
             }
+        }
+        .footer-review-card{
+            margin: 0 -16px 16px -16px;
         }
     }
 }

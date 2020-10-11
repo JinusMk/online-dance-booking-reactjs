@@ -184,7 +184,7 @@ var response = {
 			name: '',
 			img: '', 
 			rating: '', 
-			video: '',
+			media: '',
 			text: '', 
 			class_date: '',
 			category: 'zumba'
@@ -194,7 +194,7 @@ var response = {
 			name: '',
 			rating: '', 
 			text: '', 
-			video: '',
+			media: '',
 			img: '', 
 			class_date: '',
 			category: 'bollywood'

@@ -207,6 +207,7 @@ body{
         box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
         border-radius: 8px;
         border: 1px solid #DDDDDD;
+        box-sizing: border-box;
         .title-blk{
             padding: 26px 16px 24px;
             border-bottom: 1px solid #DDDDDD;
@@ -214,6 +215,10 @@ body{
             .profile-img{
                 position: absolute;
                 top: 16px;
+                border: 1px solid #CCCCCC;
+                border-radius: 50%;
+                width: 64px;
+                height: 64px;
             }
             h3,p{
                 margin-left: 80px;
@@ -263,6 +268,79 @@ body{
                     }
                 }
             }
+        }
+    }
+    .review-card{
+        box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+        border-radius: 8px;
+        border: 1px solid $color_light_gray;
+        height: 100%;
+        box-sizing: border-box;
+        .content-block{
+            padding: 8px 16px;
+            border-bottom: 1px solid $color_light_gray;
+            min-height: 150px;
+            box-sizing:border-box; 
+            .img-block{
+                margin-bottom: 16px;
+                .quote-icon{
+
+                }
+                .star-icon-wrapper{
+                    float: right;
+                    margin-top: 5px;
+                    img{
+                        margin-right: 5px;
+                        margin-top: -3px;
+                    }
+                    span{
+                        color: $color_primary;
+                    }
+                    span, img{
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .text{
+                margin-bottom: 8px;
+            }
+            .read-more{
+                margin-bottom: 8px;
+                color: $color_primary;
+                cursor: pointer;
+                span,img{
+                    vertical-align: middle;
+                }
+                img{
+                    margin-left: 4px;
+                }
+            }
+        }
+        .user-info{
+            position: relative;
+            padding: 16px 16px 8px;
+            .user-avatar{
+                position: absolute;
+                left: 16px;
+                top: 16px;
+                width: 32px;
+                background: $color_primary;
+                color: $color_white;
+                height: 32px;
+                font-size: 16px;
+            }
+            .name-wrapper{
+                padding-left: 40px;
+                h3{
+                    margin-bottom: 4px;
+                }
+                p{
+                    color: $color_gray;
+                }
+            }
+        }
+        &.video{
+
         }
     }
     .time-slots-wrapper{
@@ -549,6 +627,48 @@ body{
                 }
             }
         }
+        &.review{
+            .heading2{
+                margin: 16px 0;
+            }
+            .review-card{
+                border: none;
+                box-shadow: none;
+                margin: 0 -16px;
+                .content-block{
+                    padding-top: 0;
+                    min-height: unset;
+                }
+                .user-info{
+                    padding: 16px;
+                    .user-avatar{
+                        top: 16px;
+                    }
+                }
+            }
+        }
+        &.recap{
+            .custom-video{
+                margin-bottom: 8px;
+            }
+            .class-info{
+                margin-bottom: 20px;
+                .heading3{
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+    .footer-review-card{
+        padding: 12px 16px;
+        box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+        margin: 0 -16px -16px -16px;
+    }
+    .custom-video{
+        width: 100%; 
+        box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+        border-radius: 8px;
+        border: 1px solid $color_light_gray;       
     }
     .dance-alert-wrapper{
         padding: 16px;

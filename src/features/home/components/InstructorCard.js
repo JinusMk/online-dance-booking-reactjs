@@ -17,7 +17,7 @@ export default function InstructorCard(props){
             <div className="info-blk">
                 <p className="paragraph">
                     <img src={`${imageBasePath}expert_icon.svg`}/>
-                    <span>{instructor.expert}</span>
+                    <span>{instructor.qualification}</span>
                 </p>
                 <p className="paragraph">
                     <img src={`${imageBasePath}experience_icon.svg`}/>

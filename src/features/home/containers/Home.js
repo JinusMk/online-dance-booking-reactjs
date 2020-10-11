@@ -11,6 +11,7 @@ const WhyLetzdance = React.lazy(() => import('../components/WhyLetzdance'));
 const HowWorks = React.lazy(() => import('../components/HowWorks'));
 const CommonQuestions = React.lazy(() => import('../components/CommonQuestions'));
 const ContactUs = React.lazy(() => import('../components/ContactUs'));
+const Reviews = React.lazy(() => import('../components/Reviews'));
 
 export default function Home(props){
     return(
@@ -24,6 +25,7 @@ export default function Home(props){
                     <LastWeekRecap />
                     <ExpertInstructors />
                     <WhyLetzdance />
+                    <Reviews/>
                     <HowWorks />
                     <CommonQuestions />
                     <ContactUs /> 

@@ -163,14 +163,23 @@ body{
                     .custom-dot-list{
                         bottom: 18px;
                     }
-                    .carousel-item{
-                        padding-right: 0;
-                    }
+                    
                 }
-                .last-wek-recap-item{
-                    img{
-                        margin-left: -10px;
-                        width: 100%;
+                .last-week-recap-item{
+                    .img-blk{
+                        position: relative;
+                        margin-bottom: 8px;
+                        .dance-logo{
+                            width: 100%;
+                            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                            border-radius: 8px;
+                            border: 1px solid $color_light_gray;
+                        }
+                        .play-icon{
+                            position: absolute;
+                            top: 40%;
+                            left: 45%;
+                        }
                     }
                     h3{
                         margin-bottom: 4px;
@@ -189,6 +198,9 @@ body{
                 .common-questions-accordion{
                     background: unset;
                 }
+            }
+            .reviews{
+
             }
         }
     }

@@ -12,6 +12,7 @@ import ContactUs from './ContactUs'
 import Gallery from './Gallery'
 import DanceInfo from './DanceInfo'
 import TimeSlots from './TimeSlots'
+import ReviewCard from './ReviewCard'
 
 export {
     Introduction,
@@ -27,5 +28,6 @@ export {
     ContactUs,
     Gallery,
     DanceInfo,
-    TimeSlots
+    TimeSlots,
+    ReviewCard
 }
