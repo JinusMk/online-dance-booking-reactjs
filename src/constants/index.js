@@ -7,7 +7,7 @@ export const responsiveCarousel = {
     },
     desktop: {
       breakpoint: { max: 1279, min: 960 },
-      items: 3,
+      items: 2,
       partialVisibilityGutter: 40
     },
     tablet: {

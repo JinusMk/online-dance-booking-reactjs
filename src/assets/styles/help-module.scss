@@ -36,21 +36,35 @@ body{
         .help-section{
             .help-container{
                 .who-we-are-blk{
-                    padding-top: 32px;
+                    padding-top: 64px;
                     .bg-img{
                         top: 70px;
                     }
                 }
                 .how-it-works-blk{
-                    border-bottom: none;
                     margin-bottom: 0;
                 }
                 .add-to-home-screen-blk{
-                    padding-left: 208px;
-                    padding-right: 300px;
-                    padding-bottom: 70px;
-                    border-bottom: none;
+                    margin: 0 150px;
+                    padding: 64px 0 84px;
+                }
+                .common-questions-blk{
+                    padding: 64px 0 0;
                     margin-bottom: 0;
+                }
+                .contact-us-blk{
+                    padding-bottom: 90px;
+                }
+            }
+        }
+    }
+}
+@media (min-width: 1279px){
+    body{
+        .help-section{
+            .help-container{
+                .add-to-home-screen-blk{
+                    margin: 0 200px;
                 }
             }
         }

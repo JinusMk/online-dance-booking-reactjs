@@ -217,7 +217,7 @@ body{
             .home-container{
                 .block{
                     padding:0 0 84px;
-                    margin: 0 200px;
+                    margin: 0 150px;
                     margin-bottom: 64px;
                 }
                 .introduction-blk{
@@ -242,21 +242,23 @@ body{
                     }
                 }
                 .common-questions-blk{
+                    padding: 64px 150px;
+                }
+            }
+        }
+    }
+}
+@media (min-width: 1279px) {
+    body{
+        .home-section{
+            .home-container{
+                .block{
+                   margin: 0 200px;
+                }
+                .common-questions-blk{
                     padding: 64px 200px;
                 }
             }
         }
     }
 }
-// @media (min-width: 1700px) {
-//     body{
-//         .home-section{
-//             .home-container{
-//                 .block{
-//                     padding-left: 308px;
-//                     padding-right: 400px;
-//                 }
-//             }
-//         }
-//     }
-// }

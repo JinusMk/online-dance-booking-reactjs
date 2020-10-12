@@ -105,7 +105,20 @@ body{
     body{
         .schedule-section{
             .schedule-container{
-                padding: 0px 300px 0 204px;
+                padding: 0px 250px 0 250px;
+                .dance-listing-wrapper{
+                    .date-picker-wrapper{
+                        // padding: 32px 0
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width: 1279px){
+    body{
+        .schedule-section{
+            .schedule-container{
                 .dance-listing-wrapper{
                     .date-picker-wrapper{
                         // padding: 32px 0

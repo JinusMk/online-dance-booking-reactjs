@@ -74,7 +74,7 @@
             }
         }
         .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{
-            margin: 0 200px;
+            margin: 0 150px;
             margin-bottom: 64px;
             padding:0 0 84px;
         }
@@ -142,7 +142,8 @@
             padding: 64px 0 64px;
         }
         .contact-us-blk{
-            padding-top: 60px;
+            padding-top: 66px;
+            padding-bottom: 90px;
         }
         .custom-drawer{
             .MuiDrawer-paper{
@@ -199,6 +200,11 @@
                     padding-left: 60px;
                 }
             }
+        }
+        .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{
+            margin: 0 200px;
+            margin-bottom: 64px;
+            padding:0 0 84px;
         }
     }
 }
