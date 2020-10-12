@@ -97,6 +97,31 @@ export default function DanceDetail(props){
                         "experience": "5 years",
                         "classes": "51"
                     },
+                    "slot": "morning",
+                    "label": "Disabled",
+                    "description": null,
+                    "duration": "1 hours",
+                    "participants": 0,
+                    "class_start_time": "5:57 PM",
+                    "class_end_time": "6:57 PM"
+                },
+                {
+                    "id": 11,
+                    "title": "Bollywood",
+                    "rating": 2,
+                    "img": "",
+                    "rating_count": 20,
+                    "cost_old": 20,
+                    "cost": 10,
+                    "instructor": {
+                        "name": "New admin",
+                        "img": "",
+                        "ratingCount": 20,
+                        "rating": 2,
+                        "expert": "Bollywood",
+                        "experience": "5 years",
+                        "classes": "51"
+                    },
                     "slot": "evening",
                     "label": "aa",
                     "description": null,
@@ -122,7 +147,7 @@ export default function DanceDetail(props){
         const availableDates = Object.keys(danceClasses)
         let category = props.match.params.slug
         const classArray = danceClasses[availableDates[0]][category]
-        if(classArray.length){
+        if(classArray && classArray.length){
             setDanceInfo(classArray[0])
         }
     }
@@ -133,7 +158,7 @@ export default function DanceDetail(props){
                 {loader ? 'Loading...' : <>
                     <Gallery category={category}/>
                     <DanceInfo dance={danceInfo} category={category}/>
-                    {/* <TimeSlots danceClasses={danceClasses}/> */}
+                    <TimeSlots danceClasses={danceClasses} category={category}/>
                     <Suspense fallback={<div>Loading...</div>}>
                         <div className="instructor block">
                             <h3 className="heading2 title">Instructor</h3>

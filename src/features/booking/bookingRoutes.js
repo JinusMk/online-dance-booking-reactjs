@@ -4,11 +4,11 @@ import { pageLayoutHoc } from '../../hocs'
 
 export const bookingRoutes = [
     {
-        path: '/dance/:id/booking',
+        path: '/dance/:slug/:id/booking',
         component: Booking,
     },
     {
-        path: '/dance/:id/booking/success',
+        path: '/dance/:slug/:id/booking/success',
         component: pageLayoutHoc(BookingSuccess),
     },
 ]
