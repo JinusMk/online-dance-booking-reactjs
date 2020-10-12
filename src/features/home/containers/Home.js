@@ -17,7 +17,7 @@ export default function Home(props){
     return(
         <section className="home-section">
             <Header/>
-            <Container maxWidth={false} className="home-container">
+            <Container className="home-container">
                 <Introduction />
                 <UpComingClasses />
                 <Suspense fallback={<div>Loading...</div>}>

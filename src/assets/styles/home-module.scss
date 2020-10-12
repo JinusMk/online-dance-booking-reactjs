@@ -52,6 +52,7 @@ body{
                         background: $color_white;
                         min-width: 30px;
                         min-height: 30px;
+
                         &::before{
                             font-size: 15px;
                             color: $color_primary
@@ -63,6 +64,7 @@ body{
                 .partially-visible-carousel-container{
                     .carousel-item{
                         .card{
+                            cursor: pointer;
                             border-radius: 8px;
                             box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
                             .top-blk{
@@ -168,6 +170,7 @@ body{
                     
                 }
                 .last-week-recap-item{
+                    cursor: pointer;
                     .img-blk{
                         position: relative;
                         margin-bottom: 8px;
@@ -197,6 +200,7 @@ body{
             .common-questions-blk{
                 background: rgba(255, 225, 228, 0.2);
                 padding-top: 24px;
+                margin: 0;
                 .common-questions-accordion{
                     background: unset;
                 }
@@ -212,20 +216,33 @@ body{
         .home-section{
             .home-container{
                 .block{
-                    padding-left: 208px;
-                    padding-bottom: 70px;
-                    border-bottom: none;
-                    margin-bottom: 0;
-                    padding-right: 300px;
+                    padding:0 0 84px;
+                    margin: 0 200px;
+                    margin-bottom: 64px;
                 }
                 .introduction-blk{
                     margin-bottom: 65px;
-                }
-                .upcoming-classes{
-                    padding-right: 0;
-                    .title{
-                        margin-right: 300px;
+                    padding-bottom: 0;
+                    box-shadow: none;
+                    .react-multiple-carousel__arrow--right{
+                        right: 250px;
                     }
+                    .react-multiple-carousel__arrow--left{
+                        left: 250px;
+                    }
+                }
+                .expert-instructors{
+                    .react-multiple-carousel__arrow{
+                        margin-bottom: 0;
+                    }
+                }
+                .reviews{
+                    .react-multiple-carousel__arrow{
+                        margin-bottom: 0;
+                    }
+                }
+                .common-questions-blk{
+                    padding: 64px 200px;
                 }
             }
         }

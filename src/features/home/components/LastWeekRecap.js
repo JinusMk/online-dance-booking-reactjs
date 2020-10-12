@@ -18,7 +18,7 @@ export default function LastWeekRecap(props){
                 infinite={false}
                 autoPlaySpeed={5000}
                 partialVisible={isMobile ? true : false}
-                arrows={false}
+                arrows={isMobile ? false: true }
                 containerClass="partially-visible-carousel-container last-week-recap"
                 dotListClass="custom-dot-list"
                 itemClass="carousel-item"

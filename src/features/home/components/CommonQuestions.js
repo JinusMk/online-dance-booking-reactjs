@@ -1,7 +1,5 @@
 import React from 'react'
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { Accordion, AccordionSummary, AccordionDetails, Grid  } from '@material-ui/core';
 import { imageBasePath } from '../../../constants';
 
 const commonQuestions = [
@@ -16,18 +14,22 @@ export default function CommonQuestions(props){
     return(
         <div className="common-questions-blk">
             <h3 className="heading2 title">Common Questions</h3>
+            <Grid container spacing={2} className="accordion-outer-wrapper">
             {
-                commonQuestions.map((item, index) => <Accordion key={index} className="common-questions-accordion">
-                    <AccordionSummary
-                        expandIcon={<img src={`${imageBasePath}expand_more_icon.svg`}/>}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                    >
-                        <h3 className="heading3">{item.que}</h3>
-                    </AccordionSummary>
-                    <AccordionDetails><p className="paragraph">{item.ans}</p></AccordionDetails>
-                </Accordion>)
+                commonQuestions.map((item, index) => <Grid item xs={12} md={6} className="accrodion-item-wrapper">
+                    <div className="accordion-item">
+                        <Accordion key={index} className="common-questions-accordion">
+                        <AccordionSummary
+                            expandIcon={<img src={`${imageBasePath}expand_more_icon.svg`}/>}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <h3 className="heading3">{item.que}</h3>
+                        </AccordionSummary>
+                        <AccordionDetails><p className="paragraph">{item.ans}</p></AccordionDetails>
+                </Accordion></div></Grid>)
             }
+            </Grid>
         </div>
     )
 }

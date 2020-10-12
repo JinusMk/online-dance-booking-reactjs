@@ -74,19 +74,23 @@
             }
         }
         .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{
-            padding-left: 208px;
-            padding-bottom: 70px;
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-right: 300px;
+            margin: 0 200px;
+            margin-bottom: 64px;
+            padding:0 0 84px;
         }
         .who-we-are-blk{
             .bg-img{
-                top: 40px;
-                right: 208px;
+                top: 0px;
+                // right: 208px;
             }
             .paragraph{
-                font-weight: $boldFont;
+                @include fontStyle(
+                    $fontFamily:$font_RobotoCondensed,
+                    $size:$font16,
+                    $weight:$boldFont,
+                    $color: $color_black,
+                    $lineHeight: $lineHeight20
+                );
             }
         }
         .why-letzdance-blk{
@@ -101,10 +105,41 @@
             }
         }
         .how-it-works-blk{
-
+            padding-bottom: 64px;
+            margin-bottom: 0;
+            .how-works-list{
+                .list-item-grid{
+                    position: relative;
+                    padding-top: 8px;
+                    .list-item{
+                        margin-bottom: 0;
+                        flex-direction: column;
+                        .icon{
+                            margin-bottom: 16px;
+                        }
+                        .paragraph{
+                            @include fontStyle(
+                                $fontFamily:$font_RobotoCondensed,
+                                $size:$font16,
+                                $weight:$boldFont,
+                                $color: $color_black,
+                                $lineHeight: $lineHeight20
+                            );
+    
+                        }
+                    }
+                    .down-arrow{
+                        transform: rotate(270deg);
+                        position: absolute;
+                        top: 9px;
+                        right: 0;
+                        width: 20px;
+                    }
+                }
+            }
         }
         .common-questions-blk{
-            padding-bottom: 24px;
+            padding: 64px 0 64px;
         }
         .contact-us-blk{
             padding-top: 60px;
@@ -134,6 +169,26 @@
         .footer-review-card{
             margin: 0 -16px 16px -16px;
         }
+    }
+    .react-multiple-carousel__arrow{
+        margin-bottom: 50px;
+        background: $color_white;
+        min-width: 30px;
+        min-height: 30px;
+        border: 1px solid $color_primary;
+        &::before{
+            font-size: 15px;
+            color: $color_primary
+        }
+        &:hover{
+            background: $color_white;
+        }
+    }
+    .react-multiple-carousel__arrow--right{
+        right: 2px;
+    }
+    .react-multiple-carousel__arrow--left{
+        left: 2px;
     }
 }
 @media (min-width: 1279px){
