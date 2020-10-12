@@ -192,6 +192,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}zumba_logo_2.svg`,
+    primaryImage: `${imageBasePath}zumba_logo_1.svg`,
     category: 'zumba',
     instructor: 'Angel Bensy',
     participants: '22',
@@ -201,6 +202,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}bollywood_logo_2.svg`,
+    primaryImage: `${imageBasePath}bollywood_logo_1.svg`,
     category: 'bollywood',
     instructor: 'Manas',
     participants: '21',
@@ -210,6 +212,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}hiphop_logo_2.svg`,
+    primaryImage: `${imageBasePath}hiphop_logo_1.svg`,
     category: 'hiphop',
     instructor: 'Deena',
     participants: '12',
@@ -219,6 +222,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}bollywood-kids_logo_2.svg`,
+    primaryImage: `${imageBasePath}bollywood-kids_logo_1.svg`,
     category: 'bollywood-kids',
     instructor: 'Manas',
     participants: '12',
@@ -228,6 +232,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}zumba_logo_2.svg`,
+    primaryImage: `${imageBasePath}zumba_logo_1.svg`,
     category: 'zumba',
     instructor: 'Angel Bensy',
     participants: '27',
@@ -237,6 +242,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}hiphop_logo_2.svg`,
+    primaryImage: `${imageBasePath}hiphop_logo_1.svg`,
     category: 'hiphop',
     instructor: 'Deena',
     participants: '16',
@@ -246,6 +252,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}bollywood_logo_2.svg`,
+    primaryImage: `${imageBasePath}bollywood_logo_1.svg`,
     category: 'bollywood',
     instructor: 'Manas',
     participants: '23',
@@ -255,6 +262,7 @@ export const lastWeekRecapVideos = [
   {
     id: '',
     img: `${imageBasePath}bollywood-kids_logo_2.svg`,
+    primaryImage: `${imageBasePath}bollywood-kids_logo_1.svg`,
     category: 'bollywood-kids',
     instructor: 'Manas',
     participants: '19',

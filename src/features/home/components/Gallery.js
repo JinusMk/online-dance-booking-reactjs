@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel } from '../../../constants'
+import { responsiveCarousel, lastWeekRecapVideos } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Gallery(props){
-    const [ gallery, setGallery ] = useState([
-        {id: 1, img: require('../../../assets/images/zumba_logo.svg'), desc: 'Zumba dance for all levels', dancers: '55'},
-        {id: 2, img: require('../../../assets/images/zumba_logo.svg'), desc: 'Zumba dance for all levels', dancers: '55'}
-    ])
     return(
         <div className="gallery block">
             <Carousel 
@@ -22,19 +18,25 @@ export default function Gallery(props){
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {gallery.map((item, index) => <GalleryItem key={index} dance={item}/>)}
+                {lastWeekRecapVideos.filter(item => item.category == "zumba").map((item, index) => <GalleryItem key={index} index={index+1} recap={item}/>)}
             </Carousel>
         </div>
     )
 }
 
 function GalleryItem(props){
-    const { dance } = props
+    const { recap, index } = props
     return(
         <div className="gallery-item">
-            <img src={dance.img}/>
-            <h3 className="heading3">{dance.desc}</h3>
-            <p className="paragraph">{dance.dancers} dancers</p>
+            <video height="164" poster={index == 1 ? recap.primaryImage: recap.img} controls className="custom-video">
+                <source src={recap.media} type="video/mp4" />
+                <source src={recap.media} type="video/ogg" />
+                Your browser does not support the video tag.
+            </video>
+            <div className="class-info">
+                <h3 className="heading3">{`${recap.category} dance for all levels`}</h3>
+                <p className="paragraph">{`${recap.participants} dancers`}</p>
+            </div>
         </div>
     )
 }

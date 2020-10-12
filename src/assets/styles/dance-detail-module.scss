@@ -28,15 +28,26 @@ body{
             .gallery{
                 .gallery-carousel{
                     .gallery-item{
-                        img{
-                            border-radius: 8px;
+                        // img{
+                        //     border-radius: 8px;
+                        //     margin-bottom: 8px;
+                        // }
+                        // .heading3{
+                        //     margin-bottom: 4px;
+                        // }
+                        // .paragraph{
+                        //     color: $color_gray;
+                        // }
+                        .custom-video{
                             margin-bottom: 8px;
                         }
-                        .heading3{
-                            margin-bottom: 4px;
-                        }
-                        .paragraph{
-                            color: $color_gray;
+                        .class-info{
+                            h3{
+                                margin-bottom: 4px;
+                            }
+                            p{
+                                color: $color_gray;
+                            }
                         }
                     }
                 }
