@@ -14,7 +14,7 @@ export const homeRoutes = [
         key: 'home'
     },
     {
-        path: '/dance/:id',
+        path: '/dance/:slug',
         component : DanceDetail,
         key: 'dance-detail'
     },

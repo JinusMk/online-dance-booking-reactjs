@@ -3,10 +3,10 @@ import { Container } from '@material-ui/core';
 import { DanceInformationCard } from '../../../shared_elements'
 import { Tabs, Tab } from '@material-ui/core'
 import moment from 'moment'
-import '../../../assets/styles/schedule-module.scss'
 import ScrollspyNav from "react-scrollspy-nav";
 import { globalGetService } from '../../../utils/globalApiServices';
 import { imageBasePath } from '../../../constants';
+import '../../../assets/styles/schedule-module.scss'
 
 export default function Schedule(props){
     const [loader, setLoader] = useState(true)

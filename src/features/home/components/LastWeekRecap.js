@@ -59,6 +59,7 @@ function RecapItem(props){
         </div>
         {[isMobile ? 'bottom': 'right'].map((anchor) => (
             <SwipeableDrawer
+                key={anchor}
                 anchor={anchor}
                 open={openRecap}
                 onClose={toggleDrawer(anchor, false)}

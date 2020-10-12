@@ -48,7 +48,7 @@ body{
                         }
                     }
                     .react-multiple-carousel__arrow{
-                        margin-bottom: 50px;
+                        margin-bottom: 75px;
                         background: $color_white;
                         min-width: 30px;
                         min-height: 30px;
@@ -71,6 +71,7 @@ body{
                                 position: relative;
                                 .logo{
                                     width: 100%;
+                                    border-radius: 8px 8px 0 0;
                                 }
                                 span{
                                     background: $color_primary;
@@ -204,6 +205,9 @@ body{
                 .common-questions-accordion{
                     background: unset;
                 }
+            }
+            .contact-us-blk{
+                padding-top: 24px;
             }
             .reviews{
 

@@ -18,17 +18,17 @@ export default function Gallery(props){
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {lastWeekRecapVideos.filter(item => item.category == "zumba").map((item, index) => <GalleryItem key={index} index={index+1} recap={item}/>)}
+                {lastWeekRecapVideos.filter(item => item.category == props.category).map((item, index) => <GalleryItem key={index} recap={item}/>)}
             </Carousel>
         </div>
     )
 }
 
 function GalleryItem(props){
-    const { recap, index } = props
+    const { recap } = props
     return(
         <div className="gallery-item">
-            <video height="164" poster={index == 1 ? recap.primaryImage: recap.img} controls className="custom-video">
+            <video height="164" poster={recap.img} controls className="custom-video">
                 <source src={recap.media} type="video/mp4" />
                 <source src={recap.media} type="video/ogg" />
                 Your browser does not support the video tag.

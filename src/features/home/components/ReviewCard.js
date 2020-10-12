@@ -24,6 +24,7 @@ export default function ReviewCard(props){
 
         {[isMobile ? 'bottom': 'right'].map((anchor) => (
             <SwipeableDrawer
+                key={anchor}
                 anchor={anchor}
                 open={openDetail}
                 onClose={toggleDrawer(anchor, false)}

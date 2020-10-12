@@ -1,17 +1,89 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import { DanceFormCard } from './index'
 import { isMobile } from 'react-device-detect'
+import { globalGetService } from '../../../utils/globalApiServices';
 import "react-multi-carousel/lib/styles.css";
 
 export default function UpComingClasses(props){
-    const [classes, setClasses] = useState([
-        {id: 1, img: require('../../../assets/images/zumba_logo.svg'), title: 'Zumba', rating: 4.5, ratingCount: 89, cost: '₹199', costOld: '₹99', instructor: 'Angel Bensy', duration: '1 hour', slots:[{time: '10:00 AM', status: 'ALMOST FULL'}, {time: '6:00 PM', status: 'FAST FILLING'}]},
-        {id: 2, img: require('../../../assets/images/bollywood_logo.svg'), title: 'Bollywood', rating: 4.5, ratingCount: 89, cost: '₹149', costOld: '₹249', instructor: 'Manas', duration: '1 hour', slots:[{time: '10:00 AM', status: 'ALMOST FULL'}, {time: '3:00 PM', status: 'FAST FILLING'}, {time: '6:00 PM', status: 'FAST FILLING'}, {time: '9:00 PM', status: ''}]},
-        {id: 3, img: require('../../../assets/images/zumba_logo.svg'), title: 'Zumba', rating: 4.5, ratingCount: 89, cost: '₹199', costOld: '₹99', instructor: 'Angel Bensy', duration: '1 hour', slots:[{time: '10:00 AM', status: 'ALMOST FULL'}, {time: '6:00 PM', status: 'FAST FILLING'}, {time: '9:00 PM', status: ''}]}
-    ])
+    const [loader, setLoader] = useState(true)
+    const [dances, setDances] = useState({
+        "Bollywood": {
+            "letzdance_id": 11,
+            "slug": "",
+            "category": 1,
+            "title": "Bollywood",
+            "rating": 2,
+            "duration": "1 hours",
+            "cost_old": 20,
+            "cost": 10,
+            "rating_count": 20,
+            "no_of_participants": 0,
+            "instructor": {
+                "name": "New admin",
+                "img": "",
+                "ratingCount": 20,
+                "rating": 2,
+                "expert": "Bollywood",
+                "experience": "5 years",
+                "classes": "51"
+            },
+            "card_type": "actual"
+        },
+        "Hip-hop": {
+            "letzdance_id": 31,
+            "slug": "",
+            "category": 2,
+            "title": "Hip-hop",
+            "rating": 4.5,
+            "duration": "1 hours",
+            "cost_old": 2000,
+            "cost": 1000,
+            "rating_count": 50,
+            "no_of_participants": 0,
+            "instructor": {
+                "name": "New admin",
+                "img": "",
+                "ratingCount": 50,
+                "rating": 4.5,
+                "expert": "Hip-hop",
+                "experience": "5 years",
+                "classes": "51"
+            },
+            "card_type": "actual"
+        },
+        "Zumba": {
+            "letzdance_id": 38,
+            "slug": "",
+            "category": 3,
+            "title": "Zumba",
+            "rating": 4.5,
+            "duration": "1 hours",
+            "cost_old": 200,
+            "cost": 100,
+            "rating_count": 0,
+            "no_of_participants": 0,
+            "instructor": {
+                "name": "New admin",
+                "img": "",
+                "ratingCount": 0,
+                "rating": 4.5,
+                "expert": "Zumba",
+                "experience": "5 years",
+                "classes": "51"
+            },
+            "card_type": "actual"
+        }
+    })
+    useEffect(() => {
+        // globalGetService('home-page', {})
+        // .then(response => {
+        //     console.log('response', response)
+        // })
+        setLoader(false)
+    }, [])
     return(
         <div className="upcoming-classes block">
             <h3 className="heading2 title">Upcoming dances <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
@@ -27,7 +99,7 @@ export default function UpComingClasses(props){
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {classes.map((item, index) => <DanceFormCard key={index} dance={item}/>)}
+                {loader ? 'Loading...' : Object.keys(dances).map((key, index) => <DanceFormCard key={index} dance={dances[key]}/>)}
             </Carousel>
         </div>
     )
