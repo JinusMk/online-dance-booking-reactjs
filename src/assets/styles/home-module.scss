@@ -220,9 +220,8 @@ body{
         .home-section{
             .home-container{
                 .block{
-                    padding:0 0 84px;
+                    padding:64px 0 84px;
                     margin: 0 150px;
-                    margin-bottom: 64px;
                 }
                 .introduction-blk{
                     margin-bottom: 65px;
@@ -248,6 +247,9 @@ body{
                 .common-questions-blk{
                     padding: 64px 150px;
                 }
+                .contact-us-blk{
+                    padding-top: 64px;
+                }
             }
         }
     }
@@ -261,6 +263,9 @@ body{
                 }
                 .common-questions-blk{
                     padding: 64px 200px;
+                }
+                .how-it-works-blk{
+                    margin-bottom: 0;
                 }
             }
         }

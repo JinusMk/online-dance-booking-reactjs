@@ -75,13 +75,11 @@
         }
         .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{
             margin: 0 150px;
-            margin-bottom: 64px;
-            padding:0 0 84px;
+            padding:64px 0 84px;
         }
         .who-we-are-blk{
             .bg-img{
-                top: 0px;
-                // right: 208px;
+                top: 64px;
             }
             .paragraph{
                 @include fontStyle(
