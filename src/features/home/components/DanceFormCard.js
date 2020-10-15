@@ -9,7 +9,9 @@ export default function DanceFormCard(props){
                 <div className="top-blk">
                     <img src={`${imageBasePath}${danceCategory[dance.category]}_logo_1.svg`} className="logo" />
                     <span className="secondaryText">Live & interactive</span>
-                    <p className="heading2">{dance.title}</p>
+                    <div className="title-wrapper">
+                        <p className="heading2">{dance.title}</p>
+                    </div>
                 </div>
                 <div className="info-blk">
                     <h3 className="heading3">

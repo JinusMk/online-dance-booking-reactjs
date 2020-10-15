@@ -82,11 +82,17 @@ body{
                                     top: 8px;
                                     padding: 2px 8px;
                                 }
-                                p{
-                                    color: $color_white;
+                                .title-wrapper{
                                     position: absolute;
-                                    bottom: 10px;
-                                    left: 16px;
+                                    bottom: 4px;
+                                    padding: 13px 16px 8px;
+                                    width: 100%;
+                                    box-sizing: border-box;
+                                    background: linear-gradient(180deg, rgba(34, 34, 34, 0) 28.31%, #222222 91.44%);
+                                    left: 0;
+                                    p{
+                                        color: $color_white;
+                                    }
                                 }
                             }
                             .info-blk{
