@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { Header, BottomNavigation } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import { Introduction, UpComingClasses } from '../components'
@@ -14,6 +14,9 @@ const ContactUs = React.lazy(() => import('../components/ContactUs'));
 const Reviews = React.lazy(() => import('../components/Reviews'));
 
 export default function Home(props){
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [])
     return(
         <section className="home-section">
             <Header/>

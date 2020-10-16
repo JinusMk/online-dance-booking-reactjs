@@ -134,12 +134,13 @@ export default function DanceDetail(props){
         }
     })
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         const slug = props.match.params.slug
         setCategory(slug)
-        globalGetService(`dance/category/${categorySlug[slug]}`, {})
-        .then(response => {
-            console.log('response', response)
-        })
+        // globalGetService(`dance/category/${categorySlug[slug]}`, {})
+        // .then(response => {
+        //     console.log('response', response)
+        // })
         getDanceInfo()
         setLoader(false)
     }, [])

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import { DanceFormCard } from './index'
@@ -77,17 +77,22 @@ export default function UpComingClasses(props){
             "card_type": "actual"
         }
     })
+    const [currentDate, setCurrentDate] = useState('')
+    let history = useHistory()
     useEffect(() => {
         // globalGetService('home-page', {})
         // .then(response => {
         //     console.log('response', response)
         // })
         setLoader(false)
+        var d = new Date()
+        setCurrentDate(d.getDate())
     }, [])
     return(
         <div className="upcoming-classes block">
             <h3 className="heading2 title">Upcoming dances <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
-            <Carousel 
+            {
+                loader ? 'Loading ...' : <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
                 showDots={isMobile ? true : false}
@@ -99,8 +104,31 @@ export default function UpComingClasses(props){
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {loader ? 'Loading...' : Object.keys(dances).map((key, index) => <DanceFormCard key={index} dance={dances[key]}/>)}
-            </Carousel>
+                {Object.keys(dances).map((key, index) => <DanceFormCard key={index} dance={dances[key]}/>)}
+                    <div className="see-full-schedule-wrapper textCenter" onClick={() => history.push('/schedule')}>
+                        <div className="image-wrapper">
+                            <img className="schedule-icon" src={`${imageBasePath}schedule_icon_outlined.svg`} />
+                            {/* <p className="heading1">{moment().format('D')}</p> */}
+                            <p className="heading1">{currentDate}</p>
+                        </div>
+                        <h3 className="heading3">
+                            <span>See the full schedule</span>
+                            <img src={`${imageBasePath}down_arrow_icon.svg`} className="arrow"/>
+                        </h3>
+                    </div>
+                </Carousel>
+            }
         </div>
     )
 }
+
+{/* <div className="see-full-schedule-wrapper textCenter">
+    <div className="image-wrapper">
+        <img className="schedule-icon" src={`${imageBasePath}schedule_icon_outlined.svg`} />
+        <span>{moment().format('D')}</span>
+    </div>
+    <h3 className="heading3">
+        <span>See the full schedule</span>
+        <img src={`${imageBasePath}down_arrow_icon.svg`} className="arrow"/>
+    </h3>
+</div> */}

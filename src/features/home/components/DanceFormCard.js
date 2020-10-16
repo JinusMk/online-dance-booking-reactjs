@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { imageBasePath, danceCategory, instructorsData } from '../../../constants';
+
 export default function DanceFormCard(props){
     let history = useHistory()
     const { dance } = props

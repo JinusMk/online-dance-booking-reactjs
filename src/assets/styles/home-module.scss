@@ -163,6 +163,43 @@ body{
                                 }
                             }
                         }
+                        .see-full-schedule-wrapper{
+                            cursor: pointer;
+                            background: url("https://letzdance-fe.s3.us-east-2.amazonaws.com/main_bg_image.svg");
+                            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                            border-radius: 8px;
+                            border: 1px solid $color_light_gray;
+                            padding: 20px 50px;
+                            height: 100%;
+                            box-sizing: border-box; 
+                            background-repeat: round;
+                            display: flex;
+                            flex-flow: column;
+                            align-items: center;
+                            justify-content: center;
+                            .image-wrapper{
+                                text-align: center;
+                                margin-bottom: 26px;
+                                p{
+                                    font-size: 63px;
+                                    line-height: 54px;
+                                    margin-top: -67px;
+                                }
+                            }
+                            .heading3{
+                                color: $color_primary;
+                                .arrow, span{
+                                    vertical-align: middle;
+                                }
+                                span{
+                                    margin-right: 18px;
+                                }
+                                .arrow{
+                                    transform: rotate(270deg);
+                                    height: 24px;
+                                }
+                            }
+                        }
                     }
                 }
                 .custom-dot-list{
