@@ -119,6 +119,15 @@ function EditProfile(props){
             }
         })
     }
+
+    const handleCloseVerifyPopup = (user) => {
+        if(user){
+            props.updateUserInfo(user) 
+            setProviderData(user.providerData)
+            setFormData({...formData, phone: user.phoneNumber})
+        }
+        setVerifyPhone(false)
+    }
     return(<section className="edit-profile-section">
         <Container className="edit-profile-container">
             <Header onBack={() => props.history.push('/profile')} title="Edit Profile"/>
@@ -232,7 +241,7 @@ function EditProfile(props){
         {
             <AuthPopup 
                 open={verifyPhone}
-                handleClose={(user) => {if(user){props.updateUserInfo(user); setProviderData(user.providerData)}setVerifyPhone(false)}}
+                handleClose={handleCloseVerifyPopup}
                 phone={formData.phone}
                 type="verifyPhone"
             />

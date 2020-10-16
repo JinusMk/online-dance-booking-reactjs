@@ -9,6 +9,7 @@ import { profileRoutes } from './features/profile/profileRoutes';
 import { bookingRoutes } from './features/booking/bookingRoutes';
 import { ToastNotify } from './shared_elements';
 import firebase from './utils/firebase'
+import Page404 from './Page404'
 import './assets/styles/app.scss';
 import { AUTH_STATUS_UPDATE, UPDATE_USERINFO } from './shared_elements/actions'
 
@@ -60,6 +61,9 @@ function App() {
                 { bookingRoutes.map(({path, component, key}, index) =>
                   <Route exact path={path} component={component} key={key} />
                 )}
+                {
+                  <Route path='*' exact={true} component={Page404} />
+                }
               </Switch>
             </ErrorBoundary>
           </Router>

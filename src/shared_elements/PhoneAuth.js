@@ -198,7 +198,7 @@ export default function PhoneAuth(props){
                     <h2 className="heading2">Enter 6 digit OTP</h2>
                     <div id="phone-sign-in-recaptcha"></div>
                     <div className="inputGroup">
-                        <label className={error.otp ? 'error otp' : ''}>{`${resend ? 'RE-SENT' : 'SENT'} TO ${phone}`}<span>{error.otp ? ` - ${error.otp}`: ''}</span></label>
+                        <label className={error.otp ? 'error otp' : ''}>{`${resend ? 'RE-SENT' : 'SENT'} TO +${phone}`}<span>{error.otp ? ` - ${error.otp}`: ''}</span></label>
                         <TextField 
                             value={otp}
                             onChange={(e) => {setOtp(e.target.value); setError({'otp': ''})}}
