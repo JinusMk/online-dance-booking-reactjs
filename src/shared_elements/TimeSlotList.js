@@ -1,16 +1,15 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function TimeSlotList(props){
-    const { title, timeSlots=[], dance, sectionId="", date } = props
-    let location = useLocation()
+    const { title, timeSlots=[], dance, sectionId="", date, category } = props
     return(
         <div className="time-slots-wrapper">
             <p className="secondaryText">{title}</p>
             <ul className="listInline">
                 {timeSlots.map((item, index) => <li key={index}>
-                    <Link to={{pathname: `${location.pathname}/${item.id}/booking`, state: { sectionId: sectionId }}} className={`primaryBtn round ${item.label == "Disabled" ? 'disabled': ''}`}>{item.status == "Disabled" ? item.class_start_time : `Book ${item.class_start_time}`}</Link>
-                    {/* <p className={item.status == "ALMOST FULL" ? "alert_red" : 'alert_orange'}>{item.status != 'Disabled' ? item.status : null}</p> */}
+                    <Link to={{pathname: `dance/${category}/${item.id}/booking`, state: { sectionId: sectionId }}} className={`primaryBtn round ${item.status === 0 ? 'disabled': ''}`}>{item.status === 0 ? item.class_start_time : `Book ${item.class_start_time}`}</Link>
+                    {/* <p className={item.label == "ALMOST FULL" ? "alert_red" : 'alert_orange'}>{item.status !== 0 ? item.status : null}</p> */}
                 </li>)}
             </ul>
         </div>

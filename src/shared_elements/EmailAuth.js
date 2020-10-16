@@ -2,39 +2,17 @@ import React, { useState } from 'react'
 import { TextField } from '@material-ui/core';
 import firebase from '../utils/firebase'
 import { fieldValidation } from '../utils/formValidation';
-import { regExpression } from '../constants'
+import PhoneInput from 'react-phone-input-2'
+import { USER_AUTH_ERRORCODE } from '../constants'
 import { toastFlashMessage } from '../utils';
+import 'react-phone-input-2/lib/style.css'
 
 export default function EmailAuth(props){
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState({})
     const [registerFlag, setRegisterFlag] = useState(false)
-    const [errorCode] = useState({
-        email: {
-            0: '',
-            1: 'ENTER YOUR EMAIL',
-            4: 'ENTER A VALID EMAIL'
-        },
-        emailObj: {
-            requiredFlag: true,
-            regexPattern: regExpression.email
-        },
-        password: {
-            0: '',
-            1: 'ENTER YOUR PASSWORD'
-        },
-        passwordObj: {
-            requiredFlag: true
-        },
-        displayName: {
-            0: '',
-            1: 'ENTER YOUR DISPLAY NAME'
-        },
-        displayNameObj: {
-            requiredFlag: true
-        }
-    })
-    const [userInfo, setUserInfo] = useState({ email: '', password: '', displayName: ''})
+    const [errorCode] = useState(USER_AUTH_ERRORCODE)
+    const [userInfo, setUserInfo] = useState({ email: '', password: '', name: '', phone: ''})
     const [showPassword, setShowPassword] = useState(false)
     const handleChange = (key, val) => {
         setUserInfo({
@@ -51,7 +29,8 @@ export default function EmailAuth(props){
         let validateNewInput = {
             email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: userInfo.email})],
             password: errorCode['password'][fieldValidation({...errorCode['passwordObj'], fieldval: userInfo.password})],
-            displayName: registerFlag ? errorCode['displayName'][fieldValidation({...errorCode['displayNameObj'], fieldval: userInfo.displayName})]:'',
+            name: registerFlag ? errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: userInfo.name})]:'',
+            phone: registerFlag ? errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})]:'',
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             if(registerFlag){
@@ -61,7 +40,8 @@ export default function EmailAuth(props){
                     console.log("res emailAuth signup", response)
                     if(response.user){
                         response.user.updateProfile({
-                          displayName: userInfo.displayName
+                          displayName: userInfo.name,
+                          phone: userInfo.phone
                         }).then((s)=> {
                             props.handleSuccess(response)   
                         })
@@ -96,12 +76,12 @@ export default function EmailAuth(props){
         <div className="auth-outer-wrapper email">
             <h2 className="heading2">{registerFlag ? 'Register' : 'Login'}</h2>  
             {registerFlag ? <div className="inputGroup">
-                <label className={error.displayName ? 'error': ''}>{error.displayName ? error.displayName : 'DISPLAY NAME'}</label>
+                <label className={error.name ? 'error': ''}>{error.name ? error.name : 'YOUR NAME'}</label>
                 <TextField 
-                    value={userInfo.displayName}
-                    onChange={(e) => handleChange('displayName', e.target.value)}
-                    placeholder="Your display name"
-                    error={error.displayName}
+                    value={userInfo.name}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    placeholder="Your name"
+                    error={error.name}
                 />
             </div> : null
             }
@@ -127,8 +107,28 @@ export default function EmailAuth(props){
                     required
                 />
             </div>
+            {registerFlag ? <div className="inputGroup">
+                <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
+                <PhoneInput
+                    country={'in'}
+                    disableSearchIcon={true}
+                    value={userInfo.phone}
+                    onChange={phone => handleChange('phone', phone)}
+                    preferredCountries={['in', 'ae', 'sg']}
+                    placeholder="Your mobile number"
+                    inputProps={
+                        {
+                            required: true,
+                            className: error.phone ? 'error' : ''
+                        }
+                    }
+                    searchPlaceholder="Search countries"
+                    enableSearch={true}
+                    isValid={error.phone ? false : true}
+                />
+            </div> : null}
             <div className="signup-link">
-                <p className="paragraph"><a onClick={() => setRegisterFlag(!registerFlag)}>{registerFlag ? `ALready have an acoount ? Login now`: `Don't have an account ? Register now`}</a></p>
+                <p className="paragraph"><a onClick={() => setRegisterFlag(!registerFlag)}>{registerFlag ? `Already have an acoount ? Login now`: `Don't have an account ? Register now`}</a></p>
             </div>
             <ul className="listInline footer">
                 <li><p><a className={`secondaryBtn ${loader ? 'disabled': ''}`} onClick={() => {props.handleBack(); setUserInfo({email: '', password: ''}); setError({})}}>BACK</a></p></li>

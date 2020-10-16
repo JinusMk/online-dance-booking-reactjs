@@ -3,49 +3,20 @@ import { TextField } from '@material-ui/core';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { fieldValidation } from '../../../utils/formValidation';
-import { regExpression } from '../../../constants'
+import { USER_AUTH_ERRORCODE } from '../../../constants'
 
 export default function UserInformationForm(props){
     const [userInfo, setUserInfo] = useState({
         name: '',
         email: '',
+        password: '',
         phone: ''
     })
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState({})
     const [formWidth, setFormWidth] = useState(0)
-    const [errorCode] = useState({
-        name: {
-            0: '',
-            1: 'ENTER YOUR NAME',
-            4: 'ETER A VALID NAME'
-        },
-        nameObj: {
-            requiredFlag: true,
-            regexPattern: regExpression.name
-        },
-        email: {
-            0: '',
-            1: 'ENTER YOUR EMAIL',
-            4: 'ENTER A VALID EMAIL'
-        },
-        emailObj: {
-            requiredFlag: true,
-            regexPattern: regExpression.email
-        },
-        phone: {
-            0: '',
-            1: 'ENTER YOUR MOBILE NUMBER',
-            2: 'ENTER A VALID MOBILE NUMBER',
-            3: 'ENTER A VALID MOBILE NUMBER',
-            4: 'ENTER A VALID MOBILE NUMBER'
-        },
-        phoneObj: {
-            requiredFlag: true,
-            minLength: 5,
-            maxLength: 15
-        }
-    })
+    const [showPassword, setShowPassword] = useState(false)
+    const [errorCode] = useState(USER_AUTH_ERRORCODE)
     const handleChange = (key, val) => {
         setUserInfo({
             ...userInfo,
@@ -62,6 +33,7 @@ export default function UserInformationForm(props){
         let validateNewInput = {
             name: errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: userInfo.name})],
             email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: userInfo.email})],
+            password: errorCode['password'][fieldValidation({...errorCode['passwordObj'], fieldval: userInfo.password})],
             phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})],
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
@@ -106,6 +78,17 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className="inputGroup">
+                    <label className={error.password ? 'error': ''}>{error.password ? error.password : 'PASSWORD'}</label>
+                    <TextField 
+                        value={userInfo.password}
+                        onChange={(e) => handleChange('password', e.target.value)}
+                        placeholder="Your password"
+                        type={showPassword ? 'text' : 'password'}
+                        error={error.password}
+                        required
+                    />
+                </div>
+                <div className="inputGroup">
                     <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
                     <PhoneInput
                         country={'in'}
@@ -126,7 +109,7 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className="booking-fixed-footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
-                    <p><a onClick={handleSubmit} className={`primaryBtn ${(loader || !(userInfo.name && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >CONTINUE</a></p>
+                    <p><a onClick={handleSubmit} className={`primaryBtn ${(loader || !(userInfo.name && userInfo.password && userInfo.email && userInfo.phone) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >CONTINUE</a></p>
                 </div>
             </form>
         </div>

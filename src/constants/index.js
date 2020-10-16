@@ -92,7 +92,7 @@ export const reviewsData = [
     media: '',
     text: 'Loved the hiphop class, awesome instructor. I would like to join the regular sessions and learn hiphop. thank you.',
     class_date: '23 September 2020',
-    category: 'hiphop'
+    category: 'hip-hop'
   },
   {
     id: '',
@@ -101,7 +101,7 @@ export const reviewsData = [
     media: '',
     text: 'I booked the class for my son who has a passion to dance but gets bored very quickly, I found this class more convenient as its online from home. my son seems to be interested as they introduce new steps and style in every class.',
     class_date: '04 October 2020',
-    category: 'hiphop'
+    category: 'hip-hop'
   },
   {
     id: '',
@@ -110,7 +110,7 @@ export const reviewsData = [
     media: '',
     text: 'This is the first time I am trying an online Hiphop session, I never thought it would be so much fun! The instructor was so patient and he taught every step until everyone got it right. Its rare to find someone so patient and motivating. Thanks for a wonderful session…',
     class_date: '15 September 2020',
-    category: 'hiphop'
+    category: 'hip-hop'
   },
   {
     id: '',
@@ -183,7 +183,7 @@ export const instructorsData = [
     rating: '4.5', 
     rating_count: 34, 
     no_of_classes: 43, 
-    category: 'hiphop',
+    category: 'hip-hop',
     img: `${imageBasePath}Deena_hiphop.jpg`
   },
 ]
@@ -209,12 +209,12 @@ export const lastWeekRecapVideos = [
   },
   {
     id: '',
-    img: `${imageBasePath}hiphop_logo_2.svg`,
-    category: 'hiphop',
+    img: `${imageBasePath}hip-hop_logo_2.svg`,
+    category: 'hip-hop',
     instructor: 'Deena',
     participants: '12',
     date: '15 Oct 2020',
-    media: `${imageBasePath}hiphop_recap_1.mp4`
+    media: `${imageBasePath}hip-hop_recap_1.mp4`
   },
   {
     id: '',
@@ -236,12 +236,12 @@ export const lastWeekRecapVideos = [
   },
   {
     id: '',
-    img: `${imageBasePath}hiphop_logo_1.svg`,
-    category: 'hiphop',
+    img: `${imageBasePath}hip-hop_logo_1.svg`,
+    category: 'hip-hop',
     instructor: 'Deena',
     participants: '16',
     date: '16 Oct 2020',
-    media: `${imageBasePath}hiphop_recap_2.mp4`
+    media: `${imageBasePath}hip-hop_recap_2.mp4`
   },
   {
     id: '',
@@ -265,8 +265,46 @@ export const lastWeekRecapVideos = [
 
 export const danceCategory = {
   1: 'bollywood',
-  2: 'hiphop',
+  2: 'hip-hop',
   3: 'zumba',
   4: 'bollywood-kids',
-  5: 'hiphop-kids'
+  5: 'hip-hop-kids'
+}
+
+export const USER_AUTH_ERRORCODE = {
+    email: {
+        0: '',
+        1: 'ENTER YOUR EMAIL',
+        4: 'ENTER A VALID EMAIL'
+    },
+    emailObj: {
+        requiredFlag: true,
+        regexPattern: regExpression.email
+    },
+    password: {
+        0: '',
+        1: 'ENTER YOUR PASSWORD'
+    },
+    passwordObj: {
+        requiredFlag: true
+    },
+    name: {
+        0: '',
+        1: 'ENTER YOUR NAME'
+    },
+    nameObj: {
+        requiredFlag: true
+    },
+    phone: {
+        0: '',
+        1: 'ENTER YOUR MOBILE NUMBER',
+        2: 'ENTER A VALID MOBILE NUMBER',
+        3: 'ENTER A VALID MOBILE NUMBER',
+        4: 'ENTER A VALID MOBILE NUMBER'
+    },
+    phoneObj: {
+        requiredFlag: true,
+        minLength: 5,
+        maxLength: 15
+    }
 }

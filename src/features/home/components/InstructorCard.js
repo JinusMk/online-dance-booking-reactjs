@@ -11,7 +11,7 @@ export default function InstructorCard(props){
                 <p className="heading3 rating">
                     <img src={`${imageBasePath}star_icon.svg`} />
                     <span>{instructor.rating}</span>
-                    <span className="rating">({instructor.ratingCount} RATINGS)</span>
+                    <span className="rating">({instructor.rating_count} RATINGS)</span>
                 </p>
             </div>
             <div className="info-blk">
@@ -21,7 +21,7 @@ export default function InstructorCard(props){
                 </p>
                 <p className="paragraph">
                     <img src={`${imageBasePath}experience_icon.svg`}/>
-                    <span>{instructor.experience} experience</span>
+                    <span>{instructor.experience} years experience</span>
                 </p>
                 <p className="paragraph">
                     <span className="live">LIVE</span>

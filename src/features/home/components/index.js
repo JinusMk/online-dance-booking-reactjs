@@ -2,7 +2,7 @@ import Introduction from './Introduction'
 import UpComingClasses from './UpComingClasses'
 import DanceFormCard from './DanceFormCard'
 import WhoWeAre from './WhoWeAre'
-import LastWeekRecap from './LastWeekRecap'
+import LastWeekRecap from './LastweekRecap'
 import ExpertInstructors from './ExpertInstructors'
 import InstructorCard from './InstructorCard'
 import WhyLetzdance from './WhyLetzdance'
@@ -13,6 +13,7 @@ import Gallery from './Gallery'
 import DanceInfo from './DanceInfo'
 import TimeSlots from './TimeSlots'
 import ReviewCard from './ReviewCard'
+import RecapItem from './RecapItem'
 
 export {
     Introduction,
@@ -29,5 +30,6 @@ export {
     Gallery,
     DanceInfo,
     TimeSlots,
-    ReviewCard
+    ReviewCard,
+    RecapItem
 }
