@@ -41,7 +41,7 @@ export default function EmailAuth(props){
                     if(response.user){
                         response.user.updateProfile({
                           displayName: userInfo.name,
-                          phone: userInfo.phone
+                          phoneNumber: userInfo.phone
                         }).then((s)=> {
                             props.handleSuccess(response)   
                         })

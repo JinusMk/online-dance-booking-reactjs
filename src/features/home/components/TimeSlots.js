@@ -24,15 +24,6 @@ function TabPanel(props) {
 
 export default function TimeSlots(props){
     const { danceClasses, category } = props
-    // const [dates, setDates] = useState([
-    //     {id:1, date: moment(), morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]},
-    //     {id:2, date: moment().add(1, 'day'), morning: [{time: '10.00 AM', status: 'ALMOST FULL'}, {time: '11.00 AM', status: 'Disabled'}], evening: [{time: '6.00 PM', status: 'FAST FILLING'}, {time: '7.00 PM', status: 'Disabled'}]},
-    //     {id:3, date: moment().add(2, 'day'), morning: [{time: '6.00 AM', status: 'FAST FILLING'}, {time: '12.00 PM', status: 'Disabled'}], evening: [{time: '4.00 PM', status: 'ALMOST FULL'}, {time: '8.00 PM', status: 'Disabled'}]},
-    //     {id:4, date: moment().add(3, 'day'), morning: [{time: '7.00 AM', status: 'ALMOST FULL'}, {time: '10.30 AM', status: 'Disabled'}], evening: [{time: '5.00 PM', status: 'FAST FILLING'}, {time: '9.00 PM', status: 'Disabled'}]},
-    //     {id:5, date: moment().add(4, 'day'), morning: [{time: '9.00 AM', status: 'FAST FILLING'}, {time: '11.30 AM', status: 'Disabled'}], evening: [{time: '7.00 PM', status: 'FAST FILLING'}, {time: '8.00 PM', status: 'Disabled'}]},
-    //     {id:6, date: moment().add(5, 'day'), morning: [{time: '8.00 AM', status: 'ALMOST FULL'}, {time: '11.00 AM', status: 'Disabled'}], evening: [{time: '5.00 PM', status: 'ALMOST FULL'}, {time: '9.00 PM', status: 'Disabled'}]},
-    //     {id:7, date: moment().add(6, 'day'), morning: [{time: '11.00 AM', status: ''}, {time: '11.45 AM', status: 'Disabled'}], evening: [{time: '6.00 PM', status: ''}, {time: '10.00 PM', status: 'Disabled'}]},
-    // ])
     const [value, setValue] = useState(0);
     const [dates, setDates] = useState([])
     const [activeDateClasses, setActiveDateClasses] = useState([])

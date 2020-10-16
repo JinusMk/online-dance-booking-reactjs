@@ -37,9 +37,27 @@ body{
                 padding: 16px 16px 0;
                 border-bottom:  1px solid #FFE5E9;
             }
+            .payment-method{
+                padding: 16px;
+                border-bottom:  1px solid #FFE5E9;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
+                .heading3{
+                    .cost-old{
+                        text-decoration: line-through;
+                        color: $color_info_text;
+                        margin-right: 8px;
+                        font-size: 12px;
+                    }
+                }
+            }
             .selectedDate{
                 padding: 16px;
                 border-bottom:  1px solid #FFE5E9;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
             }
             .add-to-home-screen-blk{
                 padding: 16px;
@@ -68,7 +86,7 @@ body{
                 .dance-information-card{
                     padding: 24px 16px 16px;
                 }
-                .selectedDate{
+                .selectedDate, .payment-method{
                     padding: 24px 16px;
                 }
                 .add-to-home-screen-blk{

@@ -3,6 +3,8 @@ import { TextField } from '@material-ui/core';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { fieldValidation } from '../../../utils/formValidation';
+import firebase from '../../../utils/firebase'
+import { toastFlashMessage } from '../../../utils';
 import { USER_AUTH_ERRORCODE } from '../../../constants'
 
 export default function UserInformationForm(props){
@@ -37,7 +39,25 @@ export default function UserInformationForm(props){
             phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})],
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
-            props.handleSubmit(userInfo)
+            firebase.auth().createUserWithEmailAndPassword(userInfo.email.trim(), userInfo.password)
+            .then(response => {
+                setLoader(false)
+                console.log("res booking signup", response)
+                if(response.user){
+                    response.user.updateProfile({
+                        displayName: userInfo.name,
+                        phoneNumber: userInfo.phone
+                    }).then((s)=> { 
+                        props.handleSubmit(response.user)
+                    })
+                }
+            })
+            .catch(error => {
+                setLoader(false)
+                if(error.message){
+                    toastFlashMessage(error.message, 'error')
+                }
+            })
         }else{
             setLoader(false)
             setError(validateNewInput)

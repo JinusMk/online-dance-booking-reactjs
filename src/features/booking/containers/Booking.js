@@ -73,12 +73,12 @@ function Booking(props){
     }
     const handleSubmit = (userInfo) => {
         console.log('booking continue clicked', userInfo)
-        history.push({pathname: `/dance/${selectedDance.id}/booking/success`, state: { selectedDance: selectedDance }})
+        history.push({pathname: `${props.location.pathname}/success`, state: { selectedDance: selectedDance }})
     }
     return(
         <section className="booking-section">
             <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Just one more step"}/>
-            {loader ? 'Loading...' :  <Container className="booking-container">
+            { loader ? 'Loading...' :  <Container className="booking-container">
                 <p className="secondaryText metaText">SELECTED CLASS</p>
                 <DanceInformationCard dance={selectedDance} category={category}/>
                 <Grid container spacing={0} className="dance-attributes">
@@ -95,7 +95,7 @@ function Booking(props){
                         </div>
                     </Grid>
                 </Grid>
-                {props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: <><div className="login-button-wrapper">
+                { props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: <><div className="login-button-wrapper">
                         <p className="secondaryText">HAVE AN ACCOUNT ?</p>
                         <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
                     </div>

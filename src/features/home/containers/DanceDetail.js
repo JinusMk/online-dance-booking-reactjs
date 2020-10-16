@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import { Gallery, DanceInfo, TimeSlots } from '../components'
-import { imageBasePath, danceCategory, instructorsData } from '../../../constants';
+import { instructorsData } from '../../../constants';
 import { globalGetService } from '../../../utils/globalApiServices';
 import '../../../assets/styles/dance-detail-module.scss'
 
