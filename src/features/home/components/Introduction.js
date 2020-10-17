@@ -12,7 +12,7 @@ export default function Introduction(props){
     return(
         <div className="introduction-blk">
             <Carousel 
-                responsive={responsiveCarousel}
+                responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}
                 infinite={true}

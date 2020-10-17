@@ -168,26 +168,16 @@
         .footer-review-card{
             margin: 0 -16px 16px -16px;
         }
-    }
-    .react-multiple-carousel__arrow{
-        margin-bottom: 50px;
-        background: $color_white;
-        min-width: 30px;
-        min-height: 30px;
-        border: 1px solid $color_primary;
-        &::before{
-            font-size: 15px;
-            color: $color_primary
+        .react-multiple-carousel__arrow{
+            border: 1px solid $color_primary;
+            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.2);
         }
-        &:hover{
-            background: $color_white;
+        .react-multiple-carousel__arrow--right{
+            // right: 2px;
         }
-    }
-    .react-multiple-carousel__arrow--right{
-        right: 2px;
-    }
-    .react-multiple-carousel__arrow--left{
-        left: 2px;
+        .react-multiple-carousel__arrow--left{
+            // left: 2px;
+        }
     }
 }
 @media (min-width: 1279px){
@@ -201,8 +191,7 @@
         }
         .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{
             margin: 0 200px;
-            margin-bottom: 64px;
-            padding:0 0 84px;
+            padding:64px 0 84px;
         }
     }
 }

@@ -50,6 +50,7 @@ body{
                     .react-multiple-carousel__arrow{
                         margin-bottom: 75px;
                         background: $color_white;
+                        border: none;
                         min-width: 30px;
                         min-height: 30px;
 
@@ -59,8 +60,19 @@ body{
                         }
                     }
                 }
+                .react-multi-carousel-list{
+                    .react-multi-carousel-track{
+                        &:first-child{
+                            margin-left: 0;
+                        }
+                    }
+                }
             }
             .upcoming-classes{
+                padding-left: 0px;
+                .title{
+                    margin-left: 16px;
+                }
                 .partially-visible-carousel-container{
                     .carousel-item{
                         .card{
@@ -202,11 +214,18 @@ body{
                         }
                     }
                 }
+                .react-multiple-carousel__arrow{
+                 margin-bottom: 0;   
+                }
                 .custom-dot-list{
                     bottom: 18px;
                 }
             }
             .last-week-recap{
+                padding-left: 0;
+                .title{
+                    margin-left: 16px;
+                }
                 .partially-visible-carousel-container{
                     .custom-dot-list{
                         bottom: 18px;
@@ -240,7 +259,13 @@ body{
                 }
             }
             .expert-instructors{
-                
+                padding-left: 0;
+                .title{
+                    margin-left: 16px;
+                }
+                .react-multiple-carousel__arrow{
+                    margin-bottom: 0;   
+                }
             }
             .common-questions-blk{
                 background: rgba(255, 225, 228, 0.2);
@@ -254,7 +279,13 @@ body{
                 padding-top: 24px;
             }
             .reviews{
-
+                padding-left: 0;
+                .title{
+                    margin-left: 16px;
+                }
+                .react-multiple-carousel__arrow{
+                    margin-bottom: 0;   
+                }
             }
         }
     }
@@ -278,12 +309,28 @@ body{
                         left: 250px;
                     }
                 }
+                .upcoming-classes{
+                    &.block{
+                        margin: 0 134px;
+                    }
+                }
                 .expert-instructors{
+                    &.block{
+                        margin: 0 134px;
+                    }
                     .react-multiple-carousel__arrow{
                         margin-bottom: 0;
                     }
                 }
+                .last-week-recap{
+                    &.block{
+                        margin: 0 134px;
+                    }
+                }
                 .reviews{
+                    &.block{
+                        margin: 0 134px;
+                    }
                     .react-multiple-carousel__arrow{
                         margin-bottom: 0;
                     }
@@ -310,6 +357,32 @@ body{
                 }
                 .how-it-works-blk{
                     margin-bottom: 0;
+                }
+                .upcoming-classes{
+                    &.block{
+                        margin: 0 184px;
+                    }
+                }
+                .expert-instructors{
+                    &.block{
+                        margin: 0 184px;
+                    }
+                    .react-multiple-carousel__arrow{
+                        margin-bottom: 0;
+                    }
+                }
+                .last-week-recap{
+                    &.block{
+                        margin: 0 184px;
+                    }
+                }
+                .reviews{
+                    &.block{
+                        margin: 0 184px;
+                    }
+                    .react-multiple-carousel__arrow{
+                        margin-bottom: 0;
+                    }
                 }
             }
         }

@@ -16,7 +16,7 @@ export default function Reviews(props){
                 infinite={false}
                 autoPlaySpeed={5000}
                 partialVisible={isMobile ? true: false}
-                arrows={isMobile ? false : true}
+                arrows={isMobile ? true : true}
                 containerClass="partially-visible-carousel-container reviews"
                 dotListClass="custom-dot-list"
                 itemClass="carousel-item"

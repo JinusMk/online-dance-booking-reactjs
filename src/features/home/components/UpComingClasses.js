@@ -98,7 +98,7 @@ export default function UpComingClasses(props){
                 showDots={isMobile ? true : false}
                 infinite={false}
                 partialVisible={isMobile ? true : false}
-                arrows={isMobile ? false: true }
+                arrows={isMobile ? true: true }
                 containerClass="partially-visible-carousel-container upcoming-classes"
                 dotListClass="custom-dot-list"
                 itemClass="carousel-item"
