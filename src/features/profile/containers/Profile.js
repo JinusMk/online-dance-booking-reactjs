@@ -37,9 +37,11 @@ function Profile(props){
                 <div className="top-blk">
                     {props.isLoggedIn ? <><div className="logged-in-user-info">
                         {props.userInfo.photoURL ? <Avatar src={props.userInfo.photoURL} className="user-avatar"/>:<Avatar className="user-avatar">{props.userInfo.displayName ? props.userInfo.displayName[0] : props.userInfo.email ? props.userInfo.email[0]: 'L'}</Avatar>}
+                        <div  className="edit-button-wrapper" onClick={() => props.history.push('/edit-profile')}>
+                            <img src={`${imageBasePath}edit_icon.svg`}/>
+                        </div>
                         <h3 className="heading3" style={props.userInfo.displayName ? {textTransform: 'capitalize'} : {}}>{props.userInfo.displayName ? props.userInfo.displayName : props.userInfo.email ? props.userInfo.email : props.userInfo.phoneNumber ? props.userInfo.phoneNumber : ''}</h3>
                         <p className="paragraph">Letzdancer since 2020</p>
-                        <Link to="/edit-profile" className="secondaryBtn" style={{width: 100, marginTop: 16}}>Edit</Link>
                     </div>
                     {/* <DanceAlert /> */}
                     </> : <div className="login-btn-wrapper">

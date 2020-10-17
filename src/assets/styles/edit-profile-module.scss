@@ -17,6 +17,7 @@ body{
                     color: $color_white;
                     font-size: 60px;
                     text-transform: capitalize;
+                    border: 1px solid $color_primary;
                 }
                 .inputFileGroup{
                     position: relative;
