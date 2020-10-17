@@ -17,7 +17,7 @@ export default function ExpertInstructors(props){
                 autoPlaySpeed={5000}
                 partialVisible={isMobile ? true: false}
                 arrows={isMobile ? true: true }
-                containerClass="partially-visible-carousel-container last-week-recap"
+                containerClass="partially-visible-carousel-container"
                 dotListClass="custom-dot-list"
                 itemClass="carousel-item"
                 renderDotsOutside={true}

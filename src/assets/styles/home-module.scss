@@ -48,14 +48,13 @@ body{
                         }
                     }
                     .react-multiple-carousel__arrow{
-                        margin-bottom: 75px;
+                        top: 35%;
                         background: $color_white;
                         border: none;
-                        min-width: 30px;
-                        min-height: 30px;
-
+                        min-width: 35px;
+                        min-height: 35px;
                         &::before{
-                            font-size: 15px;
+                            font-size: 16px;
                             color: $color_primary
                         }
                     }
@@ -226,6 +225,9 @@ body{
                 .title{
                     margin-left: 16px;
                 }
+                .react-multiple-carousel__arrow{
+                    top: 30%;
+                }
                 .partially-visible-carousel-container{
                     .custom-dot-list{
                         bottom: 18px;
@@ -263,9 +265,6 @@ body{
                 .title{
                     margin-left: 16px;
                 }
-                .react-multiple-carousel__arrow{
-                    margin-bottom: 0;   
-                }
             }
             .common-questions-blk{
                 background: rgba(255, 225, 228, 0.2);
@@ -283,9 +282,6 @@ body{
                 .title{
                     margin-left: 16px;
                 }
-                .react-multiple-carousel__arrow{
-                    margin-bottom: 0;   
-                }
             }
         }
     }
@@ -302,6 +298,11 @@ body{
                     margin-bottom: 65px;
                     padding-bottom: 0;
                     box-shadow: none;
+                    .carousel-container{
+                        .react-multiple-carousel__arrow {
+                            border: 1px solid $color_primary;
+                        }
+                    }
                     .react-multiple-carousel__arrow--right{
                         right: 250px;
                     }
@@ -318,9 +319,6 @@ body{
                     &.block{
                         margin: 0 134px;
                     }
-                    .react-multiple-carousel__arrow{
-                        margin-bottom: 0;
-                    }
                 }
                 .last-week-recap{
                     &.block{
@@ -330,9 +328,6 @@ body{
                 .reviews{
                     &.block{
                         margin: 0 134px;
-                    }
-                    .react-multiple-carousel__arrow{
-                        margin-bottom: 0;
                     }
                 }
                 .common-questions-blk{
@@ -367,9 +362,6 @@ body{
                     &.block{
                         margin: 0 184px;
                     }
-                    .react-multiple-carousel__arrow{
-                        margin-bottom: 0;
-                    }
                 }
                 .last-week-recap{
                     &.block{
@@ -379,9 +371,6 @@ body{
                 .reviews{
                     &.block{
                         margin: 0 184px;
-                    }
-                    .react-multiple-carousel__arrow{
-                        margin-bottom: 0;
                     }
                 }
             }
