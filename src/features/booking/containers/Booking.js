@@ -3,11 +3,12 @@ import { Header, DanceInformationCard, AuthPopup } from  '../../../shared_elemen
 import { Container, Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
-import { UserInformationForm, LoggedInUserInfo } from '../components'
+import { UserInformationForm, LoggedInUserInfo, BookingLoader } from '../components'
 import { connect } from 'react-redux'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
 import { globalGetService } from '../../../utils/globalApiServices';
+import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
 
 function Booking(props){
@@ -45,7 +46,9 @@ function Booking(props){
 
     let history = useHistory()
     useEffect(() => {
-        setLoader(false)
+        setTimeout(() => {
+            setLoader(false)
+        }, 1000);
         // globalGetService(`dance-classes/${props.match.params.id}`, {})
         // .then(response => {
         //     console.log('response', response)
@@ -78,20 +81,20 @@ function Booking(props){
     return(
         <section className="booking-section">
             <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Just one more step"}/>
-            { loader ? 'Loading...' :  <Container className="booking-container">
+            <Container className="booking-container">
                 <p className="secondaryText metaText">SELECTED CLASS</p>
-                <DanceInformationCard dance={selectedDance} category={category}/>
+                { loader ? <BookingLoader /> : <DanceInformationCard dance={selectedDance} category={category}/>}
                 <Grid container spacing={0} className="dance-attributes">
                     <Grid item xs={7}>
                         <div className="timeWrapper">
                             <p className="secondaryText">DATE & TIME</p>
-                            <h3 className="heading3">{`${moment(selectedDance.date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(selectedDance.date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>}
                         </div>
                     </Grid>
                     <Grid item xs={5}>
                         <div className="amountWrapper">
                             <p className="secondaryText">AMOUNT</p>
-                            <h3 className="heading3 cost"><span>₹{selectedDance.cost_old}</span>₹{selectedDance.cost}</h3>
+                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>₹{selectedDance.cost_old}</span>₹{selectedDance.cost}</h3>}
                         </div>
                     </Grid>
                 </Grid>
@@ -103,7 +106,6 @@ function Booking(props){
                     </>
                 }
             </Container>
-            }
             {
                 <AuthPopup 
                     open={openAuthPopup}
