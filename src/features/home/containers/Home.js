@@ -28,11 +28,11 @@ export default function Home(props){
                     <LastWeekRecap />
                 </Suspense>
                 <Suspense fallback={<div>Loading...</div>}>
-                    <ExpertInstructors />
+                    <Reviews/>
                 </Suspense>
                 <Suspense fallback={<div>Loading...</div>}>
                     <WhyLetzdance />
-                    <Reviews/>
+                    <ExpertInstructors />
                     <HowWorks />
                     <CommonQuestions />
                     <ContactUs /> 
