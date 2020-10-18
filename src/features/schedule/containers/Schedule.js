@@ -694,23 +694,23 @@ export default function Schedule(props){
         },             
     })
     useEffect(() => {
-        const location = props.location
-        let hash = location.hash;
-        hash = hash.substring(1, hash.length);
-        const element = document.getElementById(`${hash}`);
-        if(element){
-            const yOffset = -170; 
-            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({top: y, behavior: 'smooth'});
-        }else{
-            window.scrollTo({ top: 1, behavior: 'smooth' });
-        }
         // globalGetService('dance-classes', {})
         // .then(response => {
         //     console.log('response', response)
         // })
         setTimeout(() => {
             setLoader(false)
+            const location = props.location
+            let hash = location.hash;
+            hash = hash.substring(1, hash.length);
+            const element = document.getElementById(`${hash}`);
+            if(element){
+                const yOffset = -170; 
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }else{
+                window.scrollTo({ top: 1, behavior: 'smooth' });
+            }
         }, 1000);
     }, [])
     
