@@ -5,6 +5,7 @@ import { responsiveCarousel, imageBasePath } from '../../../constants'
 import { DanceFormCard } from './index'
 import { isMobile } from 'react-device-detect'
 import { globalGetService } from '../../../utils/globalApiServices';
+import Skeleton from '@material-ui/lab/Skeleton';
 import "react-multi-carousel/lib/styles.css";
 
 export default function UpComingClasses(props){
@@ -84,7 +85,9 @@ export default function UpComingClasses(props){
         // .then(response => {
         //     console.log('response', response)
         // })
-        setLoader(false)
+        setTimeout(() => {
+            setLoader(false)
+        }, 1000);
         var d = new Date()
         setCurrentDate(d.getDate())
     }, [])
@@ -92,7 +95,22 @@ export default function UpComingClasses(props){
         <div className="upcoming-classes block">
             <h3 className="heading2 title">Upcoming dances <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
             {
-                loader ? 'Loading ...' : <Carousel 
+                loader ? <Carousel 
+                    responsive={responsiveCarousel}
+                    swipeable={true}
+                    showDots={isMobile ? true : false}
+                    infinite={false}
+                    partialVisible={isMobile ? true : false}
+                    arrows={isMobile ? true: true }
+                    containerClass="partially-visible-carousel-container upcoming-classes"
+                    dotListClass="custom-dot-list"
+                    itemClass="carousel-item"
+                    renderDotsOutside={true}
+                >
+                    {[0,1,2,3].map((item, index) => <div key={index} className="dance-form-skeletop-wrapper">
+                        <Skeleton variant="rect" height={270} className="card"/>
+                    </div>)}
+                </Carousel> : <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
                 showDots={isMobile ? true : false}

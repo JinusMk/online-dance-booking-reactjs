@@ -26,7 +26,16 @@ body{
                 }
             }
             .gallery{
+                padding-left: 0;
                 .gallery-carousel{
+                    .react-multiple-carousel__arrow{
+                        top: 30%;
+                    }
+                    .gallery-skeleton-wrapper{
+                        .MuiSkeleton-root{
+                            border-radius: 8px;
+                        }
+                    }
                     .gallery-item{
                         // img{
                         //     border-radius: 8px;
@@ -55,6 +64,9 @@ body{
             .dance-info{
                 padding: 16px 16px 24px;
                 position: relative;
+                .dance-info-skeleton-wrapper{
+                    
+                }
                 h3{
                     color: $color_primary;
                     margin-bottom: 8px;
@@ -155,6 +167,25 @@ body{
             }
             .contact-us-blk{
                 padding-bottom: 0;
+            }
+        }
+    }
+}
+@media (min-width: 600px) and (max-width: 959px) {
+    body{
+        .dance-detail-section{
+            .dance-detail-container{
+                .gallery{
+                    padding-left: 0;
+                    .gallery-carousel{
+                        .react-multi-carousel-track {
+                            transform: translate3d(16px, 0px, 0px) !important;
+                            &:first-child{
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

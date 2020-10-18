@@ -98,6 +98,26 @@ body{
                     }
                 }
             }
+            .schedule-skeleton-wrapper{
+                padding: 16px;
+                .date-wrapper{
+                    display: flex;
+                    overflow: scroll;
+                    .date-item{
+                        margin-right: 8px;
+                        border-radius: 8px;
+                    }
+                }
+                .MuiSkeleton-text{
+                    border-radius: 8px;
+                }
+                .dance-card-skeleton{
+                    margin-top: 68px;
+                    .MuiSkeleton-root{
+                        border-radius: 8px;
+                    }
+                }
+            }
         }
     }
 }

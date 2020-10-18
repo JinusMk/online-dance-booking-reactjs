@@ -15,7 +15,7 @@ const categorySlug = {
     'hiphop' : 2,
     'zumba' : 3,
     'bollywood-kids': 4,
-    'hiphop-kids': 5
+    'hip-hop-kids': 5
 }
 
 export default function DanceDetail(props){
@@ -142,7 +142,9 @@ export default function DanceDetail(props){
         //     console.log('response', response)
         // })
         getDanceInfo()
-        setLoader(false)
+        setTimeout(() => {
+            setLoader(false)
+        }, 1000);
     }, [])
     const getDanceInfo = () => {//danceClasses, slug
         const availableDates = Object.keys(danceClasses)
@@ -156,20 +158,20 @@ export default function DanceDetail(props){
         <section className="dance-detail-section">
             <Header onBack={() => props.history.push('/')} title={category}/>
             <Container className="dance-detail-container">
-                {loader ? 'Loading...' : <>
-                    <Gallery category={category}/>
-                    <DanceInfo dance={danceInfo} category={category}/>
-                    <TimeSlots danceClasses={danceClasses} category={category}/>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <div className="instructor block">
-                            <h3 className="heading2 title">Instructor</h3>
-                            <InstructorCard instructor={instructorsData.find(item => item.category == category)}/>
-                        </div>
-                        <HowWorks />
-                        <ContactUs /> 
-                    </Suspense>
+                    <Gallery category={category} loader={loader}/>
+                    <DanceInfo dance={danceInfo} category={category} loader={loader}/>
+                    {loader ? '' : <>
+                        <TimeSlots danceClasses={danceClasses} category={category}/>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <div className="instructor block">
+                                <h3 className="heading2 title">Instructor</h3>
+                                <InstructorCard instructor={instructorsData.find(item => item.category == category)}/>
+                            </div>
+                            <HowWorks />
+                            <ContactUs /> 
+                        </Suspense>
                     </>
-                }
+                    }
             </Container>
         </section>
     )

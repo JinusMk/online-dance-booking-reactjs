@@ -7,6 +7,7 @@ import ScrollspyNav from "react-scrollspy-nav";
 import { globalGetService } from '../../../utils/globalApiServices';
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/schedule-module.scss'
+import ScheduleLoader from '../components/ScheduleLoader';
 
 export default function Schedule(props){
     const [loader, setLoader] = useState(true)
@@ -708,12 +709,16 @@ export default function Schedule(props){
         // .then(response => {
         //     console.log('response', response)
         // })
+        setTimeout(() => {
+            setLoader(false)
+        }, 1000);
     }, [])
     
     return(
         <section className="schedule-section">
             <Container className="schedule-container">
-                <div className="dance-listing-wrapper">
+                {
+                    loader ? <ScheduleLoader/> : <div className="dance-listing-wrapper">
                     <div className="date-picker-wrapper">
                         <div className="time-slots-tabs-wrapper">
                             <Tabs
@@ -759,6 +764,7 @@ export default function Schedule(props){
                         <p className="paragraph">That’s all for this day</p>
                     </div>
                 </div>
+                }
             </Container>
         </section>
     )

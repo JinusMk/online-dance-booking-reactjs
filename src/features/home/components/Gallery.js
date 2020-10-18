@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, lastWeekRecapVideos } from '../../../constants'
+import Skeleton from '@material-ui/lab/Skeleton';
 import "react-multi-carousel/lib/styles.css";
 
 export default function Gallery(props){
@@ -13,12 +14,14 @@ export default function Gallery(props){
                 infinite={false}
                 autoPlaySpeed={5000}
                 partialVisible={true}
-                arrows={false}
+                arrows={props.loader ? false : true}
                 containerClass="partially-visible-carousel-container gallery-carousel"
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {lastWeekRecapVideos.filter(item => item.category == props.category).map((item, index) => <GalleryItem key={index} recap={item}/>)}
+                {props.loader ? [0,1].map((item, index) => <div key={index} className="gallery-skeleton-wrapper">
+                    <Skeleton variant="rect" height={170}/>
+                </div>): lastWeekRecapVideos.filter(item => item.category == props.category).map((item, index) => <GalleryItem key={index} recap={item}/>)}
             </Carousel>
         </div>
     )
