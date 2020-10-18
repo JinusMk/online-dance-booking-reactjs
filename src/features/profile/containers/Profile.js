@@ -1,23 +1,26 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react'
-import { AuthPopup, DanceAlert } from  '../../../shared_elements'
+import { AuthPopup, DanceAlert, AuthVerifyBlock } from  '../../../shared_elements'
 import { ContactUs } from '../../home/components'
 import { Container, Avatar } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
 import { connect } from 'react-redux'
-import '../../../assets/styles/profile-module.scss'
+import { UPDATE_USERINFO } from '../../../shared_elements/actions'
 import { imageBasePath } from '../../../constants';
+import '../../../assets/styles/profile-module.scss'
 
 function Profile(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
-    // useEffect(() => {
-    //     if(props.isLoggedIn){
-    //         setUser(props.userInfo)
-    //     }else{
-    //         setUser('')
-    //     }   
-    // }, [props.isLoggedIn])
+    const [verifyPhone, setVerifyPhone] = useState(false)
+    const [providerData, setProviderData] = useState([])
+    useEffect(() => {
+        if(props.isLoggedIn){
+            setProviderData(props.userInfo.providerData)
+        }else{
+            setProviderData([])
+        }   
+    }, [props.isLoggedIn, props.userInfo])
     const logout = () => {
         if(window.confirm('Are you sure you want to logout ?')){
             firebase.auth().signOut()
@@ -29,6 +32,25 @@ function Profile(props){
             .catch(err => {
                 console.log('logout error', err)
             })
+        }
+    }
+    const isVerified = (providerId) => {
+        if(props.isLoggedIn && providerData){
+            const flag = providerData.find((item => item.providerId == providerId))
+            return flag ? true : false
+        }else{
+            return false
+        }
+    }
+    const handleCloseAuthPopup = (user) => {
+        if(user){
+            props.updateUserInfo(user)
+            setProviderData(user.providerData)
+        }
+        if(verifyPhone){
+            setVerifyPhone(false)
+        }else{
+            setOpenAuthPopup(false)
         }
     }
     return(
@@ -44,6 +66,7 @@ function Profile(props){
                         <p className="paragraph">Letzdancer since 2020</p>
                     </div>
                     {/* <DanceAlert /> */}
+                    {isVerified('phone') ? null : <AuthVerifyBlock type="phone number" handleClick={() => setVerifyPhone(true)} />}
                     </> : <div className="login-btn-wrapper">
                         <h3 className="heading3">Login and get started towards your journey of fun and fitness!</h3>
                         <p><a className="primaryBtn" onClick={() => setOpenAuthPopup(true)}>LOGIN / REGISTER</a></p>
@@ -69,8 +92,10 @@ function Profile(props){
             </Container>
             {
                 <AuthPopup 
-                    open={openAuthPopup}
-                    handleClose={() => setOpenAuthPopup(false)}
+                    open={openAuthPopup || verifyPhone}
+                    handleClose={handleCloseAuthPopup}
+                    type={verifyPhone ? "verifyPhone" : ''}
+                    phone={verifyPhone ? props.userInfo.phoneNumber : ''}
                 />
             }
         </section>
@@ -80,5 +105,11 @@ const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
     userInfo: state.sharedReducers.userInfo
 })
+const mapDispatchToProps = dispatch => ({
+    updateUserInfo : (user) => dispatch({
+        type: UPDATE_USERINFO,
+        payload: user
+    })
+})
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

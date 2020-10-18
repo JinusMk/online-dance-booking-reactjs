@@ -3,7 +3,7 @@ import '../../../assets/styles/edit-profile-module.scss'
 import { Container, Grid, Avatar, TextField } from '@material-ui/core';
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils'
-import { regExpression, imageBasePath } from '../../../constants'
+import { regExpression, imageBasePath, USER_AUTH_ERRORCODE } from '../../../constants'
 import { fieldValidation } from '../../../utils/formValidation';
 import firebase from '../../../utils/firebase'
 import { Header, AuthPopup } from '../../../shared_elements';
@@ -16,37 +16,13 @@ function EditProfile(props){
     const [formData, setFormData] =useState({})
     const [error, setError] = useState({})
     const [providerData, setProviderData] = useState([])
-    const [errorCode] = useState({
-        email: {
-            0: '',
-            1: 'ENTER YOUR EMAIL',
-            4: 'ENTER A VALID EMAIL'
-        },
-        emailObj: {
-            requiredFlag: true,
-            regexPattern: regExpression.email
-        }, 
-        displayName: {
-            0: '',
-            1: 'ENTER YOUR DISPLAY NAME'
-        },
-        displayNameObj: {
-            requiredFlag: true
-        },
-        phone: {
-            0: '',
-            1: 'ENTER YOUR PHONE NUMBER'
-        },
-        phoneObj: {
-            requiredFlag: true
-        }
-    })
+    const [errorCode] = useState(USER_AUTH_ERRORCODE)
     const [verifyPhone, setVerifyPhone] = useState(false)
     useEffect(() => {
         if(props.isLoggedIn){
             setLoader(false)
             setFormData({
-                displayName: props.userInfo.displayName,
+                name: props.userInfo.displayName,
                 email: props.userInfo.email,
                 phone: props.userInfo.phoneNumber,
                 image: props.userInfo.photoURL,
@@ -134,7 +110,7 @@ function EditProfile(props){
             {loader ? 'Loading...' : <><Grid container className="top-blk" justify="center" alignItems="center">
                 <Grid item>
                     {
-                        (formData.image_display || formData.image) ? <Avatar src={formData.image_display ? formData.image_display : formData.image} className="user-avatar"/> : <Avatar className="user-avatar">{formData.displayName ? formData.displayName[0] : formData.email ? formData.email[0]: 'L'}</Avatar>
+                        (formData.image_display || formData.image) ? <Avatar src={formData.image_display ? formData.image_display : formData.image} className="user-avatar"/> : <Avatar className="user-avatar">{formData.name ? formData.name[0] : formData.email ? formData.email[0]: 'L'}</Avatar>
                     }
                 </Grid>
                 <Grid item>
@@ -156,18 +132,18 @@ function EditProfile(props){
                 <h3 className="heading3 title">Personal Details</h3>
                 <Grid item xs={12}>
                     <div className="inputGroup">
-                        <label className={error.displayName ? 'error': ''}>{error.displayName ? error.displayName : 'DISPLAY NAME'}</label>
+                        <label className={error.name ? 'error': ''}>{error.name ? error.name : 'YOUR NAME'}</label>
                         <TextField 
-                            value={formData.displayName}
-                            onChange={(e) => handleChange('displayName', e.target.value)}
+                            value={formData.name}
+                            onChange={(e) => handleChange('name', e.target.value)}
                             placeholder="Your display name"
-                            error={error.displayName}
+                            error={error.name}
                         />
                     </div> 
                 </Grid>
                 <Grid item xs={12}>
                     <div className="inputGroup">
-                        <label className={error.email ? 'error': ''}>{error.email ? error.email : 'EMAIL'}</label>
+                        <label className={error.email ? 'error': ''}>{error.email ? error.email : 'YOUR EMAIL'}</label>
                         <TextField 
                             value={formData.email}
                             onChange={(e) => handleChange('email', e.target.value)}

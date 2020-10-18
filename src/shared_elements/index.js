@@ -8,6 +8,7 @@ import EmailAuth from './EmailAuth'
 import DanceAlert from './DanceAlert'
 import AddToHomeScreen from './AddToHomeScreen'
 import ToastNotify from './ToastNotify'
+import AuthVerifyBlock from './AuthVerifyBlock'
 
 export {
     Header,
@@ -19,5 +20,6 @@ export {
     EmailAuth,
     DanceAlert,
     AddToHomeScreen,
-    ToastNotify
+    ToastNotify,
+    AuthVerifyBlock
 }
