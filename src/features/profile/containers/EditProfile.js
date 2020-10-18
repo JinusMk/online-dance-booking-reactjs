@@ -63,7 +63,42 @@ function EditProfile(props){
         }
     }
     const handleSave = () => {
-
+         // const data = new FormData();
+        // if(formData.image_display){
+        //     for(let file of formData.image){
+        //         data.append('photoURL', file, file.name);
+        //     }
+        // }
+        let validateNewInput = {
+            name: errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: formData.name})],
+            email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: formData.email})],
+            phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: formData.phone})],
+        }
+        if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
+            firebase.auth().currentUser.updateProfile({
+                displayName: formData.name,
+                email: formData.email,
+                phoneNumber: formData.phone
+            })
+            .then(response => {
+                // console.log('response', response)
+                toastFlashMessage('Profile updated successfully', 'success')
+                props.history.push('/profile')
+            })
+        }else{
+            setError(validateNewInput)
+        }
+    }
+    const handleBack = () => {
+        if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email || formData.phone != props.userInfo.phoneNumber){
+            if(window.confirm(`Are you sure you want to save the changes ?`)){
+                handleSave()
+            }else{
+                props.history.push('/profile')
+            }
+        }else{
+            props.history.push('/profile')
+        }
     }
     const handleDisconnect = (provideID) => {
         if(window.confirm(`Are you sure you want to unlink your ${provideID == "google.com" ? 'Google' : 'Facebook'} account ?`)){
@@ -106,7 +141,7 @@ function EditProfile(props){
     }
     return(<section className="edit-profile-section">
         <Container className="edit-profile-container">
-            <Header onBack={() => props.history.push('/profile')} title="Edit Profile"/>
+            <Header onBack={handleBack} title="Edit Profile"/>
             {loader ? 'Loading...' : <><Grid container className="top-blk" justify="center" alignItems="center">
                 <Grid item>
                     {
@@ -137,7 +172,7 @@ function EditProfile(props){
                             value={formData.name}
                             onChange={(e) => handleChange('name', e.target.value)}
                             placeholder="Your display name"
-                            error={error.name}
+                            error={error.name ? true : false}
                         />
                     </div> 
                 </Grid>
@@ -149,7 +184,7 @@ function EditProfile(props){
                             onChange={(e) => handleChange('email', e.target.value)}
                             placeholder="Your email"
                             type="email"
-                            error={error.email}
+                            error={error.email ? true : false}
                             required
                             disabled={props.userInfo.emailVerified ? true : false}
                         />
