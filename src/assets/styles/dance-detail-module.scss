@@ -75,11 +75,12 @@ body{
                     }
                     img{
                         margin-top: -2px;
+                        width: 18px;
                     }
                     span{
                         margin-left: 5px;
                         &.rating{
-                            font-size: 10px;
+                            font-size: $font12;
                         }
                     }
                 }
@@ -95,7 +96,7 @@ body{
                         font-weight: $regularFont;
                         display: block;
                         line-height: 15px;
-                        font-size: 12px;
+                        font-size: $font14;
                     }
                 }
                 ul{
@@ -110,10 +111,11 @@ body{
                             }
                             img{
                                 margin-right: 5px;
+                                width: 18px;
                             }
                             .live{
                                 background: $color_primary;
-                                padding: 0px 3px 1px;
+                                padding: 1px 4px 2px;
                                 font-size: 6px;
                                 color: $color_white;
                                 border-radius: 1px;

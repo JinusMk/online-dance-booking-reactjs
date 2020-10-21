@@ -18,7 +18,7 @@ export default function DanceHistory(props){
             <Container className="dance-history-container">
                 {
                     Object.keys(dances).map((item, index) => <div key={index} className="dance-history-item-wrapper">
-                        <h3 className="heading2 title">{moment(item).format('DD MMM')}</h3>
+                        <h3 className="heading2 heading">{moment(item).format('DD MMM')}</h3>
                         {
                             dances[item].map((dance, index) => dance.isFinished ? <DanceHistoryCard key={index} date={moment(item).format('DD MMM')} dance={dance}/> : <DanceAlert dance={dance} />)
                         }
