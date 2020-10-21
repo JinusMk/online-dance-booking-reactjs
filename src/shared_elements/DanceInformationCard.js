@@ -31,8 +31,8 @@ export default function DanceInformationCard(props){
             </ul>
             {
                 type == "schedule" && <>
-                    <TimeSlotList title="MORNING" timeSlots={danceClasses.filter(dance => dance.slot == "morning")} sectionId={sectionId} category={category}/>
-                    <TimeSlotList title="EVENING" timeSlots={danceClasses.filter(dance => dance.slot == "evening")} sectionId={sectionId} category={category}/>
+                    {danceClasses.filter(dance => dance.slot == "morning").length ? <TimeSlotList title="MORNING" timeSlots={danceClasses.filter(dance => dance.slot == "morning")} sectionId={sectionId} category={category}/> : null}
+                    {danceClasses.filter(dance => dance.slot == "evening").length ? <TimeSlotList title="EVENING" timeSlots={danceClasses.filter(dance => dance.slot == "evening")} sectionId={sectionId} category={category}/> : null}
                 </>
             }
         </div>

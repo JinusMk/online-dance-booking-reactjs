@@ -60,8 +60,8 @@ export default function TimeSlots(props){
                     }
                 </Tabs>
                 <TabPanel value={value} index={value}>
-                    <TimeSlotList title="MORNING" timeSlots={activeDateClasses && activeDateClasses.filter(dance => dance.slot == "morning")} category={category}/>
-                    <TimeSlotList title="EVENING" timeSlots={activeDateClasses && activeDateClasses.filter(dance => dance.slot == "evening")} category={category}/>
+                    {activeDateClasses && activeDateClasses.filter(dance => dance.slot == "morning").length ? <TimeSlotList title="MORNING" timeSlots={activeDateClasses.filter(dance => dance.slot == "morning")} category={category}/>: null}
+                    {activeDateClasses && activeDateClasses.filter(dance => dance.slot == "evening").length ? <TimeSlotList title="EVENING" timeSlots={activeDateClasses.filter(dance => dance.slot == "evening")} category={category}/> : null}
                 </TabPanel>
             </div>
             <div className="see-all-blk">
