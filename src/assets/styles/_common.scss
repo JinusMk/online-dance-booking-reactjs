@@ -82,8 +82,13 @@ body{
     }
     .react-multi-carousel-list{
         .react-multi-carousel-track{
-            &:first-child{
-                margin-left: 16px;
+            li{
+                &:first-child{
+                    margin-left: 16px;
+                }
+                &:last-child{
+                    padding-right: 32px;
+                }
             }
         }
     }
@@ -559,6 +564,11 @@ body{
         .MuiDrawer-paper{
             border-radius: 4px 4px 0 0;
             padding: 16px;
+        }
+        &.dance-detail{
+            .MuiDrawer-paper{
+                padding-bottom: 0;
+            }
         }
     }
     .auth-popup-wrapper{

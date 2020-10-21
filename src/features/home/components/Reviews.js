@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 export default function Reviews(props){
     return(
         <div className="reviews block">
-            <h3 className="heading2 title">Letzdancers speak</h3>
+            <h3 className="heading2 title">{props.category ? <><span style={{textTransform: 'capitalize'}}>{props.category}</span> dancers speak</>: 'Letzdancers speak'}</h3>
             <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
@@ -23,7 +23,7 @@ export default function Reviews(props){
                 renderDotsOutside={true}
             >
                 {
-                    reviewsData.map((item, index) => <ReviewCard key={index} review={item}/>)
+                    props.category ? reviewsData.filter(review => review.category == props.category).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) :reviewsData.map((item, index) => <ReviewCard key={index} review={item}/>)
                 }
             </Carousel>
         </div>

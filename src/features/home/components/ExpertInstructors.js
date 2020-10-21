@@ -23,7 +23,7 @@ export default function ExpertInstructors(props){
                 renderDotsOutside={true}
             >
                 {
-                    instructorsData.map((item, index) => <InstructorCard key={item.id} instructor={item}/>)
+                    instructorsData.map((item, index) => index == 4 ? null : <InstructorCard key={index} instructor={item}/>)
                 }
             </Carousel>
         </div>

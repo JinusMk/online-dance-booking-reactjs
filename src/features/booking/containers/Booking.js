@@ -14,45 +14,18 @@ import '../../../assets/styles/booking-module.scss'
 function Booking(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
     const [category, setCategory] = useState(props.match.params.slug)
-    const [selectedDance, setSelectedDance] = useState(
-        {
-            "id": 11,
-            "title": "Bollywood",
-            "rating": 2,
-            "img": "",
-            "rating_count": 20,
-            "cost_old": 20,
-            "cost": 10,
-            "date": '12-10-2020',
-            "instructor": {
-                "name": "New admin",
-                "img": "",
-                "ratingCount": 20,
-                "rating": 2,
-                "expert": "Bollywood",
-                "experience": "5 years",
-                "classes": "51"
-            },
-            "slot": "evening",
-            "label": "aa",
-            "description": null,
-            "duration": "1 hours",
-            "participants": 0,
-            "class_start_time": "5:57 PM",
-            "class_end_time": "6:57 PM"
-        }
-    )
+    const [selectedDance, setSelectedDance] = useState({})
     const [loader, setLoader] = useState(true)
 
     let history = useHistory()
     useEffect(() => {
-        setTimeout(() => {
-            setLoader(false)
-        }, 1000);
-        // globalGetService(`dance-classes/${props.match.params.id}`, {})
-        // .then(response => {
-        //     console.log('response', response)
-        // })
+        globalGetService(`dance-classes/${props.match.params.id}`, {})
+        .then(response => {
+            if(response.success == true){
+                setSelectedDance({...response.data, date: moment()})
+                setLoader(false)
+            }
+        })
     }, [])
     const onBack = () => {
         if(props.location.state && props.location.state.sectionId){

@@ -186,6 +186,17 @@ export const instructorsData = [
     category: 'hip-hop',
     img: `${imageBasePath}Deena_hiphop.jpg`
   },
+  {
+    id: "",
+    name: 'Deena',
+    qualification: 'Award winning Choreographer ', 
+    experience: '9', 
+    rating: '4.5', 
+    rating_count: 34, 
+    no_of_classes: 43, 
+    category: 'hip-hop-kids',
+    img: `${imageBasePath}Deena_hiphop.jpg`
+  },
 ]
 
 export const lastWeekRecapVideos = [

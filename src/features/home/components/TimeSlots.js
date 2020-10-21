@@ -23,13 +23,16 @@ function TabPanel(props) {
   }
 
 export default function TimeSlots(props){
-    const { danceClasses, category } = props
+    const { danceClasses } = props
     const [value, setValue] = useState(0);
     const [dates, setDates] = useState([])
     const [activeDateClasses, setActiveDateClasses] = useState([])
+    const [category, setCategory] = useState('')
     useEffect(() => {
         const dates = Object.keys(danceClasses)
         setDates(dates)
+        let category = `${props.category[0].toUpperCase()}${props.category.slice(1)}`
+        setCategory(category)
         setActiveDateClasses(danceClasses[dates[0]][category])
     }, [danceClasses])
     const handleChange = (event, newValue) => {
@@ -59,8 +62,8 @@ export default function TimeSlots(props){
                     }
                 </Tabs>
                 <TabPanel value={value} index={value}>
-                    <TimeSlotList title="MORNING" timeSlots={activeDateClasses && activeDateClasses.filter(dance => dance.slot == "morning")} category={category}/>
-                    <TimeSlotList title="EVENING" timeSlots={activeDateClasses && activeDateClasses.filter(dance => dance.slot == "evening")} category={category}/>
+                    <TimeSlotList title="MORNING" timeSlots={activeDateClasses && activeDateClasses.filter(dance => dance.slot == "morning")} category={category.toLowerCase()}/>
+                    <TimeSlotList title="EVENING" timeSlots={activeDateClasses && activeDateClasses.filter(dance => dance.slot == "evening")} category={category.toLowerCase()}/>
                 </TabPanel>
             </div>
             <div className="see-all-blk">

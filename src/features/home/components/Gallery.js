@@ -37,7 +37,7 @@ function GalleryItem(props){
                 Your browser does not support the video tag.
             </video>
             <div className="class-info">
-                <h3 className="heading3">{`${recap.category} dance for all levels`}</h3>
+                <h3 className="heading3"><span style={{textTransform: 'capitalize'}}>{`${recap.category}`}</span>{` dance for all levels`}</h3>
                 <p className="paragraph">{`${recap.participants} dancers`}</p>
             </div>
         </div>

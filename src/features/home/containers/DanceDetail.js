@@ -9,10 +9,11 @@ import '../../../assets/styles/dance-detail-module.scss'
 const InstructorCard = React.lazy(() => import('../components/InstructorCard'));
 const HowWorks = React.lazy(() => import('../components/HowWorks'));
 const ContactUs = React.lazy(() => import('../components/ContactUs'));
+const Reviews = React.lazy(() => import('../components/Reviews'));
 
 const categorySlug = {
     'bollywood' : 1,
-    'hiphop' : 2,
+    'hip-hop' : 2,
     'zumba' : 3,
     'bollywood-kids': 4,
     'hip-hop-kids': 5
@@ -22,136 +23,27 @@ export default function DanceDetail(props){
     const [ category, setCategory ] = useState('')
     const [ loader, setLoader ] = useState(true)
     const [ danceInfo, setDanceInfo ] = useState({})
-    const [ danceClasses, setDanceClasses ] = useState({
-        // id: 1, rating: 4.5,img: require('../../../assets/images/zumba_logo_card.svg'), title: "Zumba", ratingCount: 89, costOld: '₹199', cost: '₹99', instructor: { name: 'Angel Bensy', img: require('../../../assets/images/instructor_1.svg'), ratingCount: 89, rating: 4.5, expert: 'Zumba expert', experience: '5 years', classes: '51' },duration: '1 hour', participants: '86'
-        "12-10-2020": {
-            "bollywood": [
-                {
-                    "id": 11,
-                    "title": "Bollywood",
-                    "rating": 2,
-                    "img": "",
-                    "rating_count": 20,
-                    "cost_old": 20,
-                    "cost": 10,
-                    "instructor": {
-                        "name": "New admin",
-                        "img": "",
-                        "ratingCount": 20,
-                        "rating": 2,
-                        "expert": "Bollywood",
-                        "experience": "5 years",
-                        "classes": "51"
-                    },
-                    "slot": "evening",
-                    "label": "aa",
-                    "description": null,
-                    "duration": "1 hours",
-                    "participants": 0,
-                    "class_start_time": "5:57 PM",
-                    "class_end_time": "6:57 PM"
-                },
-                {
-                    "id": 11,
-                    "title": "Bollywood",
-                    "rating": 2,
-                    "img": "",
-                    "rating_count": 20,
-                    "cost_old": 20,
-                    "cost": 10,
-                    "instructor": {
-                        "name": "New admin",
-                        "img": "",
-                        "ratingCount": 20,
-                        "rating": 2,
-                        "expert": "Bollywood",
-                        "experience": "5 years",
-                        "classes": "51"
-                    },
-                    "slot": "morning",
-                    "label": "aa",
-                    "description": null,
-                    "duration": "1 hours",
-                    "participants": 0,
-                    "class_start_time": "5:57 PM",
-                    "class_end_time": "6:57 PM"
-                }
-            ]
-        },
-        "13-10-2020": {
-            "bollywood": [
-                {
-                    "id": 11,
-                    "title": "Bollywood",
-                    "rating": 2,
-                    "img": "",
-                    "rating_count": 20,
-                    "cost_old": 20,
-                    "cost": 10,
-                    "instructor": {
-                        "name": "New admin",
-                        "img": "",
-                        "ratingCount": 20,
-                        "rating": 2,
-                        "expert": "Bollywood",
-                        "experience": "5 years",
-                        "classes": "51"
-                    },
-                    "slot": "morning",
-                    "label": "Disabled",
-                    "description": null,
-                    "duration": "1 hours",
-                    "participants": 0,
-                    "class_start_time": "5:57 PM",
-                    "class_end_time": "6:57 PM"
-                },
-                {
-                    "id": 11,
-                    "title": "Bollywood",
-                    "rating": 2,
-                    "img": "",
-                    "rating_count": 20,
-                    "cost_old": 20,
-                    "cost": 10,
-                    "instructor": {
-                        "name": "New admin",
-                        "img": "",
-                        "ratingCount": 20,
-                        "rating": 2,
-                        "expert": "Bollywood",
-                        "experience": "5 years",
-                        "classes": "51"
-                    },
-                    "slot": "evening",
-                    "label": "aa",
-                    "description": null,
-                    "duration": "1 hours",
-                    "participants": 0,
-                    "class_start_time": "5:57 PM",
-                    "class_end_time": "6:57 PM"
-                }
-            ]
-        }
-    })
+    const [ danceClasses, setDanceClasses ] = useState({})
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         const slug = props.match.params.slug
         setCategory(slug)
-        // globalGetService(`dance/category/${categorySlug[slug]}`, {})
-        // .then(response => {
-        //     console.log('response', response)
-        // })
-        getDanceInfo()
-        setTimeout(() => {
-            setLoader(false)
-        }, 1000);
+        globalGetService(`dance/category/${categorySlug[slug]}`, {})
+        .then(response => {
+            if(response.success == true){
+                setDanceClasses(response.data.dance_classes)
+                getDanceInfo(response.data.dance_classes)
+            }
+        })
     }, [])
-    const getDanceInfo = () => {//danceClasses, slug
+    const getDanceInfo = (danceClasses) => {//danceClasses, slug
         const availableDates = Object.keys(danceClasses)
-        let category = props.match.params.slug
+        // let category = props.match.params.slug
+        let category = `${props.match.params.slug[0].toUpperCase()}${props.match.params.slug.slice(1)}`
         const classArray = danceClasses[availableDates[0]][category]
         if(classArray && classArray.length){
             setDanceInfo(classArray[0])
+            setLoader(false)
         }
     }
     return(
@@ -167,6 +59,7 @@ export default function DanceDetail(props){
                                 <h3 className="heading2 title">Instructor</h3>
                                 <InstructorCard instructor={instructorsData.find(item => item.category == category)}/>
                             </div>
+                            <Reviews category={category} />
                             <HowWorks />
                             <ContactUs /> 
                         </Suspense>

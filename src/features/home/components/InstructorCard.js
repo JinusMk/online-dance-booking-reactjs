@@ -25,7 +25,7 @@ export default function InstructorCard(props){
                 </p>
                 <p className="paragraph">
                     <span className="live">LIVE</span>
-                    <span>{instructor.classes} classes on Letzdance</span>
+                    <span>{instructor.no_of_classes} classes on Letzdance</span>
                 </p>
             </div>
         </div>

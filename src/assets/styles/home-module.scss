@@ -61,8 +61,11 @@ body{
                 }
                 .react-multi-carousel-list{
                     .react-multi-carousel-track{
-                        &:first-child{
-                            margin-left: 0;
+                        li{
+                            margin: 0;
+                            &:last-child{
+                                padding-right: 0;
+                            }
                         }
                     }
                 }

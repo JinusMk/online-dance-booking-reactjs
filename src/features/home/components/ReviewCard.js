@@ -28,16 +28,18 @@ export default function ReviewCard(props){
                 anchor={anchor}
                 open={openDetail}
                 onClose={toggleDrawer(anchor, false)}
-                className="custom-drawer review"
+                className={`custom-drawer review ${props.page == "detail" ? 'dance-detail' : ''}`}
             >
                 <div className={`auth-popup-wrapper review`}>
                     <div className="line"></div>
                     <h3 className="heading2">Review</h3>
                     <ReviewInfo {...props} type="detail"/>
                 </div>
-                <div className="footer-review-card">
-                    <Link to={`/dance/${review.category}`} className="primaryBtn">{`Book ${review.category} class`.toUpperCase()}</Link>
-                </div>
+                {
+                    props.page == "detail" ? null : <div className="footer-review-card">
+                        <Link to={`/dance/${review.category}`} className="primaryBtn">{`Book ${review.category} class`.toUpperCase()}</Link>
+                    </div>
+                }
             </SwipeableDrawer>
         ))}
         </>

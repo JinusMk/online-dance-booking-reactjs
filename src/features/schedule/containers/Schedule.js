@@ -694,10 +694,10 @@ export default function Schedule(props){
         },             
     })
     useEffect(() => {
-        // globalGetService('dance-classes', {})
-        // .then(response => {
-        //     console.log('response', response)
-        // })
+        globalGetService('dance-classes', {})
+        .then(response => {
+            console.log('response', response)
+        })
         setTimeout(() => {
             setLoader(false)
             const location = props.location

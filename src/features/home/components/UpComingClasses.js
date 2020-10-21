@@ -6,88 +6,30 @@ import { DanceFormCard } from './index'
 import { isMobile } from 'react-device-detect'
 import { globalGetService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { UPDATE_DANCEFORMS } from '../actions'
+import { connect } from 'react-redux'
 import "react-multi-carousel/lib/styles.css";
+import { dispatch } from 'rxjs/internal/observable/pairs';
 
-export default function UpComingClasses(props){
+function UpComingClasses(props){
     const [loader, setLoader] = useState(true)
-    const [dances, setDances] = useState({
-        "Bollywood": {
-            "letzdance_id": 11,
-            "slug": "",
-            "category": 1,
-            "title": "Bollywood",
-            "rating": 2,
-            "duration": "1 hours",
-            "cost_old": 20,
-            "cost": 10,
-            "rating_count": 20,
-            "no_of_participants": 0,
-            "instructor": {
-                "name": "New admin",
-                "img": "",
-                "ratingCount": 20,
-                "rating": 2,
-                "expert": "Bollywood",
-                "experience": "5 years",
-                "classes": "51"
-            },
-            "card_type": "actual"
-        },
-        "Hip-hop": {
-            "letzdance_id": 31,
-            "slug": "",
-            "category": 2,
-            "title": "Hip-hop",
-            "rating": 4.5,
-            "duration": "1 hours",
-            "cost_old": 2000,
-            "cost": 1000,
-            "rating_count": 50,
-            "no_of_participants": 0,
-            "instructor": {
-                "name": "New admin",
-                "img": "",
-                "ratingCount": 50,
-                "rating": 4.5,
-                "expert": "Hip-hop",
-                "experience": "5 years",
-                "classes": "51"
-            },
-            "card_type": "actual"
-        },
-        "Zumba": {
-            "letzdance_id": 38,
-            "slug": "",
-            "category": 3,
-            "title": "Zumba",
-            "rating": 4.5,
-            "duration": "1 hours",
-            "cost_old": 200,
-            "cost": 100,
-            "rating_count": 0,
-            "no_of_participants": 0,
-            "instructor": {
-                "name": "New admin",
-                "img": "",
-                "ratingCount": 0,
-                "rating": 4.5,
-                "expert": "Zumba",
-                "experience": "5 years",
-                "classes": "51"
-            },
-            "card_type": "actual"
-        }
-    })
+    const [dances, setDances] = useState({})
     const [currentDate, setCurrentDate] = useState('')
     let history = useHistory()
     useEffect(() => {
-        // globalGetService('home-page', {})
-        // .then(response => {
-        //     console.log('response', response)
-        // })
-        setTimeout(() => {
+        if(props.danceForms && Object.keys(props.danceForms) && Object.keys(props.danceForms).length){
             setLoader(false)
-        }, 1000);
+            setDances(props.danceForms)
+        }else{
+            globalGetService('home-page', {})
+            .then(response => {
+                if(response.success == true){
+                    setLoader(false)
+                    setDances(response.data)
+                    props.updateDanceForms(response.data)
+                }
+            })
+        }
         var d = new Date()
         setCurrentDate(d.getDate())
     }, [])
@@ -139,14 +81,13 @@ export default function UpComingClasses(props){
         </div>
     )
 }
-
-{/* <div className="see-full-schedule-wrapper textCenter">
-    <div className="image-wrapper">
-        <img className="schedule-icon" src={`${imageBasePath}schedule_icon_outlined.svg`} />
-        <span>{moment().format('D')}</span>
-    </div>
-    <h3 className="heading3">
-        <span>See the full schedule</span>
-        <img src={`${imageBasePath}down_arrow_icon.svg`} className="arrow"/>
-    </h3>
-</div> */}
+const mapStateToProps = (state) => ({
+    danceForms : state.homeReducer.danceForms
+})
+const mapDispatchToProps = (dispatch) => ({
+    updateDanceForms : (danceForms) => dispatch({
+        type: UPDATE_DANCEFORMS,
+        payload: danceForms
+    })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(UpComingClasses)
