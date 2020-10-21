@@ -16,7 +16,7 @@ const categorySlug = {
     'hip-hop' : 2,
     'zumba' : 3,
     'bollywood-kids': 4,
-    'hip-hop-kids': 5
+    'hiphop-kids': 5
 }
 
 export default function DanceDetail(props){
@@ -38,8 +38,7 @@ export default function DanceDetail(props){
     }, [])
     const getDanceInfo = (danceClasses) => {//danceClasses, slug
         const availableDates = Object.keys(danceClasses)
-        // let category = props.match.params.slug
-        let category = `${props.match.params.slug[0].toUpperCase()}${props.match.params.slug.slice(1)}`
+        let category = props.match.params.slug
         const classArray = danceClasses[availableDates[0]][category]
         if(classArray && classArray.length){
             setDanceInfo(classArray[0])
@@ -50,7 +49,7 @@ export default function DanceDetail(props){
         <section className="dance-detail-section">
             <Header onBack={() => props.history.push('/')} title={category}/>
             <Container className="dance-detail-container">
-                    <Gallery category={category} loader={loader}/>
+                    <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/>
                     <DanceInfo dance={danceInfo} category={category} loader={loader}/>
                     {loader ? '' : <>
                         <TimeSlots danceClasses={danceClasses} category={category}/>
@@ -59,7 +58,7 @@ export default function DanceDetail(props){
                                 <h3 className="heading2 title">Instructor</h3>
                                 <InstructorCard instructor={instructorsData.find(item => item.category == category)}/>
                             </div>
-                            <Reviews category={category} />
+                            <Reviews category={category == "hiphop-kids" ? 'hip-hop' : category} />
                             <HowWorks />
                             <ContactUs /> 
                         </Suspense>

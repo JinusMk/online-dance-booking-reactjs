@@ -4,7 +4,6 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import firebase from '../utils/firebase'
 import { fieldValidation } from '../utils/formValidation';
-import { regExpression } from '../constants'
 import { toastFlashMessage } from '../utils';
 
 export default function PhoneAuth(props){

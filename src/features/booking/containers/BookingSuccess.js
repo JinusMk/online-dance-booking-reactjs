@@ -11,7 +11,6 @@ function BookingSuccess(props){
     const [loader, setLoader] = useState(true)
     const [category, setCategory] = useState(props.match.params.slug)
     useEffect(() => {
-        console.log(props.location.state)
         if(props.location.state){
             const { selectedDance } = props.location.state
             setSelectedDance(selectedDance)
@@ -34,7 +33,7 @@ function BookingSuccess(props){
                     <DanceInformationCard dance={selectedDance} category={category}/>
                     <div className="selectedDate">
                         <p className="secondaryText">DATE & TIME</p>
-                        <h3 className="heading3">{`${moment(selectedDance.date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>
+                        <h3 className="heading3">{`${moment(selectedDance.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>
                     </div>
                     <AddToHomeScreen/>
                     <div className="payment-method">

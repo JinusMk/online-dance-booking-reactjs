@@ -3,7 +3,7 @@ import '../../../assets/styles/edit-profile-module.scss'
 import { Container, Grid, Avatar, TextField } from '@material-ui/core';
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils'
-import { regExpression, imageBasePath, USER_AUTH_ERRORCODE } from '../../../constants'
+import { imageBasePath, USER_AUTH_ERRORCODE } from '../../../constants'
 import { fieldValidation } from '../../../utils/formValidation';
 import firebase from '../../../utils/firebase'
 import { Header, AuthPopup } from '../../../shared_elements';
@@ -29,6 +29,7 @@ function EditProfile(props){
                 image_display: ''
             })
             setProviderData(props.userInfo.providerData)
+            setError({})
         }else{
             setLoader(true)
             // props.history.push('/profile')
@@ -77,8 +78,8 @@ function EditProfile(props){
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             firebase.auth().currentUser.updateProfile({
                 displayName: formData.name,
-                email: formData.email,
-                phoneNumber: formData.phone
+                // email: formData.email,
+                // phoneNumber: formData.phone
             })
             .then(response => {
                 // console.log('response', response)

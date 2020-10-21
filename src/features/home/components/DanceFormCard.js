@@ -11,7 +11,7 @@ export default function DanceFormCard(props){
                     <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" />
                     <span className="secondaryText">Live & interactive</span>
                     <div className="title-wrapper">
-                        <p className="heading2">{dance.title}</p>
+                        <p className="heading2">{dance.category}</p>
                     </div>
                 </div>
                 <div className="info-blk">

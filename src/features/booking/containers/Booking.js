@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Header, DanceInformationCard, AuthPopup } from  '../../../shared_elements'
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, CircularProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { UserInformationForm, LoggedInUserInfo, BookingLoader } from '../components'
 import { connect } from 'react-redux'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
-import { globalGetService } from '../../../utils/globalApiServices';
+import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
 
@@ -16,13 +16,14 @@ function Booking(props){
     const [category, setCategory] = useState(props.match.params.slug)
     const [selectedDance, setSelectedDance] = useState({})
     const [loader, setLoader] = useState(true)
-
+    const [bookingLoader, setBookingLoader] = useState(false)
     let history = useHistory()
+
     useEffect(() => {
         globalGetService(`dance-classes/${props.match.params.id}`, {})
         .then(response => {
             if(response.success == true){
-                setSelectedDance({...response.data, date: moment()})
+                setSelectedDance(response.data)
                 setLoader(false)
             }
         })
@@ -38,30 +39,45 @@ function Booking(props){
         if(window.confirm('Are you sure you want to logout ?')){
             firebase.auth().signOut()
             .then(res => {
-                console.log('logout success', res)
                 toastFlashMessage(`YOU'RE NOW LOGGED OUT`, 'success')
                 localStorage.clear()
             })
             .catch(err => {
-                console.log('logout error', err)
+                // console.log('logout error', err)
             })
         }
     }
     const handleSubmit = (userInfo) => {
-        console.log('booking continue clicked', userInfo)
-        history.push({pathname: `${props.location.pathname}/success`, state: { selectedDance: selectedDance }})
+        // console.log('booking continue clicked', userInfo)
+        const formData = {
+            dance_id: selectedDance.id,
+            name: userInfo.displayName,
+            email: userInfo.email,
+            mobile: userInfo.phoneNumber,
+            uid: userInfo.uid
+        }
+        console.log('formData booking', formData)
+        setBookingLoader(true)
+        globalPostService(`bookings/create`, formData)
+        .then(response => {
+            console.log('response booking', response)
+            setBookingLoader(false)
+            if(response.success == true){
+                history.push({pathname: `${props.location.pathname}/success`, state: { selectedDance: {...selectedDance, payment_method: response.data.payment_method }}})
+            }
+        })
     }
     return(
         <section className="booking-section">
             <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Just one more step"}/>
-            <Container className="booking-container">
+            <Container className="booking-container" style={bookingLoader ? { opacity: 0.2} :{}}>
                 <p className="secondaryText metaText">SELECTED CLASS</p>
                 { loader ? <BookingLoader /> : <DanceInformationCard dance={selectedDance} category={category}/>}
                 <Grid container spacing={0} className="dance-attributes">
                     <Grid item xs={7}>
                         <div className="timeWrapper">
                             <p className="secondaryText">DATE & TIME</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(selectedDance.date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(selectedDance.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>}
                         </div>
                     </Grid>
                     <Grid item xs={5}>
@@ -80,6 +96,11 @@ function Booking(props){
                 }
             </Container>
             {
+                bookingLoader ? <div className="booking-loader-wrapper">
+                    <CircularProgress className="loader"/>
+                </div> : null
+                }
+            {
                 <AuthPopup 
                     open={openAuthPopup}
                     handleClose={() => setOpenAuthPopup(false)}
@@ -92,4 +113,5 @@ const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
     userInfo: state.sharedReducers.userInfo,
 })
+
 export default connect(mapStateToProps)(Booking)

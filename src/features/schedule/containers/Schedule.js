@@ -694,7 +694,7 @@ export default function Schedule(props){
         },             
     })
     useEffect(() => {
-        globalGetService('dance-classes', {})
+        globalGetService('schedule', {})
         .then(response => {
             console.log('response', response)
         })

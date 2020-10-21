@@ -194,7 +194,7 @@ export const instructorsData = [
     rating: '4.5', 
     rating_count: 34, 
     no_of_classes: 43, 
-    category: 'hip-hop-kids',
+    category: 'hiphop-kids',
     img: `${imageBasePath}Deena_hiphop.jpg`
   },
 ]
@@ -279,7 +279,7 @@ export const danceCategory = {
   2: 'hip-hop',
   3: 'zumba',
   4: 'bollywood-kids',
-  5: 'hip-hop-kids'
+  5: 'hiphop-kids'
 }
 
 export const USER_AUTH_ERRORCODE = {

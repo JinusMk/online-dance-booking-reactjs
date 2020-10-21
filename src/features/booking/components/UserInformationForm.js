@@ -46,9 +46,9 @@ export default function UserInformationForm(props){
                 if(response.user){
                     response.user.updateProfile({
                         displayName: userInfo.name,
-                        phoneNumber: userInfo.phone
+                        // phoneNumber: userInfo.phone
                     }).then((s)=> { 
-                        props.handleSubmit(response.user)
+                        props.handleSubmit({...response.user, phoneNumber: userInfo.phone, displayName: userInfo.name})
                     })
                 }
             })
@@ -104,7 +104,7 @@ export default function UserInformationForm(props){
                         onChange={(e) => handleChange('password', e.target.value)}
                         placeholder="Your password"
                         type={showPassword ? 'text' : 'password'}
-                        error={error.password}
+                        error={error.password ? true : false}
                         required
                     />
                 </div>
