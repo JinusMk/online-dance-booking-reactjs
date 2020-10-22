@@ -1,11 +1,11 @@
 import React, { Suspense, lazy, useEffect } from 'react'
 import { Header, BottomNavigation } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
-import { Introduction, UpComingClasses } from '../components'
+import { Introduction, UpComingClasses, LastWeekRecap } from '../components'
 import '../../../assets/styles/home-module.scss'
 
 const WhoWeAre = React.lazy(() => import('../components/WhoWeAre'));
-const LastWeekRecap = React.lazy(() => import('../components/LastweekRecap'));
+// const LastWeekRecap = React.lazy(() => import('../components/LastweekRecap'));
 const ExpertInstructors = React.lazy(() => import('../components/ExpertInstructors'));
 const WhyLetzdance = React.lazy(() => import('../components/WhyLetzdance'));
 const HowWorks = React.lazy(() => import('../components/HowWorks'));
@@ -24,8 +24,8 @@ export default function Home(props){
                 <UpComingClasses />
                 <Suspense fallback={<div>Loading...</div>}>
                     <WhoWeAre />
-                    <LastWeekRecap />
                 </Suspense>
+                <LastWeekRecap />
                 <Suspense fallback={<div>Loading...</div>}>
                     <Reviews/>
                 </Suspense>
