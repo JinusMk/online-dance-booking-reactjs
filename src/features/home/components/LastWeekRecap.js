@@ -5,7 +5,7 @@ import { RecapItem } from './index'
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
 
-export default function LastweekRecap(props){
+export default function LastWeekRecap(props){
     return(
          <div className="last-week-recap block">
             <h3 className="heading2 title">Last week recap</h3>
