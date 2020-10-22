@@ -67,15 +67,6 @@ export default function LoggedInUserInfo(props){
                         toastFlashMessage(`${error.message}`, 'error')
                     }
                 })
-                if(user.phoneNumber != userInfo.phone){
-                    // firebase.auth().currentUser.updatePhoneNumber({
-                    //     newEmail: userInfo.email
-                    // })
-                    // .then(reseponse => {
-                    //     console.log('response updateEmail', response)
-                    //     props.handleSubmit()
-                    // })
-                }
             }
         }else{
             setLoader(false)
