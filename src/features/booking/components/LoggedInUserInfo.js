@@ -5,6 +5,7 @@ import { fieldValidation } from '../../../utils/formValidation';
 import { USER_AUTH_ERRORCODE } from '../../../constants'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { toastFlashMessage } from '../../../utils';
 
 export default function LoggedInUserInfo(props){
     const { user } = props
@@ -52,26 +53,21 @@ export default function LoggedInUserInfo(props){
             if(user.displayName && user.email && user.phoneNumber){
                 props.handleSubmit()
             }else{
-                setLoader(false)
-                props.handleSubmit({...user, displayName: user.displayName ? user.displayName: userInfo.name, phoneNumber: userInfo.phone, email: user.email ? user.email : userInfo.email})
-                if(user.displayName != userInfo.displayName){
-                    firebase.auth().currentUser.updateProfile({
-                        displayName: userInfo.name
-                    })
-                    .then(response => {
-                        console.log('response', response)
-                        // props.handleSubmit()
-                    })
-                }
-                if(user.email.trim() != userInfo.email){
-                    firebase.auth().currentUser.updateEmail({
-                        newEmail: userInfo.email
-                    })
-                    .then(response => {
-                        console.log('response updateEmail', response)
-                        // props.handleSubmit()
-                    })
-                }else if(user.phoneNumber != userInfo.phone){
+                let promise1 = firebase.auth().currentUser.updateProfile({
+                    displayName: userInfo.name
+                })
+                let promise2 = firebase.auth().currentUser.updateEmail(userInfo.email)
+                Promise.all([promise1, promise2])
+                .then((values) => {
+                    setLoader(false)
+                    props.handleSubmit({...user, displayName: user.displayName ? user.displayName: userInfo.name, phoneNumber: userInfo.phone, email: user.email ? user.email : userInfo.email})
+                })
+                .catch(error => {
+                    if(error.message){
+                        toastFlashMessage(`${error.message}`, 'error')
+                    }
+                })
+                if(user.phoneNumber != userInfo.phone){
                     // firebase.auth().currentUser.updatePhoneNumber({
                     //     newEmail: userInfo.email
                     // })

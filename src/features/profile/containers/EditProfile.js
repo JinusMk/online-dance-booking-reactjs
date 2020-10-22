@@ -73,25 +73,30 @@ function EditProfile(props){
         let validateNewInput = {
             name: errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: formData.name})],
             email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: formData.email})],
-            phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: formData.phone})],
+            // phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: formData.phone})],
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
-            firebase.auth().currentUser.updateProfile({
-                displayName: formData.name,
-                // email: formData.email,
-                // phoneNumber: formData.phone
-            })
-            .then(response => {
-                // console.log('response', response)
+            let promise1 = firebase.auth().currentUser.updateProfile({displayName: formData.name, phone: '919876543210', phoneNumber: '919876543210'})
+            let promise2 = firebase.auth().currentUser.updateEmail(formData.email)
+            Promise.all([promise1, promise2])
+            .then((values) => {
+                console.log('values promise', values);
                 toastFlashMessage('Profile updated successfully', 'success')
                 props.history.push('/profile')
+            })
+            .catch(error => {
+                console.log('error', error)
+                if(error.message){
+                    toastFlashMessage(`${error.message}`, 'error')
+                }
             })
         }else{
             setError(validateNewInput)
         }
     }
     const handleBack = () => {
-        if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email || formData.phone != props.userInfo.phoneNumber){
+        if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email){
+            // || formData.phone != props.userInfo.phoneNumber
             if(window.confirm(`Are you sure you want to save the changes ?`)){
                 handleSave()
             }else{
