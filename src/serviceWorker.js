@@ -139,3 +139,64 @@ export function unregister() {
       });
   }
 }
+
+const PRECACHE = 'precache-v1';
+const RUNTIME = 'runtime';
+
+var PRECACHE_URLS = [
+  '/',
+  '/assets/styles/app.scss',
+  '/App.js',
+  '../public/index.html'
+];
+
+window.self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => {
+        // Open a cache and cache our files
+        cache.addAll(PRECACHE_URLS)
+        .then(window.self.skipWaiting())
+      })
+  );
+});
+
+window.self.addEventListener('activate', event => {
+  const currentCaches = [PRECACHE, RUNTIME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    }).then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => window.self.clients.claim())
+  );
+});
+
+window.self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return caches.open(RUNTIME).then(cache => {
+        return fetch(event.request).then(response => {
+          // Put a copy of the response in the runtime cache.
+          return cache.put(event.request, response.clone()).then(() => {
+            return response;
+          });
+        });
+      });
+    })
+    // .catch(error => {
+    //   console.log('Fetch failed; returning offline page instead.', error);
+      
+
+    //   const cache = await caches.open(PRECACHE);
+    //   const cachedResponse = await cache.match(OFFLINE_URL);
+    //   return cachedResponse;
+    // })
+  );
+});
