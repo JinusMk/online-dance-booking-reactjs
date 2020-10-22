@@ -19,7 +19,6 @@ export default function Home(props){
     }, [])
     return(
         <section className="home-section">
-            <Header/>
             <Container className="home-container">
                 <Introduction />
                 <UpComingClasses />
@@ -38,7 +37,6 @@ export default function Home(props){
                     <ContactUs /> 
                 </Suspense>
             </Container>
-            <BottomNavigation/>
         </section>
     )
 }

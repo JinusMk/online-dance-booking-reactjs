@@ -30,7 +30,7 @@ export default function EmailAuth(props){
             email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: userInfo.email})],
             password: errorCode['password'][fieldValidation({...errorCode['passwordObj'], fieldval: userInfo.password})],
             name: registerFlag ? errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: userInfo.name})]:'',
-            phone: registerFlag ? errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})]:'',
+            // phone: registerFlag ? errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: userInfo.phone})]:'',
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             if(registerFlag){
@@ -41,7 +41,7 @@ export default function EmailAuth(props){
                     if(response.user){
                         response.user.updateProfile({
                           displayName: userInfo.name,
-                          phoneNumber: userInfo.phone
+                        //   phoneNumber: userInfo.phone
                         }).then((s)=> {
                             props.handleSuccess(response)   
                         })
@@ -107,7 +107,7 @@ export default function EmailAuth(props){
                     required
                 />
             </div>
-            {registerFlag ? <div className="inputGroup">
+            {/* {registerFlag ? <div className="inputGroup">
                 <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
                 <PhoneInput
                     country={'in'}
@@ -126,7 +126,7 @@ export default function EmailAuth(props){
                     enableSearch={true}
                     isValid={error.phone ? false : true}
                 />
-            </div> : null}
+            </div> : null} */}
             <div className="signup-link">
                 <p className="paragraph"><a onClick={() => setRegisterFlag(!registerFlag)}>{registerFlag ? `Already have an acoount ? Login now`: `Don't have an account ? Register now`}</a></p>
             </div>
