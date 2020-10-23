@@ -22,7 +22,7 @@ export default function Introduction(props){
             >
                 {
                     introductionData.map((item, index) => <div className="carousel-item" key={index}>
-                        <img src={item.img}/>
+                        <img src={item.img} alt=""/>
                         <p className="heading1">{item.value}</p>
                     </div>)
                 }

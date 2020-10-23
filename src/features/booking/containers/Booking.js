@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { Header, DanceInformationCard, AuthPopup } from  '../../../shared_elements'
+import React, { useEffect, useState, Suspense, lazy } from 'react'
+import { Header, DanceInformationCard } from  '../../../shared_elements'
 import { Container, Grid, CircularProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
-import { UserInformationForm, LoggedInUserInfo, BookingLoader } from '../components'
+import { BookingLoader } from '../components'
 import { connect } from 'react-redux'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
 import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
+
+const LoggedInUserInfo = lazy(() => import ('../components/LoggedInUserInfo'))
+const UserInformationForm = lazy(() => import ('../components/UserInformationForm'))
+const AuthPopup = lazy(() => import('../../../shared_elements/AuthPopup'))
 
 function Booking(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
@@ -87,25 +91,29 @@ function Booking(props){
                         </div>
                     </Grid>
                 </Grid>
-                { props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: <><div className="login-button-wrapper">
-                        <p className="secondaryText">HAVE AN ACCOUNT ?</p>
-                        <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
-                    </div>
-                    <UserInformationForm handleSubmit={handleSubmit}/>                    
+                <Suspense fallback={<></>}>
+                    { props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: 
+                    <>
+                        <div className="login-button-wrapper">
+                            <p className="secondaryText">HAVE AN ACCOUNT ?</p>
+                            <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
+                        </div>
+                        <UserInformationForm handleSubmit={handleSubmit}/>                    
                     </>
-                }
+                    }
+                </Suspense>
             </Container>
             {
                 bookingLoader ? <div className="booking-loader-wrapper">
                     <CircularProgress className="loader"/>
                 </div> : null
-                }
-            {
+            }
+            <Suspense fallback={<></>}>
                 <AuthPopup 
                     open={openAuthPopup}
                     handleClose={() => setOpenAuthPopup(false)}
                 />
-            }
+            </Suspense>
         </section>
     )
 }

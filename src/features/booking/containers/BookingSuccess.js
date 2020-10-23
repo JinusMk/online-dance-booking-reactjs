@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { DanceInformationCard, AddToHomeScreen } from  '../../../shared_elements'
-import { Container, Grid } from '@material-ui/core';
+import React, { useEffect, useState, Suspense, lazy } from 'react'
+import { Container } from '@material-ui/core';
 import moment from 'moment'
 import { connect } from 'react-redux'
 import '../../../assets/styles/booking-success-module.scss'
 import { imageBasePath } from '../../../constants';
+
+const DanceInformationCard = lazy(() => import('../../../shared_elements/DanceInformationCard'))
+const AddToHomeScreen = lazy(() => import('../../../shared_elements/AddToHomeScreen'))
 
 function BookingSuccess(props){
     const [selectedDance, setSelectedDance] = useState('')
@@ -30,12 +32,16 @@ function BookingSuccess(props){
                             <p className="paragraph">We’ll remind you 10 minutes before your Zumba class begins.</p>
                         </div>
                     </div>
-                    <DanceInformationCard dance={selectedDance} category={category}/>
+                    <Suspense fallback={<></>}>
+                        <DanceInformationCard dance={selectedDance} category={category}/>
+                    </Suspense>
                     <div className="selectedDate">
                         <p className="secondaryText">DATE & TIME</p>
                         <h3 className="heading3">{`${moment(selectedDance.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>
                     </div>
-                    <AddToHomeScreen/>
+                    <Suspense fallback={<></>}>
+                        <AddToHomeScreen/>
+                    </Suspense>
                     <div className="payment-method">
                         <p className="secondaryText">PAY AT CLASS</p>
                         <p className="heading3"><span className="cost-old">₹{selectedDance.cost_old}</span>₹{selectedDance.cost}</p>

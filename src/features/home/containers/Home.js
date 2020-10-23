@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect } from 'react'
 import { Container } from '@material-ui/core';
-import { Introduction, UpComingClasses } from '../components'
+import { Introduction } from '../components'
 import '../../../assets/styles/home-module.scss'
 
 const WhoWeAre = React.lazy(() => import('../components/WhoWeAre'));
@@ -11,6 +11,7 @@ const HowWorks = React.lazy(() => import('../components/HowWorks'));
 const CommonQuestions = React.lazy(() => import('../components/CommonQuestions'));
 const ContactUs = React.lazy(() => import('../components/ContactUs'));
 const Reviews = React.lazy(() => import('../components/Reviews'));
+const UpComingClasses = React.lazy(() => import('../components/UpComingClasses'));
 
 export default function Home(props){
     useEffect(() => {
@@ -20,15 +21,17 @@ export default function Home(props){
         <section className="home-section">
             <Container className="home-container">
                 <Introduction />
-                <UpComingClasses />
-                <Suspense fallback={<div></div>}>
+                <Suspense fallback={<></>}>
+                    <UpComingClasses />
+                </Suspense>
+                <Suspense fallback={<></>}>
                     <WhoWeAre />
                     <LastWeekRecap />
                 </Suspense>
-                <Suspense fallback={<div></div>}>
+                <Suspense fallback={<></>}>
                     <Reviews/>
                 </Suspense>
-                <Suspense fallback={<div></div>}>
+                <Suspense fallback={<></>}>
                     <WhyLetzdance />
                     <ExpertInstructors />
                     <HowWorks />

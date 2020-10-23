@@ -1,14 +1,17 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react'
-import { AuthPopup, DanceAlert, AuthVerifyBlock } from  '../../../shared_elements'
-import { ContactUs } from '../../home/components'
+// import { DanceAlert } from  '../../../shared_elements'
 import { Container, Avatar } from '@material-ui/core';
-import { Link } from 'react-router-dom'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
 import { connect } from 'react-redux'
 import { UPDATE_USERINFO } from '../../../shared_elements/actions'
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/profile-module.scss'
+
+const ProfileNavigationList = lazy(() => import('../components/ProfileNavigationList'))
+const ContactUs = lazy(() => import('../../home/components/ContactUs'))
+const AuthPopup = lazy(() => import ('../../../shared_elements/AuthPopup'))
+const AuthVerifyBlock = lazy(() => import ('../../../shared_elements/AuthVerifyBlock'))
 
 function Profile(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
@@ -66,38 +69,28 @@ function Profile(props){
                         <p className="paragraph">Letzdancer since 2020</p>
                     </div>
                     {/* <DanceAlert /> */}
-                    {isVerified('phone') ? null : <AuthVerifyBlock type="phone number" handleClick={() => setVerifyPhone(true)} />}
+                    <Suspense fallback={<></>}>
+                        {isVerified('phone') ? null : <AuthVerifyBlock type="phone number" handleClick={() => setVerifyPhone(true)} />}
+                    </Suspense>
                     </> : <div className="login-btn-wrapper">
                         <h3 className="heading3">Login and get started towards your journey of fun and fitness!</h3>
                         <p><a className="primaryBtn" onClick={() => setOpenAuthPopup(true)}>LOGIN / REGISTER</a></p>
                     </div>
                     }
                 </div>
-                <ul className="listUnstyled links">
-                    <li className={props.isLoggedIn ? '' : 'disabled'}>
-                        <p><Link to="/dance-history" className="heading2">Dance history</Link></p>
-                        <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
-                    </li>
-                    <li className="">
-                        <p><Link to="/help" className="heading2">Help</Link></p>
-                        <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
-                    </li>
-                    {props.isLoggedIn ? <li className="">
-                        <p><a onClick={logout} className="heading2">Logout</a></p>
-                        <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
-                    </li> : null
+                <Suspense fallback={<></>}>
+                    <ProfileNavigationList isLoggedIn={props.isLoggedIn} logout={logout}/>
+                    <ContactUs />
+                    {
+                        <AuthPopup 
+                            open={openAuthPopup || verifyPhone}
+                            handleClose={handleCloseAuthPopup}
+                            type={verifyPhone ? "verifyPhone" : ''}
+                            phone={verifyPhone ? props.userInfo.phoneNumber : ''}
+                        />
                     }
-                </ul>
-                <ContactUs />
+                </Suspense>
             </Container>
-            {
-                <AuthPopup 
-                    open={openAuthPopup || verifyPhone}
-                    handleClose={handleCloseAuthPopup}
-                    type={verifyPhone ? "verifyPhone" : ''}
-                    phone={verifyPhone ? props.userInfo.phoneNumber : ''}
-                />
-            }
         </section>
     )
 }

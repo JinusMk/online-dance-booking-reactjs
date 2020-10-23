@@ -34,6 +34,7 @@ function EditProfile(props){
             setLoader(true)
             // props.history.push('/profile')
         }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [props.userInfo])
 
     const imageUpdate = (image)=> {

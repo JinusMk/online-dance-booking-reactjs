@@ -78,6 +78,7 @@ function AuthPopup(props){
         <>
             {[isMobile ? 'bottom': 'right'].map((anchor) => (
                 <SwipeableDrawer
+                    key={anchor}
                     anchor={anchor}
                     open={props.open}
                     onClose={toggleDrawer(anchor, false)}
