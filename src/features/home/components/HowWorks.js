@@ -6,7 +6,7 @@ export default function HowWorks(props){
     return(
         <div className="how-it-works-blk">
             <h3 className="heading2 title">How Letzdance works</h3>
-            <Grid container alignItem="center" spacing={2} className="how-works-list">
+            <Grid container alignItems="center" spacing={2} className="how-works-list">
                 <Grid item xs={12} md={3} className="list-item-grid">
                     <div className="list-item">
                         <img className="icon" src={`${imageBasePath}book_emoji.svg`}/>
