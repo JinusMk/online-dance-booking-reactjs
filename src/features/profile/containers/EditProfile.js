@@ -76,7 +76,7 @@ function EditProfile(props){
             let promise1, promise2
             if(formData.image_display){
                 const imageAsFile = formData.image[0]
-                const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+                const uploadTask = storage.ref(`/user-profile-images/${imageAsFile.name}`).put(imageAsFile)
                 uploadTask.on('state_changed', 
                 (snapShot) => {
                 //takes a snap shot of the process as it is happening
@@ -84,7 +84,7 @@ function EditProfile(props){
                 //catches the errors
                     console.log(err)
                 }, () => {
-                storage.ref('images').child(imageAsFile.name).getDownloadURL()
+                storage.ref('user-profile-images').child(imageAsFile.name).getDownloadURL()
                     .then(fireBaseUrl => {
                         promise1 = firebase.auth().currentUser.updateProfile({displayName: formData.name, photoURL: fireBaseUrl })
                         promise2 = firebase.auth().currentUser.updateEmail(formData.email)
