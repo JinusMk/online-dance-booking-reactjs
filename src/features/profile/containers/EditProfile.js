@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils'
 import { imageBasePath, USER_AUTH_ERRORCODE } from '../../../constants'
 import { fieldValidation } from '../../../utils/formValidation';
+import { storage } from '../../../utils/firebase'
 import firebase from '../../../utils/firebase'
 import { Header, AuthPopup } from '../../../shared_elements';
 import { UPDATE_USERINFO } from '../../../shared_elements/actions'
@@ -18,6 +19,7 @@ function EditProfile(props){
     const [providerData, setProviderData] = useState([])
     const [errorCode] = useState(USER_AUTH_ERRORCODE)
     const [verifyPhone, setVerifyPhone] = useState(false)
+
     useEffect(() => {
         if(props.isLoggedIn){
             setLoader(false)
@@ -65,38 +67,63 @@ function EditProfile(props){
         }
     }
     const handleSave = () => {
-         // const data = new FormData();
-        // if(formData.image_display){
-        //     for(let file of formData.image){
-        //         data.append('photoURL', file, file.name);
-        //     }
-        // }
         let validateNewInput = {
             name: errorCode['name'][fieldValidation({...errorCode['nameObj'], fieldval: formData.name})],
             email: errorCode['email'][fieldValidation({...errorCode['emailObj'], fieldval: formData.email})],
             // phone: errorCode['phone'][fieldValidation({...errorCode['phoneObj'], fieldval: formData.phone})],
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
-            let promise1 = firebase.auth().currentUser.updateProfile({displayName: formData.name, phone: '919876543210', phoneNumber: '919876543210'})
-            let promise2 = firebase.auth().currentUser.updateEmail(formData.email)
-            Promise.all([promise1, promise2])
-            .then((values) => {
-                console.log('values promise', values);
-                toastFlashMessage('Profile updated successfully', 'success')
-                props.history.push('/profile')
-            })
-            .catch(error => {
-                console.log('error', error)
-                if(error.message){
-                    toastFlashMessage(`${error.message}`, 'error')
-                }
-            })
+            let promise1, promise2
+            if(formData.image_display){
+                const imageAsFile = formData.image[0]
+                const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+                uploadTask.on('state_changed', 
+                (snapShot) => {
+                //takes a snap shot of the process as it is happening
+                }, (err) => {
+                //catches the errors
+                    console.log(err)
+                }, () => {
+                storage.ref('images').child(imageAsFile.name).getDownloadURL()
+                    .then(fireBaseUrl => {
+                        promise1 = firebase.auth().currentUser.updateProfile({displayName: formData.name, photoURL: fireBaseUrl })
+                        promise2 = firebase.auth().currentUser.updateEmail(formData.email)
+                        Promise.all([promise1, promise2])
+                        .then((values) => {
+                            console.log('values promise', values);
+                            toastFlashMessage('Profile updated successfully', 'success')
+                            props.history.push('/profile')
+                        })
+                        .catch(error => {
+                            console.log('error', error)
+                            if(error.message){
+                                toastFlashMessage(`${error.message}`, 'error')
+                            }
+                        })
+                    })
+                })
+            }else{
+                promise1 = firebase.auth().currentUser.updateProfile({displayName: formData.name })
+                promise2 = firebase.auth().currentUser.updateEmail(formData.email)
+                Promise.all([promise1, promise2])
+                .then((values) => {
+                    console.log('values promise', values);
+                    toastFlashMessage('Profile updated successfully', 'success')
+                    props.history.push('/profile')
+                })
+                .catch(error => {
+                    console.log('error', error)
+                    if(error.message){
+                        toastFlashMessage(`${error.message}`, 'error')
+                    }
+                })
+            }
         }else{
             setError(validateNewInput)
         }
     }
     const handleBack = () => {
-        if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email){
+        if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email || formData.image_display != ''){
             // || formData.phone != props.userInfo.phoneNumber
             if(window.confirm(`Are you sure you want to save the changes ?`)){
                 handleSave()

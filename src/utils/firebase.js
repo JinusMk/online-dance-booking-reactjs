@@ -5,10 +5,14 @@ firebase.initializeApp({
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN ? process.env.REACT_APP_FIREBASE_AUTH_DOMAIN : 'letz-dance.firebaseapp.com',
 //   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
 //   projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-//   storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET ? process.env.REACT_APP_FIREBASE_STORAGEBUCKET : 'letz-dance.appspot.com',
 //   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
 //   appId: process.env.REACT_APP_APP_ID,
 //   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 });
 // firebase.analytics();
-export default firebase;
+const storage = firebase.storage()
+
+export  {
+  storage, firebase as default
+}
