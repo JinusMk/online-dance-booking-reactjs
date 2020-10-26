@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
+import Skeleton from '@material-ui/lab/Skeleton';
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Introduction(props){
+    const [imgLoader, setImgLoader] = useState(true)
     const [introductionData] = useState([
         {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Stay home, Get fit'},
         {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance online, Have fun'},
@@ -22,7 +24,8 @@ export default function Introduction(props){
             >
                 {
                     introductionData.map((item, index) => <div className="carousel-item" key={index}>
-                        <img src={item.img} alt=""/>
+                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
+                        <img src={item.img} alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.value}</p>
                     </div>)
                 }
