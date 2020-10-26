@@ -52,7 +52,7 @@ export default function DanceDetail(props){
             <Container className="dance-detail-container">
                     <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/>
                     <DanceInfo dance={danceInfo} category={category} loader={loader}/>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<></>}>
                         {loader ? '' : <>
                                 <TimeSlots danceClasses={danceClasses} category={category}/>
                                 <div className="instructor block">

@@ -79,6 +79,9 @@ body{
                 .partially-visible-carousel-container{
                     .carousel-item{
                         .card{
+                            &.MuiSkeleton-root{
+                                border: 1px solid $color_light_gray;
+                            }
                             cursor: pointer;
                             border-radius: 8px;
                             box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
@@ -113,7 +116,7 @@ body{
                             .info-blk{
                                 padding: 16px 16px 12px;
                                 margin-top: -4px;
-                                border: 1px solid #DDDDDD;
+                                border: 1px solid $color_light_gray;
                                 border-radius: 0 0 8px 8px;
                                 position: relative;
                                 h3{
@@ -242,6 +245,14 @@ body{
                 }
                 .last-week-recap-item{
                     cursor: pointer;
+                    .img-loader{
+                        margin-bottom: 8px;
+                        .MuiSkeleton-root{
+                            border-radius: 8px;
+                            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                            border: 1px solid $color_light_gray;
+                        }
+                    }
                     .img-blk{
                         position: relative;
                         margin-bottom: 8px;

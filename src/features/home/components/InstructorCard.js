@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { imageBasePath } from '../../../constants';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 export default function InstructorCard(props){
     const { instructor } = props
+    const [imgLoader, setImgLoader] = useState(true)
     return(
         <div className="instructor-card">
             <div className="title-blk">
-                <img src={instructor.img} className="profile-img"/>
+                {
+                    imgLoader ? <Skeleton variant="rect" className="profile-img" />: null
+                }
+                <img src={instructor.img} className="profile-img"  style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <h3 className="heading3">{instructor.name}</h3>
                 <p className="heading3 rating">
                     <img src={`${imageBasePath}star_icon.svg`} />

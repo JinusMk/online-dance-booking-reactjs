@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Avatar, SwipeableDrawer } from '@material-ui/core';
+import { SwipeableDrawer } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { imageBasePath } from '../../../constants'
 import { Link } from 'react-router-dom'
 import { isMobile } from 'react-device-detect'
 
 export default function RecapItem(props){
     const { recap } = props
+    const [imgLoader, setImgLoader] = useState(true)
     const [state, setState] = useState({
         bottom: false,
         right: false
     })
+    const [vidLoader, setVidLoader] = useState(true)
     const [openRecap, setOpenRecap] = useState(false)
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -22,7 +25,8 @@ export default function RecapItem(props){
         <>
         <div className="last-week-recap-item" onClick={() => setOpenRecap(true)}>
             <div className="img-blk">
-                <img src={recap.img} className="dance-logo"/>
+                {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={184} /></div> : null}
+                <img src={recap.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <img src={`${imageBasePath}play_icon.svg`} className="play-icon"/>
             </div>
             <h3 className="heading3">{`${recap.category} | ${recap.instructor}`}</h3>

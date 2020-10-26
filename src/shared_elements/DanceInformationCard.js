@@ -1,13 +1,16 @@
-import React from   'react'
+import React, { useState } from   'react'
 import TimeSlotList from './TimeSlotList'
 import { imageBasePath, instructorsData } from '../constants';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 export default function DanceInformationCard(props){
+    const [imgLoader, setImgLoader] = useState(true)
     const { dance, type="", sectionId, category, danceClasses } = props
     return(
         <div className="dance-information-card">
             <div className="top-blk flexCentered">
-                <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo"/>
+                {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
+                <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <div className="content">
                     <h3 className="heading2">{dance.title}</h3>
                     <h3 className="heading3">

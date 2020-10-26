@@ -9,7 +9,6 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { UPDATE_DANCEFORMS } from '../actions'
 import { connect } from 'react-redux'
 import "react-multi-carousel/lib/styles.css";
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 function UpComingClasses(props){
     const [loader, setLoader] = useState(true)
