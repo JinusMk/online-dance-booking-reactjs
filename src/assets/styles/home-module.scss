@@ -87,11 +87,15 @@ body{
                             box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
                             .top-blk{
                                 position: relative;
+                                .img-loader{
+                                    width: 100%;
+                                    border-radius: 8px 8px 0 0;
+                                }
                                 .logo{
                                     width: 100%;
                                     border-radius: 8px 8px 0 0;
                                 }
-                                span{
+                                .secondaryText{
                                     background: $color_primary;
                                     position: absolute;
                                     color: $color_white;
