@@ -70,6 +70,10 @@ function Booking(props){
                 history.push({pathname: `${props.location.pathname}/success`, state: { selectedDance: {...selectedDance, payment_method: response.data.payment_method }}})
             }
         })
+        .catch(err => {
+            setBookingLoader(false)
+            toastFlashMessage('Something went wrong, Please try again!', 'error')
+        })
     }
     return(
         <section className="booking-section">

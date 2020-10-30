@@ -51,7 +51,8 @@ export default function LoggedInUserInfo(props){
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             if(user.displayName && user.email && user.phoneNumber){
-                props.handleSubmit()
+                props.handleSubmit(user)
+                setLoader(false)
             }else{
                 let promise1 = firebase.auth().currentUser.updateProfile({
                     displayName: userInfo.name
@@ -63,6 +64,7 @@ export default function LoggedInUserInfo(props){
                     props.handleSubmit({...user, displayName: user.displayName ? user.displayName: userInfo.name, phoneNumber: userInfo.phone, email: user.email ? user.email : userInfo.email})
                 })
                 .catch(error => {
+                    setLoader(false)
                     if(error.message){
                         toastFlashMessage(`${error.message}`, 'error')
                     }
