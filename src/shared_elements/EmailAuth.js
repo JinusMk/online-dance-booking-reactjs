@@ -37,7 +37,7 @@ export default function EmailAuth(props){
                 firebase.auth().createUserWithEmailAndPassword(userInfo.email.trim(), userInfo.password)
                 .then(response => {
                     setLoader(false)
-                    console.log("res emailAuth signup", response)
+                    // console.log("res emailAuth signup", response)
                     if(response.user){
                         response.user.updateProfile({
                           displayName: userInfo.name,

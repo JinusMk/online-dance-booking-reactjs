@@ -90,12 +90,12 @@ function EditProfile(props){
                         promise2 = firebase.auth().currentUser.updateEmail(formData.email)
                         Promise.all([promise1, promise2])
                         .then((values) => {
-                            console.log('values promise', values);
+                            // console.log('values promise', values);
                             toastFlashMessage('Profile updated successfully', 'success')
                             props.history.push('/profile')
                         })
                         .catch(error => {
-                            console.log('error', error)
+                            // console.log('error', error)
                             if(error.message){
                                 toastFlashMessage(`${error.message}`, 'error')
                             }
@@ -107,12 +107,12 @@ function EditProfile(props){
                 promise2 = firebase.auth().currentUser.updateEmail(formData.email)
                 Promise.all([promise1, promise2])
                 .then((values) => {
-                    console.log('values promise', values);
+                    // console.log('values promise', values);
                     toastFlashMessage('Profile updated successfully', 'success')
                     props.history.push('/profile')
                 })
                 .catch(error => {
-                    console.log('error', error)
+                    // console.log('error', error)
                     if(error.message){
                         toastFlashMessage(`${error.message}`, 'error')
                     }

@@ -17,7 +17,7 @@ const store = configureStore();
 
 function App() {
   firebase.auth().onAuthStateChanged(user => {
-    console.log('inside onAUthState app.js', user)
+    // console.log('inside onAUthState app.js', user)
     if(user){
       store.dispatch({
         type: AUTH_STATUS_UPDATE,

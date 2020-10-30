@@ -42,7 +42,7 @@ export default function UserInformationForm(props){
             firebase.auth().createUserWithEmailAndPassword(userInfo.email.trim(), userInfo.password)
             .then(response => {
                 setLoader(false)
-                console.log("res booking signup", response)
+                // console.log("res booking signup", response)
                 if(response.user){
                     response.user.updateProfile({
                         displayName: userInfo.name,

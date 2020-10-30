@@ -60,11 +60,11 @@ function Booking(props){
             mobile: userInfo.phoneNumber,
             uid: userInfo.uid
         }
-        console.log('formData booking', formData)
+        // console.log('formData booking', formData)
         setBookingLoader(true)
         globalPostService(`bookings/create`, formData)
         .then(response => {
-            console.log('response booking', response)
+            // console.log('response booking', response)
             setBookingLoader(false)
             if(response.success == true){
                 history.push({pathname: `${props.location.pathname}/success`, state: { selectedDance: {...selectedDance, payment_method: response.data.payment_method }}})
