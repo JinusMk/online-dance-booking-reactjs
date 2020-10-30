@@ -2,7 +2,7 @@ import axios from 'axios';
 import {toastFlashMessage} from '../utils';
 var axiosInstance = axios.create();
 
-axiosInstance.defaults.baseURL = 'http://18.222.113.177/api/';
+axiosInstance.defaults.baseURL = 'https://admin.letzdance.co/api/';
 axiosInstance.interceptors.request.use(function(config){
     if(localStorage.getItem('idToken')){
       config['headers']['Authorization'] = JSON.parse(localStorage.getItem('idToken'));
