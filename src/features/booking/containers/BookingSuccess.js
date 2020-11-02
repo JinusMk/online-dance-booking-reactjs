@@ -29,7 +29,7 @@ function BookingSuccess(props){
                         <p className="heading3">{`Your ${selectedDance.title} class is booked.`}</p>
                         <div className="reminder-text">
                             <img src={`${imageBasePath}booking_success_tick.svg`}/>
-                            <p className="paragraph">We’ll remind you 10 minutes before your Zumba class begins.</p>
+                            <p className="paragraph">We’ll remind you 10 minutes before your class begins.</p>
                         </div>
                     </div>
                     <Suspense fallback={<></>}>

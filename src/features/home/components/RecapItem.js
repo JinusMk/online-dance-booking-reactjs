@@ -44,13 +44,13 @@ export default function RecapItem(props){
                 <div className={`auth-popup-wrapper review recap`}>
                     <div className="line"></div>
                     <h3 className="heading2">Watch recap</h3>
-                    <video height="164" poster={recap.img} controls className="custom-video">
+                    <video height="164" poster={recap.img} controls className="custom-video" autoPlay>
                         <source src={recap.media} type="video/mp4" />
                         <source src={recap.media} type="video/ogg" />
                         Your browser does not support the video tag.
                     </video>
                     <div className="class-info">
-                        <h3 className="heading3">{`${recap.category} by ${recap.instructor}`}</h3>
+                        <h3 className="heading3">{`${recap.category[0].toUpperCase()}${recap.category.slice(1)} by ${recap.instructor}`}</h3>
                         <p className="paragraph">{`${recap.participants} dancers | ${recap.date}`}</p>
                     </div>
                 </div>

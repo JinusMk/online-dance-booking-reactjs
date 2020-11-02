@@ -50,7 +50,7 @@ export default function ReviewCard(props){
 function ReviewInfo(props){
     const { review, type, handleOpen } = props
     return(
-        <div className={`review-card ${review.media ? 'video': ''}`}>
+        <div className={`review-card ${review.media ? 'video': ''}`} onClick={(e) => props.type == "datail" ? e.preventDefault() : handleOpen()}>
             <div className="content-block">
                 {review.media ? null : <>
                     <div className="img-block">
@@ -61,7 +61,7 @@ function ReviewInfo(props){
                         </p>
                     </div>
                     <p className="paragraph text">{(props.type != "detail" && review.text.length > 160) ? `${review.text.slice(0,155)}...` : review.text}</p>
-                    {props.type == "detail" ? null : <p className="paragraph read-more" onClick={handleOpen}>
+                    {(props.type == "detail" || review.text.length < 160) ? null : <p className="paragraph read-more" onClick={handleOpen}>
                         <span>Read more</span>
                         <img src={`${imageBasePath}right_arrow_icon.svg`}/>
                     </p>
