@@ -11,6 +11,9 @@ export default function ContactUs(props){
             <li>
                 <a target="__blank" href="https://www.instagram.com/letzdance.co/"><img src={`${imageBasePath}insta_logo.svg`}/></a>
             </li>
+            <li>
+                <a target="__blank" href="https://www.youtube.com/channel/UCqaZ4SR-Z7isiCQ9hk1bekw/"><img src={`${imageBasePath}youtube_logo.svg`}/></a>
+            </li>
         </ul>
         <p className="paragraph">© Letzdance | Privacy Policy and T&C</p>
     </div>)
