@@ -29,6 +29,7 @@ export default function ReviewCard(props){
                 open={openDetail}
                 onClose={toggleDrawer(anchor, false)}
                 className={`custom-drawer review ${props.page == "detail" ? 'dance-detail' : ''}`}
+                onOpen={(e) => e.preventDefault()}
             >
                 <div className={`auth-popup-wrapper review`}>
                     <div className="line"></div>

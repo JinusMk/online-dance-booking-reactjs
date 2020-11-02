@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Accordion, AccordionSummary, AccordionDetails, Grid  } from '@material-ui/core';
 import { imageBasePath } from '../../../constants';
 
@@ -11,21 +11,25 @@ const commonQuestions = [
 ]
 
 export default function CommonQuestions(props){
+    const [expanded, setExpanded] = React.useState(false);
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
     return(
         <div className="common-questions-blk">
             <h3 className="heading2 title">Common Questions</h3>
             <Grid container spacing={2} className="accordion-outer-wrapper">
             {
-                commonQuestions.map((item, index) => <Grid item xs={12} md={6} className="accrodion-item-wrapper">
+                commonQuestions.map((item, index) => <Grid item xs={12} md={6} key={index} className="accrodion-item-wrapper">
                     <div className="accordion-item">
-                        <Accordion key={index} className="common-questions-accordion">
-                        <AccordionSummary
-                            expandIcon={<img src={`${imageBasePath}expand_more_icon.svg`}/>}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <h3 className="heading3">{item.que}</h3>
-                        </AccordionSummary>
+                        <Accordion expanded={expanded == `panel${index+1}` ? true : false} onChange={handleChange(`panel${index+1}`)} className="common-questions-accordion">
+                            <AccordionSummary
+                                expandIcon={<img src={`${imageBasePath}expand_more_icon.svg`}/>}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+                                <h3 className="heading3">{item.que}</h3>
+                            </AccordionSummary>
                         <AccordionDetails><p className="paragraph">{item.ans}</p></AccordionDetails>
                 </Accordion></div></Grid>)
             }

@@ -39,6 +39,7 @@ export default function RecapItem(props){
                 open={openRecap}
                 onClose={toggleDrawer(anchor, false)}
                 className="custom-drawer review"
+                onOpen={(e) => e.preventDefault()}
             >
                 <div className={`auth-popup-wrapper review recap`}>
                     <div className="line"></div>
