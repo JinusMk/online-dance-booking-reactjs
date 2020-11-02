@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../../../assets/styles/edit-profile-module.scss'
-import { Container, Grid, Avatar, TextField } from '@material-ui/core';
+import { Container, Grid, Avatar, TextField, CircularProgress } from '@material-ui/core';
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils'
 import { imageBasePath, USER_AUTH_ERRORCODE } from '../../../constants'
@@ -19,6 +19,7 @@ function EditProfile(props){
     const [providerData, setProviderData] = useState([])
     const [errorCode] = useState(USER_AUTH_ERRORCODE)
     const [verifyPhone, setVerifyPhone] = useState(false)
+    const [editLoader, setEditLoader] = useState(false)
 
     useEffect(() => {
         if(props.isLoggedIn){
@@ -74,6 +75,7 @@ function EditProfile(props){
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             let promise1, promise2
+            setEditLoader(true)
             if(formData.image_display){
                 const imageAsFile = formData.image[0]
                 const uploadTask = storage.ref(`/user-profile-images/${imageAsFile.name}`).put(imageAsFile)
@@ -90,12 +92,12 @@ function EditProfile(props){
                         promise2 = firebase.auth().currentUser.updateEmail(formData.email)
                         Promise.all([promise1, promise2])
                         .then((values) => {
-                            console.log('values promise', values);
+                            setEditLoader(false)
                             toastFlashMessage('Profile updated successfully', 'success')
                             props.history.push('/profile')
                         })
                         .catch(error => {
-                            console.log('error', error)
+                            setEditLoader(false)
                             if(error.message){
                                 toastFlashMessage(`${error.message}`, 'error')
                             }
@@ -107,12 +109,12 @@ function EditProfile(props){
                 promise2 = firebase.auth().currentUser.updateEmail(formData.email)
                 Promise.all([promise1, promise2])
                 .then((values) => {
-                    console.log('values promise', values);
+                    setEditLoader(false)
                     toastFlashMessage('Profile updated successfully', 'success')
                     props.history.push('/profile')
                 })
                 .catch(error => {
-                    console.log('error', error)
+                    setEditLoader(false)
                     if(error.message){
                         toastFlashMessage(`${error.message}`, 'error')
                     }
@@ -174,9 +176,9 @@ function EditProfile(props){
         setVerifyPhone(false)
     }
     return(<section className="edit-profile-section">
-        <Container className="edit-profile-container">
             <Header onBack={handleBack} title="Edit Profile"/>
-            {loader ? 'Loading...' : <><Grid container className="top-blk" justify="center" alignItems="center">
+            <Container className="edit-profile-container" style={editLoader ? { opacity: 0.2} :{}}>
+            {loader ? 'Loading...' : <><Grid container className="top-blk" justify="flex-start" alignItems="center">
                 <Grid item>
                     {
                         (formData.image_display || formData.image) ? <Avatar src={formData.image_display ? formData.image_display : formData.image} className="user-avatar"/> : <Avatar className="user-avatar">{formData.name ? formData.name[0] : formData.email ? formData.email[0]: 'L'}</Avatar>
@@ -290,6 +292,11 @@ function EditProfile(props){
                 phone={formData.phone}
                 type="verifyPhone"
             />
+        }
+        {
+            editLoader ? <div className="screen-loader-wrapper">
+                <CircularProgress className="loader"/>
+            </div> : null
         }
     </section>)
 }

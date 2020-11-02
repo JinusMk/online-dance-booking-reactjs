@@ -108,7 +108,7 @@ function Booking(props){
                 </Suspense>
             </Container>
             {
-                bookingLoader ? <div className="booking-loader-wrapper">
+                bookingLoader ? <div className="screen-loader-wrapper">
                     <CircularProgress className="loader"/>
                 </div> : null
             }
