@@ -1,0 +1,62 @@
+[debug] [2020-11-03T12:11:10.053Z] ----------------------------------------------------------------------
+[debug] [2020-11-03T12:11:10.055Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-11-03T12:11:10.056Z] CLI Version:   8.12.1
+[debug] [2020-11-03T12:11:10.056Z] Platform:      darwin
+[debug] [2020-11-03T12:11:10.056Z] Node Version:  v10.16.0
+[debug] [2020-11-03T12:11:10.058Z] Time:          Tue Nov 03 2020 17:41:10 GMT+0530 (India Standard Time)
+[debug] [2020-11-03T12:11:10.059Z] ----------------------------------------------------------------------
+[debug] [2020-11-03T12:11:10.059Z] 
+[debug] [2020-11-03T12:11:10.081Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-03T12:11:10.081Z] > authorizing via signed-in user
+[debug] [2020-11-03T12:11:10.082Z] [iam] checking project letz-dance for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-03T12:11:10.084Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-11-03T12:11:10.085Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-11-03T12:11:10.631Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 03 Nov 2020 12:11:10 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-03T12:11:10.743Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/letz-dance:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-03T12:11:12.514Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 Nov 2020 12:11:12 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1154","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-03T12:11:12.516Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/letz-dance  
+ 
+[debug] [2020-11-03T12:11:42.542Z] Server Error. ETIMEDOUT
+[debug] [2020-11-03T12:11:43.236Z] FirebaseError: Server Error. ETIMEDOUT
+    at Request._callback (/usr/local/lib/node_modules/firebase-tools/lib/api.js:32:31)
+    at self.callback (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:198:13)
+    at Request.EventEmitter.emit (domain.js:448:20)
+    at Timeout.<anonymous> (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:851:16)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+[error] 
+[error] Error: Failed to get Firebase project letz-dance. Please make sure the project exists and your account has permission to access it.
+[debug] [2020-11-03T12:12:43.869Z] ----------------------------------------------------------------------
+[debug] [2020-11-03T12:12:43.871Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-11-03T12:12:43.872Z] CLI Version:   8.12.1
+[debug] [2020-11-03T12:12:43.872Z] Platform:      darwin
+[debug] [2020-11-03T12:12:43.872Z] Node Version:  v10.16.0
+[debug] [2020-11-03T12:12:43.873Z] Time:          Tue Nov 03 2020 17:42:43 GMT+0530 (India Standard Time)
+[debug] [2020-11-03T12:12:43.873Z] ----------------------------------------------------------------------
+[debug] [2020-11-03T12:12:43.873Z] 
+[debug] [2020-11-03T12:12:43.885Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-03T12:12:43.886Z] > authorizing via signed-in user
+[debug] [2020-11-03T12:12:43.886Z] [iam] checking project letz-dance for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-03T12:12:43.891Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/letz-dance:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-11-03T12:12:45.468Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 Nov 2020 12:12:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1149","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-03T12:12:45.471Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/letz-dance  
+ 
+[debug] [2020-11-03T12:13:15.481Z] Server Error. ETIMEDOUT
+[debug] [2020-11-03T12:13:15.937Z] FirebaseError: Server Error. ETIMEDOUT
+    at Request._callback (/usr/local/lib/node_modules/firebase-tools/lib/api.js:32:31)
+    at self.callback (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:198:13)
+    at Request.EventEmitter.emit (domain.js:448:20)
+    at Timeout.<anonymous> (/usr/local/lib/node_modules/firebase-tools/node_modules/request/request.js:851:16)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+[error] 
+[error] Error: Failed to get Firebase project letz-dance. Please make sure the project exists and your account has permission to access it.

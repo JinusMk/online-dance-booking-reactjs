@@ -60,8 +60,8 @@ body{
                 &.user-avatar{
                     margin-bottom: 3px;
                     border: 2px solid $color_info_text;
-                    position: relative;
-                    top: 1px;
+                    // position: relative;
+                    // top: 1px;
                     border-radius: 50%;
                     &.active{
                         border: 2px solid $color_primary;
