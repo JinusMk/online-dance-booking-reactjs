@@ -93,11 +93,13 @@ function EditProfile(props){
                         Promise.all([promise1, promise2])
                         .then((values) => {
                             setEditLoader(false)
+                            // console.log('values promise', values);
                             toastFlashMessage('Profile updated successfully', 'success')
                             props.history.push('/profile')
                         })
                         .catch(error => {
                             setEditLoader(false)
+                            // console.log('error', error)
                             if(error.message){
                                 toastFlashMessage(`${error.message}`, 'error')
                             }
@@ -110,11 +112,13 @@ function EditProfile(props){
                 Promise.all([promise1, promise2])
                 .then((values) => {
                     setEditLoader(false)
+                    // console.log('values promise', values);
                     toastFlashMessage('Profile updated successfully', 'success')
                     props.history.push('/profile')
                 })
                 .catch(error => {
                     setEditLoader(false)
+                    // console.log('error', error)
                     if(error.message){
                         toastFlashMessage(`${error.message}`, 'error')
                     }
