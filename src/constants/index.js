@@ -319,3 +319,22 @@ export const USER_AUTH_ERRORCODE = {
         maxLength: 15
     }
 }
+
+export const privacyPolicyData = [
+  {
+    title: 'Information that is gathered from visitors',
+    content: `In common with other websites, log files are stored on the web server saving details such as the visitor's IP address, browser type, referring page and time of visit. <br/><br/>Cookies may be used to remember visitor preferences when interacting with the website. <br/><br/>Where registration is required, the visitor's email, phone number, and a username will be stored on the server.`
+  },
+  {
+    title: 'How the Information is used',
+    content: `The information is used to enhance the vistor's experience when using the website to display personalised content and possibly advertising. <br/><br/>E-mail addresses, and phone numbers will not be sold, rented or leased to 3rd parties.<br/><br/>E-mail, SMS and WhatsApp may be sent to inform you of news of our services or offers by us or our affiliates.`
+  },
+  {
+    title: 'Visitor Options',
+    content: `If you have subscribed to one of our services, you may unsubscribe by following the instructions which are included in e-mail that you receive.<br/><br/>You may be able to block cookies via your browser settings but this may prevent you from access to certain features of the website.`
+  },
+  {
+    title: 'Cookies',
+    content: `Cookies are small digital signature files that are stored by your web browser that allow your preferences to be recorded when visiting the website. Also they may be used to track your return visits to the website.<br/><br/>3rd party advertising companies may also use cookies for tracking purposes.`
+  }
+]

@@ -1,0 +1,54 @@
+@import 'variable';
+
+body{
+    .privacy-policy-section{
+        .privacy-policy-container{
+            padding: 0;
+            .privacy-content-blk{
+                padding: 24px 16px;
+                border-bottom: 1px solid $color_FFE5E9;
+                .heading2{
+                    margin-bottom: 16px;
+                }
+                &:first-child{
+                    padding-top: 16px;
+                }
+            }
+            .contact-us-blk{
+                text-align: center;
+                padding-top: 24px;
+            }
+        }
+    }
+}
+
+@media (min-width: 960px){
+    body{
+        .privacy-policy-section{
+            .privacy-policy-container{
+                .privacy-content-blk{
+                    padding: 64px 0;
+                    margin: 0 150px;
+                    &:first-child{
+                        padding-top: 64px;
+                    }
+                }
+                .contact-us-blk{
+                    padding-top: 64px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1279px){
+    body{
+        .privacy-policy-section{
+            .privacy-policy-container{
+                .privacy-content-blk{
+                    margin: 0 200px;
+                }
+            }
+        }
+    }
+}

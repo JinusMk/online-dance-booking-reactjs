@@ -8,9 +8,9 @@ import { imageBasePath } from '../../../constants';
 
 export default function DanceHistory(props){
     const [dances, setDances] = useState({
-        [moment()] : [{id: 1, img: require('../../../assets/images/zumba_logo_card.svg'),title: 'Zumba', isFinished: false}],
-        [moment().subtract(2, 'day')]: [{id: 1, img: require('../../../assets/images/bollywood_logo_card.svg'),title: 'Bollywood', isFinished: true, review: 4.5, time: '10.00 AM'}, {id: 1, img: require('../../../assets/images/zumba_logo_card.svg'),title: 'Zumba', isFinished: true, time: '6.00 PM'}],
-        [moment().subtract(4, 'day')]: [{id: 1, img: require('../../../assets/images/bollywood_logo_card.svg'),title: 'Bollywood', isFinished: true, review: null, time: '6.00 PM'}]
+        // [moment()] : [{id: 1, img: require('../../../assets/images/zumba_logo_card.svg'),title: 'Zumba', isFinished: false}],
+        // [moment().subtract(2, 'day')]: [{id: 1, img: require('../../../assets/images/bollywood_logo_card.svg'),title: 'Bollywood', isFinished: true, review: 4.5, time: '10.00 AM'}, {id: 1, img: require('../../../assets/images/zumba_logo_card.svg'),title: 'Zumba', isFinished: true, time: '6.00 PM'}],
+        // [moment().subtract(4, 'day')]: [{id: 1, img: require('../../../assets/images/bollywood_logo_card.svg'),title: 'Bollywood', isFinished: true, review: null, time: '6.00 PM'}]
     })
     return(
         <section className="dance-history-section">

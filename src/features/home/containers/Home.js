@@ -19,7 +19,7 @@ export default function Home(props){
     }, [])
     return(
         <section className="home-section">
-            <Container className="home-container">
+            <Container maxWidth={false} className="home-container">
                 <Introduction />
                 <Suspense fallback={<></>}>
                     <UpComingClasses />

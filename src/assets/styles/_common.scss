@@ -325,11 +325,14 @@ body{
         border: 1px solid $color_light_gray;
         height: 100%;
         box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
         .content-block{
             padding: 16px;
             border-bottom: 1px solid $color_light_gray;
-            min-height: 150px;
-            box-sizing:border-box; 
+            box-sizing:border-box;
+            flex-grow: 1; 
             .img-block{
                 margin-bottom: 16px;
                 .quote-icon{
@@ -694,6 +697,7 @@ body{
                 border: none;
                 box-shadow: none;
                 margin: 0 -16px;
+                display: block;
                 .content-block{
                     padding-top: 0;
                     min-height: unset;

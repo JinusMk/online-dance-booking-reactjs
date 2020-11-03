@@ -3,6 +3,7 @@ import Help from './containers/Help'
 import EditProfile from './containers/EditProfile'
 import DanceHistory from './containers/DanceHistory'
 import { pageLayoutHoc } from '../../hocs'
+import PrivacyPolicy from './containers/PrivacyPolicy';
 
 export const profileRoutes = [
     {
@@ -24,5 +25,10 @@ export const profileRoutes = [
         path: '/dance-history',
         component: DanceHistory,
         key: 'DanceHistory'
+    },
+    {
+        path: '/privacy-policy',
+        component: PrivacyPolicy,
+        key: 'privacy-policy'
     },
 ]
