@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import { Hidden, BottomNavigation, BottomNavigationAction } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import { useHistory, useLocation } from "react-router-dom";
 import { connect } from 'react-redux'
 import { imageBasePath } from '../constants';
@@ -7,6 +8,7 @@ import { imageBasePath } from '../constants';
 function BottomNavigationComponent(props){
     const [value, setValue] = useState(null);
     const [userImage, setUserImage] = useState(null)
+    const [imgLoader, setImgLoader] = useState(true)
     let history = useHistory();
     let location = useLocation();
     useEffect(() => {
@@ -37,7 +39,7 @@ function BottomNavigationComponent(props){
                 >
                     <BottomNavigationAction onClick={() => { setValue(0); navigateTo("/");}} label="HOME" icon={(location.pathname === '/' || location.pathname == '/home') ? <><img src={`${imageBasePath}home_icon_active.svg`}/><img src={`${imageBasePath}home_icon.svg`} style={{display: 'none'}}/></> : <img src={`${imageBasePath}home_icon.svg`} />}/>
                     <BottomNavigationAction onClick={() => {setValue(1); navigateTo("/schedule")}} label="SCHEDULE" icon={location.pathname === '/schedule' ? <img src={`${imageBasePath}schedule_icon_active.svg`} /> : <><img src={`${imageBasePath}schedule_icon.svg`} /><img src={`${imageBasePath}schedule_icon_active.svg`} style={{display: 'none'}}/></>}/>
-                    <BottomNavigationAction onClick={() => {setValue(2); navigateTo("/profile")}} label="YOU" icon={userImage ? <img src={userImage} className={`user-avatar ${location.pathname === '/profile' ? 'active': ''}`}/> : location.pathname === '/profile' ?  <img src={`${imageBasePath}profile_icon_active.svg`} /> : <><img src={`${imageBasePath}profile_icon.svg`} /><img src={`${imageBasePath}profile_icon_active.svg`} style={{display: 'none'}}/></>}/>
+                    <BottomNavigationAction onClick={() => {setValue(2); navigateTo("/profile")}} label="YOU" icon={userImage ? imgLoader ? <><Skeleton variant="circle" width={26} height={26}/><img src={userImage} style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/></>:<img src={userImage} className={`user-avatar ${location.pathname === '/profile' ? 'active': ''}`}/> : location.pathname === '/profile' ?  <img src={`${imageBasePath}profile_icon_active.svg`} /> : <><img src={`${imageBasePath}profile_icon.svg`} /><img src={`${imageBasePath}profile_icon_active.svg`} style={{display: 'none'}}/></>}/>
             </BottomNavigation>
         </Hidden>
     )
