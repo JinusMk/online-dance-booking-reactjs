@@ -1,12 +1,10 @@
 import React, { useEffect,useState } from 'react'
 import { Hidden, BottomNavigation, BottomNavigationAction } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
 import { useHistory, useLocation } from "react-router-dom";
 import { imageBasePath } from '../constants';
 
 function BottomNavigationComponent(props){
     const [value, setValue] = useState(null);
-    const [userImage, setUserImage] = useState(null)
     let history = useHistory();
     let location = useLocation();
     useEffect(() => {
@@ -17,12 +15,7 @@ function BottomNavigationComponent(props){
         }else if (location.pathname == '/profile'){
             setValue(2)
         }
-        if(props.isLoggedIn && props.userInfo){
-            setUserImage(props.userInfo.photoURL ? props.userInfo.photoURL : null)
-        }else{
-            setUserImage(null)
-        }
-    }, [location.pathname, props.isLoggedIn, props.userInfo])
+    }, [location.pathname])
     const navigateTo = (location) => {
         history.push(location)
     }
