@@ -50,7 +50,7 @@ export default function ReviewCard(props){
 function ReviewInfo(props){
     const { review, type, handleOpen } = props
     return(
-        <div className={`review-card ${review.media ? 'video': ''}`} onClick={(e) => props.type == "datail" ? e.preventDefault() : handleOpen()}>
+        <div className={`review-card ${review.media ? 'video': ''}`} onClick={(e) => (props.type == "detail" || props.page == "detail") ? e.preventDefault() : handleOpen()}>
             <div className="content-block">
                 {review.media ? null : <>
                     <div className="img-block">
