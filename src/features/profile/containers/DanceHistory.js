@@ -15,7 +15,7 @@ export default function DanceHistory(props){
     return(
         <section className="dance-history-section">
             <Header title="Dance history" onBack={() => props.history.push('/profile')}/>
-            <Container className="dance-history-container">
+            {/* <Container className="dance-history-container">
                 {
                     Object.keys(dances).map((item, index) => <div key={index} className="dance-history-item-wrapper">
                         <h3 className="heading2 heading">{moment(item).format('DD MMM')}</h3>
@@ -30,7 +30,7 @@ export default function DanceHistory(props){
                         <p className="paragraph">This is not the end, my friend</p>
                     </div>
                 }
-            </Container>
+            </Container> */}
         </section>
     )
 }
