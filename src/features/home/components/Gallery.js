@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, lastWeekRecapVideos } from '../../../constants'
 import Skeleton from '@material-ui/lab/Skeleton';
+import { imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Gallery(props){
@@ -29,13 +30,21 @@ export default function Gallery(props){
 
 function GalleryItem(props){
     const { recap } = props
+    const [play, setPlay] = useState(false)
+    const [imgLoader, setImgLoader] = useState(true)
     return(
         <div className="gallery-item">
-            <video height="164" poster={recap.img} controls className="custom-video">
+            {
+                play ? <video height="170" poster={recap.img} controls className="custom-video" autoPlay>
                 <source src={recap.media} type="video/mp4" />
                 <source src={recap.media} type="video/ogg" />
                 Your browser does not support the video tag.
-            </video>
+            </video> : <div className="img-blk">
+                {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={170} /></div> : null}
+                    <img src={recap.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                    <img src={`${imageBasePath}play_icon.svg`} className="play-icon" onClick={() => setPlay(true)}/>
+                </div>
+            }
             <div className="class-info">
                 <h3 className="heading3"><span style={{textTransform: 'capitalize'}}>{`${recap.category}`}</span>{` dance for all levels`}</h3>
                 <p className="paragraph">{`${recap.participants} dancers`}</p>
