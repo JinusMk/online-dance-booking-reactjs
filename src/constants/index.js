@@ -177,7 +177,7 @@ export const instructorsData = [
   },
   {
     id: "",
-    name: 'Deena',
+    name: 'Tony',
     qualification: 'Award winning Choreographer ', 
     experience: '9', 
     rating: '4.5', 
@@ -188,7 +188,7 @@ export const instructorsData = [
   },
   {
     id: "",
-    name: 'Deena',
+    name: 'Tony',
     qualification: 'Award winning Choreographer ', 
     experience: '9', 
     rating: '4.5', 
@@ -222,7 +222,7 @@ export const lastWeekRecapVideos = [
     id: '',
     img: `${imageBasePath}hip-hop_logo_2.svg`,
     category: 'hip-hop',
-    instructor: 'Deena',
+    instructor: 'Tony',
     participants: '12',
     date: '15 Oct 2020',
     media: `${imageBasePath}hip-hop_recap_1.mp4`
@@ -249,7 +249,7 @@ export const lastWeekRecapVideos = [
     id: '',
     img: `${imageBasePath}hip-hop_logo_1.svg`,
     category: 'hip-hop',
-    instructor: 'Deena',
+    instructor: 'Tony',
     participants: '16',
     date: '16 Oct 2020',
     media: `${imageBasePath}hip-hop_recap_2.mp4`
@@ -338,3 +338,11 @@ export const privacyPolicyData = [
     content: `Cookies are small digital signature files that are stored by your web browser that allow your preferences to be recorded when visiting the website. Also they may be used to track your return visits to the website.<br/><br/>3rd party advertising companies may also use cookies for tracking purposes.`
   }
 ]
+
+export const participantsCount = {
+  'zumba' : 102,
+  'bollywood' : 93,
+  'hip-hop': 75,
+  'bollywood-kids': 126,
+  'hiphop-kids': 97
+}

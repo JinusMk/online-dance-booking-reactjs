@@ -29,7 +29,7 @@ function BookingSuccess(props){
                         <p className="heading3">{`Your ${selectedDance.title} class is booked.`}</p>
                         <div className="reminder-text">
                             <img src={`${imageBasePath}booking_success_tick.svg`}/>
-                            <p className="paragraph">We’ll remind you 10 minutes before your class begins.</p>
+                            <p className="paragraph">Please check your mail for the class link and we will remind you 10 minutes before your class begins</p>
                         </div>
                     </div>
                     <Suspense fallback={<></>}>
@@ -48,7 +48,7 @@ function BookingSuccess(props){
                     </div>
                     <div className="need-help">
                         <p className="secondaryText">NEED HELP ON THIS BOOKING ?</p>
-                        <p className="paragraph link"><a>Contact help@letzdance.co</a></p>
+                        <p className="paragraph link"><a>Contact admin@letzdance.co</a></p>
                     </div>
             </Container>}
         </section>

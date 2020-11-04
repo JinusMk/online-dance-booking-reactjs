@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 export default function LastWeekRecap(props){
     return(
          <div className="last-week-recap block">
-            <h3 className="heading2 title">Last week recap</h3>
+            <h3 className="heading2 title">Last month recap</h3>
             <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
