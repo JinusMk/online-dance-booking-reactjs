@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
-import { Gallery, DanceInfo } from '../components'
+import {  DanceInfo } from '../components'
 import { instructorsData } from '../../../constants';
 import { globalGetService } from '../../../utils/globalApiServices';
 import '../../../assets/styles/dance-detail-module.scss'
@@ -50,7 +50,7 @@ export default function DanceDetail(props){
         <section className="dance-detail-section">
             <Header onBack={() => props.history.push('/')} title={category}/>
             <Container className="dance-detail-container">
-                    <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/>
+                    {/* <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/> */}
                     <DanceInfo dance={danceInfo} category={category} loader={loader}/>
                         <Suspense fallback={<></>}>
                         {loader ? '' : <>

@@ -4,7 +4,7 @@ import { Introduction } from '../components'
 import '../../../assets/styles/home-module.scss'
 
 const WhoWeAre = React.lazy(() => import('../components/WhoWeAre'));
-const LastWeekRecap = React.lazy(() => import('../components/LastWeekRecap'));
+// const LastWeekRecap = React.lazy(() => import('../components/LastWeekRecap'));
 const ExpertInstructors = React.lazy(() => import('../components/ExpertInstructors'));
 const WhyLetzdance = React.lazy(() => import('../components/WhyLetzdance'));
 const HowWorks = React.lazy(() => import('../components/HowWorks'));
@@ -26,11 +26,12 @@ export default function Home(props){
                 </Suspense>
                 <Suspense fallback={<></>}>
                     <WhoWeAre />
-                    <LastWeekRecap />
-                </Suspense>
-                <Suspense fallback={<></>}>
+                    {/* <LastWeekRecap /> */}
                     <Reviews/>
                 </Suspense>
+                {/* <Suspense fallback={<></>}>
+                    <Reviews/>
+                </Suspense> */}
                 <Suspense fallback={<></>}>
                     <WhyLetzdance />
                     <ExpertInstructors />

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, imageBasePath } from '../../../constants'
-import { DanceFormCard } from './index'
 import { isMobile } from 'react-device-detect'
 import { globalGetService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { UPDATE_DANCEFORMS } from '../actions'
 import { connect } from 'react-redux'
 import "react-multi-carousel/lib/styles.css";
+
+const DanceFormCard = lazy(() => import('./DanceFormCard'))
 
 function UpComingClasses(props){
     const [loader, setLoader] = useState(true)
@@ -34,7 +35,7 @@ function UpComingClasses(props){
     }, [])
     return(
         <div className="upcoming-classes block">
-            <h3 className="heading2 title">Upcoming dances <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
+            <h3 className="heading2 title">Upcoming classes <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
             {
                 loader ? <Carousel 
                     responsive={responsiveCarousel}
@@ -63,7 +64,7 @@ function UpComingClasses(props){
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {Object.keys(dances).map((key, index) => <DanceFormCard key={index} dance={dances[key]}/>)}
+                {Object.keys(dances).map((key, index) => <Suspense fallback={<></>}><DanceFormCard key={index} dance={dances[key]}/></Suspense>)}
                     <div className="see-full-schedule-wrapper textCenter" onClick={() => history.push('/schedule')}>
                         <div className="image-wrapper">
                             <img className="schedule-icon" src={`${imageBasePath}schedule_icon_outlined.svg`} />

@@ -5,9 +5,9 @@ import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
 
 const introductionData =[
-    {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Stay home, Get fit'},
-    {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance online, Have fun'},
-    {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Launching Kids Online Dancing Batch'},
+    {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
+    {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance Online - Learn from Expert Instructors'},
+    {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
 ]
 
 export default function Introduction(props){
