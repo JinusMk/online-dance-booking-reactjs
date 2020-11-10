@@ -75,7 +75,7 @@ export default function UserInformationForm(props){
     return(
         <div className="user-information-form-wrapper" id="user-form">
             <div className="form-title">
-                <h3 className="heading3">Or, enter your details</h3>
+                <h3 className="heading3">Enter your details</h3>
                 <p className="paragraph">Your account will be automatically created on Letzdance</p>
             </div>
             <form onSubmit={handleSubmit}>

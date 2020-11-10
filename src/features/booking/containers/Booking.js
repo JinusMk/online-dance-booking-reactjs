@@ -77,7 +77,7 @@ function Booking(props){
     }
     return(
         <section className="booking-section">
-            <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Just one more step"}/>
+            <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Booking details"}/>
             <Container className="booking-container" style={bookingLoader ? { opacity: 0.2} :{}}>
                 <p className="secondaryText metaText">SELECTED CLASS</p>
                 { loader ? <BookingLoader /> : <DanceInformationCard dance={selectedDance} category={category}/>}
@@ -98,7 +98,7 @@ function Booking(props){
                 <Suspense fallback={<></>}>
                     { props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: 
                     <>
-                        <div className="login-button-wrapper">
+                        <div className="login-button-wrapper hidden">
                             <p className="secondaryText">HAVE AN ACCOUNT ?</p>
                             <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
                         </div>
