@@ -5,24 +5,30 @@ import { PhoneAuth, EmailAuth } from './index'
 import { connect } from 'react-redux'
 import { isMobile } from 'react-device-detect'
 import { toastFlashMessage } from '../utils'
+import { useHistory } from 'react-router-dom'
 
 function AuthPopup(props){
     const [state, setState] = useState({
         bottom: false,
         right: false
     })
-    const [user, setUser] = useState('')
     const [phoneAuth, setPhoneAuth] = useState(false)
     const [emailAuth, setEmailAuth] = useState(false)
+    let history = useHistory()
+
     useEffect(() => {
         if(props.isLoggedIn && props.type!="verifyPhone"){
             props.handleClose()
         }
         if(props.open){
-            setEmailAuth(false)
             if(props.type == "verifyPhone"){
                 setPhoneAuth(true)
+                setEmailAuth(false)
+            }else if(props.type == "resetPassword"){
+                setEmailAuth(true)
+                setPhoneAuth(false)
             }else{
+                setEmailAuth(false)
                 setPhoneAuth(false)
             }
         }
@@ -31,6 +37,9 @@ function AuthPopup(props){
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
+        }
+        if(props.type == "resetPassword" && !open){
+            history.push(`/profile`)
         }
         props.handleClose(open)
         setState({ ...state, [anchor]: open });
@@ -69,8 +78,13 @@ function AuthPopup(props){
         if(props.type == "verifyPhone"){
             props.handleClose(user)
             toastFlashMessage(`PONE NUMBER LINKED SUCCESSFULLY`, 'success')
-        }else{
+        }else if(props.type == "resetPassword"){
             toastFlashMessage(`YOU'RE NOW LOGGED IN`, 'success')
+            history.push(`/profile`)
+        }else{
+            if(user != "forgot-password"){
+                toastFlashMessage(`YOU'RE NOW LOGGED IN`, 'success')
+            }
             props.handleClose()
         }
     }
@@ -94,7 +108,7 @@ function AuthPopup(props){
                                 }else{
                                     setPhoneAuth(false)
                                 }
-                            }} handleSuccess={handleLoginSuccess} phone={props.phone} type={props.type}/> : emailAuth ? <EmailAuth handleBack={() => setEmailAuth(false)} handleSuccess={handleLoginSuccess}/> : <>
+                            }} handleSuccess={handleLoginSuccess} phone={props.phone} type={props.type}/> : emailAuth ? <EmailAuth handleBack={() => setEmailAuth(false)} handleSuccess={handleLoginSuccess} type={props.type}/> : <>
                                 <h2 className="heading2">Login</h2>
                                 <ul className="listUnstyled loginBtnGroup">
                                     <li>

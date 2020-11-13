@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { UPDATE_USERINFO } from '../../../shared_elements/actions'
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/profile-module.scss'
+import { useLocation } from 'react-router-dom'
 
 const ProfileNavigationList = lazy(() => import('../components/ProfileNavigationList'))
 const ContactUs = lazy(() => import('../../home/components/ContactUs'))
@@ -17,13 +18,26 @@ function Profile(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
     const [verifyPhone, setVerifyPhone] = useState(false)
     const [providerData, setProviderData] = useState([])
+    const [authAction, setAuthAction] = useState(false)
+    const [authMode, setAuthMode] = useState('')
+
+    let location = useLocation()
+
     useEffect(() => {
         if(props.isLoggedIn){
             setProviderData(props.userInfo.providerData)
         }else{
             setProviderData([])
-        }   
-    }, [props.isLoggedIn, props.userInfo])
+        }
+        if(location.search) {
+            const query = new URLSearchParams(location.search);
+            setAuthMode(query.get('mode') ? query.get('mode') : '')
+            setAuthAction(true)
+        }else{
+            setAuthAction(false)
+            setAuthMode('')
+        }
+    }, [props.isLoggedIn, props.userInfo, location])
     const logout = () => {
         if(window.confirm('Are you sure you want to logout ?')){
             firebase.auth().signOut()
@@ -83,9 +97,9 @@ function Profile(props){
                     <ContactUs />
                     {
                         <AuthPopup 
-                            open={openAuthPopup || verifyPhone}
+                            open={openAuthPopup || verifyPhone || authAction}
                             handleClose={handleCloseAuthPopup}
-                            type={verifyPhone ? "verifyPhone" : ''}
+                            type={verifyPhone ? "verifyPhone" : authAction ? authMode : ''}
                             phone={verifyPhone ? props.userInfo.phoneNumber : ''}
                         />
                     }

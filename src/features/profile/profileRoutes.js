@@ -12,6 +12,11 @@ export const profileRoutes = [
         key: 'profile'
     },
     {
+        path: '/profile/action',
+        component : pageLayoutHoc(Profile),
+        key: 'profile'
+    },
+    {
         path: '/help',
         component: Help,
         key: 'help'
