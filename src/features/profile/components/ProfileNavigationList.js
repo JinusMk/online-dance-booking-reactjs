@@ -5,7 +5,7 @@ import { imageBasePath } from '../../../constants';
 export default function ProfileNavigationList(props){
     return(
         <ul className="listUnstyled links">
-            <li className={props.isLoggedIn ? 'hidden' : ' hidden disabled'}>
+            <li className={props.isLoggedIn ? '' : ' disabled'}>
                 <p><Link to="/dance-history" className="heading2">Dance history</Link></p>
                 <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
             </li>
