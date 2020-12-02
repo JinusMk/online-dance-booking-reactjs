@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, reviewsData } from '../../../constants'
 import { ReviewCard } from './index'
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
+import { globalGetService } from '../../../utils/globalApiServices';
 
 export default function Reviews(props){
+    useEffect(() => {
+        globalGetService(`review-list`)
+        .then(response => {
+            
+        })
+    })
     return(
         <div className="reviews block">
             <h3 className="heading2 title">{props.category ? <><span style={{textTransform: 'capitalize'}}>{props.category}</span> dancers speak</>: 'Letzdancers speak'}</h3>

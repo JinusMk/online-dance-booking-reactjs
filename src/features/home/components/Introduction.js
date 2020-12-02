@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import Skeleton from '@material-ui/lab/Skeleton';
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
+import { globalGetService } from '../../../utils/globalApiServices';
 
 const introductionData =[
     {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
@@ -12,6 +13,14 @@ const introductionData =[
 
 export default function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
+    useEffect(() => {
+        globalGetService(`banners`)
+        .then(response => {
+            if(response.success === true){
+
+            }
+        })
+    }, [])
     return(
         <div className="introduction-blk">
             <Carousel 

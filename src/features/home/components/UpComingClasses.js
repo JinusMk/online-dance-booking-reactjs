@@ -68,7 +68,6 @@ function UpComingClasses(props){
                     <div className="see-full-schedule-wrapper textCenter" onClick={() => history.push('/schedule')}>
                         <div className="image-wrapper">
                             <img className="schedule-icon" src={`${imageBasePath}schedule_icon_outlined.svg`} />
-                            {/* <p className="heading1">{moment().format('D')}</p> */}
                             <p className="heading1">{currentDate}</p>
                         </div>
                         <h3 className="heading3">

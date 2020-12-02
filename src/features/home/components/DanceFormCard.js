@@ -26,18 +26,17 @@ export default function DanceFormCard(props){
                     <p className="heading3 cost"><span>₹{dance.cost_old}</span>₹{dance.cost}</p>
                     <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${instructorsData.find(instructor => instructor.category == danceCategory[dance.category_id]).name}`}</span></p>
                     <ul className="listInline">
-                        {/* {
-                            dance.slots.map((item, index) => (index < (dance.slots.length <= 3 ? 3 : 2)) &&  <li key={index}>
-                                <a className="primaryBtn round">{item.time}</a>
-                                <p className={item.status == "ALMOST FULL" ? "alert_red" : 'alert_orange'}>{item.status}</p>
+                        {
+                            dance.buttons.map((item, index) => (index < (dance.buttons.length <= 3 ? 3 : 2)) &&  <li key={index}>
+                                <a className="primaryBtn round">{item}</a>
+                                {/* <p className={item.status == "ALMOST FULL" ? "alert_red" : 'alert_orange'}>{item.status}</p> */}
                             </li>)
                         }
                         {
-                            dance.slots.length > 3 && <li key={2}>
-                                <a className="secondaryBtn round">+{dance.slots.length - 2} MORE</a>
+                            dance.buttons.length > 3 && <li key={2}>
+                                <a className="secondaryBtn round">+{dance.buttons.length - 2} MORE</a>
                             </li>
-                        } */}
-                        <li style={{width: '100%', padding: 0, margin: 0}}><a className="primaryBtn round" style={{borderRadius: 4}}>{`BOOK ${danceCategory[dance.category_id].toUpperCase()} CLASS`}</a></li>
+                        }
                     </ul>
                 </div>
             </div>
