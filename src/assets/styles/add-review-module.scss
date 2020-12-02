@@ -3,7 +3,52 @@ body{
     .add-review-section{
         .add-review-container{
             padding: 0;
-            
+            form{
+                .wrapper{
+                    padding: 24px 16px;
+                    border-bottom: 1px solid $color_FFE5E9;
+                    .subTitle{
+                        margin-bottom: 16px;
+                    }
+                }
+                .custom-rating{
+                    label{
+                        padding-right: 16px;
+                        img{
+                            width: 26px;
+                            height: 26px;
+                        }
+                    }
+                }
+                .description{
+                    border-bottom: none;
+                }
+                .dance-info{
+                    img{
+                        border-radius: 4px;
+                        margin-right: 16px;
+                    }
+                    .info{
+                        h3{
+                            color: $color_black;
+                            margin-bottom: 8px;
+                        }
+                        p{
+
+                        }
+                    }
+                }
+                .footer{
+                    padding: 12px 16px;
+                    margin: 0;
+                    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                    background: #fff;
+                    box-sizing: border-box;
+                }
+            }
         }
     }
 }
