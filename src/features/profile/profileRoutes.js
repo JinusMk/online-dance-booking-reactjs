@@ -4,6 +4,7 @@ import EditProfile from './containers/EditProfile'
 import DanceHistory from './containers/DanceHistory'
 import { pageLayoutHoc } from '../../hocs'
 import PrivacyPolicy from './containers/PrivacyPolicy';
+import AddReview from './containers/AddReview';
 
 export const profileRoutes = [
     {
@@ -34,6 +35,11 @@ export const profileRoutes = [
     {
         path: '/privacy-policy',
         component: PrivacyPolicy,
+        key: 'privacy-policy'
+    },
+    {
+        path: '/dance/:danceCategory/:danceId/review',
+        component: AddReview,
         key: 'privacy-policy'
     },
 ]
