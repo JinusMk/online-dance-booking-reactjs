@@ -13,14 +13,16 @@ function DanceHistory(props){
     const [dances, setDances] = useState({})
     
     useEffect(() => {
-        globalGetService(`dance-history`, { uid : props.userInfo.uid})
-        .then(response => {
-            if(response.success == true){
-                setDances(response.data)
-                setLoader(false)
-            }
-        })
-    }, [])
+        if(props.userInfo && props.userInfo.uid){
+            globalGetService(`dance-history`, { uid : props.userInfo.uid})
+            .then(response => {
+                if(response.success == true){
+                    setDances(response.data)
+                    setLoader(false)
+                }
+            })
+        }
+    }, [props.userInfo])
     return(
         <section className="dance-history-section">
             <Header title="Dance history" onBack={() => props.history.push('/profile')}/>
