@@ -2,9 +2,9 @@ import React from 'react'
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Grid } from '@material-ui/core';
 
-export default function BookingLoader(props){
+export default function DanceInformationLoader(props){
     return(
-        <div className="booking-skeleton-wrapper">
+        <div className="dance-information-loader">
             <Grid container spacing={2} style={{marginBottom: 8}}>
                     <Grid item xs={3}>
                         <Skeleton variant="rect" height={82} />

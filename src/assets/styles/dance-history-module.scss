@@ -3,6 +3,15 @@ body{
     .dance-history-section{
         .dance-history-container{
             padding: 0;
+            .dance-history-laoder{
+                padding: 16px;
+                .dance-history-item{
+                    border-radius: 8px;
+                    box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                    border: 1px solid $color_light_gray;
+                    margin-bottom: 8px;
+                }
+            }
             .dance-history-item-wrapper{
                 padding: 16px;
                 .heading{

@@ -1,9 +1,8 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react'
-import { Header, DanceInformationCard } from  '../../../shared_elements'
+import { Header, DanceInformationCard, DanceInformationLoader } from  '../../../shared_elements'
 import { Container, Grid, CircularProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
-import { BookingLoader } from '../components'
 import { connect } from 'react-redux'
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
@@ -80,7 +79,7 @@ function Booking(props){
             <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Booking details"}/>
             <Container className="booking-container" style={bookingLoader ? { opacity: 0.2} :{}}>
                 <p className="secondaryText metaText">SELECTED CLASS</p>
-                { loader ? <BookingLoader /> : <DanceInformationCard dance={selectedDance} category={category}/>}
+                { loader ? <DanceInformationLoader /> : <DanceInformationCard dance={selectedDance} category={category}/>}
                 <Grid container spacing={0} className="dance-attributes">
                     <Grid item xs={7}>
                         <div className="timeWrapper">

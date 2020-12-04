@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Grid, TextField } from '@material-ui/core';
-import { Header } from '../../../shared_elements';
-import '../../../assets/styles/add-review-module.scss'
-import { globalGetService } from '../../../utils/globalApiServices';
 import { Skeleton, Rating} from '@material-ui/lab';
-import { danceCategory, imageBasePath, instructorsData } from '../../../constants';
+import { Header } from '../../../shared_elements';
+import { globalGetService } from '../../../utils/globalApiServices';
+import { imageBasePath, instructorsData } from '../../../constants';
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils';
 import { globalPostService } from '../../../utils/globalApiServices'
+import '../../../assets/styles/add-review-module.scss'
 
 function AddReview(props){
     const [danceInfo, setDanceInfo] = useState({})
@@ -21,6 +21,7 @@ function AddReview(props){
         dance_id: props.match.params.danceId,
         uid: ''
     })
+    const [category, setCategory] = useState(props.match.params.danceCategory)
     const [error, setError] = useState({})
     const [reviewLoader, setReviewLoader] = useState(false)
     const [formWidth, setFormWidth] = useState(0)
@@ -64,9 +65,16 @@ function AddReview(props){
             }
         })
     }
+    const handleGoBack = () => {
+        if(props.location.state && props.location.state.goBackPage){
+            props.history.push(props.location.state.goBackPage)
+        }else{
+            props.history.push('/dance-history')
+        }
+    }
     return(
         <section className="add-review-section">
-            <Header onBack={() => props.history.push('/dance-history')} title="Review class"/>
+            <Header onBack={handleGoBack} title="Review class"/>
             <Container className="add-review-container">
                 {
                     loader ? 'Loading...' : <form onSubmit={handleSubmit} id="review-form">
@@ -74,7 +82,7 @@ function AddReview(props){
                         <Grid item xs={12}>
                             <div className="dance-info wrapper flexCentered">
                                 {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
-                                <img src={`${imageBasePath}${danceCategory[danceInfo.category_id]}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                                <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                                 <div className="info">
                                     <h3 className="heading2">{danceInfo.title}</h3>
                                     <p className="heading3">{`${moment(danceInfo.event_date).format('DD MMM')}, ${danceInfo.class_start_time}`}</p>
@@ -99,7 +107,7 @@ function AddReview(props){
                         <Grid item xs={12}>
                             <div className="instructor-rating wrapper">
                                 {/* <h3 className="heading3">{`Rate the instructor  |  ${danceInfo.instructor.name}`}</h3> */}
-                                <h3 className="heading3 subTitle">{`Rate the instructor  |  ${instructorsData.find(instructor => instructor.category == danceCategory[danceInfo.category_id]).name}`}</h3>
+                                <h3 className="heading3 subTitle">{`Rate the instructor  |  ${instructorsData.find(instructor => instructor.category == category).name}`}</h3>
                                 <Rating
                                     name="customized-empty2"
                                     // defaultValue={4}

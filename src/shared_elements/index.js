@@ -9,6 +9,7 @@ import DanceAlert from './DanceAlert'
 import AddToHomeScreen from './AddToHomeScreen'
 import ToastNotify from './ToastNotify'
 import AuthVerifyBlock from './AuthVerifyBlock'
+import DanceInformationLoader from './DanceInformationLoader'
 
 export {
     Header,
@@ -21,5 +22,6 @@ export {
     DanceAlert,
     AddToHomeScreen,
     ToastNotify,
-    AuthVerifyBlock
+    AuthVerifyBlock,
+    DanceInformationLoader
 }
