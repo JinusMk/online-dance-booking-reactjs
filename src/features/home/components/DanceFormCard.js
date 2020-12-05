@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Skeleton from '@material-ui/lab/Skeleton';
+import { isMobile } from 'react-device-detect'
 import { imageBasePath, danceCategory, instructorsData } from '../../../constants';
 
 export default function DanceFormCard(props){
@@ -10,7 +11,7 @@ export default function DanceFormCard(props){
     return(
         <div className="card" onClick={() => history.push(`/dance/${danceCategory[dance.category_id]}`)}>
                 <div className="top-blk">
-                    {imgLoader ? <Skeleton variant="rect" height={182} className="img-loader"/> : null}
+                    {imgLoader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : null}
                     <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <span className="secondaryText">Live & interactive</span>
                     <div className="title-wrapper">

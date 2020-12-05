@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Grid, TextField } from '@material-ui/core';
 import { Skeleton, Rating} from '@material-ui/lab';
-import { Header } from '../../../shared_elements';
+import { Header, DanceInformationLoader } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
 import { imageBasePath, instructorsData } from '../../../constants';
 import moment from 'moment'
@@ -76,69 +76,72 @@ function AddReview(props){
         <section className="add-review-section">
             <Header onBack={handleGoBack} title="Review class"/>
             <Container className="add-review-container">
-                {
-                    loader ? 'Loading...' : <form onSubmit={handleSubmit} id="review-form">
-                     <Grid container className="">
-                        <Grid item xs={12}>
-                            <div className="dance-info wrapper flexCentered">
-                                {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
-                                <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
-                                <div className="info">
-                                    <h3 className="heading2">{danceInfo.title}</h3>
-                                    <p className="heading3">{`${moment(danceInfo.event_date).format('DD MMM')}, ${danceInfo.class_start_time}`}</p>
-                                </div>
+                { <form onSubmit={handleSubmit} id="review-form">
+                    {
+                        loader ? <DanceInformationLoader /> : <>
+                            <Grid container className="">
+                                <Grid item xs={12}>
+                                    <div className="dance-info wrapper flexCentered">
+                                        {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
+                                        <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                                        <div className="info">
+                                            <h3 className="heading2">{danceInfo.title}</h3>
+                                            <p className="heading3">{`${moment(danceInfo.event_date).format('DD MMM')}, ${danceInfo.class_start_time}`}</p>
+                                        </div>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div className="dance-rating wrapper">
+                                        <h3 className="heading3 subTitle">{`Rate the class  |  ${danceInfo.title}`}</h3>
+                                        <Rating
+                                            name="customized-empty1"
+                                            // defaultValue={4}
+                                            // precision={0.5}
+                                            value={reviewData.dance_rating}
+                                            onChange={(e, newValue) => handleChange('dance_rating', newValue)}
+                                            emptyIcon={<img src={`${imageBasePath}star-unfilled-icon.svg`} className="emptyIcon"/>}
+                                            icon={<img src={`${imageBasePath}star-filled-icon.svg`} className="filledIcon"/>}
+                                            className="custom-rating"
+                                        />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div className="instructor-rating wrapper">
+                                        {/* <h3 className="heading3">{`Rate the instructor  |  ${danceInfo.instructor.name}`}</h3> */}
+                                        <h3 className="heading3 subTitle">{`Rate the instructor  |  ${instructorsData.find(instructor => instructor.category == category).name}`}</h3>
+                                        <Rating
+                                            name="customized-empty2"
+                                            // defaultValue={4}
+                                            // precision={0.5}
+                                            value={reviewData.instructor_rating}
+                                            onChange={(e, newValue) => handleChange('instructor_rating', newValue)}
+                                            emptyIcon={<img src={`${imageBasePath}star-unfilled-icon.svg`} className="emptyIcon"/>}
+                                            icon={<img src={`${imageBasePath}star-filled-icon.svg`} className="filledIcon"/>}
+                                            className="custom-rating"
+                                        />
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div className="description wrapper">
+                                        <h3 className="heading3 subTitle">Say something about the class</h3>
+                                        <div className="inputGroup">
+                                            <TextField 
+                                                value={reviewData.description}
+                                                onChange={(e) => handleChange('description',e.target.value)}
+                                                error={error.description ? true : false}
+                                                placeholder="Tap to write"
+                                                multiline={true}
+                                                rows={4}
+                                            />
+                                        </div>
+                                    </div>
+                                </Grid>
+                            </Grid>
+                            <div className="footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
+                                <p><a onClick={handleSubmit} className={`primaryBtn ${(reviewLoader || !(reviewData.instructor_rating && reviewData.dance_rating ) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >SUBMIT RATING</a></p>
                             </div>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <div className="dance-rating wrapper">
-                                <h3 className="heading3 subTitle">{`Rate the class  |  ${danceInfo.title}`}</h3>
-                                <Rating
-                                    name="customized-empty1"
-                                    // defaultValue={4}
-                                    // precision={0.5}
-                                    value={reviewData.dance_rating}
-                                    onChange={(e, newValue) => handleChange('dance_rating', newValue)}
-                                    emptyIcon={<img src={`${imageBasePath}star-unfilled-icon.svg`} className="emptyIcon"/>}
-                                    icon={<img src={`${imageBasePath}star-filled-icon.svg`} className="filledIcon"/>}
-                                    className="custom-rating"
-                                />
-                            </div>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <div className="instructor-rating wrapper">
-                                {/* <h3 className="heading3">{`Rate the instructor  |  ${danceInfo.instructor.name}`}</h3> */}
-                                <h3 className="heading3 subTitle">{`Rate the instructor  |  ${instructorsData.find(instructor => instructor.category == category).name}`}</h3>
-                                <Rating
-                                    name="customized-empty2"
-                                    // defaultValue={4}
-                                    // precision={0.5}
-                                    value={reviewData.instructor_rating}
-                                    onChange={(e, newValue) => handleChange('instructor_rating', newValue)}
-                                    emptyIcon={<img src={`${imageBasePath}star-unfilled-icon.svg`} className="emptyIcon"/>}
-                                    icon={<img src={`${imageBasePath}star-filled-icon.svg`} className="filledIcon"/>}
-                                    className="custom-rating"
-                                />
-                            </div>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <div className="description wrapper">
-                                <h3 className="heading3 subTitle">Say something about the class</h3>
-                                <div className="inputGroup">
-                                    <TextField 
-                                        value={reviewData.description}
-                                        onChange={(e) => handleChange('description',e.target.value)}
-                                        error={error.description ? true : false}
-                                        placeholder="Tap to write"
-                                        multiline={true}
-                                        rows={4}
-                                    />
-                                </div>
-                            </div>
-                        </Grid>
-                    </Grid>
-                    <div className="footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
-                        <p><a onClick={handleSubmit} className={`primaryBtn ${(reviewLoader || !(reviewData.instructor_rating && reviewData.dance_rating ) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >SUBMIT RATING</a></p>
-                    </div>
+                        </>
+                    }
                 </form>
                 }
             </Container>

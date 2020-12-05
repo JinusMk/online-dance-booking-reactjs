@@ -42,3 +42,12 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .class-detail-section{
+            .class-detail-container{
+                padding: 64px 250px 0;
+            }
+        }
+    }
+}

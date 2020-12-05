@@ -52,3 +52,12 @@ body{
         }
     }
 }
+@media (min-width: 960px){
+    body{
+        .add-review-section{
+            .add-review-container{
+                padding: 64px 250px 64px;
+            }   
+        }    
+    }
+}
