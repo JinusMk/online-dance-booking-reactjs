@@ -64,7 +64,7 @@ export default function TimeSlots(props){
                     {activeDateClasses && activeDateClasses.filter(dance => dance.slot == "evening").length ? <TimeSlotList title="EVENING" timeSlots={activeDateClasses.filter(dance => dance.slot == "evening")} category={category}/> : null}
                 </TabPanel>
             </div>
-            <div className="see-all-blk">
+            <div className="see-all-blk hidden">
                 <h3 className="heading3">Timings don’t suit you? </h3>
                 <p className="paragraph">Explore all dance options available on Letzdance</p>
                 <p><Link to="/schedule" className="secondaryBtn">SEE ALL DANCE TYPES</Link></p>

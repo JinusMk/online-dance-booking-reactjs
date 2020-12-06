@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel, reviewsData, imageBasePath } from '../../../constants'
+import { responsiveCarousel, reviewsData, imageBasePath, categorySlug } from '../../../constants'
 import { ReviewCard } from './index'
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
@@ -12,7 +12,7 @@ export default function Reviews(props){
     const [reviews, setReviews] = useState(reviewsData)
 
     useEffect(() => {
-        globalGetService(`review-list`)
+        globalGetService(`review-list`, props.category ? { category_id : categorySlug[props.category] } : {})
         .then(response => {
             if(response.success === true){
                 setReviews([...reviewsData, ...response.data.filter(item => item.description )])

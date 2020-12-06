@@ -153,7 +153,11 @@ body{
                         }   
                     }
                     .time-slots-tab-panel-wrapper{
-
+                        .time-slots-wrapper{
+                            &:last-child{
+                                margin-bottom: 0;
+                            }
+                        }
                     }
                 }
                 .see-all-blk{

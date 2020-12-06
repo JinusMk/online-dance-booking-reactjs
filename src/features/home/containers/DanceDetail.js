@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import {  DanceInfo } from '../components'
-import { instructorsData } from '../../../constants';
+import { instructorsData, categorySlug } from '../../../constants';
 import { globalGetService } from '../../../utils/globalApiServices';
 import '../../../assets/styles/dance-detail-module.scss'
 
@@ -12,13 +12,7 @@ const HowWorks = React.lazy(() => import('../components/HowWorks'));
 const ContactUs = React.lazy(() => import('../components/ContactUs'));
 const Reviews = React.lazy(() => import('../components/Reviews'));
 
-const categorySlug = {
-    'bollywood' : 1,
-    'hip-hop' : 2,
-    'zumba' : 3,
-    'bollywood-kids': 4,
-    'hiphop-kids': 5
-}
+
 
 export default function DanceDetail(props){
     const [ category, setCategory ] = useState('')
