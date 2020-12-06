@@ -20,6 +20,25 @@ body{
             .review-block{
                 padding: 16px;
                 border-bottom: 1px solid #FFE5E9;
+                .review-detail{
+                    .secondaryText{
+                        margin-bottom: 8px;
+                    }
+                    .rating{
+                        img, span{
+                            vertical-align: middle;
+                        }
+                        span{
+                            color: $color_primary
+                        }
+                        img{
+                            margin-right: 8px;
+                        }
+                    }
+                    .description{
+                        margin-top: 8px;
+                    }
+                }
                 .add-review-card-wrapper{
                     h3{
                         margin-bottom: 16px;
@@ -28,6 +47,22 @@ body{
                     border: 1px solid $color_light_gray;
                     box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
                     border-radius: 8px;
+                }
+            }
+            .payment-info{
+                padding: 16px;
+                border-bottom: 1px solid #FFE5E9;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
+                .heading3{
+                    .cost-old{
+                        text-decoration: line-through;
+                        color: $color_info_text;
+                        margin-right: 8px;
+                        font-size: $font14;
+                        font-weight: $regularFont;
+                    }
                 }
             }
             .need-help{

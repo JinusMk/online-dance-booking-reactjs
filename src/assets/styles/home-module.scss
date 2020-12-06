@@ -79,6 +79,7 @@ body{
                 .partially-visible-carousel-container{
                     .carousel-item{
                         .card{
+                            margin-bottom: 1px;
                             &.MuiSkeleton-root{
                                 border: 1px solid $color_light_gray;
                             }

@@ -7,12 +7,15 @@ import "react-multi-carousel/lib/styles.css";
 import { globalGetService } from '../../../utils/globalApiServices';
 
 export default function Reviews(props){
+    const [reviews, setReviews] = useState([])
     useEffect(() => {
         globalGetService(`review-list`)
         .then(response => {
-            
+            if(response.success === true){
+                setReviews(response.data)
+            }
         })
-    })
+    }, [])
     return(
         <div className="reviews block">
             <h3 className="heading2 title">{props.category ? <><span style={{textTransform: 'capitalize'}}>{props.category}</span> dancers speak</>: 'Letzdancers speak'}</h3>

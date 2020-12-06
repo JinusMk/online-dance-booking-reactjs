@@ -1,5 +1,5 @@
 import React from 'react'
-import { imageBasePath, instructorsData, participantsCount } from '../../../constants';
+import { imageBasePath, participantsCount } from '../../../constants';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 export default function DanceInfo(props){
@@ -18,7 +18,7 @@ export default function DanceInfo(props){
                 </h3>
                 <p className="heading2 cost"><span>₹{dance.cost_old}</span>₹{dance.cost}</p>
                 <ul className="listUnstyled">
-                    <li><p className="paragraph"><img src={`${imageBasePath}clock_icon_active.svg`} /> <span>{`${dance.duration} class by ${instructorsData.find(instructor => instructor.category == props.category).name}`}</span></p></li>
+                    <li><p className="paragraph"><img src={`${imageBasePath}clock_icon_active.svg`} /> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name}`}</span></p></li> 
                     <li><p className="paragraph"><img src={`${imageBasePath}participants_icon.svg`} /> <span>{`${dance.participants == 0 ? participantsCount[props.category]: dance.participants} satisfied dancers last week`}</span></p></li>
                     <li><p className="paragraph"><span className="live">LIVE</span> <span>{`Completely online`}</span></p></li>
                 </ul>

@@ -3,7 +3,7 @@ import { Container, Grid, TextField } from '@material-ui/core';
 import { Skeleton, Rating} from '@material-ui/lab';
 import { Header, DanceInformationLoader } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
-import { imageBasePath, instructorsData } from '../../../constants';
+import { imageBasePath } from '../../../constants';
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils';
@@ -108,7 +108,7 @@ function AddReview(props){
                                 <Grid item xs={12}>
                                     <div className="instructor-rating wrapper">
                                         {/* <h3 className="heading3">{`Rate the instructor  |  ${danceInfo.instructor.name}`}</h3> */}
-                                        <h3 className="heading3 subTitle">{`Rate the instructor  |  ${instructorsData.find(instructor => instructor.category == category).name}`}</h3>
+                                        <h3 className="heading3 subTitle">{`Rate the instructor  |  ${danceInfo.instructor && danceInfo.instructor.name}`}</h3>
                                         <Rating
                                             name="customized-empty2"
                                             // defaultValue={4}

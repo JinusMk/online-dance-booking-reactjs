@@ -23,6 +23,13 @@ function DanceHistory(props){
             })
         }
     }, [props.userInfo])
+    const checkIsFinished = (date1, date2=moment()) => {
+        var b = moment(date1).utc();
+        var a = moment(date2);
+        var mins = a.diff(b, 'minutes')
+        
+        return mins > 0 ? true : true
+    }
     return(
         <section className="dance-history-section">
             <Header title="Dance history" onBack={() => props.history.push('/profile')}/>
@@ -31,7 +38,7 @@ function DanceHistory(props){
                     Object.keys(dances).map((date, dateIndex) => (<div key={dateIndex} className="dance-history-item-wrapper">
                             <h3 className="heading2 heading">{moment(date, 'DD-MM-YYYY').format('DD MMM')}</h3>
                             {
-                                dances[date].map((dance, danceIndex) => moment().diff(moment(date, 'DD-MM-YYYY')) > 0 ? <DanceHistoryCard key={danceIndex} dance={dance}/> : <DanceAlert dance={dance} />)
+                                dances[date].map((dance, danceIndex) => checkIsFinished(dance.class_booked_end_time) ? <DanceHistoryCard key={danceIndex} dance={dance}/> : <DanceAlert dance={dance} />)
                             }
                     </div>))}
                     {

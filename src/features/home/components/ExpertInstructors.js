@@ -1,11 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, instructorsData } from '../../../constants'
 import { InstructorCard } from './index'
 import { isMobile } from 'react-device-detect'
+import { globalGetService } from '../../../utils/globalApiServices';
 import "react-multi-carousel/lib/styles.css";
 
 export default function ExpertInstructors(props){
+    const [instructors, setInstructors] = useState([])
+    useEffect(() => {
+        globalGetService(`instructors`)
+        .then(response => {
+            if(response.success === true){
+                setInstructors(response.data)
+            }
+        })
+    }, [])
     return(
         <div className="expert-instructors block">
             <h3 className="heading2 title">Expert instructors</h3>
