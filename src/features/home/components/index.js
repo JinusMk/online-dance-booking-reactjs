@@ -13,6 +13,7 @@ import DanceInfo from './DanceInfo'
 import TimeSlots from './TimeSlots'
 import ReviewCard from './ReviewCard'
 import RecapItem from './RecapItem'
+import ReviewsListingLoader from './ReviewsListingLoader'
 
 export {
     Introduction,
@@ -29,5 +30,6 @@ export {
     DanceInfo,
     TimeSlots,
     ReviewCard,
-    RecapItem
+    RecapItem,
+    ReviewsListingLoader
 }

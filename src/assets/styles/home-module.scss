@@ -76,10 +76,16 @@ body{
                 .title{
                     margin-left: 16px;
                 }
+                .react-multi-carousel-list{
+                    .react-multi-carousel-track{
+                        li{
+                           margin-bottom: 1px;
+                        }
+                    }
+                }
                 .partially-visible-carousel-container{
                     .carousel-item{
                         .card{
-                            margin-bottom: 1px;
                             &.MuiSkeleton-root{
                                 border: 1px solid $color_light_gray;
                             }
@@ -192,6 +198,7 @@ body{
                         }
                         .see-full-schedule-wrapper{
                             cursor: pointer;
+                            margin-bottom: 1px;
                             background: url("https://letzdance-fe.s3.us-east-2.amazonaws.com/main_bg_image.svg");
                             box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
                             border-radius: 8px;
@@ -381,9 +388,6 @@ body{
                     margin-bottom: 0;
                 }
                 .upcoming-classes{
-                    .card{
-                        margin-bottom: 1px;
-                    }
                     &.block{
                         margin: 0 184px;
                     }

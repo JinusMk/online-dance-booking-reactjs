@@ -4,7 +4,7 @@ import { Header } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
 import { reviewsData } from '../../../constants'
 import '../../../assets/styles/reviews-listing-module.scss'
-import { ReviewCard } from '../components';
+import { ReviewCard, ReviewsListingLoader } from '../components';
 
 export default function ReviewsListing(props){
     const [reviews, setReviews] = useState(reviewsData)
@@ -24,9 +24,9 @@ export default function ReviewsListing(props){
             <Header onBack={() => props.history.push('/')} title="Letzdancers speak" />
             <Container className="reviews-listing-container">
                 {
-                    loader ? 'Loading...' : <Grid container className="" spacing={3}>
+                    loader ? <ReviewsListingLoader/> : <Grid container className="" spacing={3}>
                         {
-                            reviews.map((review, index) => <Grid item xs={12} md={4} sm={6}>
+                            reviews.map((review, index) => <Grid item xs={12} md={6} lg={4} sm={6}>
                                 <ReviewCard key={index} review={review} type="detail"/>
                             </Grid>)
                         }
