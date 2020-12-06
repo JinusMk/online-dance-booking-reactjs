@@ -1,5 +1,6 @@
 import Home from './containers/Home'
 import DanceDetail from './containers/DanceDetail';
+import ReviewsListing from './containers/ReviewsListing';
 import { pageLayoutHoc } from '../../hocs'
 
 export const homeRoutes = [
@@ -17,5 +18,10 @@ export const homeRoutes = [
         path: '/dance/:slug',
         component : DanceDetail,
         key: 'dance-detail'
+    },
+    {
+        path: '/reviews',
+        component : ReviewsListing,
+        key: 'ReviewsListing'
     },
 ]

@@ -3,6 +3,7 @@ import { imageBasePath } from '../../../constants';
 import { Avatar, SwipeableDrawer } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { isMobile } from 'react-device-detect'
+import moment from 'moment'
 
 export default function ReviewCard(props){
     const { review } = props
@@ -60,8 +61,8 @@ function ReviewInfo(props){
                             <span className="heading3">{review.rating}</span>
                         </p>
                     </div>
-                    <p className="paragraph text">{(props.type != "detail" && review.text.length > 160) ? `${review.text.slice(0,155)}...` : review.text}</p>
-                    {(props.type == "detail" || review.text.length < 160) ? null : <p className="paragraph read-more" onClick={handleOpen}>
+                    <p className="paragraph text">{(props.type != "detail" && review.description.length > 160) ? `${review.description.slice(0,155)}...` : review.description}</p>
+                    {(props.type == "detail" || review.description.length < 160) ? null : <p className="paragraph read-more" onClick={handleOpen}>
                         <span>Read more</span>
                         <img src={`${imageBasePath}right_arrow_icon.svg`}/>
                     </p>
@@ -72,8 +73,8 @@ function ReviewInfo(props){
             <div className="user-info">
                 {review.img ? <Avatar src={review.img} className="user-avatar" /> : <Avatar className="user-avatar">{review.name ? review.name[0]: 'L'}</Avatar>}
                 <div className="name-wrapper">
-                    <h3 className="heading3">{review.name}</h3>
-                    <p>Took <span style={{textTransform: 'capitalize'}}>{review.category}</span> class on {review.class_date}</p>
+                    <h3 className="heading3">{review.reviwed_by}</h3>
+                    <p>Took <span style={{textTransform: 'capitalize'}}>{review.category}</span> class on {moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
                 </div>
             </div>
         </div>
