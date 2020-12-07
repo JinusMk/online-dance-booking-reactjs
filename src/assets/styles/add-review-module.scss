@@ -3,6 +3,9 @@ body{
     .add-review-section{
         .add-review-container{
             padding: 0;
+            .dance-information-loader{
+                padding: 16px;
+            }
             form{
                 .wrapper{
                     padding: 24px 16px;
@@ -22,6 +25,9 @@ body{
                 }
                 .description{
                     border-bottom: none;
+                    .error{
+                        color: $color_error;
+                    }
                 }
                 .dance-info{
                     img{

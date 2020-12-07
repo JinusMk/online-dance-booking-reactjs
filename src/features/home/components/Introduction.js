@@ -3,7 +3,11 @@ import Carousel from "react-multi-carousel";
 import Skeleton from '@material-ui/lab/Skeleton';
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
+import moment from 'moment'
 import { globalGetService } from '../../../utils/globalApiServices';
+import { connect } from 'react-redux'
+import { DanceAlert } from '../../../shared_elements';
+import { checkIsFinished } from '../../../utils';
 
 const introductionData =[
     {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
@@ -11,8 +15,10 @@ const introductionData =[
     {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
 ]
 
-export default function Introduction(props){
+function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
+    const [upcomingDance, setUpcomingDance] = useState(null)
+
     useEffect(() => {
         globalGetService(`banners`)
         .then(response => {
@@ -20,10 +26,25 @@ export default function Introduction(props){
 
             }
         })
-    }, [])
+        if(props.isLoggedIn && props.userInfo && props.userInfo.uid){
+            globalGetService(`dance-history`, { uid : props.userInfo.uid})
+            .then(response => {
+                if(response.success == true){
+                    const dances = response.data
+                    console.log('dances', typeof dances)
+                    if(typeof dances == 'object' && Object.keys(dances).find(date => date == moment().format('DD-MM-YYYY'))){
+                        const upcomingDance = dances[moment().format('DD-MM-YYYY')][0]
+                        setUpcomingDance(upcomingDance)
+                    }else{
+                        setUpcomingDance(null)
+                    }
+                }
+            })
+        }
+    }, [props.userInfo])
     return(
         <div className="introduction-blk">
-            <Carousel 
+           { (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/> : <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}
@@ -39,7 +60,12 @@ export default function Introduction(props){
                         <p className="heading1">{item.value}</p>
                     </div>)
                 }
-            </Carousel>
+            </Carousel>}
         </div>
     )
 }
+const mapStateToProps = state => ({
+    isLoggedIn: state.sharedReducers.isLoggedIn,
+    userInfo: state.sharedReducers.userInfo
+})
+export default connect(mapStateToProps, null)(Introduction)

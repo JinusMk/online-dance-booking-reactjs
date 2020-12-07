@@ -15,8 +15,8 @@ function AddReview(props){
     const [loader, setLoader] = useState(true)
     const [imgLoader, setImgLoader] = useState(true)
     const [reviewData, setReviewData] = useState({
-        instructor_rating: 4,
-        dance_rating: 4,
+        instructor_rating: 0,
+        dance_rating: 0,
         description: '',
         dance_id: props.match.params.danceId,
         uid: ''
@@ -56,14 +56,24 @@ function AddReview(props){
     const handleSubmit = (e) => {
         e.preventDefault()
         setReviewLoader(true)
-        globalPostService(`review`, {...reviewData, uid: props.userInfo.uid})
-        .then(response => {
+        if(reviewData.description && reviewData.description.trim()){
+            globalPostService(`review`, {...reviewData, uid: props.userInfo.uid})
+            .then(response => {
+                setReviewLoader(false)
+                if(response.success === true){
+                    toastFlashMessage('Review submitted successfully', 'success')
+                    handleGoBack()
+                }
+            })
+            .catch(err => {
+                setReviewLoader(false)
+                toastFlashMessage('Something went wrong, please try again!', 'error')
+            })
+        }else{
             setReviewLoader(false)
-            if(response.success === true){
-                toastFlashMessage('Review submitted successfully', 'success')
-                props.history.push('/dance-history')
-            }
-        })
+            setReviewData({...reviewData, description: ''})
+            setError({...error, description: 'Please enter something about the class'})
+        }
     }
     const handleGoBack = () => {
         if(props.location.state && props.location.state.goBackPage){
@@ -86,7 +96,7 @@ function AddReview(props){
                                         <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                                         <div className="info">
                                             <h3 className="heading2">{danceInfo.title}</h3>
-                                            <p className="heading3">{`${moment(danceInfo.event_date).format('DD MMM')}, ${danceInfo.class_start_time}`}</p>
+                                            <p className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${danceInfo.class_start_time}`}</p>
                                         </div>
                                     </div>
                                 </Grid>
@@ -123,7 +133,7 @@ function AddReview(props){
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div className="description wrapper">
-                                        <h3 className="heading3 subTitle">Say something about the class</h3>
+                                        <h3 className={`heading3 subTitle ${error.description ? 'error' : ''}`}>{error.description ? error.description : `Say something about the class`} </h3>
                                         <div className="inputGroup">
                                             <TextField 
                                                 value={reviewData.description}
@@ -138,7 +148,7 @@ function AddReview(props){
                                 </Grid>
                             </Grid>
                             <div className="footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
-                                <p><a onClick={handleSubmit} className={`primaryBtn ${(reviewLoader || !(reviewData.instructor_rating && reviewData.dance_rating ) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >SUBMIT RATING</a></p>
+                                <p><a onClick={handleSubmit} className={`primaryBtn ${(reviewLoader || !(reviewData.instructor_rating && reviewData.dance_rating && reviewData.description) || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} >SUBMIT RATING</a></p>
                             </div>
                         </>
                     }

@@ -15,10 +15,11 @@ export default function Reviews(props){
         globalGetService(`review-list`, props.category ? { category_id : categorySlug[props.category] } : {})
         .then(response => {
             if(response.success === true){
-                setReviews([...reviewsData, ...response.data.filter(item => item.description )])
+                setReviews([...response.data.filter(item => item.description ), ...reviewsData])
             }
         })
     }, [])
+
     return(
         <div className="reviews block">
             <h3 className="heading2 title">{props.category ? <><span style={{textTransform: 'capitalize'}}>{props.category}</span> dancers speak</>: 'Letzdancers speak'} {props.category ? null : <Link to="/reviews" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link>}</h3>

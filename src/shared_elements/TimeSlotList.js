@@ -10,7 +10,7 @@ function TimeSlotList(props){
             <ul className="listInline">
                 {timeSlots.map((item, index) => <li key={index}>
                     <Link to={{pathname: `/dance/${category}/${item.id}/booking`, state: { sectionId: sectionId }}} className={`primaryBtn round ${(item.total_seats != 0 && !checkIsFinished(item.class_disable_time)) ? '': 'disabled'}`}>{(item.total_seats != 0 && !checkIsFinished(item.class_disable_time) ) ? `Book ${item.class_start_time}` : item.class_start_time }</Link>
-                    {/* <p className={item.label == "ALMOST FULL" ? "alert_red" : 'alert_orange'}>{item.status !== 0 ? item.status : null}</p> */}
+                    {item.total_seats == 0 ? <p className="infoText alert_red">FULL</p> : (item.total_seats <= 5 && item.total_seats >1) ? <p className="infoText alert_orange">FAST FILLING</p> : item.total_seats == 1 ? <p className="infoText alert_red">ALMOST FULL</p> : null}
                 </li>)}
             </ul>
         </div>

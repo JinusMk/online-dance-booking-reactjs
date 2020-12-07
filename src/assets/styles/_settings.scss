@@ -108,6 +108,15 @@ body{
             $lineHeight: $lineHeight16
         );
     }
+    .infoText{
+      @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font10,
+            $weight:$boldFont,
+            $color: $color_black,
+            $lineHeight: 12px
+        );
+    }
     .primaryBtn{
         box-sizing: border-box;
         width: 100%;
@@ -141,7 +150,7 @@ body{
         // }
         &.disabled{
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
     }
@@ -165,7 +174,7 @@ body{
         display: inline-block;
         &.disabled{
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
         &.round{
