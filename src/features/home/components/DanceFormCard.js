@@ -15,7 +15,7 @@ export default function DanceFormCard(props){
                     <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <span className="secondaryText">Live & interactive</span>
                     <div className="title-wrapper">
-                        <p className="heading2">{dance.category == "Zumba" ? 'Online Zumba Workshop' : dance.category}</p>
+                        <p className="heading2">{dance.category}</p>
                     </div>
                 </div>
                 <div className="info-blk">
@@ -24,8 +24,8 @@ export default function DanceFormCard(props){
                         <span>{dance.rating}</span>
                         <span className="rating">({dance.rating_count} RATINGS)</span>
                     </h3>
-                    <p className="heading3 cost"><span>₹{dance.cost_old}</span>{dance.category_id == 3 ? "Free" : `₹${dance.cost}`}</p>
-                    <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name ? dance.instructor.name : 'Angel Bensy'}`}</span></p>
+                    <p className="heading3 cost"><span>₹{dance.cost_old}</span>{`₹${dance.cost}`}</p>
+                    <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name ? dance.instructor.name : ''}`}</span></p>
                     <ul className="listInline">
                         {/* 
                             dance.buttons.map((item, index) => (index < (dance.buttons.length <= 3 ? 3 : 2)) &&  <li key={index}>
@@ -37,7 +37,7 @@ export default function DanceFormCard(props){
                             </li>
                         
                         */}
-                        <li style={{width: '100%', padding: 0, margin: 0}}><a className="secondaryBtn round" style={{borderRadius: 4}}>{`BOOK ${dance.category_id == 3 ? 'FREE ZUMBA' : dance.category.toUpperCase()} CLASS`}</a></li>
+                        <li style={{width: '100%', padding: 0, margin: 0}}><a className="secondaryBtn round" style={{borderRadius: 4}}>{`BOOK ${dance.category.toUpperCase()} CLASS`}</a></li>
                     </ul>
                 </div>
             </div>
