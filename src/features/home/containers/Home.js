@@ -12,6 +12,7 @@ const CommonQuestions = React.lazy(() => import('../components/CommonQuestions')
 const ContactUs = React.lazy(() => import('../components/ContactUs'));
 const Reviews = React.lazy(() => import('../components/Reviews'));
 const UpComingClasses = React.lazy(() => import('../components/UpComingClasses'));
+const Subscriptions = React.lazy(() => import('../components/Subscriptions'));
 
 export default function Home(props){
     useEffect(() => {
@@ -35,6 +36,7 @@ export default function Home(props){
                 <Suspense fallback={<></>}>
                     <WhyLetzdance />
                     <ExpertInstructors />
+                    <Subscriptions />
                     <HowWorks />
                     <CommonQuestions />
                     <ContactUs /> 
