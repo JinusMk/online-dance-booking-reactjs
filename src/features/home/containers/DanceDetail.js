@@ -11,7 +11,7 @@ const TimeSlots = React.lazy(() => import('../components/TimeSlots'));
 const HowWorks = React.lazy(() => import('../components/HowWorks'));
 const ContactUs = React.lazy(() => import('../components/ContactUs'));
 const Reviews = React.lazy(() => import('../components/Reviews'));
-
+const DanceSubscription = React.lazy(() => import('../components/DanceSubscription'))
 
 
 export default function DanceDetail(props){
@@ -54,6 +54,7 @@ export default function DanceDetail(props){
                                     <InstructorCard instructor={instructorsData.find(item => item.category == category)}/>
                                 </div>
                                 <Reviews category={category == "hiphop-kids" ? 'hip-hop' : category} />
+                                <DanceSubscription category={category}/>
                                 <HowWorks />
                                 <ContactUs /> 
                             </>
