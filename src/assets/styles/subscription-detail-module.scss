@@ -1,0 +1,59 @@
+@import 'variable';
+
+body{
+    .subscription-detail-section{
+        .subscription-detail-container{
+            padding: 0;
+            .subscription-detail-header{
+                img{
+                    width: 100%;
+                }
+                .info-wrapper{
+                    padding: 16px;
+                    text-align: center;
+                    background: rgba(255,225,228,0.2);
+                    border-radius: 0 0 4px 4px;
+                    h3{
+                        margin-bottom: 8px;
+                        color: $color_black;
+                    }
+                    p{
+                        margin-bottom: 24px;
+                        &.link{
+                            max-width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+            }
+            .subscription-benefits{
+                padding: 24px 16px; 
+                .title{
+                    margin-bottom: 24px;
+                }
+                border-bottom: 1px solid $color_FFE5E9;
+                .benefits-list{
+                    .benefit-item-wrapper{
+                        &:last-child{
+                            padding-bottom: 8px;
+                        }
+                        padding: 20px 0;
+                        display: flex;
+                        align-items: center;
+                        img, .MuiSkeleton-root{
+                            margin-right: 16px;
+                        }
+                    }
+                }
+            }
+            .subscription-plans{
+                padding: 24px 16px; 
+                border-bottom: 1px solid $color_FFE5E9;
+                .title{
+                    margin-bottom: 24px;
+                }
+            }
+        }
+    }
+}
