@@ -6,6 +6,10 @@ import '../../../assets/styles/subscription-detail-module.scss'
 const SubscriptionInfo = lazy(() => import('../components/SubscriptionInfo'));
 const SubscriptionBenefits = lazy(() => import('../components/SubscriptionBenefits'));
 const SubscriptionPlans = lazy(() => import('../components/SubscriptionPlans'));
+const ClassBookingAlert = lazy(() => import('../components/ClassBookingAlert'));
+const HowWorks = React.lazy(() => import('../../home/components/HowWorks'));
+const ContactUs = React.lazy(() => import('../../home/components/ContactUs'));
+const CommonQuestions = React.lazy(() => import('../../home/components/CommonQuestions'));
 
 export default function SubscriptionDetail(props){
     const [loader, setLoader] = useState(false)
@@ -25,6 +29,10 @@ export default function SubscriptionDetail(props){
                         <SubscriptionInfo category={category}/>
                         <SubscriptionBenefits category={category}/>
                         <SubscriptionPlans category={category}/>
+                        <ClassBookingAlert category={category}/>
+                        <HowWorks />
+                        <CommonQuestions/>
+                        <ContactUs/>
                     </Suspense>
                 </Container>
             }
