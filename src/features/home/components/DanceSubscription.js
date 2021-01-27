@@ -36,7 +36,7 @@ export default function DanceSubscription(props){
                 </Carousel>
             </div>
             <p>
-                <Link to="" className="secondaryBtn">GET ZUMBA SCBSCRIPTION</Link>
+                <Link to={`/subscription/zumba`} className="secondaryBtn">GET ZUMBA SCBSCRIPTION</Link>
             </p>
         </div>
     )

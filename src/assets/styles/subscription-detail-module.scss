@@ -151,7 +151,11 @@ body{
                 }
             }
             .common-questions-blk{
+                background: rgba(255,225,228,0.2);
                 padding-top: 24px;
+                .common-questions-accordion{
+                    background: unset;
+                }
                 .title{
                     margin-bottom: 16px;
                 }

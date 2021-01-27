@@ -56,7 +56,7 @@ export default function Subscriptions(props){
                                 {item.points.length > 2 ? <li className="more-point">{`+${item.points.length - 2} more`}</li> : null}
                             </ul>
                             <p>
-                                <Link className="primaryBtn" to="/">KNOW MORE</Link>
+                                <Link className="primaryBtn" to={`/subscription/${item.category}`}>KNOW MORE</Link>
                             </p>
                         </div>
                     </div>)

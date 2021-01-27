@@ -18,6 +18,7 @@ export default function SubscriptionDetail(props){
     useEffect(() => {
         const category = props.match.params.category
         setCategory(category)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [])
 
     return(

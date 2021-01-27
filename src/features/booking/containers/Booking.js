@@ -12,30 +12,47 @@ import '../../../assets/styles/booking-module.scss'
 
 const LoggedInUserInfo = lazy(() => import ('../components/LoggedInUserInfo'))
 const UserInformationForm = lazy(() => import ('../components/UserInformationForm'))
+const SubscriptionInformation = lazy(() => import ('../components/SubscriptionInformation'))
 const AuthPopup = lazy(() => import('../../../shared_elements/AuthPopup'))
 
 function Booking(props){
     const [openAuthPopup, setOpenAuthPopup] = useState(false)
-    const [category, setCategory] = useState(props.match.params.slug)
-    const [selectedDance, setSelectedDance] = useState({})
+    const [category, setCategory] = useState(props.match.params.category)
+    const [selectedItem, setSelectedItem] = useState({})
     const [loader, setLoader] = useState(true)
     const [bookingLoader, setBookingLoader] = useState(false)
+    const [type, setType] = useState('')
     let history = useHistory()
 
     useEffect(() => {
-        globalGetService(`dance-classes/${props.match.params.id}`, {})
-        .then(response => {
-            if(response.success == true){
-                setSelectedDance(response.data)
-                setLoader(false)
-            }
-        })
+        if(props.match.params.id){
+            setType('danceBooking')
+            globalGetService(`dance-classes/${props.match.params.id}`, {})
+            .then(response => {
+                if(response.success == true){
+                    setSelectedItem(response.data)
+                    setLoader(false)
+                }
+            })
+        }else{
+            //get subscription details api
+            setType('subscription')
+            setCategory(props.match.params.category)
+            setSelectedItem({
+                cost: 1400,
+                cost_old: 2000,
+                rating: 4.5,
+                rating_count: 89,
+                points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
+            })
+            setLoader(false)
+        }
     }, [])
     const onBack = () => {
         if(props.location.state && props.location.state.sectionId){
             props.history.push(`/schedule#${props.location.state.sectionId}`)
         }else{
-            props.history.push(`/dance/${props.match.params.slug}`)
+            props.history.push(`/dance/${props.match.params.category}`)
         }
     }
     const logout = () => {
@@ -53,7 +70,7 @@ function Booking(props){
     const handleSubmit = (userInfo) => {
         // console.log('booking continue clicked', userInfo)
         const formData = {
-            dance_id: selectedDance.id,
+            dance_id: selectedItem.id,
             name: userInfo.displayName,
             email: userInfo.email,
             mobile: userInfo.phoneNumber,
@@ -66,7 +83,7 @@ function Booking(props){
             // console.log('response booking', response)
             setBookingLoader(false)
             if(response.success == true){
-                history.push({pathname: `${props.location.pathname}/success`, state: { selectedDance: {...selectedDance, payment_method: response.data.payment_method }}})
+                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
             }
         })
         .catch(err => {
@@ -78,19 +95,19 @@ function Booking(props){
         <section className="booking-section">
             <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Booking details"}/>
             <Container className="booking-container" style={bookingLoader ? { opacity: 0.2} :{}}>
-                <p className="secondaryText metaText">SELECTED CLASS</p>
-                { loader ? <DanceInformationLoader /> : <DanceInformationCard dance={selectedDance} category={category}/>}
+                <p className="secondaryText metaText">{`SELECTED ${type == "danceBooking" ? 'CLASS' : 'SUBSCRIPTION'}`}</p>
+                { loader ? <DanceInformationLoader /> : type == "danceBooking" ? <DanceInformationCard dance={selectedItem} category={category}/> : <Suspense fallback={<></>}><SubscriptionInformation subscription={selectedItem} category={category} /></Suspense>}
                 <Grid container spacing={0} className="dance-attributes">
                     <Grid item xs={7}>
                         <div className="timeWrapper">
-                            <p className="secondaryText">DATE & TIME</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(selectedDance.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedDance.class_start_time}`}</h3>}
+                            <p className="secondaryText">{type == "danceBooking" ? 'DATE & TIME' : 'DURATION'}</p>
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedItem.class_start_time}`}</h3> : <h3 className="heading3">1 month</h3>}
                         </div>
                     </Grid>
                     <Grid item xs={5}>
                         <div className="amountWrapper">
                             <p className="secondaryText">AMOUNT</p>
-                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>₹{selectedDance.cost_old}</span>₹{selectedDance.cost}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>₹{selectedItem.cost_old}</span>₹{selectedItem.cost}</h3>}
                         </div>
                     </Grid>
                 </Grid>

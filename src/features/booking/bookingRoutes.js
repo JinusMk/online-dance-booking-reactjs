@@ -5,7 +5,7 @@ import { pageLayoutHoc } from '../../hocs'
 
 export const bookingRoutes = [
     {
-        path: '/dance/:slug/:id/booking',
+        path: '/dance/:category/:id/booking',
         component: Booking,
         key: 'booking'
     },
@@ -17,6 +17,11 @@ export const bookingRoutes = [
     {
         path: '/subscription/:category',
         component: SubscriptionDetail,
+        key: 'subscription-detail'
+    },
+    {
+        path: '/subscription/:category/booking',
+        component: Booking,
         key: 'subscription-detail'
     },
 ]
