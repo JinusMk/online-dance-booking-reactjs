@@ -64,7 +64,7 @@ function UpComingClasses(props){
                 itemClass="carousel-item"
                 renderDotsOutside={true}
             >
-                {Object.keys(dances).map((key, index) => <Suspense fallback={<></>}><DanceFormCard key={index} dance={dances[key]}/></Suspense>)}
+                {Object.keys(dances).map((key, index) => <Suspense fallback={<></>} key={index}><DanceFormCard key={index} dance={dances[key]}/></Suspense>)}
                     <div className="see-full-schedule-wrapper textCenter" onClick={() => history.push('/schedule')}>
                         <div className="image-wrapper">
                             <img className="schedule-icon" src={`${imageBasePath}schedule_icon_outlined.svg`} />

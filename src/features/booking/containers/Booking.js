@@ -68,28 +68,32 @@ function Booking(props){
         }
     }
     const handleSubmit = (userInfo) => {
-        // console.log('booking continue clicked', userInfo)
-        const formData = {
-            dance_id: selectedItem.id,
-            name: userInfo.displayName,
-            email: userInfo.email,
-            mobile: userInfo.phoneNumber,
-            uid: userInfo.uid
-        }
-        // console.log('formData booking', formData)
         setBookingLoader(true)
-        globalPostService(`bookings/create`, formData)
-        .then(response => {
-            // console.log('response booking', response)
-            setBookingLoader(false)
-            if(response.success == true){
-                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+        // console.log('booking continue clicked', userInfo)
+        if(type == "danceBooking"){
+            const formData = {
+                dance_id: selectedItem.id,
+                name: userInfo.displayName,
+                email: userInfo.email,
+                mobile: userInfo.phoneNumber,
+                uid: userInfo.uid
             }
-        })
-        .catch(err => {
+            globalPostService(`bookings/create`, formData)
+            .then(response => {
+                // console.log('response booking', response)
+                setBookingLoader(false)
+                if(response.success == true){
+                    history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+                }
+            })
+            .catch(err => {
+                setBookingLoader(false)
+                toastFlashMessage('Something went wrong, Please try again!', 'error')
+            })
+        }else{
+            //
             setBookingLoader(false)
-            toastFlashMessage('Something went wrong, Please try again!', 'error')
-        })
+        }
     }
     return(
         <section className="booking-section">

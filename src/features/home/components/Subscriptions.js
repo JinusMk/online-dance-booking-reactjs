@@ -48,7 +48,7 @@ export default function Subscriptions(props){
                             <p className="paragraph">Starting from ₹1,400 / month</p>
                             <ul className="listUnstyled benefitsList">
                                 {
-                                    item.points.map((point, index) => index <= 1 && <li className="paragraph">
+                                    item.points.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
                                         <img src={`${imageBasePath}booking_success_tick.svg`}/>
                                         <span>{point}</span>
                                     </li>)

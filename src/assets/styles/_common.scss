@@ -843,4 +843,60 @@ body{
             border-radius: 8px;
         }
     }
+    .subscription-information-card{
+        padding: 0 16px 16px;
+        border-bottom: 1px solid #FFE5E9;
+        .top-blk{
+            margin-bottom: 16px;
+            .logo{
+                width: 72px;
+                height: 72px;
+                border-radius: 4px;
+            }
+            .content{
+                padding-left: 16px;
+                .heading2{
+                    color: $color_black;
+                    margin-bottom: 8px;
+                    text-transform: capitalize;
+                }
+                .heading3{
+                    color: $color_primary;
+                    img, span{
+                        vertical-align: middle;
+                    }
+                    img{
+                        margin-top: -2px;
+                        width: 18px;
+                    }
+                    span{
+                        margin-left: 5px;
+                        &.rating{
+                            font-size: $font12;
+                        }
+                    }
+                }
+            }
+        }
+        .bottom-blk{
+            ul{
+                li{
+                    margin: 0 0 8px;
+                    img, span{
+                        vertical-align: middle;
+                    }
+                    img{
+                        margin-right: 10px;
+                    }
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    &.more-point{
+                        margin-left: 22px;
+                        color: $color_blue;
+                    } 
+                }
+            }
+        }
+    }
 }

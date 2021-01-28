@@ -1,6 +1,13 @@
 @import 'variable';
 body{
     .booking-success-section{
+        &.subscription{
+            .booking-success-container{
+                .success-wrapper{
+                    border-bottom: none;
+                }
+            }
+        }
         .booking-success-container{
             padding: 0;
             .success-wrapper{

@@ -10,7 +10,7 @@ export const bookingRoutes = [
         key: 'booking'
     },
     {
-        path: '/dance/:slug/:id/booking/success',
+        path: '/dance/:category/:id/booking/success',
         component: pageLayoutHoc(BookingSuccess),
         key: 'booking-success'
     },
@@ -22,6 +22,11 @@ export const bookingRoutes = [
     {
         path: '/subscription/:category/booking',
         component: Booking,
+        key: 'subscription-detail'
+    },
+    {
+        path: '/subscription/:category/booking/success',
+        component: pageLayoutHoc(BookingSuccess),
         key: 'subscription-detail'
     },
 ]
