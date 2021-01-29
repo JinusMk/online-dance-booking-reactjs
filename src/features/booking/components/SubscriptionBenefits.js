@@ -5,35 +5,35 @@ import { isMobile } from 'react-device-detect'
 
 const benefitsData = [
     {
-        img: '',
+        img: 'beginner_to_expert_icon.svg',
         text: `All dance levels From beginner to expert`
     },
     {
-        img: '',
+        img: 'classes_count_icon.svg',
         text: `8 to 12 classes a month`
     },
     {
-        img: '',
+        img: 'flexible_timing_icon.svg',
         text: `Flexible timing on weekdays and weekends`
     },
     {
-        img: '',
+        img: 'personalised_attention_icon.svg',
         text: `Personalized attention and instructor feedback`
     },
     {
-        img: '',
+        img: 'record_icon.svg',
         text: `Your recorded dance sessions for you to get better`
     },
     {
-        img: '',
+        img: 'choreography_icon.svg.svg',
         text: `Learn two complete song choreography`
     },
     {
-        img: '',
+        img: 'calorie_icon.svg',
         text: `Calorie count, progress tracker, and detailed statistics`
     },
     {
-        img: '',
+        img: 'certificate_icon.svg',
         text: `Certification after every successful milestone`
     },
 ]
@@ -48,7 +48,7 @@ export default function SubscriptionBenefits(props){
                 {
                     benefitsData.map((item, index) => <li key={index} className="benefit-item-wrapper">
                         {imgLoader ? <Skeleton variant="rect" width={isMobile ? 60 : 60} className="img-loader"/> : null}
-                        {/* <img src={`${imageBasePath}${category}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> */}
+                        <img src={`${imageBasePath}${item.img}`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                         <h3 className="heading3">{item.text}</h3>
                     </li>)
                 }

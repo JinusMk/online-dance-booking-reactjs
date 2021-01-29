@@ -16,19 +16,13 @@ export default function DanceSubscription(props){
                 <Carousel 
                     responsive={responsiveCarousel}
                     swipeable={true}
-                    showDots={true}
-                    infinite={false}
-                    autoPlaySpeed={5000}
-                    partialVisible={isMobile ? true: false}
-                    arrows={isMobile ? true: true }
+                    showDots={false}
+                    infinite={true}
                     containerClass="carousel-container dance-subscription"
-                    dotListClass="custom-dot-list"
-                    itemClass="carousel-item"
-                    renderDotsOutside={true}
                 >
                     {
-                        [0,1,2].map((item, index) => <div className="subscription-info-card">
-                            {/* <img className="" src={`${imageBasePath}`} /> */}
+                        [0,1,2].map((item, index) => <div key={index} className="subscription-info-card">
+                            <img className="" src={`${imageBasePath}fun_icon.svg`} />
                             <p className="heading3">All dance levels - from beginner to expert</p>
                         </div>)
                     }
