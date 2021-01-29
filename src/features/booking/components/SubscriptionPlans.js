@@ -53,11 +53,11 @@ export default function SubscriptionPlans(props){
             <h3 className="title heading2">Subscription plans</h3>
             <ul className="listUnstyled plans-wrapper">
                 {
-                    data.map((item, index) => <li className="plans-item" key={index}>
+                    data.map((item, index) => <li className="plans-item" key={item.id}>
                         <h3 className="heading3">{item.title}</h3>
                         <RadioGroup aria-label="subscriptionPlans" name="subscriptionPlans" className={"radioGroup"} value={value} onChange={handleChange}>
                             {
-                                item.subscriptions.map((subscription, index) => <FormControlLabel key={index} value={item.id} control={<Radio />} label={<div className={`label ${value == item.id ? 'active': '' }`}>
+                                item.subscriptions.map((subscription, index) => <FormControlLabel key={index} value={subscription.id} control={<Radio checked={subscription.id == value ? true: false }/>} label={<div className={`label ${value == subscription.id ? 'active': '' }`}>
                                     <h3 className="heading3">{subscription.label}</h3>
                                     <p className="paragraph">
                                         <span className="cost-old">{`₹${subscription.cost_old}`}</span>
