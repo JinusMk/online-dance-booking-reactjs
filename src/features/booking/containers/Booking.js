@@ -81,6 +81,8 @@ function Booking(props){
             setBookingLoader(false)
             if(response.success == true){
                 history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+            }else if(response.error){
+                toastFlashMessage(response.error, 'error')
             }
         })
         .catch(err => {
@@ -104,7 +106,8 @@ function Booking(props){
                 let params = {
                     "key": "rzp_test_NKXGcWEaRQd4SH",
                     // "key": "rzp_live_x5PdyxY6pBcPeC",
-                    "amount": "100",
+                    "currency": selectedItem.currencyType,
+                    "amount": selectedItem.cost * 100,
                     "name": userInfo.displayName,
                     "description": "Test Transaction",
                     "image": `${imageBasePath}logo_512.png`,
@@ -166,7 +169,7 @@ function Booking(props){
                     <Grid item xs={7}>
                         <div className="timeWrapper">
                             <p className="secondaryText">{type == "danceBooking" ? 'DATE & TIME' : 'DURATION'}</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${selectedItem.class_start_time}`}</h3> : <h3 className="heading3">1 month</h3>}
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3> : <h3 className="heading3">1 month</h3>}
                         </div>
                     </Grid>
                     <Grid item xs={5}>

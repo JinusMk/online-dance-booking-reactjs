@@ -1,8 +1,10 @@
 import axios from 'axios';
-import {toastFlashMessage} from '../utils';
+import { DEV_BASE_URL } from '../constants';
+
 var axiosInstance = axios.create();
 
-axiosInstance.defaults.baseURL = 'https://admin.letzdance.co/api/';
+// axiosInstance.defaults.baseURL = 'https://admin.letzdance.co/api/';
+axiosInstance.defaults.baseURL = DEV_BASE_URL;
 axiosInstance.interceptors.request.use(function(config){
     if(localStorage.getItem('idToken')){
       config['headers']['Authorization'] = JSON.parse(localStorage.getItem('idToken'));
@@ -20,7 +22,7 @@ axiosInstance.interceptors.request.use(function(config){
       return response.data;
     }
   },function(error){
-    return Promise.reject(error)
+    return error.response.data
   })
 
   export default axiosInstance

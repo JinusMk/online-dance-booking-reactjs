@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Skeleton from '@material-ui/lab/Skeleton';
 import { isMobile } from 'react-device-detect'
-import { imageBasePath, danceCategory, instructorsData } from '../../../constants';
+import { imageBasePath, danceCategory } from '../../../constants';
 
 export default function DanceFormCard(props){
     let history = useHistory()
@@ -25,7 +25,7 @@ export default function DanceFormCard(props){
                         <span className="rating">({dance.rating_count} RATINGS)</span>
                     </h3>
                     <p className="heading3 cost"><span>₹{dance.cost_old}</span>{`₹${dance.cost}`}</p>
-                    <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${instructorsData.find(instructor => instructor.category == danceCategory[dance.category_id]).name}`}</span></p>
+                    <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${dance.instructor ? dance.instructor.name: ''}`}</span></p>
                     <ul className="listInline">
                         {/* 
                             dance.buttons.map((item, index) => (index < (dance.buttons.length <= 3 ? 3 : 2)) &&  <li key={index}>

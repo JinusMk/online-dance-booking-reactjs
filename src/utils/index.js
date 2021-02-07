@@ -28,9 +28,9 @@ export const toastFlashMessage = (message, type, delay=4500) => {
 }
 
 export const checkIsFinished = (date1, date2=moment()) => {
-  var b = moment(date1.slice(0, -1));
+  // var b = moment(date1.slice(0, -1));
+  var b = moment(date1);
   var a = moment(date2);
   var mins = a.diff(b, 'minutes')
-  
   return mins > 0 ? true : false
 }

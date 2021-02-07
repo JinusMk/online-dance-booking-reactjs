@@ -7,6 +7,7 @@ import moment from 'moment'
 import { AddReviewCard, ReviewDetails } from '../components'
 import '../../../assets/styles/class-detail-module.scss'
 import { connect } from 'react-redux'
+import { toastFlashMessage } from '../../../utils';
 
 function ClassDetail(props){
     const [loader, setLoader] = useState(true)
@@ -20,6 +21,8 @@ function ClassDetail(props){
                 if(response.success == true){
                     setDanceInfo(response.data)
                     setLoader(false)
+                }else if(response.error){
+                    toastFlashMessage(response.error, 'error')
                 }
             })
         }

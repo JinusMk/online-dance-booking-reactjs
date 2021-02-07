@@ -1,3 +1,7 @@
+export const imageBasePath = 'https://letzdance-fe.s3.us-east-2.amazonaws.com/'
+export const DEV_BASE_URL = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : 'http://admin2.letzdance.co/api/4/';
+
+
 export const responsiveCarousel = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -27,8 +31,6 @@ export const regExpression = {
   digits: /^(0|[1-9][0-9]{0,9})$/,
   name: /^[a-zA-ZÀ-ÖØ-öø-ÿ -]{1,100}$/,
 }
-
-export const imageBasePath = 'https://letzdance-fe.s3.us-east-2.amazonaws.com/'
 
 export const reviewsData = [
   {

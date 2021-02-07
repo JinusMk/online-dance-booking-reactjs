@@ -15,7 +15,7 @@ export default function DanceHistoryCard(props){
                 <img src={`${imageBasePath}${danceCategory[dance.category_id]}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <div>
                     <h3 className="heading2 title">{dance.category}</h3>
-                    <p className="heading3">{`${moment(dance.class_booked_for, 'DD-MM-YYYY').format('DD MMM')}, ${moment(dance.class_booked_start_time.slice(0, -1)).format('hh:mm A')}`}</p>
+                    <p className="heading3">{`${moment(dance.class_booked_for, 'DD-MM-YYYY').format('DD MMM')}, ${moment(dance.class_booked_start_time).format('hh:mm A')}`}</p>
                 </div>
             </div>
             <Grid container spacing={2} alignItems="center">

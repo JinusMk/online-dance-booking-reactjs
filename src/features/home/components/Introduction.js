@@ -31,7 +31,6 @@ function Introduction(props){
             .then(response => {
                 if(response.success == true){
                     const dances = response.data
-                    console.log('dances', typeof dances)
                     if(typeof dances == 'object' && Object.keys(dances).find(date => date == moment().format('DD-MM-YYYY'))){
                         const upcomingDance = dances[moment().format('DD-MM-YYYY')][0]
                         setUpcomingDance(upcomingDance)
