@@ -1,6 +1,16 @@
 export const imageBasePath = 'https://letzdance-fe.s3.us-east-2.amazonaws.com/'
 export const DEV_BASE_URL = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : 'http://admin2.letzdance.co/api/4/';
 
+export const currencySymbol = {
+  'INR' : '₹',
+  'AUD' : '$',
+  'NZD' : '$',
+  'SGD' : '$',
+  'MYR' : 'RM',
+  'AED' : 'د.إ',
+  'GBP' : '£',
+  'USD' : '$'
+}
 
 export const responsiveCarousel = {
     superLargeDesktop: {
