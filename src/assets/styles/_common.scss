@@ -899,4 +899,9 @@ body{
             }
         }
     }
+    .MuiRadio-root{
+        &.Mui-checked{
+            color: $color_primary !important;
+        }
+    }
 }

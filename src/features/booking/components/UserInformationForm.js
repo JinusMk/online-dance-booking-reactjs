@@ -108,7 +108,7 @@ export default function UserInformationForm(props){
                         required
                     />
                 </div>
-                <div className="inputGroup">
+                <div className="inputGroup" style={{marginBottom: 0}}>
                     <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
                     <PhoneInput
                         country={'in'}

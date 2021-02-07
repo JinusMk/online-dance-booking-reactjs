@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react'
 import { Header, DanceInformationCard, DanceInformationLoader } from  '../../../shared_elements'
-import { Container, Grid, CircularProgress } from '@material-ui/core';
+import { Container, Grid, CircularProgress, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { connect } from 'react-redux'
@@ -9,6 +9,7 @@ import { toastFlashMessage } from '../../../utils'
 import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
+import { imageBasePath } from '../../../constants';
 
 const LoggedInUserInfo = lazy(() => import ('../components/LoggedInUserInfo'))
 const UserInformationForm = lazy(() => import ('../components/UserInformationForm'))
@@ -22,6 +23,7 @@ function Booking(props){
     const [loader, setLoader] = useState(true)
     const [bookingLoader, setBookingLoader] = useState(false)
     const [type, setType] = useState('')
+    const [payment, setPayment] = useState('online')
     let history = useHistory()
 
     useEffect(() => {
@@ -67,33 +69,87 @@ function Booking(props){
             })
         }
     }
+    const createBookingApi = (formData) => {
+        globalPostService(`bookings/create`, formData)
+        .then(response => {
+            // console.log('response booking', response)
+            setBookingLoader(false)
+            if(response.success == true){
+                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+            }
+        })
+        .catch(err => {
+            setBookingLoader(false)
+            toastFlashMessage('Something went wrong, Please try again!', 'error')
+        })
+    }
     const handleSubmit = (userInfo) => {
         setBookingLoader(true)
         // console.log('booking continue clicked', userInfo)
         if(type == "danceBooking"){
-            const formData = {
+            let formData = {
                 dance_id: selectedItem.id,
                 name: userInfo.displayName,
                 email: userInfo.email,
                 mobile: userInfo.phoneNumber,
-                uid: userInfo.uid
+                uid: userInfo.uid,
+                paymentId: ''
             }
-            globalPostService(`bookings/create`, formData)
-            .then(response => {
-                // console.log('response booking', response)
-                setBookingLoader(false)
-                if(response.success == true){
-                    history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+            if(payment == "online"){
+                let params = {
+                    "key": "rzp_test_NKXGcWEaRQd4SH",
+                    // "key": "rzp_live_x5PdyxY6pBcPeC",
+                    "amount": "100",
+                    "name": userInfo.displayName,
+                    "description": "Test Transaction",
+                    "image": `${imageBasePath}logo_512.png`,
+                    "handler": function (response){
+                        console.log('handler response', response)
+                        // createBookingApi({...formData, paymentId: response.razorpay_payment_id})
+                    },
+                    "modal": {
+                        "ondismiss": function(){
+                            setBookingLoader(false)
+                        }
+                    },
+                    "prefill": {
+                        "name": userInfo.displayName,
+                        "email": userInfo.email,
+                        "contact" : userInfo.phoneNumber
+                    },
+                    "notes": {
+                        "name": userInfo.displayName,
+                        "email": userInfo.email,
+                        "contact" : userInfo.phoneNumber,
+                    },
+                    "theme": {
+                        "color": "#AE0423"
+                    }
                 }
-            })
-            .catch(err => {
-                setBookingLoader(false)
-                toastFlashMessage('Something went wrong, Please try again!', 'error')
-            })
+                let rzp = new window.Razorpay(params);
+                rzp.on('payment.failed', function (response){
+                    console.log('response err', response)
+                    setBookingLoader(false)
+                    alert(response.error.code);
+                    alert(response.error.description);
+                    alert(response.error.source);
+                    alert(response.error.step);
+                    alert(response.error.reason);
+                    alert(response.error.metadata.order_id);
+                    alert(response.error.metadata.payment_id);
+                });
+                rzp.open();
+            }else{
+                createBookingApi(formData)
+            }
+            
         }else{
             //
             setBookingLoader(false)
         }
+    }
+    const handleChangePayment = (e) => {
+        setPayment(e.target.value)
     }
     return(
         <section className="booking-section">
@@ -126,6 +182,16 @@ function Booking(props){
                     </>
                     }
                 </Suspense>
+                <div className="payment-options-wrapper">
+                    <RadioGroup aria-label="payment-options" name="payment-options" className="radioGroup" value={payment} onChange={handleChangePayment}>
+                        <FormControlLabel value="online" control={<Radio />} label={<div className={`label ${payment == "online" ? 'active': ''}`}>
+                            <p className="secondaryText">PAY ONLINE</p>
+                        </div>} />
+                        <FormControlLabel value="offline" control={<Radio />} label={<div className={`label ${payment == "offline" ? 'active': ''}`}>
+                            <p className="secondaryText">PAY AT CLASS</p>
+                        </div>} />
+                    </RadioGroup>
+                </div>
             </Container>
             {
                 bookingLoader ? <div className="screen-loader-wrapper">

@@ -96,6 +96,7 @@ body{
                 width: 100%;
                 background: #fff;
                 box-sizing: border-box;
+                z-index: 9;
             }
             .user-information-form-wrapper{
                 padding: 16px;
@@ -118,6 +119,30 @@ body{
             .subscription-information-card{
                 // padding: 0 16px 16px;
                 // border-bottom: 1px solid #FFE5E9;
+            }
+            .payment-options-wrapper{
+                padding: 16px;
+                .radioGroup{
+                    flex-direction: row;
+                    label{
+                        .MuiButtonBase-root{
+                            padding: 0 9px;
+                        }
+                        &:last-child{
+                            margin: 0;
+                        }
+                        .label{
+                            p{
+                                color: $color_gray;
+                            }
+                            &.active{
+                                p{
+                                    color: $color_black;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
