@@ -10,6 +10,7 @@ import { globalGetService, globalPostService } from '../../../utils/globalApiSer
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
 import { imageBasePath } from '../../../constants';
+import axios from 'axios'
 
 const LoggedInUserInfo = lazy(() => import ('../components/LoggedInUserInfo'))
 const UserInformationForm = lazy(() => import ('../components/UserInformationForm'))
@@ -71,6 +72,10 @@ function Booking(props){
     }
     const createBookingApi = (formData) => {
         globalPostService(`bookings/create`, formData)
+        // const options = {
+        //     headers: {'Authorization': JSON.parse(localStorage.getItem('idToken'))}
+        //   };
+        // axios.post(`http://13.59.63.39/api/4/bookings/create`, formData, options)
         .then(response => {
             // console.log('response booking', response)
             setBookingLoader(false)
@@ -105,7 +110,7 @@ function Booking(props){
                     "image": `${imageBasePath}logo_512.png`,
                     "handler": function (response){
                         console.log('handler response', response)
-                        // createBookingApi({...formData, paymentId: response.razorpay_payment_id})
+                        createBookingApi({...formData, paymentId: response.razorpay_payment_id})
                     },
                     "modal": {
                         "ondismiss": function(){
