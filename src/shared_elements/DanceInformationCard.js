@@ -1,6 +1,6 @@
 import React, { useState } from   'react'
 import TimeSlotList from './TimeSlotList'
-import { imageBasePath, participantsCount } from '../constants';
+import { imageBasePath, participantsCount, currencySymbol } from '../constants';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 export default function DanceInformationCard(props){
@@ -21,7 +21,7 @@ export default function DanceInformationCard(props){
                 </div>
             </div>
             <ul className="bottom-blk listUnstyled">
-                {type == "schedule" && <p className="heading2 cost"><span>₹{dance.cost_old}</span>₹{dance.cost}</p>}
+                {type == "schedule" && <p className="heading2 cost"><span>{`${currencySymbol[dance.currencyType]}${dance.cost_old}`}</span>{`${currencySymbol[dance.currencyType]}${dance.cost}`}</p>}
                 <li>
                     <p className="paragraph"><img src={`${imageBasePath}clock_icon_active.svg`} /> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name}`}</span></p>
                 </li>

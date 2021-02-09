@@ -8,6 +8,7 @@ import { AddReviewCard, ReviewDetails } from '../components'
 import '../../../assets/styles/class-detail-module.scss'
 import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils';
+import { currencySymbol } from '../../../constants';
 
 function ClassDetail(props){
     const [loader, setLoader] = useState(true)
@@ -47,7 +48,7 @@ function ClassDetail(props){
                     <Grid item xs={12}>
                         <div className="payment-info">
                             <p className="secondaryText">{danceInfo.userDetails && danceInfo.userDetails.payment_method == "offline" ? 'PAY AT CLASS' : 'PAID VIA'}</p>
-                            <h3 className="heading3 cost"><span className="cost-old">₹{danceInfo.cost_old}</span>₹{danceInfo.cost}</h3>
+                            <h3 className="heading3 cost"><span className="cost-old">{`${currencySymbol[danceInfo.currencyType]}${danceInfo.cost_old}`}</span>{`${currencySymbol[danceInfo.currencyType]}${danceInfo.cost}`}</h3>
                         </div>
                     </Grid>
                     <Grid item xs={12}>

@@ -9,8 +9,7 @@ import { toastFlashMessage } from '../../../utils'
 import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
-import { imageBasePath } from '../../../constants';
-import axios from 'axios'
+import { imageBasePath, currencySymbol } from '../../../constants';
 
 const LoggedInUserInfo = lazy(() => import ('../components/LoggedInUserInfo'))
 const UserInformationForm = lazy(() => import ('../components/UserInformationForm'))
@@ -175,7 +174,7 @@ function Booking(props){
                     <Grid item xs={5}>
                         <div className="amountWrapper">
                             <p className="secondaryText">AMOUNT</p>
-                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>₹{selectedItem.cost_old}</span>₹{selectedItem.cost}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost_old}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost}`}</h3>}
                         </div>
                     </Grid>
                 </Grid>
@@ -190,7 +189,7 @@ function Booking(props){
                     </>
                     }
                 </Suspense>
-                <div className="payment-options-wrapper">
+                {/* <div className="payment-options-wrapper">
                     <RadioGroup aria-label="payment-options" name="payment-options" className="radioGroup" value={payment} onChange={handleChangePayment}>
                         <FormControlLabel value="online" control={<Radio />} label={<div className={`label ${payment == "online" ? 'active': ''}`}>
                             <p className="secondaryText">PAY ONLINE</p>
@@ -199,7 +198,7 @@ function Booking(props){
                             <p className="secondaryText">PAY AT CLASS</p>
                         </div>} />
                     </RadioGroup>
-                </div>
+                </div> */}
             </Container>
             {
                 bookingLoader ? <div className="screen-loader-wrapper">

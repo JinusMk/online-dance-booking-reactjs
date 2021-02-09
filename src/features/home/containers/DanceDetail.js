@@ -2,8 +2,8 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import {  DanceInfo } from '../components'
-import { instructorsData, categorySlug } from '../../../constants';
-import { globalGetService } from '../../../utils/globalApiServices';
+import { instructorsData } from '../../../constants';
+import { globalPostService } from '../../../utils/globalApiServices';
 import '../../../assets/styles/dance-detail-module.scss'
 
 const InstructorCard = React.lazy(() => import('../components/InstructorCard'));
@@ -19,11 +19,12 @@ export default function DanceDetail(props){
     const [ loader, setLoader ] = useState(true)
     const [ danceInfo, setDanceInfo ] = useState({})
     const [ danceClasses, setDanceClasses ] = useState({})
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         const slug = props.match.params.slug
         setCategory(slug)
-        globalGetService(`dance/category/${categorySlug[slug]}`, {})
+        globalPostService(`dance/category/1`, { categoryId: sessionStorage.getItem('categoryId') })
         .then(response => {
             if(response.success == true){
                 setDanceClasses(response.data.dance_classes)

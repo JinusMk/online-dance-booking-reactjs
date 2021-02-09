@@ -2,20 +2,23 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Skeleton from '@material-ui/lab/Skeleton';
 import { isMobile } from 'react-device-detect'
-import { imageBasePath, danceCategory } from '../../../constants';
+import { imageBasePath, danceCategory, currencySymbol } from '../../../constants';
 
 export default function DanceFormCard(props){
     let history = useHistory()
     const { dance } = props
     const [imgLoader, setImgLoader] = useState(true)
     return(
-        <div className="card" onClick={() => history.push(`/dance/${danceCategory[dance.category_id]}`)}>
+        <div className="card" onClick={() => {
+            sessionStorage.setItem('categoryId', dance._id);
+            history.push(`/dance/${dance.category}`)
+        }}>
                 <div className="top-blk">
                     {imgLoader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : null}
                     <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <span className="secondaryText">Live & interactive</span>
                     <div className="title-wrapper">
-                        <p className="heading2">{dance.category}</p>
+                        <p className="heading2">{dance.name}</p>
                     </div>
                 </div>
                 <div className="info-blk">
@@ -24,7 +27,7 @@ export default function DanceFormCard(props){
                         <span>{dance.rating}</span>
                         <span className="rating">({dance.rating_count} RATINGS)</span>
                     </h3>
-                    <p className="heading3 cost"><span>₹{dance.cost_old}</span>{`₹${dance.cost}`}</p>
+                    <p className="heading3 cost"><span>{`${currencySymbol[dance.currencyType]}${dance.cost_old}`}</span>{`${currencySymbol[dance.currencyType]}${dance.cost}`}</p>
                     <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${dance.instructor ? dance.instructor.name: ''}`}</span></p>
                     <ul className="listInline">
                         {/* 

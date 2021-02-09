@@ -3,7 +3,7 @@ import { Container } from '@material-ui/core';
 import moment from 'moment'
 import { connect } from 'react-redux'
 import '../../../assets/styles/booking-success-module.scss'
-import { imageBasePath } from '../../../constants';
+import { imageBasePath, currencySymbol } from '../../../constants';
 
 const DanceInformationCard = lazy(() => import('../../../shared_elements/DanceInformationCard'))
 const AddToHomeScreen = lazy(() => import('../../../shared_elements/AddToHomeScreen'))
@@ -63,7 +63,7 @@ function BookingSuccess(props){
                     </Suspense>
                     <div className="payment-method">
                         <p className="secondaryText">PAY AT CLASS</p>
-                        <p className="heading3"><span className="cost-old">₹{selectedItem.cost_old}</span>₹{selectedItem.cost}</p>
+                        <p className="heading3"><span className="cost-old">{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost_old}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost}`}</p>
                     </div>
                     <div className="need-help">
                         <p className="secondaryText">NEED HELP ON THIS BOOKING ?</p>
