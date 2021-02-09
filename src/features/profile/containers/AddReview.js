@@ -5,7 +5,6 @@ import { Header, DanceInformationLoader } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
 import { imageBasePath } from '../../../constants';
 import moment from 'moment'
-import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils';
 import { globalPostService } from '../../../utils/globalApiServices'
 import '../../../assets/styles/add-review-module.scss'
@@ -19,7 +18,6 @@ function AddReview(props){
         dance_rating: 0,
         description: '',
         dance_id: props.match.params.danceId,
-        uid: ''
     })
     const [category, setCategory] = useState(props.match.params.danceCategory)
     const [error, setError] = useState({})
@@ -43,6 +41,8 @@ function AddReview(props){
             if(response.success == true){
                 setDanceInfo(response.data)
                 setLoader(false)
+            }else if(response.error){
+                toastFlashMessage(response.error, 'error')
             }
         })
         setTimeout(() => {
@@ -57,12 +57,14 @@ function AddReview(props){
         e.preventDefault()
         setReviewLoader(true)
         if(reviewData.description && reviewData.description.trim()){
-            globalPostService(`review`, {...reviewData, uid: props.userInfo.uid})
+            globalPostService(`review`, {...reviewData})
             .then(response => {
                 setReviewLoader(false)
                 if(response.success === true){
                     toastFlashMessage('Review submitted successfully', 'success')
                     handleGoBack()
+                }else if(response.error){
+                    toastFlashMessage(response.error, 'error')
                 }
             })
             .catch(err => {
@@ -158,7 +160,4 @@ function AddReview(props){
         </section>
     )
 }
-const mapStateToProps = state => ({
-    userInfo: state.sharedReducers.userInfo
-})
-export default connect(mapStateToProps, null)(AddReview)
+export default AddReview

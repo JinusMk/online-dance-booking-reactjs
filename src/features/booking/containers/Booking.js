@@ -98,7 +98,6 @@ function Booking(props){
                 name: userInfo.displayName,
                 email: userInfo.email,
                 mobile: userInfo.phoneNumber,
-                uid: userInfo.uid,
                 paymentId: ''
             }
             if(payment == "online"){

@@ -5,10 +5,9 @@ import { globalGetService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import moment from 'moment'
 import { AddReviewCard, ReviewDetails } from '../components'
-import '../../../assets/styles/class-detail-module.scss'
-import { connect } from 'react-redux'
 import { toastFlashMessage } from '../../../utils';
 import { currencySymbol } from '../../../constants';
+import '../../../assets/styles/class-detail-module.scss'
 
 function ClassDetail(props){
     const [loader, setLoader] = useState(true)
@@ -16,8 +15,7 @@ function ClassDetail(props){
     const [category, setCategory] = useState(props.match.params.danceCategory)
     
     useEffect(() => {
-        if(props.userInfo && props.userInfo.uid && !danceInfo){
-            globalGetService(`dance-classes/${props.match.params.danceId}`, { uid : props.userInfo.uid })
+        globalGetService(`dance-classes/${props.match.params.danceId}`)
             .then(response => {
                 if(response.success == true){
                     setDanceInfo(response.data)
@@ -25,9 +23,8 @@ function ClassDetail(props){
                 }else if(response.error){
                     toastFlashMessage(response.error, 'error')
                 }
-            })
-        }
-    }, [props.userInfo])
+        })
+    }, [])
     return(
         <section className="class-detail-section">
             <Header onBack={() => props.history.push('/dance-history')} title="Dance" />
@@ -63,7 +60,4 @@ function ClassDetail(props){
         </section>
     )
 }
-const mapStateToProps = state => ({
-    userInfo: state.sharedReducers.userInfo
-})
-export default connect(mapStateToProps, null)(ClassDetail)
+export default ClassDetail

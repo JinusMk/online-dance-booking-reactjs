@@ -4,25 +4,24 @@ import { DanceHistoryCard, DanceHistoryLoader } from '../components'
 import moment from 'moment'
 import { DanceAlert, Header } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
-import { checkIsFinished } from '../../../utils';
-import '../../../assets/styles/dance-history-module.scss'
+import { checkIsFinished, toastFlashMessage } from '../../../utils';
 import { imageBasePath } from '../../../constants';
-import { connect } from 'react-redux'
+import '../../../assets/styles/dance-history-module.scss'
 
 function DanceHistory(props){
     const [loader, setLoader] = useState(true)
     const [dances, setDances] = useState({})
     
     useEffect(() => {
-        if(props.userInfo && props.userInfo.uid){
-            globalGetService(`dance-history`, { uid : props.userInfo.uid})
-            .then(response => {
-                if(response.success == true){
-                    setDances(response.data)
-                    setLoader(false)
-                }
-            })
-        }
+        globalGetService(`dance-history`)
+        .then(response => {
+            if(response.success == true){
+                setDances(response.data)
+                setLoader(false)
+            }else if(response.error){
+                toastFlashMessage(response.error, 'error')
+            }
+        })
     }, [props.userInfo])
     
     return(
@@ -49,7 +48,4 @@ function DanceHistory(props){
         </section>
     )
 }
-const mapStateToProps = state => ({
-    userInfo: state.sharedReducers.userInfo
-})
-export default connect(mapStateToProps, null)(DanceHistory)
+export default DanceHistory

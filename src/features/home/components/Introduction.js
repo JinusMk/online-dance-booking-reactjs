@@ -26,8 +26,8 @@ function Introduction(props){
 
             }
         })
-        if(props.isLoggedIn && props.userInfo && props.userInfo.uid){
-            globalGetService(`dance-history`, { uid : props.userInfo.uid})
+        if(props.isLoggedIn){
+            globalGetService(`dance-history`)
             .then(response => {
                 if(response.success == true){
                     const dances = response.data
@@ -40,7 +40,7 @@ function Introduction(props){
                 }
             })
         }
-    }, [props.userInfo])
+    }, [props.isLoggedIn])
     return(
         <div className="introduction-blk">
            { (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/> : <Carousel 
@@ -65,6 +65,5 @@ function Introduction(props){
 }
 const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
-    userInfo: state.sharedReducers.userInfo
 })
 export default connect(mapStateToProps, null)(Introduction)
