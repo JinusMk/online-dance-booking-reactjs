@@ -3,8 +3,8 @@ import { DEV_BASE_URL } from '../constants';
 
 var axiosInstance = axios.create();
 
-// axiosInstance.defaults.baseURL = 'https://admin.letzdance.co/api/';
-axiosInstance.defaults.baseURL = DEV_BASE_URL;
+axiosInstance.defaults.baseURL = 'http://localhost:6001/api/4';
+// axiosInstance.defaults.baseURL = DEV_BASE_URL;
 axiosInstance.interceptors.request.use(function(config){
     if(localStorage.getItem('idToken')){
       config['headers']['Authorization'] = JSON.parse(localStorage.getItem('idToken'));
