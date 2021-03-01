@@ -14,6 +14,7 @@ import TimeSlots from './TimeSlots'
 import ReviewCard from './ReviewCard'
 import RecapItem from './RecapItem'
 import ReviewsListingLoader from './ReviewsListingLoader'
+import LastWeekRecap from './LastWeekRecap'
 
 export {
     Introduction,
@@ -31,5 +32,6 @@ export {
     TimeSlots,
     ReviewCard,
     RecapItem,
-    ReviewsListingLoader
+    ReviewsListingLoader,
+    LastWeekRecap
 }

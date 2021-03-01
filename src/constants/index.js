@@ -226,78 +226,78 @@ export const instructorsData = [
 ];
 
 export const lastWeekRecapVideos = [
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}zumba_logo_2.svg`,
-  //     category: 'zumba',
-  //     instructor: 'Angel Bensy',
-  //     participants: '22',
-  //     date: '14 Oct 2020',
-  //     media: `${imageBasePath}zumba_recap_1.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}bollywood_logo_2.svg`,
-  //     category: 'bollywood',
-  //     instructor: 'Manas',
-  //     participants: '21',
-  //     date: '16 Oct 2020',
-  //     media: `${imageBasePath}bollywood_recap_1.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}hip-hop_logo_2.svg`,
-  //     category: 'hip-hop',
-  //     instructor: 'Tony',
-  //     participants: '12',
-  //     date: '15 Oct 2020',
-  //     media: `${imageBasePath}hip-hop_recap_1.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}bollywood-kids_logo_2.svg`,
-  //     category: 'bollywood-kids',
-  //     instructor: 'Manas',
-  //     participants: '12',
-  //     date: '12 Oct 2020',
-  //     media: `${imageBasePath}bollywood-kids_recap_1.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}zumba_logo_1.svg`,
-  //     category: 'zumba',
-  //     instructor: 'Angel Bensy',
-  //     participants: '27',
-  //     date: '17 Oct 2020',
-  //     media: `${imageBasePath}zumba_recap_2.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}hip-hop_logo_1.svg`,
-  //     category: 'hip-hop',
-  //     instructor: 'Tony',
-  //     participants: '16',
-  //     date: '16 Oct 2020',
-  //     media: `${imageBasePath}hip-hop_recap_2.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}bollywood_logo_1.svg`,
-  //     category: 'bollywood',
-  //     instructor: 'Manas',
-  //     participants: '23',
-  //     date: '18 Oct 2020',
-  //     media: `${imageBasePath}bollywood_recap_2.mp4`
-  //   },
-  //   {
-  //     id: '',
-  //     img: `${imageBasePath}bollywood-kids_logo_1.svg`,
-  //     category: 'bollywood-kids',
-  //     instructor: 'Manas',
-  //     participants: '19',
-  //     date: '14 Oct 2020',
-  //     media: `${imageBasePath}bollywood-kids_recap_2.mp4`
-  //   }
+    {
+      id: '',
+      img: `${imageBasePath}zumba_logo_2.svg`,
+      category: 'zumba',
+      instructor: 'Angel Bensy',
+      participants: '22',
+      date: '14 Oct 2020',
+      media: `${imageBasePath}zumba_recap_1.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}bollywood_logo_2.svg`,
+      category: 'bollywood',
+      instructor: 'Manas',
+      participants: '21',
+      date: '16 Oct 2020',
+      media: `${imageBasePath}bollywood_recap_1.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}hip-hop_logo_2.svg`,
+      category: 'hip-hop',
+      instructor: 'Tony',
+      participants: '12',
+      date: '15 Oct 2020',
+      media: `${imageBasePath}hip-hop_recap_1.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}bollywood-kids_logo_2.svg`,
+      category: 'bollywood-kids',
+      instructor: 'Manas',
+      participants: '12',
+      date: '12 Oct 2020',
+      media: `${imageBasePath}bollywood-kids_recap_1.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}zumba_logo_1.svg`,
+      category: 'zumba',
+      instructor: 'Angel Bensy',
+      participants: '27',
+      date: '17 Oct 2020',
+      media: `${imageBasePath}zumba_recap_2.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}hip-hop_logo_1.svg`,
+      category: 'hip-hop',
+      instructor: 'Tony',
+      participants: '16',
+      date: '16 Oct 2020',
+      media: `${imageBasePath}hip-hop_recap_2.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}bollywood_logo_1.svg`,
+      category: 'bollywood',
+      instructor: 'Manas',
+      participants: '23',
+      date: '18 Oct 2020',
+      media: `${imageBasePath}bollywood_recap_2.mp4`
+    },
+    {
+      id: '',
+      img: `${imageBasePath}bollywood-kids_logo_1.svg`,
+      category: 'bollywood-kids',
+      instructor: 'Manas',
+      participants: '19',
+      date: '14 Oct 2020',
+      media: `${imageBasePath}bollywood-kids_recap_2.mp4`
+    }
 ];
 
 export const danceCategory = {
