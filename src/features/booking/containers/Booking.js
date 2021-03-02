@@ -9,7 +9,7 @@ import { toastFlashMessage } from '../../../utils'
 import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
-import { imageBasePath, currencySymbol } from '../../../constants';
+import { imageBasePath, currencySymbol, RAZOR_PAY_KEY } from '../../../constants';
 
 const LoggedInUserInfo = lazy(() => import ('../components/LoggedInUserInfo'))
 const UserInformationForm = lazy(() => import ('../components/UserInformationForm'))
@@ -102,7 +102,7 @@ function Booking(props){
             }
             if(payment == "online"){
                 let params = {
-                    "key": "rzp_test_NKXGcWEaRQd4SH",
+                    "key": RAZOR_PAY_KEY,
                     // "key": "rzp_live_x5PdyxY6pBcPeC",
                     "currency": selectedItem.currencyType,
                     "amount": selectedItem.cost * 100,

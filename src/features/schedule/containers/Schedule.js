@@ -49,7 +49,7 @@ export default function Schedule(props){
                                 aria-label="scrollable force tabs example"
                             >
                                 <ScrollspyNav
-                                        scrollTargetIds={['date-1', 'date-2', 'date-3', 'date-4', 'date-5', 'date-6', 'date-7']}
+                                        scrollTargetIds={['date-1', 'date-2', 'date-3', 'date-4', 'date-5', 'date-6']}
                                         offset={-115}
                                         activeNavClass="is-current"
                                         headerBackground="true"

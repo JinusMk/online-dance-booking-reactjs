@@ -55,7 +55,7 @@ export default function RecapItem(props){
                     </div>
                 </div>
                 <div className="footer-review-card">
-                    <Link to={`/dance/${recap.category}`} className="primaryBtn">{`Book ${recap.category} class`.toUpperCase()}</Link>
+                    <Link to={`/schedule`} className="primaryBtn">{`Book ${recap.category} class`.toUpperCase()}</Link>
                 </div>
             </SwipeableDrawer>
         ))}
