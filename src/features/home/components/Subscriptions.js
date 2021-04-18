@@ -1,33 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel, imageBasePath } from '../../../constants'
+import { responsiveCarousel, imageBasePath, currencySymbol } from '../../../constants'
+import { globalGetService } from '../../../utils/globalApiServices';
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
 
-const data = [
-    {
-        category: 'zumba',
-        points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
-    },
-    {
-        category: 'bollywood',
-        points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
-    },
-    {
-        category: 'hip-hop',
-        points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
-    }
-]
+const benefits = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
 
 export default function Subscriptions(props){
+    const [subscriptions, setSubscriptions] = useState({})
+    const [loader, setLoader] = useState(false)
+
+    useEffect(() => {
+        globalGetService(`subscriptions`)
+        .then(response => {
+            if(response.success == true){
+                setLoader(false)
+                setSubscriptions(response.data)
+            }
+        })
+    }, [])
     return(
         <div className="subscriptions-blk">
             <div className="title">
                 <h3 className="heading2">Letzdance subscriptions</h3>
                 <p className="paragraph">Stay fit long term, buy a subscription.</p>
             </div>
-            <Carousel 
+            {loader ? 'Loading...' : <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
                 showDots={true}
@@ -41,27 +41,38 @@ export default function Subscriptions(props){
                 renderDotsOutside={true}
             >
                 {
-                    data.map((item, index) => <div className="subcription-card-wrapper" key={index} style={{backgroundImage: `url(${imageBasePath}${item.category}_logo_1.svg)`}}>
-                        {/* <img src={`${imageBasePath}${item.category}_logo_1.svg`}/> */}
-                        <div className="info-wrapper">
-                            <h3 className="heading3">{`${item.category} Subscription`}</h3>
-                            <p className="paragraph">Starting from ₹1,400 / month</p>
-                            <ul className="listUnstyled benefitsList">
-                                {
-                                    item.points.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
-                                        <img src={`${imageBasePath}booking_success_tick.svg`}/>
-                                        <span>{point}</span>
-                                    </li>)
-                                }
-                                {item.points.length > 2 ? <li className="more-point">{`+${item.points.length - 2} more`}</li> : null}
-                            </ul>
-                            <p>
-                                <Link className="primaryBtn" to={`/subscription/${item.category}`}>KNOW MORE</Link>
-                            </p>
-                        </div>
-                    </div>)
+                    subscriptions && Object.keys(subscriptions).length && Object.keys(subscriptions).map((key, index) => {
+                        if(subscriptions[key][0]){
+                            return <SubscriptionCard subscriptionItem={subscriptions[key][0]} />
+                        }
+                    })
                 }
-            </Carousel>
+            </Carousel>}
+        </div>
+    )
+}
+
+function SubscriptionCard(props){
+    const { subscriptionItem } = props
+    return(
+        <div className="subcription-card-wrapper" style={{backgroundImage: `url(${subscriptionItem.image})`}}>
+            {/* <img src={subscriptionItem.image}/> */}
+            <div className="info-wrapper">
+                <h3 className="heading3">{subscriptionItem.name}</h3>
+                <p className="paragraph">{`Starting from ${currencySymbol[subscriptionItem.currencyType]}${subscriptionItem.actualCost}`}</p>
+                <ul className="listUnstyled benefitsList">
+                    {
+                        benefits.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
+                            <img src={`${imageBasePath}booking_success_tick.svg`}/>
+                            <span>{point}</span>
+                        </li>)
+                    }
+                    {benefits.length > 2 ? <li className="more-point">{`+${benefits.length - 2} more benefits`}</li> : null}
+                </ul>
+                <p>
+                    <Link className="primaryBtn" to={`/subscription/${subscriptionItem.category?.categorySlug}`}>KNOW MORE</Link>
+                </p>
+            </div>
         </div>
     )
 }

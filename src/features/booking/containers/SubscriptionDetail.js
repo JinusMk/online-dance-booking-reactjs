@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import '../../../assets/styles/subscription-detail-module.scss'
+import { globalGetService } from '../../../utils/globalApiServices';
 
 const SubscriptionInfo = lazy(() => import('../components/SubscriptionInfo'));
 const SubscriptionBenefits = lazy(() => import('../components/SubscriptionBenefits'));
@@ -12,13 +13,21 @@ const ContactUs = React.lazy(() => import('../../home/components/ContactUs'));
 const CommonQuestions = React.lazy(() => import('../../home/components/CommonQuestions'));
 
 export default function SubscriptionDetail(props){
-    const [loader, setLoader] = useState(false)
+    const [loader, setLoader] = useState(true)
     const [category, setCategory] = useState('')
+    const [subscriptionInfo, setSubscriptionInfo] = useState({})
 
     useEffect(() => {
         const category = props.match.params.category
         setCategory(category)
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        globalGetService(`subscriptionsByName/Bollywood Subscription`)
+        .then(response => {
+            if(response.success === true){
+                setLoader(false)
+                setSubscriptionInfo(response.data)
+            }
+        })
     }, [])
 
     return(
@@ -27,9 +36,9 @@ export default function SubscriptionDetail(props){
             {
                 loader ? 'Loading...' : <Container className="subscription-detail-container">
                     <Suspense fallback={<></>}>
-                        <SubscriptionInfo category={category}/>
+                        <SubscriptionInfo subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
                         <SubscriptionBenefits category={category}/>
-                        <SubscriptionPlans category={category}/>
+                        <SubscriptionPlans subscriptionInfo={subscriptionInfo}/>
                         <ClassBookingAlert category={category}/>
                         <HowWorks />
                         <CommonQuestions/>

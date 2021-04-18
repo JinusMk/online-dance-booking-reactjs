@@ -6,16 +6,21 @@ import { Link } from 'react-router-dom'
 
 export default function SubscriptionInfo(props){
     const [imgLoader, setImgLoader] = useState(true)
-    const { category } = props
+    const { subscription } = props
+    const goToBuySubscription = () => {
+        document.getElementById('subscription-plans').scrollIntoView({
+            behavior: 'smooth'
+        })
+    }
     return(
         <div className="subscription-detail-header">
             {imgLoader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : null}
-            <img src={`${imageBasePath}${category}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+            <img src={subscription.image} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
             <div className="info-wrapper">
-                <h3 className="heading2">Zumba dance for the price of a full course meal!</h3>
-                <p className="paragraph">Join now & get started towards fitness!</p>
+                <h3 className="heading2">{subscription.title}</h3>
+                <p className="paragraph">{subscription.description}</p>
                 <p className="link">
-                    <Link to="" className="primaryBtn">BUY SUBSCRIPTION</Link>
+                    <Link onClick={goToBuySubscription} className="primaryBtn">BUY SUBSCRIPTION</Link>
                 </p>
             </div>
         </div>
