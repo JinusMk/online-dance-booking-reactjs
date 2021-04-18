@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel, imageBasePath, currencySymbol } from '../../../constants'
+import { responsiveCarousel, imageBasePath, currencySymbol, subscriptionBenefits } from '../../../constants'
 import { globalGetService } from '../../../utils/globalApiServices';
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
-
-const benefits = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
 
 export default function Subscriptions(props){
     const [subscriptions, setSubscriptions] = useState({})
@@ -62,12 +60,12 @@ function SubscriptionCard(props){
                 <p className="paragraph">{`Starting from ${currencySymbol[subscriptionItem.currencyType]}${subscriptionItem.actualCost}`}</p>
                 <ul className="listUnstyled benefitsList">
                     {
-                        benefits.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
+                        subscriptionBenefits.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
                             <img src={`${imageBasePath}booking_success_tick.svg`}/>
                             <span>{point}</span>
                         </li>)
                     }
-                    {benefits.length > 2 ? <li className="more-point">{`+${benefits.length - 2} more benefits`}</li> : null}
+                    {subscriptionBenefits.length > 2 ? <li className="more-point">{`+${subscriptionBenefits.length - 2} more benefits`}</li> : null}
                 </ul>
                 <p>
                     <Link className="primaryBtn" to={`/subscription/${subscriptionItem.category?.categorySlug}`}>KNOW MORE</Link>

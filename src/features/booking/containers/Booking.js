@@ -27,6 +27,7 @@ function Booking(props){
     let history = useHistory()
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         if(props.match.params.id){
             setType('danceBooking')
             globalGetService(`dance-classes/${props.match.params.id}`, {})
@@ -40,21 +41,29 @@ function Booking(props){
             //get subscription details api
             setType('subscription')
             setCategory(props.match.params.category)
-            setSelectedItem({
-                cost: 1400,
-                cost_old: 2000,
-                rating: 4.5,
-                rating_count: 89,
-                points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
+            globalGetService(`subscriptionsById/${props.match.params.subsctiptionId}`)
+            .then(response => {
+                if(response.success === true){
+                    setLoader(false)
+                    setSelectedItem(response.data)
+                }
             })
-            setLoader(false)
+            // setSelectedItem({
+            //     cost: 1400,
+            //     cost_old: 2000,
+            //     rating: 4.5,
+            //     rating_count: 89,
+            //     points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
+            // })
         }
     }, [])
     const onBack = () => {
         if(props.location.state && props.location.state.sectionId){
             props.history.push(`/schedule#${props.location.state.sectionId}`)
-        }else{
+        }else if(props.match.params.id){
             props.history.push(`/dance/${props.match.params.category}`)
+        }else{
+            props.history.push(`/subscription/${props.match.params.category}`)
         }
     }
     const logout = () => {
@@ -110,7 +119,7 @@ function Booking(props){
                     "description": "Test Transaction",
                     "image": `${imageBasePath}logo_512.png`,
                     "handler": function (response){
-                        console.log('handler response', response)
+                        // console.log('handler response', response)
                         createBookingApi({...formData, paymentId: response.razorpay_payment_id})
                     },
                     "modal": {
@@ -167,13 +176,13 @@ function Booking(props){
                     <Grid item xs={7}>
                         <div className="timeWrapper">
                             <p className="secondaryText">{type == "danceBooking" ? 'DATE & TIME' : 'DURATION'}</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3> : <h3 className="heading3">1 month</h3>}
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3> : <h3 className="heading3">{`${selectedItem.months} ${selectedItem.months > 1 ? 'months' : 'month'}`}</h3>}
                         </div>
                     </Grid>
                     <Grid item xs={5}>
                         <div className="amountWrapper">
                             <p className="secondaryText">AMOUNT</p>
-                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost_old}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost}`}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24}  /> : <h3 className="heading3 cost"><span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.actualCost}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.discountedCost}`}</h3>}
                         </div>
                     </Grid>
                 </Grid>

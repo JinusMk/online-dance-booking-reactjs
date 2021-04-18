@@ -378,3 +378,5 @@ export const participantsCount = {
   'bollywood-kids': 126,
   'hiphop-kids': 97
 };
+
+export const subscriptionBenefits = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
