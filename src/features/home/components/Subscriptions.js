@@ -68,7 +68,7 @@ function SubscriptionCard(props){
                     {subscriptionBenefits.length > 2 ? <li className="more-point">{`+${subscriptionBenefits.length - 2} more benefits`}</li> : null}
                 </ul>
                 <p>
-                    <Link className="primaryBtn" to={`/subscription/${subscriptionItem.category?.categorySlug}`}>KNOW MORE</Link>
+                    <Link className="primaryBtn" to={`/subscription/${subscriptionItem.slug}`}>KNOW MORE</Link>
                 </p>
             </div>
         </div>

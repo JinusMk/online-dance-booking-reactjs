@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 import { Link } from 'react-router-dom'
@@ -7,8 +7,8 @@ import { currencySymbol } from '../../../constants';
 
 export default function SubscriptionPlans(props){
   let params = useParams()
-  const { subscriptionInfo=[] } = props
-  const [value, setValue] = useState(subscriptionInfo.length ? subscriptionInfo[0]._id : '');
+  const { subscriptionInfo } = props
+  const [value, setValue] = useState('');
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -19,12 +19,17 @@ export default function SubscriptionPlans(props){
       })
       return title
   }
+  useEffect(() => {
+    if(subscriptionInfo.length){
+        setValue(subscriptionInfo[0]._id)
+    }
+  }, [])
   return(
         <div className="subscription-plans" id="subscription-plans">
             <h3 className="title heading2">Subscription plans</h3>
             <ul className="listUnstyled plans-wrapper">
                 {
-                    subscriptionInfo.map((subscription, index) => <li className="plans-item" key={index}>
+                    subscriptionInfo.length ? subscriptionInfo.map((subscription, index) => <li className="plans-item" key={index}>
                         <h3 className="heading3">{getSubscriptionTitle(subscription.weekDays)} - {moment(subscription.startTime).format('hh:mm A')}</h3>
                         <RadioGroup aria-label="subscriptionPlans" name="subscriptionPlans" className={"radioGroup"} value={value} onChange={handleChange}>
                             <FormControlLabel key={index} value={subscription._id} control={<Radio checked={subscription._id == value ? true: false }/>} label={<div className={`label ${value == subscription._id ? 'active': '' }`}>
@@ -36,7 +41,7 @@ export default function SubscriptionPlans(props){
                                 </p>
                             </div>} />
                         </RadioGroup>
-                    </li>) 
+                    </li>) : null
                 }
             </ul>
             <p className="link">

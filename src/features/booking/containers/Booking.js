@@ -80,10 +80,6 @@ function Booking(props){
     }
     const createBookingApi = (formData) => {
         globalPostService(`bookings/create`, formData)
-        // const options = {
-        //     headers: {'Authorization': JSON.parse(localStorage.getItem('idToken'))}
-        //   };
-        // axios.post(`http://13.59.63.39/api/4/bookings/create`, formData, options)
         .then(response => {
             // console.log('response booking', response)
             setBookingLoader(false)
@@ -110,58 +106,82 @@ function Booking(props){
                 paymentId: ''
             }
             if(payment == "online"){
-                let params = {
-                    "key": RAZOR_PAY_KEY,
-                    // "key": "rzp_live_x5PdyxY6pBcPeC",
-                    "currency": selectedItem.currencyType,
-                    "amount": selectedItem.cost * 100,
-                    "name": userInfo.displayName,
-                    "description": "Test Transaction",
-                    "image": `${imageBasePath}logo_512.png`,
-                    "handler": function (response){
-                        // console.log('handler response', response)
-                        createBookingApi({...formData, paymentId: response.razorpay_payment_id})
-                    },
-                    "modal": {
-                        "ondismiss": function(){
-                            setBookingLoader(false)
-                        }
-                    },
-                    "prefill": {
-                        "name": userInfo.displayName,
-                        "email": userInfo.email,
-                        "contact" : userInfo.phoneNumber
-                    },
-                    "notes": {
-                        "name": userInfo.displayName,
-                        "email": userInfo.email,
-                        "contact" : userInfo.phoneNumber,
-                    },
-                    "theme": {
-                        "color": "#AE0423"
-                    }
-                }
-                let rzp = new window.Razorpay(params);
-                rzp.on('payment.failed', function (response){
-                    console.log('response err', response)
-                    setBookingLoader(false)
-                    alert(response.error.code);
-                    alert(response.error.description);
-                    alert(response.error.source);
-                    alert(response.error.step);
-                    alert(response.error.reason);
-                    alert(response.error.metadata.order_id);
-                    alert(response.error.metadata.payment_id);
-                });
-                rzp.open();
+                setupOnlinePayment(formData, userInfo)
             }else{
                 createBookingApi(formData)
             }
-            
         }else{
-            //
-            setBookingLoader(false)
+            setBookingLoader(true)
+            let formData = {
+                subscriptionId: props.match.params.subsctiptionId
+            }
+            setupOnlinePayment(formData, userInfo)
         }
+    }
+    const setupOnlinePayment = (formData={}, userInfo={}) => {
+        let params = {
+            "key": RAZOR_PAY_KEY,
+            // "key": "rzp_live_x5PdyxY6pBcPeC",
+            "currency": selectedItem.currencyType,
+            "amount": selectedItem.cost ? selectedItem.cost * 100 : selectedItem.discountedCost * 100,
+            "name": userInfo.displayName,
+            "description": "Test Transaction",
+            "image": `${imageBasePath}logo_512.png`,
+            "handler": function (response){
+                // console.log('handler response', response)
+                if(type == "danceBooking"){
+                    createBookingApi({...formData, paymentId: response.razorpay_payment_id})
+                }else{
+                    buySubscriptionApi({...formData, paymentId: response.razorpay_payment_id})
+                }
+            },
+            "modal": {
+                "ondismiss": function(){
+                    setBookingLoader(false)
+                }
+            },
+            "prefill": {
+                "name": userInfo.displayName,
+                "email": userInfo.email,
+                "contact" : userInfo.phoneNumber
+            },
+            "notes": {
+                "name": userInfo.displayName,
+                "email": userInfo.email,
+                "contact" : userInfo.phoneNumber,
+            },
+            "theme": {
+                "color": "#AE0423"
+            }
+        }
+        let rzp = new window.Razorpay(params);
+        rzp.on('payment.failed', function (response){
+            console.log('response err', response)
+            setBookingLoader(false)
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+        rzp.open();
+    }
+    const buySubscriptionApi = (formData) => {
+        globalPostService(`buySubscription`, formData)
+        .then(response => {
+            setBookingLoader(false)
+            if(response.success == true){
+                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+            }else if(response.error){
+                toastFlashMessage(response.error, 'error')
+            }
+        })
+        .catch(err => {
+            setBookingLoader(false)
+            toastFlashMessage('Something went wrong, Please try again!', 'error')
+        })
     }
     const handleChangePayment = (e) => {
         setPayment(e.target.value)

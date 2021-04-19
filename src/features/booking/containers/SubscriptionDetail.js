@@ -14,14 +14,11 @@ const CommonQuestions = React.lazy(() => import('../../home/components/CommonQue
 
 export default function SubscriptionDetail(props){
     const [loader, setLoader] = useState(true)
-    const [category, setCategory] = useState('')
     const [subscriptionInfo, setSubscriptionInfo] = useState({})
 
     useEffect(() => {
-        const category = props.match.params.category
-        setCategory(category)
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        globalGetService(`subscriptionsByName/Bollywood Subscription`)
+        globalGetService(`subscriptionsBySlug/${props.match.params.category}`)
         .then(response => {
             if(response.success === true){
                 setLoader(false)
@@ -32,14 +29,14 @@ export default function SubscriptionDetail(props){
 
     return(
         <section className="subscription-detail-section">
-            <Header onBack={() => props.history.push('/')} title={`${category} Subscription`}/>
+            <Header onBack={() => props.history.push('/')} title={`${subscriptionInfo.length ? subscriptionInfo[0]?.name : ''} Subscription`}/>
             {
                 loader ? 'Loading...' : <Container className="subscription-detail-container">
                     <Suspense fallback={<></>}>
                         <SubscriptionInfo subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
-                        <SubscriptionBenefits category={category}/>
+                        <SubscriptionBenefits />
                         <SubscriptionPlans subscriptionInfo={subscriptionInfo}/>
-                        <ClassBookingAlert category={category}/>
+                        <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
                         <HowWorks />
                         <CommonQuestions/>
                         <ContactUs/>

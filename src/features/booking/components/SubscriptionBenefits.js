@@ -39,7 +39,6 @@ const benefitsData = [
 ]
 export default function SubscriptionBenefits(props){
     const [imgLoader, setImgLoader] = useState(true)
-    const { category } = props
 
     return(
         <div className="subscription-benefits">
