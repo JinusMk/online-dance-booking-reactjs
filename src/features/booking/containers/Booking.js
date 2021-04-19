@@ -191,7 +191,7 @@ function Booking(props){
             <Header onBack={onBack} title={props.isLoggedIn ? "Review your selection" : "Booking details"}/>
             <Container className="booking-container" style={bookingLoader ? { opacity: 0.2} :{}}>
                 <p className="secondaryText metaText">{`SELECTED ${type == "danceBooking" ? 'CLASS' : 'SUBSCRIPTION'}`}</p>
-                { loader ? <DanceInformationLoader /> : type == "danceBooking" ? <DanceInformationCard dance={selectedItem} category={category}/> : <Suspense fallback={<></>}><SubscriptionInformation subscription={selectedItem} category={category} /></Suspense>}
+                { loader ? <DanceInformationLoader /> : type == "danceBooking" ? <DanceInformationCard dance={selectedItem} category={category}/> : <Suspense fallback={<></>}><SubscriptionInformation subscription={selectedItem} /></Suspense>}
                 <Grid container spacing={0} className="dance-attributes">
                     <Grid item xs={7}>
                         <div className="timeWrapper">

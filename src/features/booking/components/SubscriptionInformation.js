@@ -4,7 +4,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 export default function SubscriptionInformation(props){
     const [imgLoader, setImgLoader] = useState(true)
-    const { category, subscription } = props
+    const { subscription } = props
     return(
         <div className="subscription-information-card">
             <div className="top-blk flexCentered">

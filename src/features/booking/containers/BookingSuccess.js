@@ -45,7 +45,7 @@ function BookingSuccess(props){
                         </div> : null}
                     </div>
                     <Suspense fallback={<></>}>
-                        {type == "danceBooking" ? <DanceInformationCard dance={selectedItem} category={category}/> : <SubscriptionInformation category={category} subscription={selectedItem} />}
+                        {type == "danceBooking" ? <DanceInformationCard dance={selectedItem} category={category}/> : <SubscriptionInformation subscription={selectedItem} />}
                     </Suspense>
                     <div className="selectedDate">
                         {
@@ -54,7 +54,7 @@ function BookingSuccess(props){
                                 <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3>
                             </> : <>
                                 <p className="secondaryText">DURATION</p>
-                                <h3 className="heading3">1 month</h3>
+                                <h3 className="heading3">{`${selectedItem.months} ${selectedItem.months > 1 ? 'months' : 'month'}`}</h3>
                             </>
                         }
                     </div>
@@ -62,8 +62,8 @@ function BookingSuccess(props){
                         <AddToHomeScreen/>
                     </Suspense>
                     <div className="payment-method">
-                        <p className="secondaryText">PAY AT CLASS</p>
-                        <p className="heading3"><span className="cost-old">{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost_old}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.cost}`}</p>
+                        <p className="secondaryText">PAID ONLINE</p>
+                        <p className="heading3"><span className="cost-old">{`${currencySymbol[selectedItem.currencyType]}${selectedItem.actualCost ? selectedItem.actualCost : selectedItem.cost_old}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.discountedCost ? selectedItem.discountedCost : selectedItem.cost}`}</p>
                     </div>
                     <div className="need-help">
                         <p className="secondaryText">NEED HELP ON THIS BOOKING ?</p>
