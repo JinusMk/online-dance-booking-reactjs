@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import moment from 'moment'
 import { globalGetService } from '../../../utils/globalApiServices';
 import { connect } from 'react-redux'
-import { DanceAlert } from '../../../shared_elements';
+import { DanceAlert, SubscriptionAlert } from '../../../shared_elements';
 import { checkIsFinished } from '../../../utils';
 
 const introductionData =[
@@ -18,7 +18,7 @@ const introductionData =[
 function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
     const [upcomingDance, setUpcomingDance] = useState(null)
-
+    const [userSubsctiption, setUserSubscriptions] = useState([])
     useEffect(() => {
         globalGetService(`banners`)
         .then(response => {
@@ -39,11 +39,18 @@ function Introduction(props){
                     }
                 }
             })
+            globalGetService(`userSubscriptions`)
+            .then(response => {
+                if(response.success === true){
+                    const userSubsctiption = response.data
+                    setUserSubscriptions(userSubsctiption)
+                }
+            })
         }
     }, [props.isLoggedIn])
     return(
         <div className="introduction-blk">
-           { (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/> : <Carousel 
+           { (userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> : (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/> : <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}

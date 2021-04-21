@@ -10,6 +10,7 @@ import AddToHomeScreen from './AddToHomeScreen'
 import ToastNotify from './ToastNotify'
 import AuthVerifyBlock from './AuthVerifyBlock'
 import DanceInformationLoader from './DanceInformationLoader'
+import SubscriptionAlert from './SubscriptionAlert'
 
 export {
     Header,
@@ -23,5 +24,6 @@ export {
     AddToHomeScreen,
     ToastNotify,
     AuthVerifyBlock,
-    DanceInformationLoader
+    DanceInformationLoader,
+    SubscriptionAlert
 }

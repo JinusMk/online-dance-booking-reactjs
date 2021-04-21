@@ -15,7 +15,7 @@ export default function DanceAlert(props){
                 </Grid>
                 {
                     moment().format('DD-MM-YYYY') == dance.class_booked_for ? <Grid xs={6}>
-                        <p><a target="_blank" href={dance.zoom_link}className="secondaryBtn">JOIN CLASS</a></p>
+                        <p><a target="_blank" rel='noopener noreferrer' href={dance.zoom_link}className="secondaryBtn">JOIN CLASS</a></p>
                     </Grid> : null
                 }
             </Grid>
