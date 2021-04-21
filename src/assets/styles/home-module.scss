@@ -320,6 +320,18 @@ body{
                     overflow: hidden;
                     border: 1px solid $color_light_gray;
                     margin-bottom: 1px;
+                    position: relative;
+                    .activeLabel{
+                        position: absolute;
+                        background: $color_success;
+                        padding: 3px 12px;
+                        border: 1px solid $color_white;
+                        color: $color_white;
+                        box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                        border-radius: 4px;
+                        right: 8px;
+                        top: 8px;
+                    }
                     .info-wrapper{
                         margin-top: 90px;
                         background: $color_white;
@@ -345,6 +357,9 @@ body{
                                     margin-left: 22px;
                                 }
                             }
+                        }
+                        .activeStatus{
+                            background-color: $color_400190;
                         }
                     }
                 }

@@ -1,15 +1,32 @@
-import React from 'react'
-import { responsiveCarousel, imageBasePath } from '../../../constants'
+import React, { useEffect, useState } from 'react'
+import { responsiveCarousel, imageBasePath, subscriptionBenefits } from '../../../constants'
 import Carousel from "react-multi-carousel";
-import { isMobile } from 'react-device-detect'
+import { globalGetService } from '../../../utils/globalApiServices';
 import { Link } from 'react-router-dom'
 import "react-multi-carousel/lib/styles.css";
 
 export default function DanceSubscription(props){
+    const [loader, setLoader] = useState(true)
+    const [subscription, setSubscription] = useState('')
+
+    useEffect(() => {
+        globalGetService(`subscriptionsBySlug/${props.category}`)
+        .then(response => {
+            if(response.success == true){
+                setLoader(false)
+                if(response.data && response.data.length){
+                    setSubscription(response.data[0])
+                }else{
+                    setSubscription({})
+                }
+            }
+        })
+    }, [])
     return(
-        <div className={`dance-subscription-blk ${`active`}`}>
+        <>
+        {loader ? 'Loading...' : <div className={`dance-subscription-blk ${subscription.active ? `active` : ''}`}>
             <div className="title">
-                <h3 className="heading2">Zumba subscription <span className="activeStatus secondaryText">ACTIVE</span></h3>
+                <h3 className="heading2">{`${subscription.name} subscription`} {subscription.active ? <span className="activeStatus secondaryText">ACTIVE</span> : null}</h3>
                 <p className="paragraph">Stay fit long term, buy a subscription.</p>
             </div>
             <div className="">
@@ -21,17 +38,18 @@ export default function DanceSubscription(props){
                     containerClass="carousel-container dance-subscription"
                 >
                     {
-                        [0,1,2].map((item, index) => <div key={index} className="subscription-info-card">
+                        subscriptionBenefits.map((item, index) => <div key={index} className="subscription-info-card">
                             <img className="" src={`${imageBasePath}fun_icon.svg`} />
-                            <p className="heading3">All dance levels - from beginner to expert</p>
+                            <p className="heading3">{item}</p>
                         </div>)
                     }
 
                 </Carousel>
             </div>
             <p>
-                <Link to={`/subscription/zumba`} className="secondaryBtn">GET ZUMBA SCBSCRIPTION</Link>
+                {subscription.active ? <Link to={`/user-subscriptions/progress`} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={`/subscription/zumba`} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
             </p>
-        </div>
+        </div>}
+        </>
     )
 }
