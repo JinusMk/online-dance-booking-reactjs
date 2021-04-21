@@ -1,0 +1,78 @@
+@import 'variable';
+
+body{
+    .user-subscription-section{
+        .user-subscription-container{
+            padding: 0;
+            .user-subscription-listing{
+                .user-subscription-list-item{
+                    padding: 16px;
+                    border-bottom: 1px solid $color_FFE5E9;
+                    .subscriptionTitle{
+                        margin-bottom: 16px;
+                    }
+                    .user-subscription-overview{
+                        box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                        border-radius: 8px;
+                        border: 1px solid $color_light_gray;
+                        position: relative;
+                        label{
+                            padding: 4px 12px;
+                            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                            border-radius: 4px;
+                            color: $color_white;
+                            position: absolute;
+                            right: 0;
+                            top: -11px;
+
+                            &.active{
+                                background: $color_success;
+                            }
+                            &.expire{
+                                background: $color_error;
+                            }
+                        }
+                        .overview-info{ 
+                            border-bottom: 1px solid $color_light_gray;
+                            padding: 16px;
+                            .overview-item{
+                                h1{
+                                    margin-bottom: 4px;
+                                    color: $color_black;
+                                    span{
+                                        font-size: $font12;
+                                    }
+                                }
+                                p{
+                                    color: $color_gray;
+                                }
+                                img{
+                                    margin-bottom: 12px;
+                                }
+                            }
+                        }
+                    }
+                    .bottom-blk{
+                        padding: 16px;
+                        .paragraph{
+                            color: $color_success;
+                            margin-bottom: 8px;
+                            &.danger{
+                                color: $color_error;
+                            }
+                        }
+                    }
+                }
+            }
+            .end-wrapper{
+                margin-top: 32px;
+                img{
+                    width: 32px;
+                }
+                .paragraph{
+                   color: $color_info_text; 
+                }
+            }
+        }
+    }
+}

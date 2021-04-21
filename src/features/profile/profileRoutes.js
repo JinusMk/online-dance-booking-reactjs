@@ -6,6 +6,7 @@ import { pageLayoutHoc } from '../../hocs'
 import PrivacyPolicy from './containers/PrivacyPolicy';
 import AddReview from './containers/AddReview';
 import ClassDetail from './containers/ClassDetail';
+import UserSubscriptions from './containers/UserSubscriptions';
 
 export const profileRoutes = [
     {
@@ -47,5 +48,10 @@ export const profileRoutes = [
         path: '/dance/:danceCategory/:danceId',
         component: ClassDetail,
         key: 'privacy-policy'
+    },
+    {
+        path: '/user-subscriptions',
+        component: UserSubscriptions,
+        key: 'user-subscriptions'
     },
 ]

@@ -209,7 +209,7 @@ function Booking(props){
                 <Suspense fallback={<></>}>
                     { props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: 
                     <>
-                        <div className="login-button-wrapper hidden">
+                        <div className="login-button-wrapper">
                             <p className="secondaryText">HAVE AN ACCOUNT ?</p>
                             <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
                         </div>

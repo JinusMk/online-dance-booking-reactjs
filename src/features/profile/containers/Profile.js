@@ -5,9 +5,11 @@ import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils'
 import { connect } from 'react-redux'
 import { UPDATE_USERINFO } from '../../../shared_elements/actions'
+import { SubscriptionAlert } from '../../../shared_elements'
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/profile-module.scss'
 import { useLocation } from 'react-router-dom'
+import { globalGetService } from '../../../utils/globalApiServices';
 
 const ProfileNavigationList = lazy(() => import('../components/ProfileNavigationList'))
 const ContactUs = lazy(() => import('../../home/components/ContactUs'))
@@ -20,12 +22,20 @@ function Profile(props){
     const [providerData, setProviderData] = useState([])
     const [authAction, setAuthAction] = useState(false)
     const [authMode, setAuthMode] = useState('')
+    const [userSubsctiption, setUserSubscriptions] = useState([])
 
     let location = useLocation()
 
     useEffect(() => {
         if(props.isLoggedIn){
             setProviderData(props.userInfo.providerData)
+            globalGetService(`userSubscriptions`)
+            .then(response => {
+                if(response.success === true){
+                    const userSubsctiption = response.data
+                    setUserSubscriptions(userSubsctiption)
+                }
+            })
         }else{
             setProviderData([])
         }
@@ -82,7 +92,7 @@ function Profile(props){
                         <h3 className="heading3" style={props.userInfo.displayName ? {textTransform: 'capitalize'} : {}}>{props.userInfo.displayName ? props.userInfo.displayName : props.userInfo.email ? props.userInfo.email : props.userInfo.phoneNumber ? props.userInfo.phoneNumber : ''}</h3>
                         <p className="paragraph">Letzdancer since 2020</p>
                     </div>
-                    {/* <DanceAlert /> */}
+                    {(userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> : null}
                     <Suspense fallback={<></>}>
                         {isVerified('phone') ? null : <AuthVerifyBlock type="phone number" handleClick={() => setVerifyPhone(true)} />}
                     </Suspense>

@@ -39,6 +39,5 @@ export const checkNumberOfDaysLeft = (date1, date2=moment()) => {
   var a = moment(date1);
   var b = moment(date2);
   var days = a.diff(b, 'days') 
-  console.log('days', days)
   return days
 }

@@ -190,7 +190,7 @@ body{
     }
     .listInline{
         list-style: none;
-        li{
+        li, .listInlineItem{
           display: inline-block;
           width: auto;
           .MuiTouchRipple-root{
