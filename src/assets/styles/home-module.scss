@@ -373,6 +373,18 @@ body{
                     .react-multiple-carousel__arrow--left{
                         left: 250px;
                     }
+                    .subscription-alert-wrapper{
+                        margin: 48px 150px 0;
+                    }
+                }
+                .subscriptions-blk{
+                    padding: 64px 134px 84px;
+                    .subcription-card-wrapper{
+                        background-size: unset;
+                    }
+                    .custom-dot-list{
+                        // bottom: 30px;
+                    }
                 }
                 .upcoming-classes{
                     &.block{
@@ -413,6 +425,17 @@ body{
             .home-container{
                 .block{
                    margin: 0 200px;
+                }
+                .introduction-blk{
+                    .subscription-alert-wrapper{
+                        margin: 64px 200px 0;
+                    }
+                }
+                .subscriptions-blk{
+                    padding: 64px 200px;
+                    .custom-dot-list{
+                        bottom: 30px;
+                    }
                 }
                 .common-questions-blk{
                     padding: 64px 200px;

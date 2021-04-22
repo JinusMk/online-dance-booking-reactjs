@@ -939,6 +939,7 @@ body{
         border: 1px solid $color_light_gray;
         margin-bottom: 1px;
         position: relative;
+        background-size: cover;
         .activeLabel{
             position: absolute;
             background: $color_success;

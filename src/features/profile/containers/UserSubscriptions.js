@@ -32,7 +32,7 @@ export default function UserSubscriptions(props){
             <Container className="user-subscription-container">
             { loader ? 'Loading...' : <>
                     {
-                        (( userSubscriptions && userSubscriptions.length ) || ( subscriptions && Object.keys(subscriptions).length )) ? <><ul container className="user-subscription-listing">
+                        (( userSubscriptions && userSubscriptions.length ) || ( subscriptions && Object.keys(subscriptions).length )) ? <><ul container className="user-subscription-listing listUnstyled">
                             { userSubscriptions && userSubscriptions.length ? userSubscriptions.map((subscription, index) => <UserSubscriptionOverview key={index} subscription={subscription}/>) : null }
                             { subscriptions && Object.keys(subscriptions).length ? Object.keys(subscriptions).map((key, index) => {
                                 if(subscriptions[key].length){

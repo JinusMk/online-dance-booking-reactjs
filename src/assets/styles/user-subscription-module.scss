@@ -45,7 +45,7 @@ body{
                                     margin-bottom: 4px;
                                     color: $color_black;
                                     span{
-                                        font-size: $font12;
+                                        font-size: $font14;
                                     }
                                 }
                                 p{
@@ -80,6 +80,24 @@ body{
                 .paragraph{
                    color: $color_info_text; 
                 }
+            }
+        }
+    }
+}
+@media (min-width: 960px){
+    body{
+        .user-subscription-section{
+            .user-subscription-container{
+                padding: 32px 250px 64px;
+            }
+        }
+    }
+}
+@media (min-width: 1279px){
+    body{
+        .user-subscription-section{
+            .user-subscription-container{
+                padding: 32px 350px 64px;
             }
         }
     }
