@@ -15,7 +15,7 @@ const CommonQuestions = React.lazy(() => import('../../home/components/CommonQue
 export default function SubscriptionDetail(props){
     const [loader, setLoader] = useState(true)
     const [subscriptionInfo, setSubscriptionInfo] = useState({})
-
+    const [alreadyActive, setAlreadyActive] = useState(false)
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         globalGetService(`subscriptionsBySlug/${props.match.params.category}`)
@@ -39,10 +39,12 @@ export default function SubscriptionDetail(props){
             {
                 loader ? 'Loading...' : <Container className="subscription-detail-container">
                     <Suspense fallback={<></>}>
-                        <SubscriptionInfo subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
+                        <SubscriptionInfo setAlreadyActive={setAlreadyActive} subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}} active={subscriptionInfo.length ? subscriptionInfo.some(sub => sub.status == "active") : false}/>
                         <SubscriptionBenefits />
-                        <SubscriptionPlans subscriptionInfo={subscriptionInfo}/>
-                        <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
+                        {(alreadyActive || (subscriptionInfo.length  && subscriptionInfo.some(sub => sub.status == "active"))) ? null : <>
+                            <SubscriptionPlans subscriptionInfo={subscriptionInfo}/>
+                            <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
+                        </>}
                         <HowWorks />
                         <CommonQuestions/>
                         <ContactUs/>

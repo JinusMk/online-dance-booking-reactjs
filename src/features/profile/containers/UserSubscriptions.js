@@ -13,10 +13,10 @@ export default function UserSubscriptions(props){
     useEffect(() => {
         globalGetService(`userSubscriptions`)
         .then(response => {
-            if(response.success === true){
+            if(response.success == true){
                 setLoader(false)
-                const userSubsctiption = response.data
-                setUserSubscriptions(userSubsctiption)
+                const userSubsctiptions = response.data
+                setUserSubscriptions(userSubsctiptions)
             }
         })
         globalGetService(`subscriptions`)

@@ -25,7 +25,9 @@ export default function Subscriptions(props){
                 <h3 className="heading2">Letzdance subscriptions</h3>
                 <p className="paragraph">Stay fit long term, buy a subscription.</p>
             </div>
-            {loader ? 'Loading...' : <Carousel 
+            {loader ? 'Loading...' : <>{
+            subscriptions && Object.keys(subscriptions).length ?
+            <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
                 showDots={true}
@@ -39,13 +41,14 @@ export default function Subscriptions(props){
                 renderDotsOutside={true}
             >
                 {
-                    subscriptions && Object.keys(subscriptions).length && Object.keys(subscriptions).map((key, index) => {
+                    Object.keys(subscriptions).map((key, index) => {
                         if(subscriptions[key][0]){
                             return <SubscriptionCard subscriptionItem={subscriptions[key][0]} active={subscriptions[key].some(sub => sub.status == "active")}/>
                         }
                     })
                 }
-            </Carousel>}
+            </Carousel> : null}</>
+            }
         </div>
     )
 }

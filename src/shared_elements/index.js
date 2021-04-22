@@ -12,6 +12,7 @@ import AuthVerifyBlock from './AuthVerifyBlock'
 import DanceInformationLoader from './DanceInformationLoader'
 import SubscriptionAlert from './SubscriptionAlert'
 import SubscriptionCard from './SubscriptionCard'
+import LinearProgressBar from './LinearProgressBar'
 
 export {
     Header,
@@ -27,5 +28,6 @@ export {
     AuthVerifyBlock,
     DanceInformationLoader,
     SubscriptionAlert,
-    SubscriptionCard
+    SubscriptionCard,
+    LinearProgressBar
 }
