@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { checkIsFinished, checkNumberOfDaysLeft } from '../utils';
 import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom'
@@ -12,7 +13,6 @@ export default function SubscriptionAlert(props){
         if(userSubscription && userSubscription.length){
             const activeSubscriptions = userSubscription.filter(sub => checkIsFinished(sub.endDate) == false)
             setActiveSubscriptions(activeSubscriptions)
-
             if(activeSubscriptions.length >= 1){ //atleast one active subscription
                 if(activeSubscriptions.length >= 2){ // more than one active subscriptions
                     setSubscriptionStatus(1)
@@ -56,17 +56,19 @@ export default function SubscriptionAlert(props){
 }
 
 function ActiveSubscriptions(props){
+    let location = useLocation()
     const { subscriptions } = props
     return(
         <div className="subscription-alert-wrapper active">
             <h3 className="heading3">{`You have ${subscriptions.length} active ${subscriptions.length > 1 ? `subscriptions` : `subscription`}`}</h3>
             <p className="paragraph">See your class calendar, calories, weight and more</p>
-            <p><Link className="primaryBtn" to="/user-subscriptions/progress">SEE MY PROGRESS</Link></p>
+            <p><Link className="primaryBtn" to={{pathname: `/user-subscriptions/progress`, state: { prevPath: `${location.pathname}` }}}>SEE MY PROGRESS</Link></p>
         </div>
     )
 }
 
 function ExpireSoonSubscription(props){
+    let location = useLocation()
     const { subscription, expired } = props
     return(
         <div className="subscription-alert-wrapper expire-soon">
@@ -82,7 +84,7 @@ function ExpireSoonSubscription(props){
                         <p className="secondaryText">{`Expires in ${checkNumberOfDaysLeft(subscription.endDate)} Days`}</p>
                     </Grid>
                     <Grid item xs={6}>
-                        <p><Link to={`/subscription/${subscription.subscription.slug}`} className="primaryBtn">RENEW</Link></p>
+                        <p><Link to={{pathname: `/subscription/${subscription.subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="primaryBtn">RENEW</Link></p>
                     </Grid>
                 </Grid>
                 </>

@@ -9,7 +9,7 @@ export default function ContactUs(props){
         if(location.pathname != '/privacy-policy'){
             history.push({
                 pathname: '/privacy-policy',
-                state: { goBackPage: `${location.pathname}` }
+                state: { prevPath: `${location.pathname}` }
             })
         }
     }

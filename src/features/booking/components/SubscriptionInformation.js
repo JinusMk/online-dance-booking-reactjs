@@ -22,7 +22,7 @@ export default function SubscriptionInformation(props){
             <div className="bottom-blk">
                 <ul className="listUnstyled">
                     {
-                        subscriptionBenefits.map((point, index) => index <= 1 && <li className="paragraph">
+                        subscriptionBenefits.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
                             <img src={`${imageBasePath}booking_success_tick.svg`}/>
                             <span>{point}</span>
                         </li>)

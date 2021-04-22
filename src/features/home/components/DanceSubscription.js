@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { responsiveCarousel, imageBasePath, subscriptionBenefits } from '../../../constants'
 import Carousel from "react-multi-carousel";
 import { globalGetService } from '../../../utils/globalApiServices';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import "react-multi-carousel/lib/styles.css";
 
 export default function DanceSubscription(props){
+    let location = useLocation()
     const [loader, setLoader] = useState(true)
     const [subscription, setSubscription] = useState('')
+    const [active, setActive] = useState(false)
 
     useEffect(() => {
         globalGetService(`subscriptionsBySlug/${props.category}`)
@@ -15,6 +17,7 @@ export default function DanceSubscription(props){
             if(response.success == true){
                 setLoader(false)
                 if(response.data && response.data.length){
+                    setActive(response.data.some(sub => sub.status == "active"))
                     setSubscription(response.data[0])
                 }else{
                     setSubscription({})
@@ -24,9 +27,9 @@ export default function DanceSubscription(props){
     }, [])
     return(
         <>
-        {loader ? 'Loading...' : <div className={`dance-subscription-blk ${subscription.active ? `active` : ''}`}>
+        {loader ? 'Loading...' : <div className={`dance-subscription-blk ${active ? `active` : ''}`}>
             <div className="title">
-                <h3 className="heading2">{`${subscription.name} subscription`} {subscription.active ? <span className="activeStatus secondaryText">ACTIVE</span> : null}</h3>
+                <h3 className="heading2">{`${subscription.name} subscription`} {active ? <span className="activeStatus secondaryText">ACTIVE</span> : null}</h3>
                 <p className="paragraph">Stay fit long term, buy a subscription.</p>
             </div>
             <div className="">
@@ -47,7 +50,7 @@ export default function DanceSubscription(props){
                 </Carousel>
             </div>
             <p>
-                {subscription.active ? <Link to={`/user-subscriptions/progress`} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={`/subscription/zumba`} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
+                {active ? <Link to={{pathname: `/user-subscriptions/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
             </p>
         </div>}
         </>

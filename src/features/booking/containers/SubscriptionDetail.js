@@ -26,10 +26,16 @@ export default function SubscriptionDetail(props){
             }
         })
     }, [])
-
+    const handleGoBack = (e) => {
+        if(props.location.state && props.location.state.prevPath){
+            props.history.push(`${props.location.state.prevPath}`)
+        }else{
+            props.history.push('/')
+        }
+    }
     return(
         <section className="subscription-detail-section">
-            <Header onBack={() => props.history.push('/')} title={`${subscriptionInfo.length ? subscriptionInfo[0]?.name : ''} Subscription`}/>
+            <Header onBack={handleGoBack} title={`${subscriptionInfo.length ? subscriptionInfo[0]?.name : ''} Subscription`}/>
             {
                 loader ? 'Loading...' : <Container className="subscription-detail-container">
                     <Suspense fallback={<></>}>

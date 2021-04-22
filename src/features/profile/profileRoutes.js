@@ -7,6 +7,7 @@ import PrivacyPolicy from './containers/PrivacyPolicy';
 import AddReview from './containers/AddReview';
 import ClassDetail from './containers/ClassDetail';
 import UserSubscriptions from './containers/UserSubscriptions';
+import UserProgress from './containers/UserProgress';
 
 export const profileRoutes = [
     {
@@ -52,6 +53,11 @@ export const profileRoutes = [
     {
         path: '/user-subscriptions',
         component: UserSubscriptions,
+        key: 'user-subscriptions'
+    },
+    {
+        path: '/user-subscriptions/progress',
+        component: UserProgress,
         key: 'user-subscriptions'
     },
 ]

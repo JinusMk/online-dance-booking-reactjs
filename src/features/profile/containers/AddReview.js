@@ -78,8 +78,8 @@ function AddReview(props){
         }
     }
     const handleGoBack = () => {
-        if(props.location.state && props.location.state.goBackPage){
-            props.history.push(props.location.state.goBackPage)
+        if(props.location.state && props.location.state.prevPath){
+            props.history.push(props.location.state.prevPath)
         }else{
             props.history.push('/dance-history')
         }

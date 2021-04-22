@@ -11,6 +11,7 @@ import ToastNotify from './ToastNotify'
 import AuthVerifyBlock from './AuthVerifyBlock'
 import DanceInformationLoader from './DanceInformationLoader'
 import SubscriptionAlert from './SubscriptionAlert'
+import SubscriptionCard from './SubscriptionCard'
 
 export {
     Header,
@@ -25,5 +26,6 @@ export {
     ToastNotify,
     AuthVerifyBlock,
     DanceInformationLoader,
-    SubscriptionAlert
+    SubscriptionAlert,
+    SubscriptionCard
 }

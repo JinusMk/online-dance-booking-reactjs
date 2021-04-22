@@ -41,7 +41,6 @@ function DanceHistory(props){
                             <p className="paragraph">{`This is not the end, my friend`}</p>
                         </div>
                     }
-                    
                     </>
                 }
             </Container>

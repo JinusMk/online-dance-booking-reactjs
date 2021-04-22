@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel, imageBasePath, currencySymbol, subscriptionBenefits } from '../../../constants'
+import { responsiveCarousel } from '../../../constants'
 import { globalGetService } from '../../../utils/globalApiServices';
 import { isMobile } from 'react-device-detect'
+import { SubscriptionCard } from '../../../shared_elements'
 import "react-multi-carousel/lib/styles.css";
 
 export default function Subscriptions(props){
@@ -41,37 +41,11 @@ export default function Subscriptions(props){
                 {
                     subscriptions && Object.keys(subscriptions).length && Object.keys(subscriptions).map((key, index) => {
                         if(subscriptions[key][0]){
-                            return <SubscriptionCard subscriptionItem={subscriptions[key][0]} />
+                            return <SubscriptionCard subscriptionItem={subscriptions[key][0]} active={subscriptions[key].some(sub => sub.status == "active")}/>
                         }
                     })
                 }
             </Carousel>}
-        </div>
-    )
-}
-
-function SubscriptionCard(props){
-    const { subscriptionItem } = props
-    return(
-        <div className="subcription-card-wrapper" style={{backgroundImage: `url(${subscriptionItem.image})`}}>
-            {/* <img src={subscriptionItem.image}/> */}
-            {subscriptionItem.active ? <span className="activeLabel secondaryText">ACTIVE</span> : null}
-            <div className="info-wrapper">
-                <h3 className="heading3">{subscriptionItem.name}</h3>
-                <p className="paragraph">{`Starting from ${currencySymbol[subscriptionItem.currencyType]}${subscriptionItem.actualCost}`}</p>
-                <ul className="listUnstyled benefitsList">
-                    {
-                        subscriptionBenefits.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
-                            <img src={`${imageBasePath}booking_success_tick.svg`}/>
-                            <span>{point}</span>
-                        </li>)
-                    }
-                    {subscriptionBenefits.length > 2 ? <li className="more-point">{`+${subscriptionBenefits.length - 2} more benefits`}</li> : null}
-                </ul>
-                <p>
-                    {subscriptionItem.active ? <Link className="primaryBtn activeStatus" to={`/user-subscriptions/progress`}>SEE MY PROGRESS</Link> : <Link className="primaryBtn" to={`/subscription/${subscriptionItem.slug}`}>KNOW MORE</Link>}
-                </p>
-            </div>
         </div>
     )
 }

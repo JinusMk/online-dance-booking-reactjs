@@ -23,7 +23,7 @@ export default function SubscriptionPlans(props){
     if(subscriptionInfo.length){
         setValue(subscriptionInfo[0]._id)
     }
-  }, [])
+  }, [subscriptionInfo])
   return(
         <div className="subscription-plans" id="subscription-plans">
             <h3 className="title heading2">Subscription plans</h3>
@@ -45,7 +45,7 @@ export default function SubscriptionPlans(props){
                 }
             </ul>
             <p className="link">
-                <Link to={`/subscription/${params.category}/${value}/booking`} className="primaryBtn">BUY SUBSCRIPTION</Link>
+                <Link to={`/subscription/${params.category}/${value}/booking`} className={`primaryBtn ${value ? '' : 'disabled'}`}>BUY SUBSCRIPTION</Link>
             </p>
         </div>
     )

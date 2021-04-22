@@ -43,7 +43,7 @@ function Booking(props){
             setCategory(props.match.params.category)
             globalGetService(`subscriptionsById/${props.match.params.subsctiptionId}`)
             .then(response => {
-                if(response.success === true){
+                if(response.success == true){
                     setLoader(false)
                     setSelectedItem(response.data)
                 }

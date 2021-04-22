@@ -933,6 +933,54 @@ body{
             }
         }
     }
+    .subcription-card-wrapper{
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid $color_light_gray;
+        margin-bottom: 1px;
+        position: relative;
+        .activeLabel{
+            position: absolute;
+            background: $color_success;
+            padding: 3px 12px;
+            border: 1px solid $color_white;
+            color: $color_white;
+            box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+            border-radius: 4px;
+            right: 8px;
+            top: 8px;
+        }
+        .info-wrapper{
+            margin-top: 90px;
+            background: $color_white;
+            padding: 12px 16px;
+            .heading3{
+                text-transform: capitalize;
+                margin-bottom: 8px;
+            }
+            .benefitsList{
+                padding: 16px 0;
+                li{
+                    margin: 0 0 8px;
+                    img, span{
+                        vertical-align: middle;
+                    }
+                    img{
+                        margin-right: 10px;
+                    }
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    &.more-point{
+                        margin-left: 22px;
+                    }
+                }
+            }
+            .activeStatus{
+                background-color: $color_400190;
+            }
+        }
+    }
     .MuiRadio-root{
         &.Mui-checked{
             color: $color_primary !important;
