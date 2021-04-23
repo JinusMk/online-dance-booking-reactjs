@@ -42,8 +42,11 @@ export default function Subscriptions(props){
             >
                 {
                     Object.keys(subscriptions).map((key, index) => {
-                        if(subscriptions[key][0]){
-                            return <SubscriptionCard subscriptionItem={subscriptions[key][0]} active={subscriptions[key].some(sub => sub.status == "active")}/>
+                        let activeSubscription = subscriptions[key].length ? subscriptions[key].find(sub => sub.status == "active") : null
+                        if(activeSubscription){
+                            return <SubscriptionCard key={index} subscriptionItem={activeSubscription} active={true}/>
+                        }else if(subscriptions[key][0]){
+                            return <SubscriptionCard key={index} subscriptionItem={subscriptions[key][0]} active={false}/>
                         }
                     })
                 }

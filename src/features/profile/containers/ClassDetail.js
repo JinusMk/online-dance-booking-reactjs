@@ -34,18 +34,18 @@ function ClassDetail(props){
                     <Grid item xs={12}>
                         <div className="timeWrapper">
                             <p className="secondaryText">DATE & TIME</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM YYYY')}, ${danceInfo.class_start_time}`}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM YYYY')}, ${moment(danceInfo.startTime).format(`hh:mm A`)}`}</h3>}
                         </div>
                     </Grid>
                     {loader ? null :<> <Grid item xs={12}>
                         <div className="review-block">
-                            {(danceInfo.userDetails && danceInfo.userDetails.dance_rating) ? <ReviewDetails review={danceInfo.userDetails}/> : <AddReviewCard category={category} danceId={danceInfo.id}/>}
+                            {(danceInfo.review && danceInfo.review?.danceRating) ? <ReviewDetails review={danceInfo.review}/> : <AddReviewCard category={category} danceId={danceInfo.id}/>}
                         </div>
                     </Grid>
                     <Grid item xs={12}>
                         <div className="payment-info">
-                            <p className="secondaryText">{danceInfo.userDetails && danceInfo.userDetails.payment_method == "offline" ? 'PAY AT CLASS' : 'PAID VIA'}</p>
-                            <h3 className="heading3 cost"><span className="cost-old">{`${currencySymbol[danceInfo.currencyType]}${danceInfo.cost_old}`}</span>{`${currencySymbol[danceInfo.currencyType]}${danceInfo.cost}`}</h3>
+                            <p className="secondaryText">{danceInfo.userDetails && danceInfo.userDetails.payment_method == "offline" ? 'PAY AT CLASS' : 'PAID ONLINE'}</p>
+                            <h3 className="heading3 cost"><span className="cost-old">{`${currencySymbol[danceInfo.currencyType]}${danceInfo.actualCost}`}</span>{`${currencySymbol[danceInfo.currencyType]}${danceInfo.discountedCost}`}</h3>
                         </div>
                     </Grid>
                     <Grid item xs={12}>

@@ -8,10 +8,10 @@ export default function ReviewDetails(props){
             <p className="secondaryText">YOUR RATING</p>
             <h3 className="rating heading3">
                 <img src={`${imageBasePath}star_icon.svg`}/>
-                <span>{review.dance_rating}</span>
+                <span>{review?.danceRating}</span>
             </h3>
             {
-                review.dance_rating_description ? <p className="paragraph description">{review.dance_rating_description}</p> : null
+                review?.description ? <p className="paragraph description">{review.description}</p> : null
             }
         </div>
     )

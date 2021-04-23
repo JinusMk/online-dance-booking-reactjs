@@ -20,7 +20,7 @@ export default function DanceHistoryCard(props){
             </div>
             <Grid container spacing={2} alignItems="center">
                 <Grid item xs={6}>
-                    {dance.dance_rating ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.dance_rating}</span></h3> : <p><Link to={`/dance/${danceCategory[dance.category_id]}/${dance.dance_id}/review`} className="secondaryBtn">ADD A REVIEW</Link></p>}
+                    {(dance.review && dance.review.danceRating >= 0) ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.review?.danceRating}</span></h3> : <p><Link to={`/dance/${danceCategory[dance.category_id]}/${dance.dance_id}/review`} className="secondaryBtn">ADD A REVIEW</Link></p>}
                 </Grid>
                 <Grid item xs={6}>
                     <p><Link className="secondaryBtn" to={`/dance/${danceCategory[dance.category_id]}/${dance.dance_id}`}>VIEW DETAILS</Link></p>

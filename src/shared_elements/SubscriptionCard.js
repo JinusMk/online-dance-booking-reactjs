@@ -22,8 +22,8 @@ export default function SubscriptionCard(props){
                     {subscriptionBenefits.length > 2 ? <li className="more-point">{`+${subscriptionBenefits.length - 2} more benefits`}</li> : null}
                 </ul>
                 <p>
-                    {active ? <Link className="primaryBtn activeStatus" to={{pathname: `/user-subscriptions/progress`, state: { prevPath: `${location.pathname}` }}}>SEE MY PROGRESS</Link> : <Link className="primaryBtn" to={{pathname: `/subscription/${subscriptionItem.slug}`, state: { prevPath: `${location.pathname}`}}}>KNOW MORE</Link>}
-                </p>
+                    {active ? <Link className="primaryBtn activeStatus" to={{pathname: `/user-subscriptions/${subscriptionItem._id}/progress`, state: { prevPath: `${location.pathname}` }}}>SEE MY PROGRESS</Link> : <Link className="primaryBtn" to={{pathname: `/subscription/${subscriptionItem.slug}`, state: { prevPath: `${location.pathname}`}}}>KNOW MORE</Link>}
+                </p>    
             </div>
         </div>
     )

@@ -98,7 +98,7 @@ function AddReview(props){
                                         <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                                         <div className="info">
                                             <h3 className="heading2">{danceInfo.title}</h3>
-                                            <p className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${danceInfo.class_start_time}`}</p>
+                                            <p className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(danceInfo.startTime).format(`hh:mm A`)}`}</p>
                                         </div>
                                     </div>
                                 </Grid>

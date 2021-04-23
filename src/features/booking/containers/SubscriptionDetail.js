@@ -3,6 +3,7 @@ import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import '../../../assets/styles/subscription-detail-module.scss'
 import { globalGetService } from '../../../utils/globalApiServices';
+import { checkNumberOfDaysLeft } from '../../../utils';
 
 const SubscriptionInfo = lazy(() => import('../components/SubscriptionInfo'));
 const SubscriptionBenefits = lazy(() => import('../components/SubscriptionBenefits'));
@@ -14,15 +15,24 @@ const CommonQuestions = React.lazy(() => import('../../home/components/CommonQue
 
 export default function SubscriptionDetail(props){
     const [loader, setLoader] = useState(true)
-    const [subscriptionInfo, setSubscriptionInfo] = useState({})
-    const [alreadyActive, setAlreadyActive] = useState(false)
+    const [subscriptionInfo, setSubscriptionInfo] = useState([])
+    const [activeSubscription, setActiveSubscription] = useState('')
+    const [renewal, setRenewal] = useState(false)
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         globalGetService(`subscriptionsBySlug/${props.match.params.category}`)
         .then(response => {
             if(response.success === true){
                 setLoader(false)
+                const activeSubscription = response.data && response.data.find(sub => sub.status == "active")
                 setSubscriptionInfo(response.data)
+                if(activeSubscription){
+                    setActiveSubscription(activeSubscription)
+                    setRenewal(checkNumberOfDaysLeft(activeSubscription.endDate) <= 7 ? true : false)
+                }else{
+                    setActiveSubscription('')
+                }
             }
         })
     }, [])
@@ -39,10 +49,10 @@ export default function SubscriptionDetail(props){
             {
                 loader ? 'Loading...' : <Container className="subscription-detail-container">
                     <Suspense fallback={<></>}>
-                        <SubscriptionInfo setAlreadyActive={setAlreadyActive} subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}} active={subscriptionInfo.length ? subscriptionInfo.some(sub => sub.status == "active") : false}/>
+                        <SubscriptionInfo subscription={activeSubscription ? activeSubscription : subscriptionInfo.length ? subscriptionInfo[0] : {}} active={activeSubscription ? true : false}/>
                         <SubscriptionBenefits />
-                        {(alreadyActive || (subscriptionInfo.length  && subscriptionInfo.some(sub => sub.status == "active"))) ? null : <>
-                            <SubscriptionPlans subscriptionInfo={subscriptionInfo}/>
+                        {(activeSubscription && !renewal) ? null : <>
+                            <SubscriptionPlans subscriptionInfo={subscriptionInfo} isRenewal={renewal}/>
                             <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
                         </>}
                         <HowWorks />

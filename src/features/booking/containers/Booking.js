@@ -46,6 +46,10 @@ function Booking(props){
                 if(response.success == true){
                     setLoader(false)
                     setSelectedItem(response.data)
+                    if(response.data?.status == "active"){
+                        toastFlashMessage(`You have already subscribed to the same plan`, 'error')
+                        props.history.push(`/`)
+                    }
                 }
             })
             // setSelectedItem({

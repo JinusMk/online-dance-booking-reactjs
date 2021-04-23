@@ -12,12 +12,21 @@ export default function Reviews(props){
     const [reviews, setReviews] = useState(reviewsData)
 
     useEffect(() => {
-        globalGetService(`review-list`, props.category ? { category_id : categorySlug[props.category] } : {})
-        .then(response => {
-            if(response.success === true){
-                setReviews([...response.data.filter(item => item.description ), ...reviewsData])
-            }
-        })
+        if(props.category){
+            globalGetService(`review-list/${sessionStorage.getItem('categoryId')}`)
+            .then(response => {
+                if(response.success === true){
+                    setReviews([...response.data.filter(item => item.description ), ...reviewsData])
+                }
+            })
+        }else{
+            globalGetService(`review-list`)
+            .then(response => {
+                if(response.success === true){
+                    setReviews([...response.data.filter(item => item.description ), ...reviewsData])
+                }
+            })
+        }
     }, [])
 
     return(
@@ -37,7 +46,7 @@ export default function Reviews(props){
                 renderDotsOutside={true}
             >
                 {
-                    props.category ? reviews.filter(review => review.category == props.category).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) :reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
+                    props.category ? reviews.filter(review => (review.category == props.category || review.status == "Approved")).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) :reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
                 }
             </Carousel>
         </div>

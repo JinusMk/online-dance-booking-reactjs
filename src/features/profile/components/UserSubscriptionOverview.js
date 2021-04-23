@@ -37,7 +37,7 @@ export default function UserSubscriptionOverview(props){
                     <Grid item xs={12}>
                         <div className="bottom-blk">
                             {checkNumberOfDaysLeft(subscription.endDate) < 0 ? <p className="paragraph textCenter danger">{`EXpired on ${moment(subscription.endDate).format(`DD MMM YYYY`)}`}</p> : checkNumberOfDaysLeft(subscription.endDate) <= 7 ? <p className="paragraph textCenter danger">{`Active till ${moment(subscription.endDate).format(`DD MMM YYYY`)}`}</p> : <p className="paragraph textCenter">{`Active till ${moment(subscription.endDate).format(`DD MMM YYYY`)}`}</p>}
-                            <p><Link to={{pathname: `/user-subscriptions/progress`, state: { prevPath: `${location.pathname}`}}} className="primaryBtn">SEE MY PROGRESS</Link></p>
+                            <p><Link to={{pathname: `/user-subscriptions/${subscription._id}/progress`, state: { prevPath: `${location.pathname}`}}} className="primaryBtn">SEE MY PROGRESS</Link></p>
                         </div>
                     </Grid>
                 </Grid>

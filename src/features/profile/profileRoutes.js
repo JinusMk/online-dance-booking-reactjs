@@ -56,7 +56,7 @@ export const profileRoutes = [
         key: 'user-subscriptions'
     },
     {
-        path: '/user-subscriptions/progress',
+        path: '/user-subscriptions/:subscriptionId/progress',
         component: UserProgress,
         key: 'user-subscriptions'
     },

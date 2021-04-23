@@ -17,8 +17,14 @@ export default function DanceSubscription(props){
             if(response.success == true){
                 setLoader(false)
                 if(response.data && response.data.length){
-                    setActive(response.data.some(sub => sub.status == "active"))
-                    setSubscription(response.data[0])
+                    const active = response.data.find(sub => sub.status == "active")
+                    if(active){
+                        setActive(true)
+                        setSubscription(active)
+                    }else{
+                        setActive(false)
+                        setSubscription(response.data[0])
+                    }
                 }else{
                     setSubscription({})
                 }
@@ -50,7 +56,7 @@ export default function DanceSubscription(props){
                 </Carousel>
             </div>
             <p>
-                {active ? <Link to={{pathname: `/user-subscriptions/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
+                {active ? <Link to={{pathname: `/user-subscriptions/${subscription._id}/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
             </p>
         </div>}
         </>

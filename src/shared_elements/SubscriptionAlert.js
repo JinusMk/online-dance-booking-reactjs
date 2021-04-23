@@ -36,13 +36,13 @@ export default function SubscriptionAlert(props){
             case 1 : 
                 return <ActiveSubscriptions subscriptions={activeSubscriptions}/>
             case 2 : 
-                return <ExpireSoonSubscription expired={false} subscription={activeSubscriptions[0]} />
+                return <ExpireSoonSubscription expired={false} subscription={activeSubscriptions.find(sub => checkNumberOfDaysLeft(sub.endDate) <= 7)} />
             case 3 : 
                 return <ActiveSubscriptions subscriptions={activeSubscriptions}/>
             case 4 :
                 return <ExpireSoonSubscription expired={true} subscription={userSubscription[0]} />
             case 5 :
-                    return <ExpireSoonSubscription expired={true} subscription={userSubscription[0]} />
+                return <ExpireSoonSubscription expired={true} subscription={userSubscription[0]} />
         }
     }
 
@@ -62,7 +62,7 @@ function ActiveSubscriptions(props){
         <div className="subscription-alert-wrapper active">
             <h3 className="heading3">{`You have ${subscriptions.length} active ${subscriptions.length > 1 ? `subscriptions` : `subscription`}`}</h3>
             <p className="paragraph">See your class calendar, calories, weight and more</p>
-            <p><Link className="primaryBtn" to={{pathname: `/user-subscriptions/progress`, state: { prevPath: `${location.pathname}` }}}>SEE MY PROGRESS</Link></p>
+            {subscriptions.length > 1 ? <p><Link className="primaryBtn" to={{pathname: `/user-subscriptions`, state: { prevPath: `${location.pathname}` }}}>SEE MY SUBSCRIPTIONS</Link></p> : <p><Link className="primaryBtn" to={{pathname: `/user-subscriptions/${subscriptions[0]._id}/progress`, state: { prevPath: `${location.pathname}` }}}>SEE MY PROGRESS</Link></p>}
         </div>
     )
 }
@@ -71,6 +71,8 @@ function ExpireSoonSubscription(props){
     let location = useLocation()
     const { subscription, expired } = props
     return(
+        <>
+        {(subscription && Object.keys(subscription).length) ? 
         <div className="subscription-alert-wrapper expire-soon">
             {
                 expired ? <>
@@ -89,6 +91,7 @@ function ExpireSoonSubscription(props){
                 </Grid>
                 </>
             }
-        </div>
+        </div> : null }
+        </>
     )
 }

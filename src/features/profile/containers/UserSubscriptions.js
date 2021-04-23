@@ -10,6 +10,7 @@ export default function UserSubscriptions(props){
     const [loader, setLoader] = useState(true)
     const [userSubscriptions, setUserSubscriptions] = useState([])
     const [subscriptions, setSubscriptions] = useState()
+    
     useEffect(() => {
         globalGetService(`userSubscriptions`)
         .then(response => {
@@ -26,9 +27,17 @@ export default function UserSubscriptions(props){
             }
         })
     }, [props.userInfo])
+
+    const handleGoBack = () => {
+        if(props.location.state && props.location.state.prevPath){
+            props.history.push(`${props.location.state.prevPath}`)
+        }else{
+            props.history.push('/profile')
+        }
+    }
     return(
         <section className="user-subscription-section">
-            <Header title="Subscriptions" onBack={() => props.history.push('/profile')}/>
+            <Header title="Subscriptions" onBack={handleGoBack}/>
             <Container className="user-subscription-container">
             { loader ? 'Loading...' : <>
                     {

@@ -13,6 +13,7 @@ import DanceInformationLoader from './DanceInformationLoader'
 import SubscriptionAlert from './SubscriptionAlert'
 import SubscriptionCard from './SubscriptionCard'
 import LinearProgressBar from './LinearProgressBar'
+import UserProgressDrawer from './UserProgressDrawer'
 
 export {
     Header,
@@ -29,5 +30,6 @@ export {
     DanceInformationLoader,
     SubscriptionAlert,
     SubscriptionCard,
-    LinearProgressBar
+    LinearProgressBar,
+    UserProgressDrawer
 }

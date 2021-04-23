@@ -28,10 +28,9 @@ export default function SubscriptionInfo(props){
                 if(response.success == true){
                     setLoader(false)
                     let categoryUserSubscriptions =  response.data?.filter(sub => sub.subscription?.slug == subscription.slug)
-                    let activeCategoryUserSubscriptions = categoryUserSubscriptions.find(sub => checkNumberOfDaysLeft(sub.endDate) >= 0)
-                    if(activeCategoryUserSubscriptions){
-                        props.setAlreadyActive(true)
-                        setUserSubscription(activeCategoryUserSubscriptions)
+                    let activeCategoryUserSubscription = categoryUserSubscriptions.find(sub => checkNumberOfDaysLeft(sub.endDate) >= 0)
+                    if(activeCategoryUserSubscription){
+                        setUserSubscription(activeCategoryUserSubscription)
                     }else{
                         setUserSubscription('')
                     }
@@ -50,7 +49,7 @@ export default function SubscriptionInfo(props){
                     <LinearProgressBar className={`progress-bar ${checkNumberOfDaysLeft(userSubscription.endDate) <= 7 ? 'danger' : ''}`} variant="determinate" value={(userSubscription.danceClassesAttended / userSubscription.subscription?.danceClasses) * 100} />
                     <p className="secondaryText date">{moment(userSubscription.startDate).format(`DD MMM YYYY`)}<span>{moment(userSubscription.endDate).format(`DD MMM YYYY`)}</span></p>
                     <p className="link textCenter">
-                        <Link to={{ pathname: `/user-subscriptions/progress`, state: { prevPath: `${location.pathname}` }}} className="primaryBtn">SEE MY PROGRESS</Link>
+                        <Link to={{ pathname: `/user-subscriptions/${userSubscription._id}/progress`, state: { prevPath: `${location.pathname}` }}} className="primaryBtn">SEE MY PROGRESS</Link>
                     </p>
                 </div>
                 : <>

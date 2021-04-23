@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Header } from '../../../shared_elements';
 import { Container, Grid } from '@material-ui/core';
 import { AllTimeSummary } from '../components'
 import '../../../assets/styles/user-progress-module.scss'
+
+const CalorieGraph = lazy(() => import('../components/CalorieGraph'))
 
 export default function UserProgress(props){
     
@@ -23,6 +25,13 @@ export default function UserProgress(props){
                     </Grid>
                     <Grid item xs={12}>
                         <AllTimeSummary />
+                    </Grid>
+                </Grid>
+                <Grid container className="calorie-graph-blk">
+                    <Grid item xs={12}>
+                        <Suspense fallback={<></>}>
+                            <CalorieGraph />
+                        </Suspense>
                     </Grid>
                 </Grid>
             </Container>

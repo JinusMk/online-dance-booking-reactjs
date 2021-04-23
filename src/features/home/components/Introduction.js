@@ -62,7 +62,7 @@ function Introduction(props){
                 {
                     introductionData.map((item, index) => <div className="carousel-item" key={index}>
                         {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
-                        <img src={item.img} alt="#" style={imgLoader ? {display: 'none'}: {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
+                        <img src={item.img} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.value}</p>
                     </div>)
                 }
