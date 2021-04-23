@@ -84,7 +84,7 @@ function Booking(props){
             // console.log('response booking', response)
             setBookingLoader(false)
             if(response.success == true){
-                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: (response.data && response.data.payment_method) ? response.data.payment_method : 'online' }}})
             }else if(response.error){
                 toastFlashMessage(response.error, 'error')
             }
@@ -113,7 +113,10 @@ function Booking(props){
         }else{
             setBookingLoader(true)
             let formData = {
-                subscriptionId: props.match.params.subsctiptionId
+                subscriptionId: props.match.params.subsctiptionId,
+                name: userInfo.displayName,
+                email: userInfo.email,
+                mobile: userInfo.phoneNumber
             }
             setupOnlinePayment(formData, userInfo)
         }
@@ -128,7 +131,7 @@ function Booking(props){
             "description": "Test Transaction",
             "image": `${imageBasePath}logo_512.png`,
             "handler": function (response){
-                // console.log('handler response', response)
+                console.log('handler response', response)
                 if(type == "danceBooking"){
                     createBookingApi({...formData, paymentId: response.razorpay_payment_id})
                 }else{
@@ -173,15 +176,15 @@ function Booking(props){
         .then(response => {
             setBookingLoader(false)
             if(response.success == true){
-                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: response.data.payment_method }}})
+                history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: (response.data && response.data.payment_method) ? response.data.payment_method : 'online'  }}})
             }else if(response.error){
                 toastFlashMessage(response.error, 'error')
             }
         })
-        .catch(err => {
-            setBookingLoader(false)
-            toastFlashMessage('Something went wrong, Please try again!', 'error')
-        })
+        // .catch(err => {
+        //     setBookingLoader(false)
+        //     toastFlashMessage('Something went wrong, Please try again!', 'error')
+        // })
     }
     const handleChangePayment = (e) => {
         setPayment(e.target.value)

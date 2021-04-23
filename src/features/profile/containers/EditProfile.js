@@ -38,7 +38,7 @@ function EditProfile(props){
             // props.history.push('/profile')
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [props.userInfo])
+    }, [props.userInfo, props.isLoggedIn])
 
     const imageUpdate = (image)=> {
         if(image[0]){
@@ -129,10 +129,14 @@ function EditProfile(props){
         }
     }
     const handleBack = () => {
-        if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email || formData.image_display != ''){
-            // || formData.phone != props.userInfo.phoneNumber
-            if(window.confirm(`Are you sure you want to save the changes ?`)){
-                handleSave()
+        if(props.isLoggedIn && props.userInfo){
+            if(formData.name != props.userInfo.displayName || formData.email != props.userInfo.email || formData.image_display != ''){
+                // || formData.phone != props.userInfo.phoneNumber
+                if(window.confirm(`Are you sure you want to save the changes ?`)){
+                    handleSave()
+                }else{
+                    props.history.push('/profile')
+                }
             }else{
                 props.history.push('/profile')
             }

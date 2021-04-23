@@ -47,7 +47,7 @@ export default function SubscriptionInfo(props){
                 loader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : userSubscription ? <div className="user-subscription-info">
                     <h3 className="heading2">{userSubscription.subscription?.name}</h3>
                     <p className="heading3 classInfo">{`${userSubscription.subscription?.months} ${userSubscription.subscription?.months > 1 ? 'months' : 'month'} - ${userSubscription.subscription?.danceClasses} classes`}<span className={`activeLabel ${checkNumberOfDaysLeft(userSubscription.endDate) <= 7 ? 'danger' : ''}`}>{ checkNumberOfDaysLeft(userSubscription.endDate) <= 7 ? `EXPIRING SOON` : `ACTIVE`}</span></p>
-                    <LinearProgressBar className={`progress-bar ${checkNumberOfDaysLeft(userSubscription.endDate) <= 7 ? 'danger' : ''}`} variant="determinate" value={(userSubscription.danceClassesAttended / userSubscription.subscription?.danceClasses) * 100} value="50"/>
+                    <LinearProgressBar className={`progress-bar ${checkNumberOfDaysLeft(userSubscription.endDate) <= 7 ? 'danger' : ''}`} variant="determinate" value={(userSubscription.danceClassesAttended / userSubscription.subscription?.danceClasses) * 100} />
                     <p className="secondaryText date">{moment(userSubscription.startDate).format(`DD MMM YYYY`)}<span>{moment(userSubscription.endDate).format(`DD MMM YYYY`)}</span></p>
                     <p className="link textCenter">
                         <Link to={{ pathname: `/user-subscriptions/progress`, state: { prevPath: `${location.pathname}` }}} className="primaryBtn">SEE MY PROGRESS</Link>

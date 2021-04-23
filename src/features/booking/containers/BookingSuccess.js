@@ -20,14 +20,8 @@ function BookingSuccess(props){
             setSelectedItem(selectedItem)
             setLoader(false)
         }else{
-            setSelectedItem({
-                cost: 1400,
-                cost_old: 2000,
-                rating: 4.5,
-                rating_count: 89,
-                points: ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
-            })
-            setLoader(false)
+            props.history.push('/')
+            setLoader(true)
         }
         setCategory(props.match.params.category)
         setType(props.match.params.id ? 'danceBooking' : 'subscription')
