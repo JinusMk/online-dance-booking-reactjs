@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { isMobile } from 'react-device-detect'
-import { toastFlashMessage } from '../utils'
+import { LogCalorieForm } from './'
 
 export default function UserProgressDrawer(props){
     const { open, type } = props
@@ -17,6 +17,13 @@ export default function UserProgressDrawer(props){
         props.handleClose(open)
         setState({ ...state, [anchor]: open });
     };
+    const renderForm = (type) => {
+        switch(type){
+            case "calorieLog" : {
+                return <LogCalorieForm {...props}/>
+            }
+        }
+    }
     return(
         <>
         {[isMobile ? 'bottom': 'right'].map((anchor) => (
@@ -28,9 +35,12 @@ export default function UserProgressDrawer(props){
                     onClose={toggleDrawer(anchor, false)}
                     className="custom-drawer progress"
                 >
-                    //progress drawer
+                    <div className="user-progress-form-wrapper">
+                        {renderForm(props.type)}
+                    </div>
                </SwipeableDrawer>
             ))}
         </>
     )
 }
+

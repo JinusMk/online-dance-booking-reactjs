@@ -4,6 +4,8 @@ import DanceHistoryLoader from './DanceHistoryLoader'
 import ReviewDetails from './ReviewDetails'
 import UserSubscriptionOverview from './UserSubscriptionOverview'
 import AllTimeSummary from './AllTimeSummary'
+import UserProgressDrawer from './UserProgressDrawer'
+import LogCalorieForm from './LogCalorieForm'
 
 export { 
     DanceHistoryCard,
@@ -11,5 +13,7 @@ export {
     DanceHistoryLoader,
     ReviewDetails,
     UserSubscriptionOverview,
-    AllTimeSummary
+    AllTimeSummary,
+    UserProgressDrawer,
+    LogCalorieForm
 }

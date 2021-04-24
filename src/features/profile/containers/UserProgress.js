@@ -19,7 +19,7 @@ export default function UserProgress(props){
         <section className="user-progress-section">
             <Header title="Your progress" onBack={handleGoBack}/>
             <Container className="user-progress-container">
-                <Grid container className="progress-overview-blk">
+                <Grid container className="progress-overview-blk wrapper">
                     <Grid item xs={12}>
                         <h3 className="heading2 activityLabel">Yay, you’re doing good!</h3>
                     </Grid>
@@ -27,7 +27,7 @@ export default function UserProgress(props){
                         <AllTimeSummary />
                     </Grid>
                 </Grid>
-                <Grid container className="calorie-graph-blk">
+                <Grid container className="calorie-graph-blk wrapper">
                     <Grid item xs={12}>
                         <Suspense fallback={<></>}>
                             <CalorieGraph />
