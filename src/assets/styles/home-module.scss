@@ -315,9 +315,6 @@ body{
                     }
                 }
                 background: $color_primary;
-                .subcription-card-wrapper{
-                    
-                }
                 .react-multiple-carousel__arrow{
                     top: 45%;
                 }
@@ -380,7 +377,7 @@ body{
                 .subscriptions-blk{
                     padding: 64px 134px 84px;
                     .subcription-card-wrapper{
-                        background-size: unset;
+                        // background-size: unset;
                     }
                     .custom-dot-list{
                         // bottom: 30px;

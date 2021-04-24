@@ -9,7 +9,7 @@ export default function ProfileNavigationList(props){
                 <p><Link to="/dance-history" className="heading2">Dance history</Link></p>
                 <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
             </li>
-            <li className={props.isLoggedIn ? '' : ' disabled'}>
+            <li className={props.isLoggedIn ? '' : ''}>
                 <p><Link to="/user-subscriptions" className="heading2">Subscriptions</Link></p>
                 <img src={`${imageBasePath}right_arrow_icon.svg`} className="arrow"/>
             </li>

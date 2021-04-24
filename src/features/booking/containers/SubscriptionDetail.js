@@ -24,14 +24,26 @@ export default function SubscriptionDetail(props){
         globalGetService(`subscriptionsBySlug/${props.match.params.category}`)
         .then(response => {
             if(response.success === true){
-                setLoader(false)
-                const activeSubscription = response.data && response.data.find(sub => sub.status == "active")
                 setSubscriptionInfo(response.data)
+                const activeSubscription = response.data && response.data.find(sub => sub.status == "active")
                 if(activeSubscription){
-                    setActiveSubscription(activeSubscription)
-                    setRenewal(checkNumberOfDaysLeft(activeSubscription.endDate) <= 7 ? true : false)
+                    setActiveSubscription({
+                        ...activeSubscription,
+                        userSubscription: {
+                            ...activeSubscription.userSubscription,
+                            danceClassesAttended: activeSubscription.danceClassesAttended,
+                            months: activeSubscription.months,
+                            name: activeSubscription.name,
+                            danceClasses: activeSubscription.danceClasses
+                        }
+                    })
+                    console.log(`checkNumberOfDaysLeft(activeSubscription.endDate)`, checkNumberOfDaysLeft(activeSubscription.userSubscription?.endDate))
+                    setRenewal(checkNumberOfDaysLeft(activeSubscription.userSubscription?.endDate) <= 7 ? true : false)
+                    setLoader(false)
                 }else{
+                    setRenewal(false)
                     setActiveSubscription('')
+                    setLoader(false)
                 }
             }
         })
@@ -49,7 +61,7 @@ export default function SubscriptionDetail(props){
             {
                 loader ? 'Loading...' : <Container className="subscription-detail-container">
                     <Suspense fallback={<></>}>
-                        <SubscriptionInfo subscription={activeSubscription ? activeSubscription : subscriptionInfo.length ? subscriptionInfo[0] : {}} active={activeSubscription ? true : false}/>
+                        <SubscriptionInfo subscription={activeSubscription ? activeSubscription.userSubscription : subscriptionInfo.length ? subscriptionInfo[0] : {}} active={activeSubscription ? true : false}/>
                         <SubscriptionBenefits />
                         {(activeSubscription && !renewal) ? null : <>
                             <SubscriptionPlans subscriptionInfo={subscriptionInfo} isRenewal={renewal}/>

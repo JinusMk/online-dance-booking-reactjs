@@ -12,6 +12,7 @@ export default function UserSubscriptions(props){
     const [subscriptions, setSubscriptions] = useState()
     
     useEffect(() => {
+        setLoader(true)
         globalGetService(`userSubscriptions`)
         .then(response => {
             if(response.success == true){
@@ -20,14 +21,17 @@ export default function UserSubscriptions(props){
                 setUserSubscriptions(userSubsctiptions)
             }
         })
+    }, [props.userInfo])
+    useEffect(() => {
+        setLoader(true)
         globalGetService(`subscriptions`)
         .then(response => {
+            setLoader(false)
             if(response.success === true){
                 setSubscriptions(response.data)
             }
         })
-    }, [props.userInfo])
-
+    }, [])
     const handleGoBack = () => {
         if(props.location.state && props.location.state.prevPath){
             props.history.push(`${props.location.state.prevPath}`)
