@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { isMobile } from 'react-device-detect'
-import { LogCalorieForm } from './'
+import { LogCalorieForm, WeightGoal } from './'
 
 export default function UserProgressDrawer(props){
-    const { open, type } = props
-    
     const [state, setState] = useState({
         bottom: false,
         right: false
@@ -19,9 +17,14 @@ export default function UserProgressDrawer(props){
     };
     const renderForm = (type) => {
         switch(type){
-            case "calorieLog" : {
+            case "calorieLog" : 
                 return <LogCalorieForm {...props}/>
-            }
+            case 'setWeightGoal':
+                return <WeightGoal {...props}/>
+            case 'editWeightGoal':
+                return <WeightGoal {...props}/>
+            case 'logWeight':
+                return <WeightGoal {...props}/>
         }
     }
     return(

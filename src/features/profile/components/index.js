@@ -6,6 +6,7 @@ import UserSubscriptionOverview from './UserSubscriptionOverview'
 import AllTimeSummary from './AllTimeSummary'
 import UserProgressDrawer from './UserProgressDrawer'
 import LogCalorieForm from './LogCalorieForm'
+import WeightGoal from './WeightGoal'
 
 export { 
     DanceHistoryCard,
@@ -15,5 +16,6 @@ export {
     UserSubscriptionOverview,
     AllTimeSummary,
     UserProgressDrawer,
-    LogCalorieForm
+    LogCalorieForm,
+    WeightGoal
 }

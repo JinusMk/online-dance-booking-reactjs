@@ -37,12 +37,12 @@ body{
                     }                    
                 }
             }
+            .label{
+                margin-bottom: 16px;
+            }
             .calorie-graph-blk{
                 .calorie-graph{
                     position: relative;
-                    .label{
-                        margin-bottom: 8px;
-                    }
                     .graph-indicators{
                         position: absolute;
                         top: 0;
@@ -77,13 +77,44 @@ body{
                     }
                 }
             }
+            .weight-loss-blk{
+                .weight-loss{
+                    .track-weight-loss-wrapper{
+                        .alert{
+                            color: $color_gray;
+                            margin-bottom: 16px;
+                        }
+                    }
+                    .weight-loss-graph{
+                        .label{
+                            a{
+                                float: right;
+                                position: relative;
+                                top: 7px;
+                                color: $color_primary;
+                                span, img{
+                                    vertical-align: middle;
+                                }
+                                img{
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                        .alert{
+                            color: $color_gray;
+                            margin-bottom: 16px;
+                        }
+                    }
+                }
+            }
         }
     }
     .user-progress-form-wrapper{
         form{
             // position: relative;
             padding-bottom: 60px;
-            .heading2{
+            padding-top: 16px;
+            .form-title{
                 margin-bottom: 16px;
             }
             .footer{
@@ -96,11 +127,12 @@ body{
                     margin: 12px 16px;
                 }
             }
+            .alert{
+                color: $color_gray;
+                margin-bottom: 23px;
+            }
             &.log-calories-form{
-                .alert{
-                    color: $color_gray;
-                    margin-bottom: 23px;
-                }
+                
             }
         }
     }

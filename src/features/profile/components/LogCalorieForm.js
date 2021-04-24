@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom'
 import { globalPostService } from '../../../utils/globalApiServices';
 import { TextField } from '@material-ui/core';
 import { toastFlashMessage } from '../../../utils';
 
 export default function LogCalorieForm(props){
+    let params = useParams()
     const [loader, setLoader] = useState(false)
     const [calories, setCalories] = useState('')
     const [error, setError] = useState({})
@@ -32,13 +34,14 @@ export default function LogCalorieForm(props){
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
             const formData = {
                 date : new Date(),
-                calories
+                calories,
+                userSubscriptionID: params.subscriptionId
             }
             globalPostService(`calorie`, formData)
             .then(response => {
                 setLoader(false)
                 if(response.success === true){
-                    toastFlashMessage('Calories added successfully', 'success')
+                    toastFlashMessage('CALORIES LOGGED', 'success')
                     props.handleClose()
                     props.updateCalorieGraph()
                 }
@@ -54,7 +57,7 @@ export default function LogCalorieForm(props){
     }
     return(
         <form onSubmit={handleSubmit} className="log-calories-form" id="log-calories-form">
-            <h3 className="heading2">{`Log calories`}</h3>
+            <h3 className="heading2 form-title">{`Log calories`}</h3>
             <div className="inputGroup">
                     <label className={error.calories ? 'error': ''}>{error.calories ? error.calories : 'CALORIES'}</label>
                     <TextField 

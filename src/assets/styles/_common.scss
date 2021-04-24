@@ -939,7 +939,7 @@ body{
         border: 1px solid $color_light_gray;
         margin-bottom: 1px;
         position: relative;
-        background-repeat: no-repeat;
+        background-repeat: round;
         background-size: contain;
         .activeLabel{
             position: absolute;

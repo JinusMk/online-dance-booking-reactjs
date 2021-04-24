@@ -8,6 +8,7 @@ import AddReview from './containers/AddReview';
 import ClassDetail from './containers/ClassDetail';
 import UserSubscriptions from './containers/UserSubscriptions';
 import UserProgress from './containers/UserProgress';
+import UserWeights from './containers/UserWeights';
 
 export const profileRoutes = [
     {
@@ -59,5 +60,10 @@ export const profileRoutes = [
         path: '/user-subscriptions/:subscriptionId/progress',
         component: UserProgress,
         key: 'user-subscriptions'
+    },
+    {
+        path: '/user-weights',
+        component: UserWeights,
+        key: 'user-weights'
     },
 ]

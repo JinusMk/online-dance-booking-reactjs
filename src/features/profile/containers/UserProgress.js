@@ -5,6 +5,7 @@ import { AllTimeSummary } from '../components'
 import '../../../assets/styles/user-progress-module.scss'
 
 const CalorieGraph = lazy(() => import('../components/CalorieGraph'))
+const TrackWeightLoss = lazy(() => import('../components/TrackWeightLoss'))
 
 export default function UserProgress(props){
     
@@ -31,6 +32,13 @@ export default function UserProgress(props){
                     <Grid item xs={12}>
                         <Suspense fallback={<></>}>
                             <CalorieGraph />
+                        </Suspense>
+                    </Grid>
+                </Grid>
+                <Grid container className="weight-loss-blk wrapper">
+                    <Grid item xs={12}>
+                        <Suspense fallback={<></>}>
+                            <TrackWeightLoss />
                         </Suspense>
                     </Grid>
                 </Grid>
