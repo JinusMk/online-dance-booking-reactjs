@@ -7,12 +7,18 @@ export default function LogCalorieForm(props){
     const [loader, setLoader] = useState(false)
     const [calories, setCalories] = useState('')
     const [error, setError] = useState({})
+    const [formWidth, setFormWidth] = useState(0)
 
+    const getClientWidth = () => {
+        const width = document.getElementById('log-calories-form').clientWidth + 32
+        setFormWidth(width)
+    }
     useEffect(() => {
         if(props.open){
             setLoader(false)
             setCalories('')
             setError({})
+            getClientWidth()
         }
     }, [props.open])
 
@@ -47,7 +53,7 @@ export default function LogCalorieForm(props){
         setError({calories: ''})
     }
     return(
-        <form onSubmit={handleSubmit} className="log-calories-form">
+        <form onSubmit={handleSubmit} className="log-calories-form" id="log-calories-form">
             <h3 className="heading2">{`Log calories`}</h3>
             <div className="inputGroup">
                     <label className={error.calories ? 'error': ''}>{error.calories ? error.calories : 'CALORIES'}</label>
@@ -61,7 +67,7 @@ export default function LogCalorieForm(props){
                     />
             </div>
             <p className="alert paragraph">Enter values as recorded by your fitness band or smart watch</p>
-            <div className="footer">
+            <div className="footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
                 <p><a className={`primaryBtn ${(loader || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} onClick={handleSubmit}>{`SAVE`}</a></p>
             </div>
         </form>
