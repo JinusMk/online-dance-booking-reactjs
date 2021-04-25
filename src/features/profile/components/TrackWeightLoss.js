@@ -70,7 +70,7 @@ export default function TrackWeightLoss(props){
         handleClose={handleCloseDrawer}
         type={openWeightGoal ? 'setWeightGoal' : openEditWeightGoal ? 'editWeightGoal': openLogWeight ? "logWeight" : '' }
         forceUpdateData={(openWeightGoal || openEditWeightGoal) ? fetchWeightGoal : openLogWeight ? fetchWeightLogs : () => console.log('')}
-        currentWeight={weightLog ? weightLog[0]?.weight : weightGoal ? weightGoal[0].currentWeight : 70}
+        currentWeight={weightLog ? weightLog[0]?.weight : weightGoal ? weightGoal[0].currentWeight : ''}
     />
     </>
     )
