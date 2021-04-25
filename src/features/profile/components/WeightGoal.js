@@ -73,9 +73,12 @@ export default function WeightGoal(props){
                 weight: formData.weight ? '' : 'ENTER WEIGHT'
             }
             if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
+                var date = new Date();
+                // date.setDate(date.getDate() - 1);
+
                 const formDataNew = {
                     weight: formData.weight,
-                    date: new Date()
+                    date: date
                 }
                 globalPostService(`weightLog`, formDataNew)
                 .then(response => {

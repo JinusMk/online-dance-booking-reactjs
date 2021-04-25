@@ -31,8 +31,7 @@ export default function AllTimeSummary(props){
             }
         })
     }, [params.subscriptionId])
-
-    useEffect(() => {
+    const fetchCurrentWeight = () => {
         setLoader(true)
         globalGetService(`weightLog`)
         .then(response => {
@@ -41,8 +40,17 @@ export default function AllTimeSummary(props){
                 setWeightInfo(response.data.length ? response.data[0] : '')
             }
         })
+    }
+    useEffect(() => {
+        fetchCurrentWeight()
     }, [params.subscriptionId])
-
+    useEffect(() => {
+        if(props.updateCurrentWeight){
+            debugger
+            fetchCurrentWeight()
+            props.setUpdateCurrentWeight(false)
+        }
+    }, [props.updateCurrentWeight])
     return(
         <div className="all-time-summary">
             <p className="secondaryText label">ALL TIME SUMMARY</p>

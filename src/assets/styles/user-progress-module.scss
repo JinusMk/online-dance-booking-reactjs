@@ -28,6 +28,7 @@ body{
                                 color: $color_black;
                                 span{
                                     font-size: $font14;
+                                    line-height: $font14;
                                 }
                             }
                             p{
@@ -99,6 +100,9 @@ body{
                                     margin-left: 5px;
                                 }
                             }
+                        }
+                        .chart-wrapper{
+                            margin-bottom: 16px;
                         }
                         .alert{
                             color: $color_gray;

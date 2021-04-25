@@ -82,7 +82,7 @@ function WeightLogItem(props){
     return(
         <Grid item xs={12}>
             <div className="weight-log-item">
-                <h3 className="heading2">{data.weight}</h3>
+                <h3 className="heading2">{data.weight}Kg</h3>
                 <p className="paragraph date">{moment(data.createdAt).format(`DD MMM YYYY`)}</p>
                 <img src={`${imageBasePath}close_icon.svg`} className="closeIcon" onClick={() => props.deleteWeightLog(data._id)}/>
             </div>
