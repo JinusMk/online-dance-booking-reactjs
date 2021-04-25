@@ -66,38 +66,38 @@ export default function CalorieGraph(){
         setAddCalorieLog(true)
     }
     const getClientWidth = () => {
-        const width = document.getElementById('calorie-graph').clientWidth -32
+        const width = document.getElementById('calorie-graph').clientWidth
         setGraphWidth(width)
     }
     return(
         <>
         <div className="calorie-graph" id="calorie-graph">
             <h3 className="heading2 label">Calorie Graph</h3>
-            {/* <div className="graph-indicators">
+            {loader || graphLoader ? null : <div className="graph-indicators">
                 <p className="secondaryText instructor">
                     INSTRUCTOR
                 </p>
                 <p className="secondaryText user">
                     YOU
                 </p>
-            </div> */}
+            </div>}
             <div className="graph-wrapper">
                 {(loader || graphLoader) ? 'Loading...' :  <LineChart 						
-                    width={graphWidth ? graphWidth : 400} 
-                    height={300}
-                    showLegends
-                    legendPosition="top-right"
+                    width={graphWidth ? graphWidth : 350} 
+                    height={250}
+                    showLegends={false}
                     data={calorieLogs}
                     xLabel=""
                     yLabel=""
-                    margins={{ top: 20, right: 20, bottom: 20, left: 40 }}
+                    margins={{ top: 20, right: 20, bottom: 20, left: 30 }}
                     isDate={true}
                     yMin={0}
+                    ticks={5}
                     // hideYAxis={true}
                     // pointClass="graph-point-class"
                     // labelClass="graph-label-class"
                     // xDisplay
-                    interpolate= "linear"
+                    interpolate= "cardinal"
                 /> }
             </div>
             <div className="alert">
