@@ -5,8 +5,9 @@ import { globalGetService } from '../../../utils/globalApiServices';
 import { UserProgressDrawer } from './'
 import { imageBasePath } from '../../../constants';
 import { Link } from 'react-router-dom'
-import moment from 'moment'
-import LineChart from 'react-linechart'
+// import moment from 'moment'
+// import LineChart from 'react-linechart'
+import { Chart } from "react-google-charts";
 
 export default function TrackWeightLoss(props){
     let location = useLocation()
@@ -18,18 +19,47 @@ export default function TrackWeightLoss(props){
     const [openLogWeight, setOpenLogWeight] = useState(false)
     const [graphLoader, setGraphLoader] = useState(true)
     const [graphWidth, setGraphWidth] = useState(0)
-    const [graphData, setGraphData] = useState([{			
-        id: 'goal',		
-        name: 'GOAL',				
-        color: "rgba(14, 122, 203, 0.2)", 
-        // points: [{x: `2020-03-10`, y: 60}, {x: `2020-03-13`, y: 55}, {x: "2020-03-16", y:65}, {x: "2020-03-20", y:60}, {x: "2020-03-25", y:60}] 
-    },
-    {		
-        id: 'user',			
-        name: 'WEIGHT',						
-        color: "#0E7ACB", 
-        // points: [{x: `2020-03-10`, y: 50}, {x: "2020-03-13", y: 50}, {x: "2020-03-16", y: 50}, {x: "2020-03-20", y: 50}, {x: "2020-03-25", y: 50}] 
-    }])
+    const [graphOptions] = useState({
+        hAxis: {
+            title: '',
+            format: 'dd MMM',
+            gridlines: {color: 'transparent'},
+            textStyle: {
+                color: `#999999`,
+                fontSize: 12,
+            }
+        },
+        chartArea: {
+            left:30,
+            top:30,
+            bottom: 20,
+            right: 20,
+        },
+        legend: {
+            position: 'top', 
+            textStyle: {
+                fontSize: 12,
+                bold: true
+            }
+        },
+        vAxis: {
+            title: '',
+            // gridlines: {color: '#999999'},
+        },
+        series: {
+            0: { 
+                lineDashStyle : [4, 4],
+                color: '#3d8dca'
+            },
+            1: { 
+                curveType: 'function',
+                color: `#0E7ACB`
+            }
+        },
+    })
+    const [graphData, setGraphData] = useState([
+        [{ type: 'date', label: '' }, 'GOAL', 'WEIGHT'],
+    ])
     const getClientWidth = () => {
         const width = document.getElementById('weight-loss').clientWidth
         setGraphWidth(width)
@@ -41,22 +71,27 @@ export default function TrackWeightLoss(props){
                 setGraphLoader(true)
                 let weightLog = response.data
                 let updatedGraphData = graphData
-                updatedGraphData.forEach((entry, index) => {
-                    if(entry.id == 'user'){
-                        updatedGraphData[index] = {
-                            ...updatedGraphData[index],
-                            points: weightLog.map((item, itemIndex) => {
-                                return { x: moment(item.date).format(`YYYY-MM-DD`), y: item.weight}
-                            })
-                        }
-                    }else{
-                        updatedGraphData[index] = {
-                            ...updatedGraphData[index],
-                            points: weightLog.map((item, itemIndex) => {
-                                return { x: moment(item.date).format(`YYYY-MM-DD`), y: weightGoal[0]?.goalWeight ? weightGoal[0].goalWeight : weightGoalData[0]?.goalWeight}
-                            })
-                        }
-                    }
+
+                // updatedGraphData.forEach((entry, index) => {
+                //     if(entry.id == 'user'){
+                //         updatedGraphData[index] = {
+                //             ...updatedGraphData[index],
+                //             points: weightLog.map((item, itemIndex) => {
+                //                 return { x: moment(item.date).format(`YYYY-MM-DD`), y: item.weight}
+                //             })
+                //         }
+                //     }else{
+                //         updatedGraphData[index] = {
+                //             ...updatedGraphData[index],
+                //             points: weightLog.map((item, itemIndex) => {
+                //                 return { x: moment(item.date).format(`YYYY-MM-DD`), y: weightGoal[0]?.goalWeight ? weightGoal[0].goalWeight : weightGoalData[0]?.goalWeight}
+                //             })
+                //         }
+                //     }
+                // })
+                weightLog.forEach(item => {
+                    let option = [new Date(item.date), weightGoal[0]?.goalWeight ? Number(weightGoal[0].goalWeight) : Number(weightGoalData[0]?.goalWeight), Number(item.weight)]
+                    updatedGraphData.push(option)
                 })
                 setGraphData(updatedGraphData)
                 setWeightLog(weightLog)
@@ -91,7 +126,7 @@ export default function TrackWeightLoss(props){
         {loader ? 'Loading...' : weightGoal ? <>
             <div className="weight-loss-graph">
                 <h3 className="heading2 label">Current weight <Link to={{pathname: `/user-weights`, state: { prevPath: `${location.pathname}`, weightGoal: weightGoal}}} className="see-log paragraph">See log<span></span><img src={`${imageBasePath}right_arrow_icon.svg`}/></Link></h3>
-                {
+                {/* {
                     graphLoader ? 'Loading...' :<div className="chart-wrapper"> <LineChart 						
                         width={graphWidth ? graphWidth : 350} 
                         height={225}
@@ -106,6 +141,18 @@ export default function TrackWeightLoss(props){
                         ticks={5}
                         interpolate= "cardinal"
                     />
+                    </div>
+                } */}
+                {
+                    graphLoader ? 'Loading...' : <div className="chart-wrapper">
+                        <Chart
+                            height={'250px'}
+                            chartType="LineChart"
+                            loader={<div>Loading...</div>}
+                            data={graphData}
+                            width={"100%"}
+                            options={graphOptions}
+                        />
                     </div>
                 }
                 <p className="paragraph alert">Log your weight values regularly, and keep a track</p>
