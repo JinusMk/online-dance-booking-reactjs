@@ -4,6 +4,9 @@ body{
     .user-subscription-section{
         .user-subscription-container{
             padding: 0;
+            .shimmer-wrapper{
+                padding: 16px;
+            }
             .user-subscription-listing{
                 .user-subscription-list-item{
                     padding: 16px;

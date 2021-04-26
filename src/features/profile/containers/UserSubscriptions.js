@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container } from '@material-ui/core';
 import { Header, SubscriptionCard } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
-import { UserSubscriptionOverview } from '../components'
+import { UserSubscriptionOverview, Shimmer } from '../components'
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/user-subscription-module.scss'
 
@@ -43,7 +43,7 @@ export default function UserSubscriptions(props){
         <section className="user-subscription-section">
             <Header title="Subscriptions" onBack={handleGoBack}/>
             <Container className="user-subscription-container">
-            { loader ? 'Loading...' : <>
+            { loader ? <Shimmer type="user-subscriptions"/> : <>
                     {
                         (( userSubscriptions && userSubscriptions.length ) || ( subscriptions && Object.keys(subscriptions).length )) ? <><ul container className="user-subscription-listing listUnstyled">
                             { userSubscriptions && userSubscriptions.length ? userSubscriptions.map((subscription, index) => <UserSubscriptionOverview key={index} subscription={subscription}/>) : null }

@@ -7,6 +7,7 @@ import AllTimeSummary from './AllTimeSummary'
 import UserProgressDrawer from './UserProgressDrawer'
 import LogCalorieForm from './LogCalorieForm'
 import WeightGoal from './WeightGoal'
+import Shimmer from './Shimmer'
 
 export { 
     DanceHistoryCard,
@@ -17,7 +18,8 @@ export {
     AllTimeSummary,
     UserProgressDrawer,
     LogCalorieForm,
-    WeightGoal
+    WeightGoal,
+    Shimmer
 }
 
 export const GRAPH_OPTONS = {

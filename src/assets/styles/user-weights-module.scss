@@ -4,6 +4,9 @@ body{
     .user-weights-section{
         .user-weights-container{
             padding: 0;
+            .shimmer-wrapper{
+                padding: 16px;
+            }
             .weightLogs-lsiting{
                 .weight-log-item{
                     position: relative;

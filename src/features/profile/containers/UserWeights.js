@@ -4,6 +4,7 @@ import { Header } from '../../../shared_elements';
 import { globalGetService, globalDeleteService } from '../../../utils/globalApiServices';
 import '../../../assets/styles/user-weights-module.scss'
 import { imageBasePath } from '../../../constants';
+import { Shimmer } from '../components'
 import moment from 'moment'
 import { toastFlashMessage } from '../../../utils';
 
@@ -54,7 +55,7 @@ export default function UserWeights(props){
             <Header title="Weight log" onBack={handleGoBack}/>
             <Container className="user-weights-container">
                 {
-                    loader ? 'Loading...' : ((weightLog && weightLog.length) || weightGoal) ? <Grid container className="weightLogs-lsiting">
+                    loader ? <Shimmer type="user-weights"/> : ((weightLog && weightLog.length) || weightGoal) ? <Grid container className="weightLogs-lsiting">
                         {
                             weightLog && weightLog.length ? weightLog.map((item, index) => <WeightLogItem isLastItem={index == weightLog.length - 1 ? true : false} key={index} data={item} deleteWeightLog={deleteWeightLog}/>): null
                         }

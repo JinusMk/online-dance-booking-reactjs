@@ -54,7 +54,7 @@ export default function SubscriptionPlans(props){
                     <li className="plans-item" key={index}>
                         <h3 className="heading3">{getSubscriptionTitle(subscription[0].weekDays)} - {moment(subscription[0].startTime).format('hh:mm A')}</h3>
                         {
-                            subscription.map(subItem => <RadioGroup aria-label="subscriptionPlans" name="subscriptionPlans" className={"radioGroup"} value={value} onChange={handleChange}>
+                            subscription.map((subItem, sIndex) => <RadioGroup key={sIndex} aria-label="subscriptionPlans" name="subscriptionPlans" className={"radioGroup"} value={value} onChange={handleChange}>
                                 <FormControlLabel key={index} value={subItem._id} control={<Radio checked={subItem._id == value ? true: false }/>} label={<div className={`label ${value == subItem._id ? 'active': '' }`}>
                                     <h3 className="heading3">{`${subItem.months} ${subItem.months > 1 ? 'months' : 'month'} - ${subItem.danceClasses} classes`}</h3>
                                     <p className="paragraph">
