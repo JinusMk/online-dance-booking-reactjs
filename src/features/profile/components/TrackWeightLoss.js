@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Grid } from '@material-ui/core'
 import { globalGetService } from '../../../utils/globalApiServices';
-import { UserProgressDrawer } from './'
+import { UserProgressDrawer, GRAPH_OPTONS } from './'
 import { imageBasePath } from '../../../constants';
 import { Link } from 'react-router-dom'
 // import moment from 'moment'
@@ -19,51 +19,10 @@ export default function TrackWeightLoss(props){
     const [openLogWeight, setOpenLogWeight] = useState(false)
     const [graphLoader, setGraphLoader] = useState(true)
     const [graphWidth, setGraphWidth] = useState(0)
-    const [graphOptions] = useState({
-        hAxis: {
-            title: '',
-            format: 'dd MMM',
-            gridlines: {color: 'transparent'},
-            textStyle: {
-                color: `#999999`,
-                fontSize: 12,
-            }
-        },
-        chartArea: {
-            left:30,
-            top:30,
-            bottom: 20,
-            right: 20,
-        },
-        legend: {
-            position: 'top', 
-            textStyle: {
-                fontSize: 12,
-                bold: true
-            }
-        },
-        vAxis: {
-            title: '',
-            // gridlines: {color: '#999999'},
-        },
-        series: {
-            0: { 
-                lineDashStyle : [4, 4],
-                color: '#3d8dca'
-            },
-            1: { 
-                curveType: 'function',
-                color: `#0E7ACB`
-            }
-        },
-    })
+    const [graphOptions] = useState(GRAPH_OPTONS)
     const [graphData, setGraphData] = useState([
         [{ type: 'date', label: '' }, 'GOAL', 'WEIGHT'],
     ])
-    const getClientWidth = () => {
-        const width = document.getElementById('weight-loss').clientWidth
-        setGraphWidth(width)
-    }
     const fetchWeightLogs = (weightGoalData=[]) => {
         globalGetService(`weightLog`)
         .then(response => {
@@ -113,7 +72,6 @@ export default function TrackWeightLoss(props){
     }
     useEffect(() => {
         fetchWeightGoal()
-        getClientWidth()
     }, [])
     const handleCloseDrawer = () => {
         setOpenWeightGoal(false)
