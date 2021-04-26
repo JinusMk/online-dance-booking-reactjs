@@ -20,6 +20,7 @@ body{
                         top: 30px;
                         right: 16px;
                         width: 16px;
+                        cursor: pointer;
                     }
                 }
             }
@@ -29,6 +30,32 @@ body{
                 img{
                     margin-bottom: 8px;
                 }
+            }
+        }
+    }
+}
+@media (min-width: 960px){
+    body{
+        .user-weights-section{
+            .user-weights-container{
+                padding: 32px 150px 64px 150px;
+                .weightLogs-lsiting{
+                    .weight-log-item{
+                        padding: 24px 16px;
+                        .closeIcon{
+                            top: 42px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width: 1279px){
+    body{
+        .user-weights-section{
+            .user-weights-container{
+                padding: 32px 250px 0 250px;
             }
         }
     }

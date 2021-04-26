@@ -146,13 +146,6 @@
         .custom-dot-list{
             bottom: 58px;
         }
-        .custom-drawer{
-            .MuiDrawer-paper{
-                border-radius: 0;
-                padding: 16px;
-                width: 30%;
-            }
-        }
         .auth-popup-wrapper{
             height: 100%;
             position: relative;
@@ -195,6 +188,13 @@
                 .nav-bar{
                     padding-left: 60px;
                 }
+            }
+        }
+        .custom-drawer{
+            .MuiDrawer-paper{
+                border-radius: 0;
+                padding: 16px;
+                width: 30%;
             }
         }
         .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{

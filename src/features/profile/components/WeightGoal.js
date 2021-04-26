@@ -8,11 +8,11 @@ export default function WeightGoal(props){
     const [loader, setLoader] = useState(false)
     const [formData, setFormData] = useState({})
     const [error, setError] = useState({})
-    const [formWidth, setFormWidth] = useState(0)
+    // const [formWidth, setFormWidth] = useState(0)
 
     useEffect(() => {
         if(open){
-            getClientWidth()
+            // getClientWidth()
             setError({})
         }
         if(type == "setWeightGoal"){
@@ -118,10 +118,10 @@ export default function WeightGoal(props){
             setLoader(false)
         }
     }
-    const getClientWidth = () => {
-        const width = document.getElementById('WeightGoal-form').clientWidth + 32
-        setFormWidth(width)
-    }
+    // const getClientWidth = () => {
+    //     const width = document.getElementById('WeightGoal-form').clientWidth + 32
+    //     setFormWidth(width)
+    // }
     return(
         <form onSubmit={handleSubmit} id="WeightGoal-form" className={`WeightGoal-form ${props.type}`}>
             {
@@ -179,7 +179,7 @@ export default function WeightGoal(props){
                     <p className="alert paragraph">Enter values as recorded by your weighing scale</p>
                 </> : null
             }
-            <div className="footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
+            <div className="footer">
                 <p><a className={`primaryBtn ${(loader || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} onClick={handleSubmit}>{`SAVE`}</a></p>
             </div>
         </form>

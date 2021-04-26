@@ -9,18 +9,12 @@ export default function LogCalorieForm(props){
     const [loader, setLoader] = useState(false)
     const [calories, setCalories] = useState('')
     const [error, setError] = useState({})
-    const [formWidth, setFormWidth] = useState(0)
-
-    const getClientWidth = () => {
-        const width = document.getElementById('log-calories-form').clientWidth + 32
-        setFormWidth(width)
-    }
+    
     useEffect(() => {
         if(props.open){
             setLoader(false)
             setCalories('')
             setError({})
-            getClientWidth()
         }
     }, [props.open])
 
@@ -70,7 +64,7 @@ export default function LogCalorieForm(props){
                     />
             </div>
             <p className="alert paragraph">Enter values as recorded by your fitness band or smart watch</p>
-            <div className="footer" style={{maxWidth: formWidth ? formWidth : '100%'}}>
+            <div className="footer">
                 <p><a className={`primaryBtn ${(loader || Object.keys(error).find(k => error[k] != '')) ? 'disabled' : ''}`} onClick={handleSubmit}>{`SAVE`}</a></p>
             </div>
         </form>

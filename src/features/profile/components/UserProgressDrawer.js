@@ -27,6 +27,7 @@ export default function UserProgressDrawer(props){
                 return <WeightGoal {...props}/>
         }
     }
+    
     return(
         <>
         {[isMobile ? 'bottom': 'right'].map((anchor) => (
@@ -38,7 +39,7 @@ export default function UserProgressDrawer(props){
                     onClose={toggleDrawer(anchor, false)}
                     className="custom-drawer progress"
                 >
-                    <div className="user-progress-form-wrapper" >
+                    <div className="user-progress-form-wrapper" id="user-progress-form-wrapper">
                         {renderForm(props.type)}
                     </div>
                </SwipeableDrawer>
