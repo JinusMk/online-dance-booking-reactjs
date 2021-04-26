@@ -28,7 +28,7 @@ export default function UserWeights(props){
     useEffect(() => {
         fetchWeightLogs()
         if(props.location.state && props.location.state.weightGoal){
-            setWeightGoal(props.location.state.weightGoal)
+            // setWeightGoal(props.location.state.weightGoal)
         }
     }, [])
     const handleGoBack = () => {
@@ -56,17 +56,17 @@ export default function UserWeights(props){
                 {
                     loader ? 'Loading...' : ((weightLog && weightLog.length) || weightGoal) ? <Grid container className="weightLogs-lsiting">
                         {
-                            weightLog && weightLog.length ? weightLog.map((item, index) => <WeightLogItem key={index} data={item} deleteWeightLog={deleteWeightLog}/>): null
+                            weightLog && weightLog.length ? weightLog.map((item, index) => <WeightLogItem isLastItem={index == weightLog.length - 1 ? true : false} key={index} data={item} deleteWeightLog={deleteWeightLog}/>): null
                         }
-                        {
+                        {/* {
                             (weightGoal && weightGoal.length) ? <Grid item xs={12}>
                                 <div className="weight-log-item">
                                     <h3 className="heading2">{`${weightGoal[0].currentWeight ? weightGoal[0]?.currentWeight : '--'}Kg`}</h3>
                                     <p className="paragraph date">{moment(weightGoal.createdAt).format(`DD MMM YYYY`)}</p>
-                                    {/* <img src={`${imageBasePath}close_icon.svg`} className="closeIcon" /> */}
+                                    <img src={`${imageBasePath}close_icon.svg`} className="closeIcon" />
                                 </div>
                             </Grid> : null
-                        }
+                        } */}
                     </Grid> : <div className="noResultFound">
                         <img src={`${imageBasePath}dance_group.svg`}/>
                         <p className="paragraph">{`This is not the end, my friend`}</p>
@@ -78,13 +78,13 @@ export default function UserWeights(props){
 }
 
 function WeightLogItem(props){
-    const { data } = props
+    const { data, isLastItem } = props
     return(
         <Grid item xs={12}>
             <div className="weight-log-item">
                 <h3 className="heading2">{data.weight}Kg</h3>
                 <p className="paragraph date">{moment(data.createdAt).format(`DD MMM YYYY`)}</p>
-                <img src={`${imageBasePath}close_icon.svg`} className="closeIcon" onClick={() => props.deleteWeightLog(data._id)}/>
+                <img src={`${imageBasePath}close_icon.svg`} className={`closeIcon ${isLastItem ? 'disabled' : ''}`} onClick={() => props.deleteWeightLog(data._id)}/>
             </div>
         </Grid>
     )

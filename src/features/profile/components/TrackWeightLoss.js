@@ -104,7 +104,7 @@ export default function TrackWeightLoss(props){
                 {
                     graphLoader ? 'Loading...' : <div className="chart-wrapper">
                         <Chart
-                            height={'250px'}
+                            height={'200px'}
                             chartType="LineChart"
                             loader={<div>Loading...</div>}
                             data={graphData}
@@ -133,7 +133,7 @@ export default function TrackWeightLoss(props){
         open={openWeightGoal || openEditWeightGoal || openLogWeight}
         handleClose={handleCloseDrawer}
         type={openWeightGoal ? 'setWeightGoal' : openEditWeightGoal ? 'editWeightGoal': openLogWeight ? "logWeight" : '' }
-        forceUpdateData={(openWeightGoal || openEditWeightGoal) ? () => {fetchWeightGoal(); openWeightGoal ? props.setUpdateCurrentWeight(true) : console.log()} : openLogWeight ? () => {fetchWeightLogs(); props.setUpdateCurrentWeight(true)} : () => console.log('')}
+        forceUpdateData={ openWeightGoal ? () => { fetchWeightGoal();props.setUpdateCurrentWeight(true)}: openEditWeightGoal ? fetchWeightGoal : openLogWeight ? () => {fetchWeightLogs(); props.setUpdateCurrentWeight(true)} : () => console.log('')}
         currentWeight={weightLog ? weightLog[0]?.weight : weightGoal ? weightGoal[0].currentWeight : ''}
     />
     </>

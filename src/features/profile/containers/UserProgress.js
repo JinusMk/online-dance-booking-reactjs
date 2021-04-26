@@ -9,6 +9,7 @@ const TrackWeightLoss = lazy(() => import('../components/TrackWeightLoss'))
 
 export default function UserProgress(props){
     const [updateCurrentWeight, setUpdateCurrentWeight] = useState(false)
+    const [updateCaloriesBurnt, setUpdateCaloriesBurnt] = useState(false)
     const handleGoBack = () => {
         if(props.location.state && props.location.state.prevPath){
             props.history.push(`${props.location.state.prevPath}`)
@@ -25,13 +26,13 @@ export default function UserProgress(props){
                         <h3 className="heading2 activityLabel">Yay, you’re doing good!</h3>
                     </Grid>
                     <Grid item xs={12}>
-                        <AllTimeSummary setUpdateCurrentWeight={setUpdateCurrentWeight} updateCurrentWeight={updateCurrentWeight}/>
+                        <AllTimeSummary setUpdateCurrentWeight={setUpdateCurrentWeight} updateCurrentWeight={updateCurrentWeight} setUpdateCaloriesBurnt={setUpdateCaloriesBurnt} updateCaloriesBurnt={updateCaloriesBurnt}/>
                     </Grid>
                 </Grid>
                 <Grid container className="calorie-graph-blk wrapper">
                     <Grid item xs={12}>
                         <Suspense fallback={<></>}>
-                            <CalorieGraph />
+                            <CalorieGraph setUpdateCaloriesBurnt={setUpdateCaloriesBurnt}/>
                         </Suspense>
                     </Grid>
                 </Grid>

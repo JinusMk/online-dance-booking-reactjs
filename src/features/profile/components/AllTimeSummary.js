@@ -7,7 +7,7 @@ export default function AllTimeSummary(props){
     let params = useParams()
     const [loader, setLoader] = useState(true)
     const [attendedCount, setAttendedCount] = useState(0)
-    const [calorieInfo, setCalorieInfo] = useState('')
+    const [caloriesBurnt, setCaloriesBurnt] = useState('')
     const [weightInfo, setWeightInfo] = useState('')
 
     useEffect(() => {
@@ -23,16 +23,9 @@ export default function AllTimeSummary(props){
 
     useEffect(() => {
         setLoader(true)
-        globalGetService(`calorie/${params.subscriptionId}`)
-        .then(response => {
-            if(response.success == true){
-                setCalorieInfo(response.data)
-                setLoader(false)
-            }
-        })
+        fetchCaloriesBurnt()
     }, [params.subscriptionId])
     const fetchCurrentWeight = () => {
-        setLoader(true)
         globalGetService(`weightLog`)
         .then(response => {
             if(response.success == true){
@@ -41,16 +34,36 @@ export default function AllTimeSummary(props){
             }
         })
     }
+    const fetchCaloriesBurnt = () => {
+        setLoader(true)
+        globalGetService(`calorie/${params.subscriptionId}`)
+        .then(response => {
+            setLoader(false)
+            if(response.success == true){
+                let sum = 0
+                response.data.forEach(cal => {
+                    sum += Number(cal.calories)
+                })
+                setCaloriesBurnt(sum)
+            }else{
+                setCaloriesBurnt(0)
+            }
+        })
+    }
     useEffect(() => {
         fetchCurrentWeight()
     }, [params.subscriptionId])
+
     useEffect(() => {
         if(props.updateCurrentWeight){
-            debugger
             fetchCurrentWeight()
             props.setUpdateCurrentWeight(false)
         }
-    }, [props.updateCurrentWeight])
+        if(props.updateCaloriesBurnt){
+            fetchCaloriesBurnt()
+            props.setUpdateCaloriesBurnt(false)
+        }
+    }, [props.updateCurrentWeight, props.updateCaloriesBurnt])
     return(
         <div className="all-time-summary">
             <p className="secondaryText label">ALL TIME SUMMARY</p>
@@ -63,7 +76,7 @@ export default function AllTimeSummary(props){
                 </Grid>
                 <Grid item xs={4}>
                     <div className="summary-item textCenter">
-                        <h1 className="heading1">{(!loader && calorieInfo?.calories) ? calorieInfo?.calories : '0'}<span>{(!loader && calorieInfo?.units) ? calorieInfo?.units : 'k'}</span></h1>
+                        <h1 className="heading1">{`${loader ? '--' : caloriesBurnt ? caloriesBurnt : 0}`}<span>k</span></h1>
                         <p className="secondaryText">CALORIES <br/> BURNED</p>
                     </div>
                 </Grid>

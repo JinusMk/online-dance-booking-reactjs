@@ -7,11 +7,11 @@ import { globalGetService } from '../../../utils/globalApiServices';
 import { Chart } from "react-google-charts";
 import '../../../../node_modules/react-linechart/dist/styles.css';
 
-export default function CalorieGraph(){
+export default function CalorieGraph(props){
     let params = useParams()
     const [addCalorieLog, setAddCalorieLog] = useState(false)
     const [graphLoader, setGraphLoader] = useState(true)
-    const [graphWidth, setGraphWidth] = useState(0)
+    // const [graphWidth, setGraphWidth] = useState(0)
     const [graphOptions] = useState({
         ...GRAPH_OPTONS,
         legend: {
@@ -61,7 +61,9 @@ export default function CalorieGraph(){
                 setGraphLoader(true)
                 let userCalorieLogs = response.data.filter(log => log.createdBy == "user")
                 let instructorCalorieLogs = response.data.filter(log => log.createdBy == "instructor")
-                let updatedGraphData = graphData
+                let updatedGraphData = [
+                    [{ type: 'date', label: '' }, 'INSTRUCTOR', 'YOU'],
+                ]
                 // debugger
                 // updatedCalorieLogs.forEach((log, index) => {
                 //     if(log.id == 'instructor'){
@@ -84,10 +86,13 @@ export default function CalorieGraph(){
                 })
                 updatedGraphData.forEach((option, index) => {
                     if(index >= 1){
-                        option[1] = instructorCalorieLogs.find(item => new Date(item.date) == option[0]) ? Number(instructorCalorieLogs.find(item => new Date(item.date) == option[0]).calories) : option[2] 
+                        option[1] = instructorCalorieLogs.find(item => new Date(item.date) == option[0]) ? Number(instructorCalorieLogs.find(item => new Date(item.date) == option[0]).calories) : option[2]
                     }
                 })
                 setGraphData(updatedGraphData)
+                setGraphLoader(false)
+            }else{
+                setGraphData(null)
                 setGraphLoader(false)
             }
         })
@@ -109,7 +114,7 @@ export default function CalorieGraph(){
         <>
         <div className="calorie-graph" id="calorie-graph">
             <h3 className="heading2 label">Calorie Graph</h3>
-            {loader || graphLoader ? null : <div className="graph-indicators">
+            {loader || graphLoader || !graphData ? null : <div className="graph-indicators">
                 <p className="secondaryText instructor">
                     INSTRUCTOR
                 </p>
@@ -118,7 +123,7 @@ export default function CalorieGraph(){
                 </p>
             </div>}
             <div className="graph-wrapper">
-                {(loader || graphLoader) ? 'Loading...' :  
+                {(loader || graphLoader) ? 'Loading...' :  graphData ? 
                 // <LineChart 						
                 //     width={graphWidth ? graphWidth : 350} 
                 //     height={250}
@@ -137,13 +142,13 @@ export default function CalorieGraph(){
                 //     interpolate= "cardinal"
                 // /> 
                 <Chart
-                    height={'250px'}
+                    height={'200px'}
                     chartType="LineChart"
                     loader={<div>Loading...</div>}
                     data={graphData}
                     width={"100%"}
                     options={graphOptions}
-                />
+                /> : <p className="alert paragraph">No calorie logs found!</p>
                 }
             </div>
             <div className="alert">
@@ -157,7 +162,7 @@ export default function CalorieGraph(){
             open={addCalorieLog}
             handleClose={() => setAddCalorieLog(false)}
             type="calorieLog"
-            updateCalorieGraph={fetchCalorieLog}
+            updateCalorieGraph={() => {fetchCalorieLog(); props.setUpdateCaloriesBurnt(true)}}
         />
         </>
     )
