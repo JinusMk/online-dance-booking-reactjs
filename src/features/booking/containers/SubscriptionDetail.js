@@ -4,6 +4,7 @@ import { Container } from '@material-ui/core';
 import '../../../assets/styles/subscription-detail-module.scss'
 import { globalGetService } from '../../../utils/globalApiServices';
 import { checkNumberOfDaysLeft } from '../../../utils';
+import Shimmer from '../components/Shimmer'
 
 const SubscriptionInfo = lazy(() => import('../components/SubscriptionInfo'));
 const SubscriptionBenefits = lazy(() => import('../components/SubscriptionBenefits'));
@@ -58,21 +59,22 @@ export default function SubscriptionDetail(props){
     return(
         <section className="subscription-detail-section">
             <Header onBack={handleGoBack} title={`${subscriptionInfo.length ? subscriptionInfo[0]?.name : ''} Subscription`}/>
-            {
-                loader ? 'Loading...' : <Container className="subscription-detail-container">
-                    <Suspense fallback={<></>}>
-                        <SubscriptionInfo subscription={activeSubscription ? activeSubscription.userSubscription : subscriptionInfo.length ? subscriptionInfo[0] : {}} active={activeSubscription ? true : false}/>
-                        <SubscriptionBenefits />
-                        {(activeSubscription && !renewal) ? null : <>
-                            <SubscriptionPlans subscriptionInfo={subscriptionInfo} isRenewal={renewal}/>
-                            <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
-                        </>}
-                        <HowWorks />
-                        <CommonQuestions/>
-                        <ContactUs/>
+            <Container className="subscription-detail-container">
+                {
+                loader ? <Shimmer /> : <Suspense fallback={<></>}>
+                    <SubscriptionInfo subscription={activeSubscription ? activeSubscription.userSubscription : subscriptionInfo.length ? subscriptionInfo[0] : {}} active={activeSubscription ? true : false}/>
+                    <SubscriptionBenefits />
+                    {(activeSubscription && !renewal) ? null : <>
+                        <SubscriptionPlans subscriptions={subscriptionInfo} isRenewal={renewal}/>
+                        <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>
+                    </>}
+                    {/* <SubscriptionPlans subscriptions={subscriptionInfo} isRenewal={renewal}/> */}
+                    <HowWorks />
+                    <CommonQuestions/>
+                    <ContactUs/>
                     </Suspense>
+                }
                 </Container>
-            }
         </section>
     )
 }

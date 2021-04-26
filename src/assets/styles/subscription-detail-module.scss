@@ -4,6 +4,14 @@ body{
     .subscription-detail-section{
         .subscription-detail-container{
             padding: 0;
+            .shimmer-wrapper{
+                padding: 16px 16px 24px;
+                ul{
+                    li{
+                        padding: 0 0 16px;
+                    }
+                }
+            }
             .subscription-detail-header{
                 .user-subscription-info{
                     border-bottom: 1px solid $color_FFE5E9;
@@ -106,6 +114,10 @@ body{
                         padding: 16px;
                         border-bottom: 1px solid $color_light_gray;
                         .radioGroup{
+                            margin-bottom: 16px;
+                            &:last-child{
+                                margin-bottom: 0;
+                            }
                             label{
                                 margin-bottom: 16px;
                                 &:last-child{

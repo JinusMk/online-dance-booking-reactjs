@@ -7,7 +7,8 @@ import { currencySymbol } from '../../../constants';
 
 export default function SubscriptionPlans(props){
   let params = useParams()
-  const { subscriptionInfo } = props
+  const { subscriptions } = props
+  const [subscriptionInfo, setSubscriptionInfo] = useState([])
   const [value, setValue] = useState('');
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -20,27 +21,50 @@ export default function SubscriptionPlans(props){
       return title
   }
   useEffect(() => {
-    if(subscriptionInfo.length){
-        setValue(subscriptionInfo[0]._id)
+    if(subscriptions.length){
+        setValue(subscriptions[0]._id)
+        let updatedSubscriptionInfo = []
+        let addressed = []
+        subscriptions.forEach(item => {
+            if(!addressed.includes(item._id)){
+                let filtered = subscriptions.filter(sub => `${getSubscriptionTitle(sub.weekDays)} - ${moment(sub.startTime).format('hh:mm A')}` == `${getSubscriptionTitle(item.weekDays)} - ${moment(item.startTime).format('hh:mm A')}` )
+                if(filtered.length > 1){
+                    filtered.forEach(filterItem => {
+                        addressed.push(filterItem._id)
+                    })
+                    updatedSubscriptionInfo.push(filtered)
+                }else{
+                    addressed.push(filtered[0]._id)
+                    updatedSubscriptionInfo.push(filtered)
+                }
+            }
+        })
+        setSubscriptionInfo(updatedSubscriptionInfo)
+    }else{
+        setSubscriptionInfo([])
     }
-  }, [subscriptionInfo])
+    // setSubscriptionInfo(subscriptionInfo)
+  }, [subscriptions])
   return(
         <div className="subscription-plans" id="subscription-plans">
             <h3 className="title heading2">Subscription plans</h3>
             <ul className="listUnstyled plans-wrapper">
                 {
-                    subscriptionInfo.length ? subscriptionInfo.map((subscription, index) => <li className="plans-item" key={index}>
-                        <h3 className="heading3">{getSubscriptionTitle(subscription.weekDays)} - {moment(subscription.startTime).format('hh:mm A')}</h3>
-                        <RadioGroup aria-label="subscriptionPlans" name="subscriptionPlans" className={"radioGroup"} value={value} onChange={handleChange}>
-                            <FormControlLabel key={index} value={subscription._id} control={<Radio checked={subscription._id == value ? true: false }/>} label={<div className={`label ${value == subscription._id ? 'active': '' }`}>
-                                <h3 className="heading3">{`${subscription.months} ${subscription.months > 1 ? 'months' : 'month'} - ${subscription.danceClasses} classes`}</h3>
-                                <p className="paragraph">
-                                    <span className="cost-old">{`${currencySymbol[subscription.currencyType]}${subscription.actualCost}`}</span>
-                                    {`${currencySymbol[subscription.currencyType]} ${subscription.discountedCost}`}
-                                    <span className="offer">Save {`${currencySymbol[subscription.currencyType]}`}{`${subscription.actualCost - subscription.discountedCost}`}</span>
-                                </p>
-                            </div>} />
-                        </RadioGroup>
+                    subscriptionInfo.length ? subscriptionInfo.map((subscription, index) => 
+                    <li className="plans-item" key={index}>
+                        <h3 className="heading3">{getSubscriptionTitle(subscription[0].weekDays)} - {moment(subscription[0].startTime).format('hh:mm A')}</h3>
+                        {
+                            subscription.map(subItem => <RadioGroup aria-label="subscriptionPlans" name="subscriptionPlans" className={"radioGroup"} value={value} onChange={handleChange}>
+                                <FormControlLabel key={index} value={subItem._id} control={<Radio checked={subItem._id == value ? true: false }/>} label={<div className={`label ${value == subItem._id ? 'active': '' }`}>
+                                    <h3 className="heading3">{`${subItem.months} ${subItem.months > 1 ? 'months' : 'month'} - ${subItem.danceClasses} classes`}</h3>
+                                    <p className="paragraph">
+                                        <span className="cost-old">{`${currencySymbol[subItem.currencyType]}${subItem.actualCost}`}</span>
+                                        {`${currencySymbol[subItem.currencyType]} ${subItem.discountedCost}`}
+                                        <span className="offer">Save {`${currencySymbol[subItem.currencyType]}`}{`${subItem.actualCost - subItem.discountedCost}`}</span>
+                                    </p>
+                                </div>} />
+                            </RadioGroup>)
+                        }
                     </li>) : null
                 }
             </ul>
