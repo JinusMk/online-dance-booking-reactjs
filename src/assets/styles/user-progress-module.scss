@@ -79,7 +79,7 @@ body{
                 }
             }
             .weight-loss-blk{
-                border-bottom: none;
+                // border-bottom: none;
                 .weight-loss{
                     .track-weight-loss-wrapper{
                         .alert{
@@ -108,6 +108,137 @@ body{
                         .alert{
                             color: $color_gray;
                             margin-bottom: 16px;
+                        }
+                    }
+                }
+            }
+            .class-calendar-blk{
+                h3{
+                    margin-bottom: 4px;
+                }
+                .classTime{
+                    color: $color_info_text;
+                }
+                .calendar-wrapper{
+                    .MuiPickersStaticWrapper-staticWrapperRoot{
+                        .MuiPickersBasePicker-container{
+                            .MuiPickersBasePicker-pickerView{
+                                min-width: 100%;
+                                min-height: unset;
+                                .MuiPickersCalendarHeader-switchHeader{
+                                    background: rgba(255, 225, 228, 0.2);
+                                    .MuiPickersCalendarHeader-iconButton{
+                                        background: transparent;
+                                        color: $color_black;
+                                        padding-top: 8px;
+                                        padding-bottom: 8px;
+                                        .MuiIconButton-label{
+                                            .MuiSvgIcon-root{
+                                                height: 33px;
+                                                width: 33px;
+                                            }
+                                        }
+                                    }
+                                    .MuiPickersCalendarHeader-transitionContainer{
+                                        p{
+                                            @include fontStyle(
+                                                $fontFamily:$font_RobotoCondensed,
+                                                $size:$font18,
+                                                $weight:$boldFont,
+                                                $color: $color_primary,
+                                                $lineHeight: 24px
+                                            );
+                                        }
+                                    }
+                                }
+                                .MuiPickersCalendarHeader-daysHeader{
+                                    max-height: 20px;
+                                    justify-content: space-evenly;
+                                    .MuiPickersCalendarHeader-dayLabel{
+                                        text-transform: uppercase;
+                                        min-width: 50px;
+                                        @include fontStyle(
+                                            $fontFamily:$font_RobotoCondensed,
+                                            $weight:$boldFont
+                                        );
+                                    }
+                                }
+                                .MuiPickersCalendar-transitionContainer{
+                                    min-height: 250px;
+                                    .MuiPickersCalendar-week{
+                                        justify-content: space-evenly;
+                                        div[role="presentation"]{
+                                            min-width: 50px;
+                                            .MuiButtonBase-root{
+                                                .MuiIconButton-label{
+                                                    .MuiTypography-root{
+                                                        // @include fontStyle(
+                                                        //     $fontFamily:$font_RobotoCondensed,
+                                                        //     $weight:$boldFont
+                                                        // );
+                                                    }
+                                                }
+                                            }
+                                            .dance-class-date{
+                                                text-align: center;
+                                                .heading1{
+                                                    font-size: 30px;
+                                                    margin-bottom: 0;
+                                                }
+                                                .classTime{
+                                                    color: $color_success;
+                                                }
+                                                .review{
+                                                    .feedback{
+                                                        color: $color_blue;
+                                                        margin-right: 10px;
+                                                    }
+                                                    .recording{
+                                                        color: $color_primary;
+                                                    }
+                                                }
+                                                &.over{
+                                                    .heading1{
+                                                        color: $color_error;
+                                                    }
+                                                    .classTime{
+                                                        color: $color_error;
+                                                    }
+                                                }
+                                                &.attended{
+                                                    .heading1{
+                                                        color: $color_success;
+                                                    }
+                                                    .classTime{
+                                                        color: $color_success;
+                                                    }
+                                                }
+                                                &.today{
+
+                                                }
+                                                &.future{
+                                                    .heading1{
+                                                        color: $color_black;
+                                                    }
+                                                    .classTime{
+                                                        color: $color_black;
+                                                    }
+                                                }
+                                            }
+                                            .disabled-date{
+                                                text-align: center;
+                                                pointer-events: none;
+                                                .heading1{
+                                                    color: $color_light_gray;
+                                                }
+                                                &.today{
+                                                    border: 1px solid #999999;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

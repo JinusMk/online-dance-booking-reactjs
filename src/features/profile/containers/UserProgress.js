@@ -6,6 +6,7 @@ import '../../../assets/styles/user-progress-module.scss'
 
 const CalorieGraph = lazy(() => import('../components/CalorieGraph'))
 const TrackWeightLoss = lazy(() => import('../components/TrackWeightLoss'))
+const ClassCalendar = lazy(() => import('../components/ClassCalendar'))
 
 export default function UserProgress(props){
     const [updateCurrentWeight, setUpdateCurrentWeight] = useState(false)
@@ -40,6 +41,13 @@ export default function UserProgress(props){
                     <Grid item xs={12}>
                         <Suspense fallback={<></>}>
                             <TrackWeightLoss setUpdateCurrentWeight={setUpdateCurrentWeight}/>
+                        </Suspense>
+                    </Grid>
+                </Grid>
+                <Grid container className="class-calendar wrapper">
+                    <Grid item xs={12}>
+                        <Suspense fallback={<></>}>
+                            <ClassCalendar />
                         </Suspense>
                     </Grid>
                 </Grid>
