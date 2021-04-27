@@ -35,7 +35,7 @@ export default function ClassCalendar(props){
             const activeDanceClass = danceClasses.find(danceClass => moment(danceClass.date).format(`MM/DD/YYYY`) == moment(date).format(`MM/DD/YYYY`) )
             if(danceClasses && activeDanceClass){ 
                 if(checkNumberOfDaysLeft(activeDanceClass.date) < 0){ //already over
-                    return <div className={`dance-class-date over ${activeDanceClass.attended ? 'attended' : 'abscent'}`}>
+                    return <div className={`dance-class-date over ${activeDanceClass.attended ? 'attended' : 'absent'}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
                                 <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
                                 {activeDanceClass.attended ? <p className="secondaryText textCenter review">{activeDanceClass.feedback != "empty" ? <span className="feedback">F</span> : null}<span className="recording">{`R`}</span></p> : null}
@@ -46,7 +46,7 @@ export default function ClassCalendar(props){
                                 <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
                            </div>
                 }else{//same day
-                    return <div className={`dance-class-date today ${checkIsFinished(activeDanceClass.date) ?  activeDanceClass.attended ? 'attended' : 'abscent' : 'future'}`}>
+                    return <div className={`dance-class-date ${checkIsFinished(activeDanceClass.date) ?  activeDanceClass.attended ? 'attended' : 'over' : 'future'} ${moment().format('DD-MM-YYYY') == moment(date).format('DD-MM-YYYY') ? 'today' : ''}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
                             </div>
                 }
@@ -62,8 +62,8 @@ export default function ClassCalendar(props){
     }
     return(
         <div className="class-calendar-blk">
-            <h3 className="heading2">Class caledar</h3>
-            <p className="paragraph classTime label">Wed, Sat, Sun - 6 PM</p>
+            <h3 className="heading2">Class calendar</h3>
+            <p className="paragraph classTime label"></p>
             <div className="calendar-wrapper">
                 {loader ? 'Loading...' : <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
                     <DatePicker
@@ -74,6 +74,31 @@ export default function ClassCalendar(props){
                         showTodayButton
                     />
                 </MuiPickersUtilsProvider>}
+                <div className="graph-info">
+                    <p className="paragraph alert">Click on a date to join class, view class details, and more</p>
+                    <ul className="listInline indicators">
+                        <li>
+                            <p className="seondaryText today">TODAY</p>
+                        </li>
+                        <li>
+                            <p className="seondaryText upcoming">UPCOMING</p>
+                        </li>
+                        <li>
+                            <p className="seondaryText attended">ATTENDED</p>
+                        </li>
+                        <li>
+                            <p className="seondaryText absent">ABSENT</p>
+                        </li>
+                    </ul>
+                    <ul className="review-feedback-indicators listInline">
+                        <li>
+                            <h3 className="heading3 feedback">F<span>INSTRUCTOR FEEDBACK</span></h3>
+                        </li>
+                        <li>
+                            <h3 className="heading3 review">R<span>RECORDING AVAILABLE</span></h3>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     )

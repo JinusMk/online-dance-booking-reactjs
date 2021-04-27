@@ -124,7 +124,7 @@ body{
                         .MuiPickersBasePicker-container{
                             .MuiPickersBasePicker-pickerView{
                                 min-width: 100%;
-                                min-height: unset;
+                                min-height: 100%;
                                 .MuiPickersCalendarHeader-switchHeader{
                                     background: rgba(255, 225, 228, 0.2);
                                     .MuiPickersCalendarHeader-iconButton{
@@ -164,7 +164,7 @@ body{
                                     }
                                 }
                                 .MuiPickersCalendar-transitionContainer{
-                                    min-height: 250px;
+                                    min-height: 300px;
                                     .MuiPickersCalendar-week{
                                         justify-content: space-evenly;
                                         div[role="presentation"]{
@@ -197,7 +197,7 @@ body{
                                                         color: $color_primary;
                                                     }
                                                 }
-                                                &.over{
+                                                &.over, &.absent{
                                                     .heading1{
                                                         color: $color_error;
                                                     }
@@ -214,7 +214,7 @@ body{
                                                     }
                                                 }
                                                 &.today{
-
+                                                    border: 1px solid #999999;
                                                 }
                                                 &.future{
                                                     .heading1{
@@ -236,6 +236,76 @@ body{
                                                 }
                                             }
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .graph-info{
+                        .alert{
+                            margin-bottom: 16px;
+                        }
+                        .indicators{
+                            // display: flex;
+                            margin-bottom: 16px;
+                            li{
+                                margin-right: 16px;
+                                p{
+                                    position: relative;
+                                    padding-left: 22px;
+                                    font-weight: $boldFont;
+                                    &::before{
+                                        content: '';
+                                        left: 0;
+                                        width: 16px;
+                                        height: 16px;
+                                        position: absolute;
+                                        border-radius: 2px;
+                                    }
+                                    &.today{
+                                        color: $color_gray;
+                                        &::before{
+                                            width: 12px;
+                                            height: 12px;
+                                            border:2px solid $color_info_text
+                                        }
+                                    }
+                                    &.upcoming{
+                                        color: $color_black;
+                                        &::before{
+                                            background: $color_black;
+                                        }
+                                    }
+                                    &.attended{
+                                        color: $color_success;
+                                        &::before{
+                                            background: $color_success;
+                                        }
+                                    }
+                                    &.absent{
+                                        color: $color_error;
+                                        &::before{
+                                            background: $color_error;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .review-feedback-indicators{
+                            li{
+                                margin-right: 30px;
+                                h3{
+                                    &.feedback{
+                                        color: $color_blue;
+                                    }
+                                    &.review{
+                                        color: $color_primary;
+                                    }
+                                    span{
+                                        margin-left: 10px;
+                                        font-size: 12px;
+                                        position: relative;
+                                        bottom: 2px;
                                     }
                                 }
                             }
