@@ -49,7 +49,7 @@ export const profileRoutes = [
     {
         path: '/dance/:danceCategory/:danceId',
         component: ClassDetail,
-        key: 'privacy-policy'
+        key: 'ClassDetail'
     },
     {
         path: '/user-subscriptions',
@@ -60,6 +60,11 @@ export const profileRoutes = [
         path: '/user-subscriptions/:subscriptionId/progress',
         component: UserProgress,
         key: 'user-subscriptions'
+    },
+    {
+        path: '/user-subscriptions/:subscriptionCategory/:danceId',
+        component: ClassDetail,
+        key: 'user-subscription-class-detail'
     },
     {
         path: '/user-weights',

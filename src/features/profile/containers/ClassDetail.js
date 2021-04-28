@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Grid } from '@material-ui/core';
 import { Header, DanceInformationCard, DanceInformationLoader } from  '../../../shared_elements'
-import { globalGetService } from '../../../utils/globalApiServices';
+import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import moment from 'moment'
 import { AddReviewCard, ReviewDetails } from '../components'
@@ -12,10 +12,11 @@ import '../../../assets/styles/class-detail-module.scss'
 function ClassDetail(props){
     const [loader, setLoader] = useState(true)
     const [danceInfo, setDanceInfo] = useState(null)
-    const [category, setCategory] = useState(props.match.params.danceCategory)
+    const [category, setCategory] = useState('')
     
     useEffect(() => {
-        globalGetService(`dance-classes/${props.match.params.danceId}`)
+        if(props.match.params.danceCategory && props.match.params.danceId){
+            globalGetService(`dance-classes/${props.match.params.danceId}`)
             .then(response => {
                 if(response.success == true){
                     setDanceInfo(response.data)
@@ -23,11 +24,31 @@ function ClassDetail(props){
                 }else if(response.error){
                     toastFlashMessage(response.error, 'error')
                 }
-        })
+            })
+            setCategory(props.match.params.danceCategory)
+        }else if(props.match.params.subscriptionCategory && props.match.params.danceId){
+            setCategory(props.match.params.subscriptionCategory)
+            globalPostService(`danceClassByDate`, { userDanceClassID : props.match.params.danceId })
+            .then(response => {
+                if(response.success == true){
+                    setDanceInfo(response.data)
+                    setLoader(false)
+                }else if(response.error){
+                    toastFlashMessage(response.error, 'error')
+                }
+            })
+        }
     }, [])
+    const handleGoBack = () => {
+        if(props.location.state && props.location.state.prevPath){
+            props.history.push(`${props.location.state.prevPath}`)
+        }else{
+            props.history.push('/dance-history')
+        }
+    }
     return(
         <section className="class-detail-section">
-            <Header onBack={() => props.history.push('/dance-history')} title="Dance" />
+            <Header onBack={handleGoBack} title="Dance" />
             <Container className="class-detail-container">
                 {loader ? <DanceInformationLoader /> : <DanceInformationCard dance={danceInfo} category={category}/>}   
                 <Grid container className="">
