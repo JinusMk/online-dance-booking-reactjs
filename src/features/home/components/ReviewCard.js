@@ -74,7 +74,7 @@ function ReviewInfo(props){
                 {review.img ? <Avatar src={review.img} className="user-avatar" /> : <Avatar className="user-avatar">{review.name ? review.name[0]: 'L'}</Avatar>}
                 <div className="name-wrapper">
                     <h3 className="heading3">{review.reviwed_by}</h3>
-                    <p>Took <span style={{textTransform: 'capitalize'}}>{review.category}</span> class on {moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
+                    <p>Took <span style={{textTransform: 'capitalize'}}>{review.category}</span> class on {review._id ? moment(review.class_date).format(`DD MMM YYYY`) : moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
                 </div>
             </div>
         </div>

@@ -14,8 +14,8 @@ export default function ReviewsListing(props){
         globalGetService(`review-list`)
         .then(response => {
             if(response.success === true){
+                setReviews([...response.data.filter(item => item.description ), ...reviewsData])
                 setLoader(false)
-                setReviews([...reviewsData, ...response.data.filter(item => item.description )])
             }
         })
     }, [])
