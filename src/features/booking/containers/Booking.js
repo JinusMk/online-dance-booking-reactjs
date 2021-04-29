@@ -89,6 +89,8 @@ function Booking(props){
             setBookingLoader(false)
             if(response.success == true){
                 history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: (response.data && response.data.payment_method) ? response.data.payment_method : 'online' }}})
+            }else if(response.message && !response.success){
+                toastFlashMessage(response.message, 'error')
             }else if(response.error){
                 toastFlashMessage(response.error, 'error')
             }
@@ -181,6 +183,8 @@ function Booking(props){
             setBookingLoader(false)
             if(response.success == true){
                 history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: (response.data && response.data.payment_method) ? response.data.payment_method : 'online'  }}})
+            }else if(response.message && !response.success){
+                toastFlashMessage(response.message, 'error')
             }else if(response.error){
                 toastFlashMessage(response.error, 'error')
             }
@@ -203,7 +207,7 @@ function Booking(props){
                     <Grid item xs={7}>
                         <div className="timeWrapper">
                             <p className="secondaryText">{type == "danceBooking" ? 'DATE & TIME' : 'DURATION'}</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3> : <h3 className="heading3">{`${selectedItem.months} ${selectedItem.months > 1 ? 'months' : 'month'}`}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : type == "danceBooking" ? <h3 className="heading3">{`${moment(selectedItem.eventDate).format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3> : <h3 className="heading3">{`${selectedItem.months} ${selectedItem.months > 1 ? 'months' : 'month'}`}</h3>}
                         </div>
                     </Grid>
                     <Grid item xs={5}>

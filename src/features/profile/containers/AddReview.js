@@ -43,6 +43,8 @@ function AddReview(props){
                 setLoader(false)
             }else if(response.error){
                 toastFlashMessage(response.error, 'error')
+            }else if(response.message && !response.success){
+                toastFlashMessage(response.message, 'error')
             }
         })
         setTimeout(() => {
@@ -63,6 +65,8 @@ function AddReview(props){
                 if(response.success === true){
                     toastFlashMessage('Review submitted successfully', 'success')
                     handleGoBack()
+                }else if(response.message && !response.success){
+                    toastFlashMessage(response.message, 'error')
                 }else if(response.error){
                     toastFlashMessage(response.error, 'error')
                 }
@@ -94,11 +98,11 @@ function AddReview(props){
                             <Grid container className="">
                                 <Grid item xs={12}>
                                     <div className="dance-info wrapper flexCentered">
-                                        {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
+                                        {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8, marginRight: 16}}/></div> : null}
                                         <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                                         <div className="info">
                                             <h3 className="heading2">{danceInfo.title}</h3>
-                                            <p className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(danceInfo.startTime).format(`hh:mm A`)}`}</p>
+                                            <p className="heading3">{`${moment(danceInfo.class_start_time).format('DD MMM')}, ${moment(danceInfo.class_start_time).format(`hh:mm A`)}`}</p>
                                         </div>
                                     </div>
                                 </Grid>

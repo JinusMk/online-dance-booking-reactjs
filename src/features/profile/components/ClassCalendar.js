@@ -43,9 +43,9 @@ export default function ClassCalendar(props){
         return title
     }
     const navigateToDanceClass = (danceId) => {
-        // if(danceId && subscriptionInfo?.subscription?.slug){
-        //     history.push({pathname: `/user-subscriptions/${subscriptionInfo?.subscription?.slug}/${danceId}`, state: { prevPath: `${location.pathname}` }})
-        // }
+        if(danceId && subscriptionInfo?.subscription?.slug){
+            history.push({pathname: `/user-subscriptions/${subscriptionInfo?.subscription?.slug}/${danceId}`, state: { prevPath: `${location.pathname}` }})
+        }
     }
     const renderDayInPicker = (date, selectedDate, dayInCurrentMonth, dayComponent) => {
         if(dayInCurrentMonth){

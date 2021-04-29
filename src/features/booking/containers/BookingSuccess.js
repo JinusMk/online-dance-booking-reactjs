@@ -45,7 +45,7 @@ function BookingSuccess(props){
                         {
                             type == "danceBooking" ? <>
                                 <p className="secondaryText">DATE & TIME</p>
-                                <h3 className="heading3">{`${moment(selectedItem.event_date, 'DD-MM-YYYY').format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3>
+                                <h3 className="heading3">{`${moment(selectedItem.eventDate).format('DD MMM')}, ${moment(selectedItem.class_start_time).format('hh:mm A')}`}</h3>
                             </> : <>
                                 <p className="secondaryText">DURATION</p>
                                 <h3 className="heading3">{`${selectedItem.months} ${selectedItem.months > 1 ? 'months' : 'month'}`}</h3>

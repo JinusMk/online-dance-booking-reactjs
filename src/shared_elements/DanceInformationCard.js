@@ -15,13 +15,13 @@ export default function DanceInformationCard(props){
                     <h3 className="heading2">{dance.title}</h3>
                     <h3 className="heading3">
                         <img src={`${imageBasePath}star_icon.svg`} />
-                        <span>{dance.rating}</span>
-                        <span className="rating">({dance.rating_count} RATINGS)</span>
+                        <span>{dance.averageRating ? dance.averageRating : dance.rating}</span>
+                        <span className="rating">({dance.totalRating ? dance.totalRating : dance.rating_count} RATINGS)</span>
                     </h3>
                 </div>
             </div>
             <ul className="bottom-blk listUnstyled">
-                {type == "schedule" && <p className="heading2 cost"><span>{`${currencySymbol[dance.currencyType]}${dance.cost_old}`}</span>{`${currencySymbol[dance.currencyType]}${dance.cost}`}</p>}
+                {type == "schedule" && <p className="heading2 cost"><span>{`${currencySymbol[dance.currencyType]}${dance.actualCost ? dance.actualCost : dance.cost_old}`}</span>{`${currencySymbol[dance.currencyType]}${dance.discountedCost ? dance.discountedCost : dance.cost}`}</p>}
                 <li>
                     <p className="paragraph"><img src={`${imageBasePath}clock_icon_active.svg`} /> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name}`}</span></p>
                 </li>

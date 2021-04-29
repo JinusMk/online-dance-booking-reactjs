@@ -18,6 +18,8 @@ function DanceHistory(props){
             if(response.success == true){
                 setDances(response.data)
                 setLoader(false)
+            }else if(response.message && !response.success){
+                toastFlashMessage(response.message, 'error')
             }else if(response.error){
                 toastFlashMessage(response.error, 'error')
             }

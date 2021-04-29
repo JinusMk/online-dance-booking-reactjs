@@ -21,6 +21,8 @@ function ClassDetail(props){
                 if(response.success == true){
                     setDanceInfo(response.data)
                     setLoader(false)
+                }else if(response.message && !response.success){
+                    toastFlashMessage(response.message, 'error')
                 }else if(response.error){
                     toastFlashMessage(response.error, 'error')
                 }
@@ -33,8 +35,8 @@ function ClassDetail(props){
                 if(response.success == true){
                     setDanceInfo(response.data)
                     setLoader(false)
-                }else if(response.error){
-                    toastFlashMessage(response.error, 'error')
+                }else if(response.message && !response.success){
+                    toastFlashMessage(response.message, 'error')
                 }
             })
         }
@@ -55,17 +57,17 @@ function ClassDetail(props){
                     <Grid item xs={12}>
                         <div className="timeWrapper">
                             <p className="secondaryText">DATE & TIME</p>
-                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(danceInfo.event_date, 'DD-MM-YYYY').format('DD MMM YYYY')}, ${moment(danceInfo.startTime).format(`hh:mm A`)}`}</h3>}
+                            {loader ? <Skeleton variant="rect" height={24} width={160}/> : <h3 className="heading3">{`${moment(danceInfo.eventDate).format('DD MMM YYYY')}, ${moment(danceInfo.startTime).format(`hh:mm A`)}`}</h3>}
                         </div>
                     </Grid>
                     {loader ? null :<> <Grid item xs={12}>
                         <div className="review-block">
-                            {(danceInfo.review && danceInfo.review?.danceRating) ? <ReviewDetails review={danceInfo.review}/> : <AddReviewCard category={category} danceId={danceInfo.id}/>}
+                            {(danceInfo.review && danceInfo.review?.danceRating) ? <ReviewDetails review={danceInfo.review}/> : <AddReviewCard category={category} danceId={danceInfo._id}/>}
                         </div>
                     </Grid>
                     <Grid item xs={12}>
                         <div className="payment-info">
-                            <p className="secondaryText">{danceInfo.userDetails && danceInfo.userDetails.payment_method == "offline" ? 'PAY AT CLASS' : 'PAID ONLINE'}</p>
+                            <p className="secondaryText">{'PAID ONLINE'}</p>
                             <h3 className="heading3 cost"><span className="cost-old">{`${currencySymbol[danceInfo.currencyType]}${danceInfo.actualCost}`}</span>{`${currencySymbol[danceInfo.currencyType]}${danceInfo.discountedCost}`}</h3>
                         </div>
                     </Grid>
