@@ -35,7 +35,7 @@ function UpComingClasses(props){
     }, [])
     return(
         <div className="upcoming-classes block">
-            <h3 className="heading2 title">Upcoming classes <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
+            <h3 className="heading2 title">Upcoming online classes <Link to="/schedule" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link></h3>
             {
                 loader ? <Carousel 
                     responsive={responsiveCarousel}

@@ -12,36 +12,36 @@ export default function Header(props){
     }
     return(<header>
         <Hidden only={['lg','xl', 'md']}>
-        {title ? <h3 className="heading2">{`${title[0].toUpperCase()}${title.slice(1)}`}</h3>: <img className="logo" src={`${imageBasePath}app_logo.svg`} />}
-        {onBack ? <img className="back-arrow" src={`${imageBasePath}arrow_back_icon.svg`} onClick={onBack}/> : null}
+        {title ? <h3 className="heading2">{`${title[0].toUpperCase()}${title.slice(1)}`}</h3>: <img className="logo" src={`${imageBasePath}app_logo.svg`} alt=""/>}
+        {onBack ? <img className="back-arrow" src={`${imageBasePath}arrow_back_icon.svg`} onClick={onBack} alt=""/> : null}
         </Hidden>
         <Hidden only={['xs', 'sm']}>
             <Grid container className="header-wrapper" alignItems={'center'}>
                 <Grid item xs={6}>
                     <div className="logo-wrapper">
-                        <img className="logo" src={`${imageBasePath}app_logo.svg`} />
+                        <img className="logo" src={`${imageBasePath}app_logo.svg`} alt=""/>
                     </div>
                 </Grid>
                 <Grid item xs={6}>
                     <ul className="listUnstyled nav-bar">
                         <li className={location.pathname === "/" ? 'active': ''}>
                             <div className="nav-item" onClick={() => navigateTo('/')}>
-                                <img src={`${imageBasePath}home_icon_active.svg`} className="active"/>
-                                <img src={`${imageBasePath}home_icon_desktop.svg`} className="in-active"/>
+                                <img src={`${imageBasePath}home_icon_active.svg`} className="active" alt=""/>
+                                <img src={`${imageBasePath}home_icon_desktop.svg`} className="in-active" alt=""/>
                                 <span className="heading3">HOME</span>
                             </div>
                         </li>
                         <li className={location.pathname === "/schedule" ? 'active': ''}>
                             <div className="nav-item" onClick={() => navigateTo('/schedule')}>
-                                <img src={`${imageBasePath}schedule_icon_active.svg`} className="active"/>
-                                <img src={`${imageBasePath}schedule_icon_desktop.svg`} className="in-active"/>
+                                <img src={`${imageBasePath}schedule_icon_active.svg`} className="active" alt=""/>
+                                <img src={`${imageBasePath}schedule_icon_desktop.svg`} className="in-active" alt=""/>
                                 <span className="heading3">SCHEDULE</span>
                             </div>
                         </li>
                         <li className={location.pathname === "/profile" ? 'active': ''}>
                             <div className="nav-item" onClick={() => navigateTo('/profile')}>
-                                <img src={`${imageBasePath}profile_icon_active.svg`} className="active"/>
-                                <img src={`${imageBasePath}profile_icon_desktop.svg`} className="in-active"/>
+                                <img src={`${imageBasePath}profile_icon_active.svg`} className="active" alt=""/>
+                                <img src={`${imageBasePath}profile_icon_desktop.svg`} className="in-active" alt=""/>
                                 <span className="heading3">YOU</span>
                             </div>
                         </li>

@@ -9,7 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 export default function ExpertInstructors(props){
     const [instructors, setInstructors] = useState([])
     useEffect(() => {
-        globalGetService(`instructors`)
+        globalGetService(`instructorVideos`)
         .then(response => {
             if(response.success === true){
                 setInstructors(response.data)

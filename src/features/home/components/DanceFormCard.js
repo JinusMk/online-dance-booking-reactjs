@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Skeleton from '@material-ui/lab/Skeleton';
 import { isMobile } from 'react-device-detect'
-import { imageBasePath, danceCategory, currencySymbol } from '../../../constants';
+import { imageBasePath, currencySymbol } from '../../../constants';
 
 export default function DanceFormCard(props){
     let history = useHistory()
@@ -15,8 +15,9 @@ export default function DanceFormCard(props){
         }}>
                 <div className="top-blk">
                     {imgLoader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : null}
-                    <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
-                    <span className="secondaryText">Live & interactive</span>
+                    {/* <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> */}
+                    <img src={dance.image} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                    <span className="secondaryText">{dance.label}</span>
                     <div className="title-wrapper">
                         <p className="heading2">{dance.name}</p>
                     </div>

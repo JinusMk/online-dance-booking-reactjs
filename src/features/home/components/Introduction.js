@@ -19,11 +19,15 @@ function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
     const [upcomingDance, setUpcomingDance] = useState(null)
     const [userSubsctiption, setUserSubscriptions] = useState([])
+    // const [introductionData, setIntroductionData] = useState([])
+    const [loader, setLoader] = useState(true)
+
     useEffect(() => {
         globalGetService(`banners`)
         .then(response => {
             if(response.success === true){
-
+                // setIntroductionData(response.data)
+                setLoader(false)
             }
         })
         if(props.isLoggedIn){
@@ -66,6 +70,14 @@ function Introduction(props){
                         <p className="heading1">{item.value}</p>
                     </div>)
                 }
+
+                {/* {
+                    loader ? [0,1,2].map(item => <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
+                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
+                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
+                        <p className="heading1">{item.description}</p>
+                    </div>)
+                } */}
             </Carousel>}
         </div>
     )
