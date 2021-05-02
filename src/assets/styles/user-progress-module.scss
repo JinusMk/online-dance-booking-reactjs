@@ -44,6 +44,20 @@ body{
             .calorie-graph-blk{
                 .calorie-graph{
                     position: relative;
+                    .label{
+                        a{
+                            float: right;
+                            position: relative;
+                            top: 7px;
+                            color: $color_primary;
+                            span, img{
+                                vertical-align: middle;
+                            }
+                            img{
+                                margin-left: 5px;
+                            }
+                        }
+                    }
                     .graph-indicators{
                         position: absolute;
                         top: 0;

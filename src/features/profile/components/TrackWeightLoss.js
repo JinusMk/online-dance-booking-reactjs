@@ -36,24 +36,6 @@ export default function TrackWeightLoss(props){
                 setGraphLoader(true)
                 let weightLog = response.data
                 let updatedGraphData = graphData
-
-                // updatedGraphData.forEach((entry, index) => {
-                //     if(entry.id == 'user'){
-                //         updatedGraphData[index] = {
-                //             ...updatedGraphData[index],
-                //             points: weightLog.map((item, itemIndex) => {
-                //                 return { x: moment(item.date).format(`YYYY-MM-DD`), y: item.weight}
-                //             })
-                //         }
-                //     }else{
-                //         updatedGraphData[index] = {
-                //             ...updatedGraphData[index],
-                //             points: weightLog.map((item, itemIndex) => {
-                //                 return { x: moment(item.date).format(`YYYY-MM-DD`), y: weightGoal[0]?.goalWeight ? weightGoal[0].goalWeight : weightGoalData[0]?.goalWeight}
-                //             })
-                //         }
-                //     }
-                // })
                 weightLog.forEach(item => {
                     let option = [new Date(item.date), weightGoal[0]?.goalWeight ? Number(weightGoal[0].goalWeight) : Number(weightGoalData[0]?.goalWeight), Number(item.weight)]
                     updatedGraphData.push(option)

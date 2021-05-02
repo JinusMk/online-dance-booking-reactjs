@@ -85,16 +85,6 @@ export default function LogCalorieForm(props){
             <h3 className="heading2 form-title">{`Log calories`}</h3>
             <div className="inputGroup">
                 <label className={error.date ? 'error': ''}>{error.date ? error.date : 'DATE'}</label>
-                {/* <TextField
-                    id="date"
-                    type="date"
-                    // defaultValue={formData.date}
-                    value={formData.date}
-                    onChange={(e) => handleChange('date', e.target.value)}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                /> */}
                 <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils}>
                     <DatePicker
                         autoOk

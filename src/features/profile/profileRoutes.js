@@ -9,6 +9,7 @@ import ClassDetail from './containers/ClassDetail';
 import UserSubscriptions from './containers/UserSubscriptions';
 import UserProgress from './containers/UserProgress';
 import UserWeights from './containers/UserWeights';
+import UserCalories from './containers/UserCalories';
 
 export const profileRoutes = [
     {
@@ -60,6 +61,11 @@ export const profileRoutes = [
         path: '/user-subscriptions/:subscriptionId/progress',
         component: UserProgress,
         key: 'user-subscriptions'
+    },
+    {
+        path: '/user-subscriptions/:subscriptionId/calories',
+        component: UserCalories,
+        key: 'user-calories'
     },
     {
         path: '/user-subscriptions/:subscriptionCategory/:danceId',

@@ -37,6 +37,11 @@ body{
           width: 0;
         }
     }
+    .disabled{
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
     .flexNotCentered{
         display: flex;
         display: -webkit-flex;
