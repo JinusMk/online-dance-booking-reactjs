@@ -5,7 +5,7 @@ import { globalGetService } from '../../../utils/globalApiServices';
 import { UserProgressDrawer, GRAPH_OPTONS } from './'
 import { imageBasePath } from '../../../constants';
 import { Link } from 'react-router-dom'
-// import moment from 'moment'
+import moment from 'moment'
 // import LineChart from 'react-linechart'
 import { Chart } from "react-google-charts";
 
@@ -19,7 +19,13 @@ export default function TrackWeightLoss(props){
     const [openLogWeight, setOpenLogWeight] = useState(false)
     const [graphLoader, setGraphLoader] = useState(true)
     const [graphWidth, setGraphWidth] = useState(0)
-    const [graphOptions] = useState(GRAPH_OPTONS)
+    const [graphOptions, setGraphOptions] = useState({
+        ...GRAPH_OPTONS,
+        vAxis: {
+         ...GRAPH_OPTONS['vAxis'],
+        //  minValue: 40
+        }
+    })
     const [graphData, setGraphData] = useState([
         [{ type: 'date', label: '' }, 'GOAL', 'WEIGHT'],
     ])
@@ -52,6 +58,19 @@ export default function TrackWeightLoss(props){
                     let option = [new Date(item.date), weightGoal[0]?.goalWeight ? Number(weightGoal[0].goalWeight) : Number(weightGoalData[0]?.goalWeight), Number(item.weight)]
                     updatedGraphData.push(option)
                 })
+                // let hAxisTicks = []
+                // weightLog.forEach(item => {
+                //     hAxisTicks.push(new Date(`${new Date(item.date).getFullYear()}, ${new Date(item.date).getMonth()}`))
+                // })
+                // setGraphOptions({
+                //     ...graphOptions,
+                //     vAxis: {
+                //         minValue: 40
+                //     },
+                //     hAxis: {
+                //         ticks: hAxisTicks
+                //     }
+                // })
                 setGraphData(updatedGraphData)
                 setWeightLog(weightLog)
                 setGraphLoader(false)

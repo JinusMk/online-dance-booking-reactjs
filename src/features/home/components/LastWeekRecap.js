@@ -1,11 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, lastWeekRecapVideos } from '../../../constants'
 import { RecapItem } from './index'
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
+import { globalGetService } from '../../../utils/globalApiServices';
 
 export default function LastWeekRecap(props){
+    const [recapVideos, setRecapVideos] = useState([])
+    const [loader, setLoader] = useState(true)
+    useEffect(() => {
+        globalGetService(`danceClassRecap`)
+        .then(response => {
+            setLoader(false)
+            if(response.success == true){
+                setRecapVideos(response.data)
+            }
+        })
+    }, [])
     return(
          <div className="last-week-recap block">
             <h3 className="heading2 title">Last month recap</h3>

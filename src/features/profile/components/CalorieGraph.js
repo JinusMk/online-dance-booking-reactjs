@@ -12,7 +12,7 @@ export default function CalorieGraph(props){
     const [addCalorieLog, setAddCalorieLog] = useState(false)
     const [graphLoader, setGraphLoader] = useState(true)
     // const [graphWidth, setGraphWidth] = useState(0)
-    const [graphOptions] = useState({
+    const [graphOptions, setGraphOptions] = useState({
         ...GRAPH_OPTONS,
         legend: {
             position: ''
@@ -89,6 +89,16 @@ export default function CalorieGraph(props){
                         option[1] = instructorCalorieLogs.find(item => new Date(item.date) == option[0]) ? Number(instructorCalorieLogs.find(item => new Date(item.date) == option[0]).calories) : option[2]
                     }
                 })
+                // let hAxisTicks = []
+                // userCalorieLogs.forEach(item => {
+                //     hAxisTicks.push(new Date(`${new Date(item.date).getFullYear()}, ${new Date(item.date).getMonth()}`))
+                // })
+                // setGraphOptions({
+                //     ...graphOptions,
+                //     hAxis: {
+                //         ticks: hAxisTicks
+                //     }
+                // })
                 setGraphData(updatedGraphData)
                 setGraphLoader(false)
             }else{

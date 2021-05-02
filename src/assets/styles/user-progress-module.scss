@@ -159,6 +159,7 @@ body{
                                         min-width: 13.5%;
                                         max-width: 50px;
                                         margin: 0 auto;
+                                        padding-top: 8px;
                                         @include fontStyle(
                                             $fontFamily:$font_RobotoCondensed,
                                             $weight:$boldFont
@@ -166,13 +167,13 @@ body{
                                     }
                                 }
                                 .MuiPickersCalendar-transitionContainer{
-                                    min-height: 300px;
+                                    min-height: 350px;
                                     .MuiPickersCalendar-week{
                                         justify-content: space-evenly;
                                         div[role="presentation"]{
                                             min-width: 14%;
                                             max-width: 50px;
-                                            margin: 0 auto;
+                                            margin: 4px auto;
                                             .MuiButtonBase-root{
                                                 .MuiIconButton-label{
                                                     .MuiTypography-root{
