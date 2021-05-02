@@ -22,12 +22,12 @@ export default function SubscriptionInformation(props){
             <div className="bottom-blk">
                 <ul className="listUnstyled">
                     {
-                        subscriptionBenefits.map((point, index) => index <= 1 && <li className="paragraph" key={index}>
+                        subscriptionBenefits[subscription.slug].map((point, index) => index <= 1 && <li className="paragraph" key={index}>
                             <img src={`${imageBasePath}booking_success_tick.svg`}/>
                             <span>{point}</span>
                         </li>)
                     }
-                    {subscriptionBenefits.length > 2 ? <li className="more-point">{`+${subscriptionBenefits.length - 2} more benefits`}</li> : null}
+                    {subscriptionBenefits[subscription.slug].length > 2 ? <li className="more-point">{`+${subscriptionBenefits[subscription.slug].length - 2} more benefits`}</li> : null}
                 </ul>
             </div>
         </div>

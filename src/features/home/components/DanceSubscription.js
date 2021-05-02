@@ -47,7 +47,7 @@ export default function DanceSubscription(props){
                     containerClass="carousel-container dance-subscription"
                 >
                     {
-                        subscriptionBenefits.map((item, index) => <div key={index} className="subscription-info-card">
+                        subscriptionBenefits[props.category]?.map((item, index) => <div key={index} className="subscription-info-card">
                             <img className="" src={`${imageBasePath}fun_icon.svg`} />
                             <p className="heading3">{item}</p>
                         </div>)

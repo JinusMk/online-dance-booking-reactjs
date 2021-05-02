@@ -63,7 +63,7 @@ export default function SubscriptionDetail(props){
                 {
                 loader ? <Shimmer /> : <Suspense fallback={<></>}>
                     <SubscriptionInfo subscription={activeSubscription ? activeSubscription.userSubscription : subscriptionInfo.length ? subscriptionInfo[0] : {}} active={activeSubscription ? true : false}/>
-                    <SubscriptionBenefits />
+                    <SubscriptionBenefits category={props.match.params.category}/>
                     {(activeSubscription && !renewal) ? null : <>
                         <SubscriptionPlans subscriptions={subscriptionInfo} isRenewal={renewal}/>
                         <ClassBookingAlert subscription={subscriptionInfo.length ? subscriptionInfo[0] : {}}/>

@@ -379,4 +379,12 @@ export const participantsCount = {
   'hiphop-kids': 97
 };
 
-export const subscriptionBenefits = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
+export const subscriptionBenefitsGeneral = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
+
+export const subscriptionBenefits = {
+  zumba: [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`],
+  bollywood: [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  "hip-hop" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  "bollywood-kids": [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  "hiphop-kids" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+}
