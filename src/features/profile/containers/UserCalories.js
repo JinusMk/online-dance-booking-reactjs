@@ -5,13 +5,15 @@ import moment from 'moment'
 import { toastFlashMessage } from '../../../utils';
 import { globalGetService, globalDeleteService } from '../../../utils/globalApiServices';
 import { imageBasePath } from '../../../constants';
-import { Shimmer } from '../components'
+import { Shimmer, UserProgressDrawer } from '../components'
 import '../../../assets/styles/user-calories-module.scss'
 
 export default function UserCalories(props){
     const [userCalories, setUserCalories] = useState('')
     const [loader, setLoader] = useState(true)
-    const [deleteLoader, setDeleteLoader] = useState(false)
+    const [actionLoader, setActionLoader] = useState(false)
+    const [editCalorieLog, setEditCalorieLog] = useState(false)
+    const [editCalorieObj, setEditCalorieObj] = useState(false)
 
     const fetchCaloriesApi = () => {
         setLoader(true)
@@ -27,18 +29,23 @@ export default function UserCalories(props){
     }
     const deleteCalorieApi = (calorieId) => {
         if(window.confirm(`Are you sure you want to delete ?`)){
-            setDeleteLoader(true)
+            setActionLoader(true)
             globalDeleteService(`calorie`, { calorieLogID: calorieId})
             .then(response => {
-                setDeleteLoader(false)
+                setActionLoader(false)
                 if(response.success == true){
                     fetchCaloriesApi()
-                    toastFlashMessage(`Calorie deleted successfully`, 'success')
+                    toastFlashMessage(`CALORIE DELETED`, 'success')
                 }else if(response.message && !response.success){
                     toastFlashMessage(response.message, 'error')
                 }
             })
         }
+    }
+    const editCalorie = (data) => {
+        setActionLoader(true)
+        setEditCalorieLog(true)
+        setEditCalorieObj(data)
     }
     useEffect(() => {
         fetchCaloriesApi()
@@ -53,13 +60,14 @@ export default function UserCalories(props){
     }
 
     return(
+        <>
         <section className="user-calories-section">
             <Header title="Calorie log" onBack={handleGoBack}/>
             <Container className="user-calories-container">
                 {
                     loader ? <Shimmer type="user-weights"/> : (userCalories && userCalories.length) ? <Grid container className="user-calories-listing">
                         {
-                            userCalories && userCalories.length ? userCalories.map((item, index) => <UserCalorieItem deleteLoader={deleteLoader} key={index} data={item} deleteCalorieApi={deleteCalorieApi}/>): null
+                            userCalories && userCalories.length ? userCalories.map((item, index) => <UserCalorieItem editCalorie={editCalorie} actionLoader={actionLoader} key={index} data={item} deleteCalorieApi={deleteCalorieApi}/>): null
                         }
                     </Grid> : <div className="noResultFound">
                         <img src={`${imageBasePath}dance_group.svg`}/>
@@ -68,17 +76,26 @@ export default function UserCalories(props){
                 }
             </Container>
         </section>
+        <UserProgressDrawer 
+            open={editCalorieLog}
+            handleClose={() => {setEditCalorieLog(false); setEditCalorieObj({}); setActionLoader(false) }}
+            type="editCalorieLog"
+            updateCalories={() => {fetchCaloriesApi()}}
+            editCalorieObj={editCalorieObj}
+        />
+        </>
     )
 }
 
 function UserCalorieItem(props){
-    const { data, deleteLoader } = props
+    const { data, actionLoader } = props
     return(
         <Grid item xs={12}>
             <div className="user-calorie-item">
-                <h3 className="heading2">{data.calories}kcal</h3>
+                <h3 className="heading2">{data.calories} kcal</h3>
                 <p className="paragraph date">{moment(data.updatedAt).format(`DD MMM YYYY`)}</p>
-                <img src={`${imageBasePath}close_icon.svg`} className={`closeIcon ${deleteLoader ? 'disabled' : ''}`} onClick={() => props.deleteCalorieApi(data._id)} alt=""/>
+                <img src={`${imageBasePath}edit_icon_black.svg`} alt="" className={`editIcon ${actionLoader ? 'disabled' : ''}`} alt="" onClick={() => props.editCalorie(data)}/>
+                <img src={`${imageBasePath}close_icon.svg`} className={`closeIcon ${actionLoader ? 'disabled' : ''}`} onClick={() => props.deleteCalorieApi(data._id)} alt=""/>
             </div>
         </Grid>
     )

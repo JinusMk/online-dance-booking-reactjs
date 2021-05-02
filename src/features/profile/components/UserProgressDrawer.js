@@ -19,6 +19,8 @@ export default function UserProgressDrawer(props){
         switch(type){
             case "calorieLog" : 
                 return <LogCalorieForm {...props}/>
+            case "editCalorieLog" : 
+                return <LogCalorieForm {...props}/>
             case 'setWeightGoal':
                 return <WeightGoal {...props}/>
             case 'editWeightGoal':

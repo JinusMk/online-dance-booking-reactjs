@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import { globalPostService } from '../../../utils/globalApiServices';
+import { globalPostService, globalPutService } from '../../../utils/globalApiServices';
 import { TextField } from '@material-ui/core';
 import { toastFlashMessage } from '../../../utils';
-import { DatePicker, MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import moment from 'moment'
 import MomentUtils from '@date-io/moment';
 
 export default function LogCalorieForm(props){
+    const { type, editCalorieObj }= props
     let params = useParams()
     const [loader, setLoader] = useState(false)
     const [calories, setCalories] = useState('')
@@ -21,8 +22,18 @@ export default function LogCalorieForm(props){
     useEffect(() => {
         if(props.open){
             setLoader(false)
-            setCalories('')
             setError({})
+            if(props.type == "editCalorieLog" && editCalorieObj){
+                setFormData({
+                    calories: editCalorieObj.calories,
+                    date: new Date(editCalorieObj.updatedAt)
+                })
+            }else{
+                setFormData({
+                    calories: '',
+                    date: new Date()
+                })
+            }
         }
     }, [props.open])
 
@@ -43,20 +54,37 @@ export default function LogCalorieForm(props){
             calories : formData.calories ? '' : 'ENTER CALORIES'
         }
         if(Object.keys(validateNewInput).every((k) => { return validateNewInput[k] === ''})){
-            const formDataNew = {
-                date : formData.date ? formData.date : new Date(),
-                calories: formData.calories,
-                userSubscriptionID: params.subscriptionId
-            }
-            globalPostService(`calorie`, formDataNew)
-            .then(response => {
-                setLoader(false)
-                if(response.success === true){
-                    toastFlashMessage('CALORIES LOGGED', 'success')
-                    props.handleClose()
-                    props.updateCalorieGraph()
+            if(type == "calorieLog"){
+                const formDataNew = {
+                    date : formData.date ? formData.date : new Date(),
+                    calories: formData.calories,
+                    userSubscriptionID: params.subscriptionId
                 }
-            })
+                globalPostService(`calorie`, formDataNew)
+                .then(response => {
+                    setLoader(false)
+                    if(response.success === true){
+                        toastFlashMessage('CALORIES LOGGED', 'success')
+                        props.handleClose()
+                        props.updateCalorieGraph()
+                    }
+                })
+            }else {
+                const formDataNew = {
+                    date : formData.date ? formData.date : new Date(),
+                    calories: formData.calories,
+                    calorieLogID: editCalorieObj._id
+                }
+                globalPutService(`calorie`, formDataNew)
+                .then(response => {
+                    setLoader(false)
+                    if(response.success === true){
+                        toastFlashMessage('CALORIES UPDATED', 'success')
+                        props.handleClose()
+                        props.updateCalories()
+                    }
+                })
+            }
         }else{
             setLoader(false)
             setError(validateNewInput)
@@ -91,6 +119,7 @@ export default function LogCalorieForm(props){
                         disableToolbar
                         variant="inline"
                         disableFuture
+                        disabled={props.type == "editCalorieLog" ? true : false}
                         // label="Only calendar"
                         // helperText="No year selection"
                         value={formData.date}

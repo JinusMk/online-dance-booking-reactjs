@@ -18,12 +18,18 @@ body{
                     p{
                         color: $color_info_text;
                     }
-                    .closeIcon{
+                    .closeIcon, .editIcon{
                         position: absolute;
                         top: 30px;
                         right: 16px;
                         width: 16px;
                         cursor: pointer;
+                    }
+                    .editIcon{
+                        right: 48px;
+                        top: 26px;
+                        width: 22px;
+                        height: 22px;
                     }
                 }
             }
