@@ -56,10 +56,10 @@ function ReviewInfo(props){
                 {review.media ? null : <>
                     <div className="img-block">
                         <img src={`${imageBasePath}quote_icon.svg`} className="quote-icon"/>
-                        <p className="star-icon-wrapper">
+                        {review.rating ? <p className="star-icon-wrapper">
                             <img src={`${imageBasePath}star_icon.svg`} />
                             <span className="heading3">{review.rating}</span>
-                        </p>
+                        </p> : null}
                     </div>
                     <p className="paragraph text">{(props.type != "detail" && review.description.length > 160) ? `${review.description.slice(0,155)}...` : review.description}</p>
                     {(props.type == "detail" || review.description.length < 160) ? null : <p className="paragraph read-more" onClick={handleOpen}>

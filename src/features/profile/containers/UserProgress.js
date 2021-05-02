@@ -44,7 +44,7 @@ export default function UserProgress(props){
                         </Suspense>
                     </Grid>
                 </Grid>
-                <Grid container className="class-calendar wrapper">
+                <Grid container className="class-calendar wrapper" style={{borderBottom: 'none'}}>
                     <Grid item xs={12}>
                         <Suspense fallback={<></>}>
                             <ClassCalendar />

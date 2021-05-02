@@ -44,6 +44,7 @@ export default function ClassCalendar(props){
     }
     const navigateToDanceClass = (danceId) => {
         if(danceId && subscriptionInfo?.subscription?.slug){
+            debugger
             history.push({pathname: `/user-subscriptions/${subscriptionInfo?.subscription?.slug}/${danceId}`, state: { prevPath: `${location.pathname}` }})
         }
     }
@@ -55,7 +56,7 @@ export default function ClassCalendar(props){
                     return <div onClick={() => navigateToDanceClass(activeDanceClass._id)} className={`dance-class-date over ${activeDanceClass.attended ? 'attended' : 'absent'}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
                                 <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
-                                {activeDanceClass.attended ? <p className="secondaryText textCenter review">{activeDanceClass.feedback != "empty" ? <span className="feedback">F</span> : null}<span className="recording">{`R`}</span></p> : null}
+                                {activeDanceClass.attended ? <p className="secondaryText textCenter review">{activeDanceClass.feedback ? <span className="feedback">F</span> : null}<span className="recording">{`R`}</span></p> : null}
                             </div>
                 }else if(checkNumberOfDaysLeft(activeDanceClass.date) > 0){//future
                     return <div className="dance-class-date future">
@@ -63,8 +64,9 @@ export default function ClassCalendar(props){
                                 <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
                            </div>
                 }else{//same day
-                    return <div onClick={() => checkIsFinished(activeDanceClass.date) ? navigateToDanceClass(activeDanceClass._id) : console.log('')} className={`dance-class-date ${checkIsFinished(activeDanceClass.date) ?  activeDanceClass.attended ? 'attended' : 'over' : 'future'} ${moment().format('DD-MM-YYYY') == moment(date).format('DD-MM-YYYY') ? 'today' : ''}`} to={checkIsFinished(activeDanceClass.date) ? {pathname: `/user-subscriptions/${subscriptionInfo?.subscription?.slug}/${activeDanceClass._id}`, state: { prevPath: `${location.pathname}` }}: ''}>
+                    return <div onClick={() => checkIsFinished(activeDanceClass.date) ? navigateToDanceClass(activeDanceClass._id) : console.log('')} className={`dance-class-date ${checkIsFinished(activeDanceClass.date) ?  activeDanceClass.attended ? 'attended' : 'over' : 'future'} ${moment().format('DD-MM-YYYY') == moment(date).format('DD-MM-YYYY') ? 'today' : ''}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
+                                <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
                             </div>
                 }
             }else{
@@ -96,16 +98,16 @@ export default function ClassCalendar(props){
                     <p className="paragraph alert">Click on a date to join class, view class details, and more</p>
                     <ul className="listInline indicators">
                         <li>
-                            <p className="seondaryText today">TODAY</p>
+                            <p className="secondaryText today">TODAY</p>
                         </li>
                         <li>
-                            <p className="seondaryText upcoming">UPCOMING</p>
+                            <p className="secondaryText upcoming">UPCOMING</p>
                         </li>
                         <li>
-                            <p className="seondaryText attended">ATTENDED</p>
+                            <p className="secondaryText attended">ATTENDED</p>
                         </li>
                         <li>
-                            <p className="seondaryText absent">ABSENT</p>
+                            <p className="secondaryText absent">ABSENT</p>
                         </li>
                     </ul>
                     <ul className="review-feedback-indicators listInline">

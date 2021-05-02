@@ -17,6 +17,27 @@ body{
                     margin-bottom: 8px;
                 }
             }
+            .calories-burnt-info, .part-of-subscription{
+                padding: 16px;
+                border-bottom: 1px solid #FFE5E9;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
+                .info{
+                    color: $color_gray;
+                    margin-top: 4px;
+                }
+                .heading3{
+                    text-transform: capitalize;
+                }
+            }
+            .instructor-feedback{
+                padding: 16px;
+                border-bottom: 1px solid #FFE5E9;
+                .secondaryText{
+                    margin-bottom: 8px;
+                }
+            }
             .review-block{
                 padding: 16px;
                 border-bottom: 1px solid #FFE5E9;
@@ -81,7 +102,7 @@ body{
     body{
         .class-detail-section{
             .class-detail-container{
-                padding: 64px 250px 0;
+                padding: 64px 250px 32px;
             }
         }
     }

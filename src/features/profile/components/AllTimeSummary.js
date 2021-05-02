@@ -28,8 +28,8 @@ export default function AllTimeSummary(props){
     const fetchCurrentWeight = () => {
         globalGetService(`weightLog`)
         .then(response => {
+            setLoader(false)
             if(response.success == true){
-                setLoader(false)
                 setWeightInfo(response.data.length ? response.data[0] : '')
             }
         })

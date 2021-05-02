@@ -156,7 +156,9 @@ body{
                                     justify-content: space-evenly;
                                     .MuiPickersCalendarHeader-dayLabel{
                                         text-transform: uppercase;
-                                        min-width: 50px;
+                                        min-width: 13.5%;
+                                        max-width: 50px;
+                                        margin: 0 auto;
                                         @include fontStyle(
                                             $fontFamily:$font_RobotoCondensed,
                                             $weight:$boldFont
@@ -168,7 +170,9 @@ body{
                                     .MuiPickersCalendar-week{
                                         justify-content: space-evenly;
                                         div[role="presentation"]{
-                                            min-width: 50px;
+                                            min-width: 14%;
+                                            max-width: 50px;
+                                            margin: 0 auto;
                                             .MuiButtonBase-root{
                                                 .MuiIconButton-label{
                                                     .MuiTypography-root{
@@ -181,6 +185,7 @@ body{
                                             }
                                             .dance-class-date{
                                                 text-align: center;
+                                                // height: 100%;
                                                 .heading1{
                                                     font-size: 30px;
                                                     margin-bottom: 0;
@@ -227,6 +232,9 @@ body{
                                             }
                                             .disabled-date{
                                                 text-align: center;
+                                                min-width: 14%;
+                                                max-width: 50px;
+                                                margin: 0 auto;
                                                 pointer-events: none;
                                                 .heading1{
                                                     color: $color_light_gray;

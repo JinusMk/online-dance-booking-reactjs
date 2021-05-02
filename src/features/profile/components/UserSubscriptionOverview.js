@@ -15,6 +15,7 @@ export default function UserSubscriptionOverview(props){
         if(subscription && subscription._id){
             globalGetService(`calorie/${subscription._id}`)
             .then(response => {
+                setLoader(false)
                 if(response.success == true){
                     const calorieLog = response.data
                     let sum = 0
@@ -22,7 +23,6 @@ export default function UserSubscriptionOverview(props){
                         sum+=Number(log.calories)
                     })
                     setCaloriesBurnt(sum)
-                    setLoader(false)
                 }
             })
         }

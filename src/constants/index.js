@@ -51,7 +51,7 @@ export const reviewsData = [
     media: '',
     description:
       'I have been attending Zumba for couple of years, I came across this site for online Zumba. The instructor was good, the session was peppy and a good workout.',
-    class_date: '01-07-2020',
+    class_date: '20-04-2021',
     category: 'zumba'
   },
   {
@@ -61,7 +61,7 @@ export const reviewsData = [
     media: '',
     description:
       'The Zumba session was fab… awesome energy and super workout. The instructor guided us with the steps and checked if we are doing it right.. thank u..',
-    class_date: '01-08-2020',
+    class_date: '20-04-2021',
     category: 'zumba'
   },
   {
@@ -71,7 +71,7 @@ export const reviewsData = [
     media: '',
     description:
       'This is the first time I am attending Zumba, when the session started I was feeling it’s high intensity but eventually when I took few breaks for a min and continued i had so much fun and its helping me in my weight loss. can’t wait for my next session.',
-    class_date: '13-08-2020',
+    class_date: '19-04-2021',
     category: 'zumba'
   },
   {
@@ -81,7 +81,7 @@ export const reviewsData = [
     media: '',
     description:
       'The instructor gave clear step by step instruction and made it super easy to learn. I thought I had a left feet but the first class gave me an enormous confidence.',
-    class_date: '02-08-2020',
+    class_date: '18-04-2021',
     category: 'bollywood'
   },
   {
@@ -91,7 +91,7 @@ export const reviewsData = [
     media: '',
     description:
       'Loved the way how every part of choreography was easily broken down to easy simple steps. I am super happy that I am able to dance to my favourite song now! Thank you!',
-    class_date: '03-10-2020',
+    class_date: '17-04-2021',
     category: 'bollywood'
   },
   {
@@ -101,7 +101,7 @@ export const reviewsData = [
     media: '',
     description:
       'I had a very good online Bollywood class with Manas, can’t wait for my next..',
-    class_date: '17-07-2020',
+    class_date: '17-04-2021',
     category: 'bollywood'
   },
   {
@@ -111,7 +111,7 @@ export const reviewsData = [
     media: '',
     description:
       'Loved the hiphop class, awesome instructor. I would like to join the regular sessions and learn hiphop. thank you.',
-    class_date: '17-09-2020',
+    class_date: '15-04-2021',
     category: 'hip-hop'
   },
   {
@@ -121,7 +121,7 @@ export const reviewsData = [
     media: '',
     description:
       'I booked the class for my son who has a passion to dance but gets bored very quickly, I found this class more convenient as its online from home. my son seems to be interested as they introduce new steps and style in every class.',
-    class_date: '04-10-2020',
+    class_date: '15-04-2021',
     category: 'hip-hop'
   },
   {
@@ -131,7 +131,7 @@ export const reviewsData = [
     media: '',
     description:
       'This is the first time I am trying an online Hiphop session, I never thought it would be so much fun! The instructor was so patient and he taught every step until everyone got it right. Its rare to find someone so patient and motivating. Thanks for a wonderful session…',
-    class_date: '15-09-2020',
+    class_date: '12-04-2021',
     category: 'hip-hop'
   },
   {
@@ -141,7 +141,7 @@ export const reviewsData = [
     media: '',
     description:
       'Great option to keep the kids active and learn dancing from home. Its very convenient no worry of being late or traffic! She is enjoying every class.. Looking forward to more classes.',
-    class_date: '17-09-2020',
+    class_date: '02-04-2021',
     category: 'bollywood-kids'
   },
   {
@@ -151,7 +151,7 @@ export const reviewsData = [
     media: '',
     description:
       'Very nice concept, my daughter enjoyed the class… very convenient. The instructor is very good and polite. Thank you.',
-    class_date: '01-10-2020',
+    class_date: '12-03-2021',
     category: 'bollywood-kids'
   },
   {
@@ -161,7 +161,7 @@ export const reviewsData = [
     media: '',
     description:
       'I never though I can make my kid be attentive for an online class as he is always running around but you guys proved me wrong. He stayed the whole time during the online dance session and he thoroughly enjoyed. Thank you.',
-    class_date: '06-10-2020',
+    class_date: '06-03-2021',
     category: 'bollywood-kids'
   }
 ];
@@ -231,7 +231,7 @@ export const lastWeekRecapVideos = [
       category: 'zumba',
       instructor: 'Angel Bensy',
       participants: '22',
-      date: '14 Oct 2020',
+      date: '14 Apr 2021',
       media: `${imageBasePath}zumba_recap_1.mp4`
     },
     {
@@ -240,7 +240,7 @@ export const lastWeekRecapVideos = [
       category: 'bollywood',
       instructor: 'Manas',
       participants: '21',
-      date: '16 Oct 2020',
+      date: '16 Apr 2021',
       media: `${imageBasePath}bollywood_recap_1.mp4`
     },
     {
@@ -249,7 +249,7 @@ export const lastWeekRecapVideos = [
       category: 'hip-hop',
       instructor: 'Tony',
       participants: '12',
-      date: '15 Oct 2020',
+      date: '15 Apr 2021',
       media: `${imageBasePath}hip-hop_recap_1.mp4`
     },
     {
@@ -258,7 +258,7 @@ export const lastWeekRecapVideos = [
       category: 'bollywood-kids',
       instructor: 'Manas',
       participants: '12',
-      date: '12 Oct 2020',
+      date: '12 Apr 2021',
       media: `${imageBasePath}bollywood-kids_recap_1.mp4`
     },
     {
@@ -267,7 +267,7 @@ export const lastWeekRecapVideos = [
       category: 'zumba',
       instructor: 'Angel Bensy',
       participants: '27',
-      date: '17 Oct 2020',
+      date: '17 Apr 2021',
       media: `${imageBasePath}zumba_recap_2.mp4`
     },
     {
@@ -276,7 +276,7 @@ export const lastWeekRecapVideos = [
       category: 'hip-hop',
       instructor: 'Tony',
       participants: '16',
-      date: '16 Oct 2020',
+      date: '16 Apr 2021',
       media: `${imageBasePath}hip-hop_recap_2.mp4`
     },
     {
@@ -285,7 +285,7 @@ export const lastWeekRecapVideos = [
       category: 'bollywood',
       instructor: 'Manas',
       participants: '23',
-      date: '18 Oct 2020',
+      date: '18 Apr 2021',
       media: `${imageBasePath}bollywood_recap_2.mp4`
     },
     {
@@ -294,7 +294,7 @@ export const lastWeekRecapVideos = [
       category: 'bollywood-kids',
       instructor: 'Manas',
       participants: '19',
-      date: '14 Oct 2020',
+      date: '14 Apr 2021',
       media: `${imageBasePath}bollywood-kids_recap_2.mp4`
     }
 ];
