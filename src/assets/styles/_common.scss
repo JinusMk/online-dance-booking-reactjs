@@ -579,6 +579,9 @@ body{
                 padding-bottom: 0;
             }
         }
+        &.progress{
+            
+        }
     }
     .auth-popup-wrapper{
         .line{
@@ -987,6 +990,38 @@ body{
     .MuiRadio-root{
         &.Mui-checked{
             color: $color_primary !important;
+        }
+    }
+    .MuiPopover-root{
+        z-index: 99999 !important;
+        .MuiPickersBasePicker-container{
+            .MuiPickersBasePicker-pickerView{
+                .MuiPickersCalendarHeader-switchHeader{
+                    .MuiPickersCalendarHeader-daysHeader, .MuiPickersCalendarHeader-transitionContainer{
+                        .MuiTypography-root{
+                            @include fontStyle(
+                                $fontFamily:$font_RobotoCondensed,
+                            );
+                        }
+                    }
+                }
+                .MuiPickersCalendar-transitionContainer{
+                    .MuiPickersCalendar-week{
+                        .MuiIconButton-root{
+                            .MuiIconButton-label{
+                                .MuiTypography-root{
+                                    @include fontStyle(
+                                        $fontFamily:$font_RobotoCondensed,
+                                    );
+                                }
+                            }
+                            &.MuiPickersDay-daySelected{
+                                background-color: $color_primary;   
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
