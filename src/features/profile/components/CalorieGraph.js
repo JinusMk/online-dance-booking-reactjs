@@ -3,7 +3,6 @@ import { useParams, Link, useLocation } from 'react-router-dom'
 import { UserProgressDrawer, GRAPH_OPTONS } from './'
 import { globalGetService } from '../../../utils/globalApiServices';
 import { Chart } from "react-google-charts";
-import '../../../../node_modules/react-linechart/dist/styles.css';
 import { imageBasePath } from '../../../constants';
 
 export default function CalorieGraph(props){
