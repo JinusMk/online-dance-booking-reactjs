@@ -1,8 +1,8 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react'
-// import { DanceAlert } from  '../../../shared_elements'
+import { DanceAlert } from  '../../../shared_elements'
 import { Container, Avatar } from '@material-ui/core';
 import firebase from '../../../utils/firebase'
-import { toastFlashMessage } from '../../../utils'
+import { toastFlashMessage, checkIsFinished } from '../../../utils'
 import { connect } from 'react-redux'
 import { UPDATE_USERINFO } from '../../../shared_elements/actions'
 import { SubscriptionAlert } from '../../../shared_elements'
@@ -23,20 +23,15 @@ function Profile(props){
     const [authAction, setAuthAction] = useState(false)
     const [authMode, setAuthMode] = useState('')
     const [userSubsctiption, setUserSubscriptions] = useState([])
+    const [upcomingDances, setUpcomingDances] = useState('')
 
     let location = useLocation()
 
     useEffect(() => {
         if(props.isLoggedIn){
             setProviderData(props.userInfo.providerData)
-            globalGetService(`userSubscriptions`)
-            .then(response => {
-                if(response.success === true){
-                    const userSubsctiption = response.data
-                    setUserSubscriptions(userSubsctiption)
-                }
-            })
         }else{
+            setUserSubscriptions([])
             setProviderData([])
         }
         if(location.search) {
@@ -48,6 +43,35 @@ function Profile(props){
             setAuthMode('')
         }
     }, [props.isLoggedIn, props.userInfo, location])
+    useEffect(() => {
+        if(props.isLoggedIn){
+            globalGetService(`todayDanceClasses`)
+            .then(response => {
+                if(response.success == true){
+                    setUpcomingDances(response.data)
+                }else{
+                    setUpcomingDances('')
+                }
+            })
+        }else{
+            setUpcomingDances('')
+        }
+    }, [props.isLoggedIn])
+    useEffect(() => {
+        if(props.isLoggedIn){
+            globalGetService(`userSubscriptions`)
+            .then(response => {
+                if(response.success === true){
+                    const userSubsctiption = response.data
+                    setUserSubscriptions(userSubsctiption)
+                }else{
+                    setUserSubscriptions([])
+                }
+            })
+        }else{
+            setUpcomingDances('')
+        }
+    }, [props.isLoggedIn])
     const logout = () => {
         if(window.confirm('Are you sure you want to logout ?')){
             firebase.auth().signOut()
@@ -92,6 +116,14 @@ function Profile(props){
                         <h3 className="heading3" style={props.userInfo.displayName ? {textTransform: 'capitalize'} : {}}>{props.userInfo.displayName ? props.userInfo.displayName : props.userInfo.email ? props.userInfo.email : props.userInfo.phoneNumber ? props.userInfo.phoneNumber : ''}</h3>
                         <p className="paragraph">Letzdancer since 2020</p>
                     </div>
+                    {upcomingDances && (upcomingDances.bookings.length || upcomingDances.subscriptions.length) ? <>
+                        {
+                            upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" dance={dance} key={index}/> : null): null
+                        }
+                        {
+                            upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.time) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
+                        }
+                    </> : null}
                     {(userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> : null}
                     <Suspense fallback={<></>}>
                         {isVerified('phone') ? null : <AuthVerifyBlock type="phone number" handleClick={() => setVerifyPhone(true)} />}

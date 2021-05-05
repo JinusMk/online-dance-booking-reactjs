@@ -31,7 +31,7 @@ export default function UserSubscriptionOverview(props){
     let location = useLocation()
     
     return(
-        <li item xs={12} className="user-subscription-list-item">
+        <li className="user-subscription-list-item">
             <h3 className="heading2 subscriptionTitle">{`${subscription.subscription?.name} subscription`}</h3>
             <div className="user-subscription-overview">
                 {checkNumberOfDaysLeft(subscription.endDate) < 0 ? <label className="expire secondaryText">EXPIRED</label> : checkNumberOfDaysLeft(subscription.endDate) <=7 ? <label className="expire secondaryText">EXPIRING SOON</label> : <label className="active secondaryText">ACTIVE</label> }

@@ -45,15 +45,15 @@ export default function UserSubscriptions(props){
             <Container className="user-subscription-container">
             { loader ? <Shimmer type="user-subscriptions"/> : <>
                     {
-                        (( userSubscriptions && userSubscriptions.length ) || ( subscriptions && Object.keys(subscriptions).length )) ? <><ul container className="user-subscription-listing listUnstyled">
+                        (( userSubscriptions && userSubscriptions.length ) || ( subscriptions && Object.keys(subscriptions).length )) ? <><ul className="user-subscription-listing listUnstyled">
                             { userSubscriptions && userSubscriptions.length ? userSubscriptions.map((subscription, index) => <UserSubscriptionOverview key={index} subscription={subscription}/>) : null }
                             { subscriptions && Object.keys(subscriptions).length ? Object.keys(subscriptions).map((key, index) => {
                                 if(subscriptions[key].length){
                                     const subscriptionCategory = subscriptions[key]
                                     if(!subscriptionCategory.some(cat => cat.status == "active")){
-                                        return <li item xs={12} className="user-subscription-list-item">
+                                        return <li key={index} item xs={12} className="user-subscription-list-item">
                                             <h3 className="heading2 subscriptionTitle">{`${subscriptionCategory[0]?.name} subscription`}</h3>
-                                            <SubscriptionCard key={index} subscriptionItem={subscriptionCategory[0]} active={false}/>
+                                            <SubscriptionCard subscriptionItem={subscriptionCategory[0]} active={false}/>
                                         </li>
                                     }
                                 }

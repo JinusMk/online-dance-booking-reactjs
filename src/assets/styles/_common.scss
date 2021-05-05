@@ -746,7 +746,7 @@ body{
             color: $color_white;
         }
         .paragraph{
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             color: $color_white;
         }
         .alert-info{
@@ -755,6 +755,13 @@ body{
             }
             .secondaryBtn{
                 border-color: transparent;
+            }
+        }
+        &.subscription{
+            background : $color_400190;
+            .heading3{
+                margin-bottom: 8px;
+                color: $color_white;
             }
         }
     }

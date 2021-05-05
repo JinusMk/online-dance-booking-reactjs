@@ -17,7 +17,7 @@ const introductionData =[
 
 function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
-    const [upcomingDance, setUpcomingDance] = useState(null)
+    const [upcomingDances, setUpcomingDances] = useState('')
     const [userSubsctiption, setUserSubscriptions] = useState([])
     // const [introductionData, setIntroductionData] = useState([])
     const [loader, setLoader] = useState(true)
@@ -30,19 +30,9 @@ function Introduction(props){
                 setLoader(false)
             }
         })
+    }, [])
+    useEffect(() => {
         if(props.isLoggedIn){
-            globalGetService(`dance-history`)
-            .then(response => {
-                if(response.success == true){
-                    const dances = response.data
-                    if(typeof dances == 'object' && Object.keys(dances).find(date => date == moment().format('DD-MM-YYYY'))){
-                        const upcomingDance = dances[moment().format('DD-MM-YYYY')][0]
-                        setUpcomingDance(upcomingDance)
-                    }else{
-                        setUpcomingDance(null)
-                    }
-                }
-            })
             globalGetService(`userSubscriptions`)
             .then(response => {
                 if(response.success === true){
@@ -52,9 +42,30 @@ function Introduction(props){
             })
         }
     }, [props.isLoggedIn])
+
+    useEffect(() => {
+        if(props.isLoggedIn){
+            globalGetService(`todayDanceClasses`)
+            .then(response => {
+                if(response.success == true){
+                    setUpcomingDances(response.data)
+                }
+            })
+        }
+    }, [props.isLoggedIn])
+
     return(
+        // (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/>
         <div className="introduction-blk">
-           { (userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> : (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/> : <Carousel 
+           {upcomingDances && (upcomingDances.bookings.length || upcomingDances.subscriptions.length) ? <>
+            {
+                upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" dance={dance} key={index}/> : null): null
+            }
+            {
+                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.time) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
+            }
+           </> : null}
+           { (userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> :  <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}

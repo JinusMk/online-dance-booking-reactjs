@@ -5,7 +5,6 @@ import { globalGetService } from '../../../utils/globalApiServices';
 import { UserProgressDrawer, GRAPH_OPTONS } from './'
 import { imageBasePath } from '../../../constants';
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 // import LineChart from 'react-linechart'
 import { Chart } from "react-google-charts";
 
@@ -117,10 +116,10 @@ export default function TrackWeightLoss(props){
                 <p className="paragraph alert">Log your weight values regularly, and keep a track</p>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <Link className="secondaryBtn" onClick={() => setOpenEditWeightGoal(true)}>EDIT GOAL</Link>
+                        <a className="secondaryBtn" onClick={() => setOpenEditWeightGoal(true)}>EDIT GOAL</a>
                     </Grid>
                     <Grid item xs={6}>
-                        <Link className="secondaryBtn" onClick={() => setOpenLogWeight(true)}>LOG WEIGHT</Link>
+                        <a className="secondaryBtn" onClick={() => setOpenLogWeight(true)}>LOG WEIGHT</a>
                     </Grid>
                 </Grid>
             </div>

@@ -19,17 +19,17 @@ function App() {
   firebase.auth().onAuthStateChanged(user => {
     // console.log('inside onAUthState app.js', user)
     if(user){
-      store.dispatch({
-        type: AUTH_STATUS_UPDATE,
-        payload: true
-      })
-      store.dispatch({
-        type: UPDATE_USERINFO,
-        payload: user
-      })
       firebase.auth().currentUser.getIdToken(true)
       .then(idToken => {
         localStorage.setItem('idToken', JSON.stringify(idToken))
+        store.dispatch({
+          type: AUTH_STATUS_UPDATE,
+          payload: true
+        })
+        store.dispatch({
+          type: UPDATE_USERINFO,
+          payload: user
+        })
       })
     }else{
       store.dispatch({
@@ -40,6 +40,7 @@ function App() {
         type: AUTH_STATUS_UPDATE,
         payload: false
       })
+      localStorage.removeItem('idToken')
     }
   })
   return (

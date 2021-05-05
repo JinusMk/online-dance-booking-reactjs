@@ -8,7 +8,7 @@ export default function Shimmer(props){
         <div className="shimmer-wrapper">
             {
                 type == "user-subscriptions" ? <>
-                    {[0,1].map(item => <div className="user-subscriptions-loader">
+                    {[0,1].map(item => <div key={item} className="user-subscriptions-loader">
                         <Skeleton variant="text" width={250} height={50} style={{marginBottom: 16}}/>
                         <Skeleton variant="rect" height={175} style={{marginBottom: 24, borderRadius: 8}}/>
                     </div>)}
