@@ -44,7 +44,6 @@ export default function ClassCalendar(props){
     }
     const navigateToDanceClass = (danceId) => {
         if(danceId && subscriptionInfo?.subscription?.slug){
-            debugger
             history.push({pathname: `/user-subscriptions/${subscriptionInfo?.subscription?.slug}/${danceId}`, state: { prevPath: `${location.pathname}` }})
         }
     }
@@ -56,7 +55,7 @@ export default function ClassCalendar(props){
                     return <div onClick={() => navigateToDanceClass(activeDanceClass._id)} className={`dance-class-date over ${activeDanceClass.attended ? 'attended' : 'absent'}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
                                 <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
-                                {activeDanceClass.attended ? <p className="secondaryText textCenter review">{activeDanceClass.feedback ? <span className="feedback">F</span> : null}<span className="recording">{`R`}</span></p> : null}
+                                {( activeDanceClass.attended || (subscriptionInfo?.subscription?.slug != "zumba") ) ? <p className="secondaryText textCenter review">{activeDanceClass.feedback ? <span className="feedback">F</span> : null}{subscriptionInfo?.subscription?.slug == "zumba" ? null : <span className="recording">{`R`}</span>}</p> : null}
                             </div>
                 }else if(checkNumberOfDaysLeft(activeDanceClass.date) > 0){//future
                     return <div className="dance-class-date future">

@@ -966,8 +966,11 @@ body{
             }
             .benefitsList{
                 padding: 16px 0;
+                min-height: 75px;
+                box-sizing: border-box;
                 li{
                     margin: 0 0 8px;
+                    padding: 0;
                     img, span{
                         vertical-align: middle;
                     }

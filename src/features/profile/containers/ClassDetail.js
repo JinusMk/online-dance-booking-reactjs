@@ -67,7 +67,7 @@ function ClassDetail(props){
                     {type == "subscription" ? <Grid item xs={12}>
                         <div className="calories-burnt-info">
                             <p className="secondaryText">CALORIES BURNED</p>
-                            <h3 className="heading3">~ -- Calories</h3>
+                            <h3 className="heading3">{`~ ${danceInfo.instructor?.calories ? danceInfo.instructor.calories : `--`} Calories`}</h3>
                             <p className="paragraph info">(Data from the instructor’s fitness watch)</p>
                         </div>
                     </Grid>: null}

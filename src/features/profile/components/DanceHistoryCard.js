@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import moment from 'moment'
 import { imageBasePath, danceCategory } from '../../../constants';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 export default function DanceHistoryCard(props){
+    let location = useLocation()
     const [imgLoader, setImgLoader] = useState(true)
     const { dance } = props
     return(
@@ -20,7 +21,7 @@ export default function DanceHistoryCard(props){
             </div>
             <Grid container spacing={2} alignItems="center">
                 <Grid item xs={6}>
-                    {(dance.review && dance.review.danceRating >= 0) ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.review?.danceRating}</span></h3> : <p><Link to={`/dance/${danceCategory[dance.category_id]}/${dance.dance_id}/review`} className="secondaryBtn">ADD A REVIEW</Link></p>}
+                    {(dance.review && dance.review.danceRating >= 0) ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.review?.danceRating}</span></h3> : <p><Link to={{pathname: `/dance/${danceCategory[dance.category_id]}/${dance.dance_id}/review`, state: { prevPath: location.pathname }}} className="secondaryBtn">ADD A REVIEW</Link></p>}
                 </Grid>
                 <Grid item xs={6}>
                     <p><Link className="secondaryBtn" to={`/dance/${danceCategory[dance.category_id]}/${dance.dance_id}`}>VIEW DETAILS</Link></p>

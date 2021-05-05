@@ -10,9 +10,9 @@ export default function DanceInformationCard(props){
         <div className="dance-information-card">
             <div className="top-blk flexCentered">
                 {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
-                <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                <img src={dance.category?.image ? dance.category?.image : `${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <div className="content">
-                    <h3 className="heading2">{dance.title ? dance.title : category}</h3>
+                    <h3 className="heading2">{dance.title ? dance.title : dance.category?.name ? dance.category?.name : category}</h3>
                     <h3 className="heading3">
                         <img src={`${imageBasePath}star_icon.svg`} />
                         <span>{dance.averageRating ? dance.averageRating : dance.rating}</span>

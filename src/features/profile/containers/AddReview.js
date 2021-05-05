@@ -83,7 +83,10 @@ function AddReview(props){
     }
     const handleGoBack = () => {
         if(props.location.state && props.location.state.prevPath){
-            props.history.push(props.location.state.prevPath)
+            props.history.push({
+                pathname: props.location.state.prevPath,
+                state: { prevPath : props.location.state.secondaryPrevPath ? props.location.state.secondaryPrevPath : ''}
+            })
         }else{
             props.history.push('/dance-history')
         }
