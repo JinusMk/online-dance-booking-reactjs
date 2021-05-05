@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import { globalGetService } from '../../../utils/globalApiServices';
 
 export default function AllTimeSummary(props){
+    const { subscriptionInfo } = props
     let params = useParams()
     const [loader, setLoader] = useState(true)
     const [attendedCount, setAttendedCount] = useState(0)
@@ -11,15 +12,11 @@ export default function AllTimeSummary(props){
     const [weightInfo, setWeightInfo] = useState('')
 
     useEffect(() => {
-        setLoader(true)
-        globalGetService(`userSubscriptions/${params.subscriptionId}`)
-        .then(response => {
-            if(response.success == true){
-                setAttendedCount(response.data?.danceClassesAttended)
-                setLoader(false)
-            }
-        })
-    }, [params.subscriptionId])
+        if(props.subscriptionInfo && props.subscriptionInfo?.danceClassesAttended){
+            setLoader(false)
+            setAttendedCount(props.subscriptionInfo?.danceClassesAttended) 
+        }
+    }, [props.subscriptionInfo])
 
     useEffect(() => {
         setLoader(true)

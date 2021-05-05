@@ -7,23 +7,23 @@ import { globalPostService, globalGetService } from '../../../utils/globalApiSer
 import { checkNumberOfDaysLeft, checkIsFinished } from '../../../utils';
 
 export default function ClassCalendar(props){
+    const { subscriptionInfo } = props
     let params = useParams()
     let location = useLocation()
     let history = useHistory()
 
     const [danceClasses, setDanceClasses] = useState([])
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [subscriptionInfo, setSubscriptionInfo] = useState('')
     const [loader, setLoader] = useState(true)
 
-    useEffect(() => {
-        globalGetService(`userSubscriptions/${params.subscriptionId}`)
-        .then(response => {
-            if(response.success == true){
-                setSubscriptionInfo(response.data)
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     globalGetService(`userSubscriptions/${params.subscriptionId}`)
+    //     .then(response => {
+    //         if(response.success == true){
+    //             setSubscriptionInfo(response.data)
+    //         }
+    //     })
+    // }, [])
 
     useEffect(() => {
         globalPostService(`subscription/danceClasses`, { userSubscriptionId: params.subscriptionId })

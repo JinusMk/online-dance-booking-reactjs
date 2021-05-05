@@ -92,7 +92,8 @@ export default function LogCalorieForm(props){
     }
     const handleChange = (key, value) => {
         setFormData({
-            [key] : value
+            ...formData,
+            [key] : key == "date" ? new Date(value) : value
         })
         setError({
             ...error,
