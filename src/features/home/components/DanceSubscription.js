@@ -14,8 +14,8 @@ export default function DanceSubscription(props){
     useEffect(() => {
         globalGetService(`subscriptionsBySlug/${props.category}`)
         .then(response => {
+            setLoader(false)
             if(response.success == true){
-                setLoader(false)
                 if(response.data && response.data.length){
                     const active = response.data.find(sub => sub.status == "active")
                     if(active){
@@ -28,12 +28,14 @@ export default function DanceSubscription(props){
                 }else{
                     setSubscription({})
                 }
+            }else{
+                setSubscription('')
             }
         })
     }, [])
     return(
         <>
-        {loader ? 'Loading...' : <div className={`dance-subscription-blk ${active ? `active` : ''}`}>
+        {loader ? 'Loading...' : subscription ? <div className={`dance-subscription-blk ${active ? `active` : ''}`}>
             <div className="title">
                 <h3 className="heading2">{`${subscription.name} subscription`} {active ? <span className="activeStatus secondaryText">ACTIVE</span> : null}</h3>
                 <p className="paragraph">Stay fit long term, buy a subscription.</p>
@@ -58,7 +60,7 @@ export default function DanceSubscription(props){
             <p>
                 {active ? <Link to={{pathname: `/user-subscriptions/${subscription.userSubscription?._id}/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
             </p>
-        </div>}
+        </div> : ''}
         </>
     )
 }

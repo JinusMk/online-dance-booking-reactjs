@@ -1,15 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid } from '@material-ui/core';
 import moment from 'moment'
-import { checkIsFinished } from '../utils';
+import { checkIsFinished, toastFlashMessage } from '../utils';
+import { globalPostService } from '../utils/globalApiServices';
 
 export default function DanceAlert(props){
     const { dance, type } = props
+    const [loader, setLoader] = useState(false)
 
     const handleClickJoinSubscriptionClass = (classId) => {
-        // window.open('http://stackoverflow.com', '_blank');
-        console.log('clicked join button with id', classId)
+        // console.log('clicked join button with id', classId)
+        setLoader(true)
+        globalPostService(`danceClassByDate`, { userDanceClassID : classId })
+        .then(response => {
+            setLoader(false)
+            if(response.success == true){
+                // setDanceInfo(response.data && response.data.length ? response.data[0] : {})
+                const danceInfo = response.data && response.data.length ? response.data[0] : {}
+                if(danceInfo.zoomLink){
+                    window.open(danceInfo.zoomLink, '_blank');
+                }
+            }else if(response.message && !response.success){
+                toastFlashMessage(response.message, 'error')
+            }
+        })
     }
+    useEffect(() =>{
+        setLoader(false)
+    }, [])
     return(
         <>
         {
@@ -21,7 +39,7 @@ export default function DanceAlert(props){
                         <p className="secondaryText">{checkIsFinished(dance.date) ? 'STARTED ' : 'STARTS '}AT {moment(dance.date).format('hh:mm A') }</p>
                     </Grid>
                     <Grid xs={6}>
-                        <p><a onClick={() => handleClickJoinSubscriptionClass(dance._id)} className="secondaryBtn">JOIN CLASS</a></p> 
+                        <p><a onClick={() => handleClickJoinSubscriptionClass(dance._id)} className={`secondaryBtn ${loader ? 'disabled' : ''}`}>JOIN CLASS</a></p> 
                     </Grid>
                 </Grid>
             </div> : <div className={`dance-alert-wrapper`}>
