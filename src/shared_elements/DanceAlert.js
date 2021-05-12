@@ -32,11 +32,11 @@ export default function DanceAlert(props){
         <>
         {
             type == "subscription" ? <div className={`dance-alert-wrapper subscription`}> 
-                <h3 className="heading3">{checkIsFinished(dance.date) ? `Your ${dance.category} class has already started !`: `Your ${dance.category} class is about to start!`}</h3>
-                <p className="paragraph">Class 3/12 of the Zumba subscription</p>
+                <h3 className="heading3">{checkIsFinished(dance.startTime) ? `Your ${dance.category} class has already started !`: `Your ${dance.category} class is about to start!`}</h3>
+                <p className="paragraph">{`Class ${dance.danceClassNumber}/${dance.totalDanceClasses} of the ${dance.category} subscription`}</p>
                 <Grid container justify="" alignItems="center" className="alert-info">
                     <Grid item xs={6}>
-                        <p className="secondaryText">{checkIsFinished(dance.date) ? 'STARTED ' : 'STARTS '}AT {moment(dance.date).format('hh:mm A') }</p>
+                        <p className="secondaryText">{checkIsFinished(dance.startTime) ? 'STARTED ' : 'STARTS '}AT {moment(dance.startTime).format('hh:mm A') }</p>
                     </Grid>
                     <Grid xs={6}>
                         <p><a onClick={() => handleClickJoinSubscriptionClass(dance._id)} className={`secondaryBtn ${loader ? 'disabled' : ''}`}>JOIN CLASS</a></p> 

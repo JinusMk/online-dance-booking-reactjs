@@ -9,7 +9,7 @@ import { SubscriptionAlert } from '../../../shared_elements'
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/profile-module.scss'
 import { useLocation } from 'react-router-dom'
-import { globalGetService } from '../../../utils/globalApiServices';
+import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 
 const ProfileNavigationList = lazy(() => import('../components/ProfileNavigationList'))
 const ContactUs = lazy(() => import('../../home/components/ContactUs'))
@@ -45,7 +45,7 @@ function Profile(props){
     }, [props.isLoggedIn, props.userInfo, location])
     useEffect(() => {
         if(props.isLoggedIn){
-            globalGetService(`todayDanceClasses`)
+            globalPostService(`todayDanceClasses`, { date : new Date() })
             .then(response => {
                 if(response.success == true){
                     setUpcomingDances(response.data)
@@ -121,7 +121,7 @@ function Profile(props){
                             upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" dance={dance} key={index}/> : null): null
                         }
                         {
-                            upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.time) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
+                            upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
                         }
                     </> : null}
                     {(userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> : null}

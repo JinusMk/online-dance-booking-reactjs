@@ -3,8 +3,7 @@ import Carousel from "react-multi-carousel";
 import Skeleton from '@material-ui/lab/Skeleton';
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
-import moment from 'moment'
-import { globalGetService } from '../../../utils/globalApiServices';
+import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import { connect } from 'react-redux'
 import { DanceAlert, SubscriptionAlert } from '../../../shared_elements';
 import { checkIsFinished } from '../../../utils';
@@ -45,7 +44,7 @@ function Introduction(props){
 
     useEffect(() => {
         if(props.isLoggedIn){
-            globalGetService(`todayDanceClasses`)
+            globalPostService(`todayDanceClasses`, { date : new Date() })
             .then(response => {
                 if(response.success == true){
                     setUpcomingDances(response.data)
@@ -62,7 +61,7 @@ function Introduction(props){
                 upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" dance={dance} key={index}/> : null): null
             }
             {
-                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.time) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
+                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
             }
            </> : null}
            { (userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> :  <Carousel 
