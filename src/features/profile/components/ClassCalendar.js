@@ -54,18 +54,18 @@ export default function ClassCalendar(props){
                 if(checkNumberOfDaysLeft(activeDanceClass.date) < 0){ //already over
                     return <div onClick={() => navigateToDanceClass(activeDanceClass._id)} className={`dance-class-date over ${activeDanceClass.attended ? 'attended' : 'absent'}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
-                                <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
+                                <p className="secondaryText classTime">{moment(activeDanceClass.startTime).format(`hh:mm A`)}</p>
                                 {( activeDanceClass.attended || (subscriptionInfo?.subscription?.slug != "zumba") ) ? <p className="secondaryText textCenter review">{activeDanceClass.feedback ? <span className="feedback">F</span> : null}{subscriptionInfo?.subscription?.slug == "zumba" ? null : <span className="recording">{`R`}</span>}</p> : null}
                             </div>
                 }else if(checkNumberOfDaysLeft(activeDanceClass.date) > 0){//future
                     return <div className="dance-class-date future">
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
-                                <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
+                                <p className="secondaryText classTime">{moment(activeDanceClass.startTime).format(`hh:mm A`)}</p>
                            </div>
                 }else{//same day
-                    return <div onClick={() => checkIsFinished(activeDanceClass.date) ? navigateToDanceClass(activeDanceClass._id) : console.log('')} className={`dance-class-date ${checkIsFinished(activeDanceClass.date) ?  activeDanceClass.attended ? 'attended' : 'over' : 'future'} ${moment().format('DD-MM-YYYY') == moment(date).format('DD-MM-YYYY') ? 'today' : ''}`}>
+                    return <div onClick={() => checkIsFinished(activeDanceClass.endTime) ? navigateToDanceClass(activeDanceClass._id) : console.log('')} className={`dance-class-date ${checkIsFinished(activeDanceClass.endTime) ?  activeDanceClass.attended ? 'attended' : 'over' : 'future'} ${moment().format('DD-MM-YYYY') == moment(date).format('DD-MM-YYYY') ? 'today' : ''}`}>
                                 <h3 className="heading1">{moment(date).format(`DD`)}</h3>
-                                <p className="secondaryText classTime">{moment(activeDanceClass.time).format(`hh:mm A`)}</p>
+                                <p className="secondaryText classTime">{moment(activeDanceClass.startTime).format(`hh:mm A`)}</p>
                             </div>
                 }
             }else{

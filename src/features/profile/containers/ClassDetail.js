@@ -79,7 +79,7 @@ function ClassDetail(props){
                     {type == "subscription" ? <> <Grid item xs={12}>
                         <div className="part-of-subscription">
                             <p className="secondaryText">PART OF SUBSCRIPTION</p>
-                            <h3 className="heading3">{`${danceInfo.title ? danceInfo.title : category} (1 of ${danceInfo.totalDanceClasses})`}</h3>
+                            <h3 className="heading3">{`${danceInfo.title ? danceInfo.title : category} (${danceInfo.danceClassNumber} of ${danceInfo.totalDanceClasses})`}</h3>
                         </div>
                     </Grid>
                     {danceInfo.instructor?.feedback ? <Grid item xs={12}>

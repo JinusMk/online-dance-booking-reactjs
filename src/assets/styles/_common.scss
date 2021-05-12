@@ -82,7 +82,7 @@ body{
     }
     .react-multi-carousel-list{
         .react-multi-carousel-track{
-            li{
+            .react-multi-carousel-item {
                 &:first-child{
                     margin-left: 16px;
                 }
