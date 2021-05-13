@@ -7,7 +7,7 @@ export default function AddReviewCard(props){
     return(
         <div className="add-review-card-wrapper">
             <h3 className="heading3">How was your dance experience? </h3>
-            <p><Link to={{pathname: `/dance/${category}/${danceId}/review`, state: { prevPath: `${location.pathname}`, secondaryPrevPath: `${location.state.prevPath}` }}} className="secondaryBtn">ADD A REVIEW</Link></p>
+            <p><Link to={{pathname: `/dance/${category}/${danceId}/review`, state: { prevPath: `${location.pathname}`, secondaryPrevPath: `${location.state?.prevPath}` }}} className="secondaryBtn">ADD A REVIEW</Link></p>
         </div>
     )
 }

@@ -24,7 +24,7 @@ export default function DanceHistoryCard(props){
                     {(dance.review && dance.review.danceRating >= 0) ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.review?.danceRating}</span></h3> : <p><Link to={{pathname: `/dance/${danceCategory[dance.category_id]}/${dance.dance_id}/review`, state: { prevPath: location.pathname }}} className="secondaryBtn">ADD A REVIEW</Link></p>}
                 </Grid>
                 <Grid item xs={6}>
-                    <p><Link className="secondaryBtn" to={`/dance/${danceCategory[dance.category_id]}/${dance.dance_id}`}>VIEW DETAILS</Link></p>
+                    <p><Link className="secondaryBtn" to={{pathname: `/dance/${danceCategory[dance.category_id]}/${dance.dance_id}`, state: { prevPath: location.pathname }}}>VIEW DETAILS</Link></p>
                 </Grid>
             </Grid>
         </div>
