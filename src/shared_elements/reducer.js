@@ -11,6 +11,8 @@ export default function(
     //       date: '',
     //       time: ''
     //   }
+      userSubscriptions: [],
+      todayDanceClasses: ''
     }, action){
         switch(action.type){
             case actions.CLEAR_TOAST:
@@ -67,6 +69,16 @@ export default function(
             //         ...state,
             //         selectedTime: action.payload
             //     }
+            case actions.UPDATE_SUBSCRIPTIONS: 
+                return {
+                    ...state,
+                    userSubscriptions: action.payload
+                }
+            case actions.UPDATE_TODAY_DANCECLASSES:
+                return {
+                    ...state,
+                    todayDanceClasses: action.payload
+                }
             default:
                 return state;
     

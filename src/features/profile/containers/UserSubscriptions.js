@@ -4,21 +4,24 @@ import { Header, SubscriptionCard } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
 import { UserSubscriptionOverview, Shimmer } from '../components'
 import { imageBasePath } from '../../../constants';
+import { connect } from 'react-redux'
+import { UPDATE_SUBSCRIPTIONS } from '../../../shared_elements/actions'
 import '../../../assets/styles/user-subscription-module.scss'
 
-export default function UserSubscriptions(props){
+function UserSubscriptions(props){
     const [loader, setLoader] = useState(true)
-    const [userSubscriptions, setUserSubscriptions] = useState([])
+    // const [userSubscriptions, setUserSubscriptions] = useState([])
     const [subscriptions, setSubscriptions] = useState()
     
     useEffect(() => {
-        setLoader(true)
         globalGetService(`userSubscriptions`)
         .then(response => {
             if(response.success == true){
-                setLoader(false)
-                const userSubsctiptions = response.data
-                setUserSubscriptions(userSubsctiptions)
+                const userSubscriptions = response.data
+                props.updateUserSubscriptions(userSubscriptions)
+                // setUserSubscriptions(userSubscriptions)
+            }else{
+                props.updateUserSubscriptions([])
             }
         })
     }, [props.userInfo])
@@ -39,6 +42,7 @@ export default function UserSubscriptions(props){
             props.history.push('/profile')
         }
     }
+    const { userSubscriptions } = props
     return(
         <section className="user-subscription-section">
             <Header title="Subscriptions" onBack={handleGoBack}/>
@@ -74,5 +78,14 @@ export default function UserSubscriptions(props){
         </section>
     )
 }
-
-
+const mapStateToProps = state => ({
+    isLoggedIn: state.sharedReducers.isLoggedIn,
+    userSubscriptions: state.sharedReducers.userSubscriptions,
+})
+const mapDispatchToProps = dispatch => ({
+    updateUserSubscriptions : (userSubscriptions) => dispatch({
+        type: UPDATE_SUBSCRIPTIONS,
+        payload: userSubscriptions
+    }),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(UserSubscriptions)

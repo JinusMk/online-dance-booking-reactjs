@@ -7,6 +7,7 @@ import { globalGetService, globalPostService } from '../../../utils/globalApiSer
 import { connect } from 'react-redux'
 import { DanceAlert, SubscriptionAlert } from '../../../shared_elements';
 import { checkIsFinished } from '../../../utils';
+import { UPDATE_SUBSCRIPTIONS, UPDATE_TODAY_DANCECLASSES } from '../../../shared_elements/actions'
 
 const introductionData =[
     {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
@@ -16,8 +17,8 @@ const introductionData =[
 
 function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
-    const [upcomingDances, setUpcomingDances] = useState('')
-    const [userSubsctiption, setUserSubscriptions] = useState([])
+    // const [upcomingDances, setUpcomingDances] = useState('')
+    // const [userSubscriptions, setUserSubscriptions] = useState([])
     // const [introductionData, setIntroductionData] = useState([])
     const [loader, setLoader] = useState(true)
 
@@ -35,8 +36,11 @@ function Introduction(props){
             globalGetService(`userSubscriptions`)
             .then(response => {
                 if(response.success === true){
-                    const userSubsctiption = response.data
-                    setUserSubscriptions(userSubsctiption)
+                    const userSubscriptions = response.data
+                    props.updateUserSubscriptions(userSubscriptions)
+                    // setUserSubscriptions(userSubscriptions)
+                }else{
+                    props.updateUserSubscriptions([])
                 }
             })
         }
@@ -47,12 +51,17 @@ function Introduction(props){
             globalPostService(`todayDanceClasses`, { date : new Date() })
             .then(response => {
                 if(response.success == true){
-                    setUpcomingDances(response.data)
+                    props.updateTodaysDanceClasses(response.data)
+                    // setUpcomingDances(response.data)
+                }else{
+                    props.updateTodaysDanceClasses('')
                 }
             })
         }
     }, [props.isLoggedIn])
 
+    const { upcomingDances, userSubscriptions } = props
+    
     return(
         // (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/>
         <div className="introduction-blk">
@@ -64,7 +73,7 @@ function Introduction(props){
                 upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
             }
            </> : null}
-           { (userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> :  <Carousel 
+           { (userSubscriptions && userSubscriptions.length) ? <SubscriptionAlert userSubscriptions={userSubscriptions} /> :  <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}
@@ -94,5 +103,17 @@ function Introduction(props){
 }
 const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
+    userSubscriptions: state.sharedReducers.userSubscriptions,
+    upcomingDances: state.sharedReducers.todayDanceClasses
 })
-export default connect(mapStateToProps, null)(Introduction)
+const mapDispatchToProps = dispatch => ({
+    updateUserSubscriptions : (userSubscriptions) => dispatch({
+        type: UPDATE_SUBSCRIPTIONS,
+        payload: userSubscriptions
+    }),
+    updateTodaysDanceClasses : (todayDanceClasses) => dispatch({
+        type: UPDATE_TODAY_DANCECLASSES,
+        payload: todayDanceClasses
+    })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Introduction)

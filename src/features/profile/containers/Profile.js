@@ -4,7 +4,7 @@ import { Container, Avatar } from '@material-ui/core';
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage, checkIsFinished } from '../../../utils'
 import { connect } from 'react-redux'
-import { UPDATE_USERINFO } from '../../../shared_elements/actions'
+import { UPDATE_USERINFO, UPDATE_SUBSCRIPTIONS, UPDATE_TODAY_DANCECLASSES } from '../../../shared_elements/actions'
 import { SubscriptionAlert } from '../../../shared_elements'
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/profile-module.scss'
@@ -22,8 +22,8 @@ function Profile(props){
     const [providerData, setProviderData] = useState([])
     const [authAction, setAuthAction] = useState(false)
     const [authMode, setAuthMode] = useState('')
-    const [userSubsctiption, setUserSubscriptions] = useState([])
-    const [upcomingDances, setUpcomingDances] = useState('')
+    // const [userSubscriptions, setUserSubscriptions] = useState([])
+    // const [upcomingDances, setUpcomingDances] = useState('')
 
     let location = useLocation()
 
@@ -31,7 +31,7 @@ function Profile(props){
         if(props.isLoggedIn){
             setProviderData(props.userInfo.providerData)
         }else{
-            setUserSubscriptions([])
+            props.updateUserSubscriptions([])
             setProviderData([])
         }
         if(location.search) {
@@ -48,13 +48,14 @@ function Profile(props){
             globalPostService(`todayDanceClasses`, { date : new Date() })
             .then(response => {
                 if(response.success == true){
-                    setUpcomingDances(response.data)
+                    // setUpcomingDances(response.data)
+                    props.updateTodaysDanceClasses(response.data)
                 }else{
-                    setUpcomingDances('')
+                    props.updateTodaysDanceClasses('')
                 }
             })
         }else{
-            setUpcomingDances('')
+            // setUpcomingDances('')
         }
     }, [props.isLoggedIn])
     useEffect(() => {
@@ -62,14 +63,13 @@ function Profile(props){
             globalGetService(`userSubscriptions`)
             .then(response => {
                 if(response.success === true){
-                    const userSubsctiption = response.data
-                    setUserSubscriptions(userSubsctiption)
+                    const userSubscriptions = response.data
+                    props.updateUserSubscriptions(userSubscriptions)
+                    // setUserSubscriptions(userSubscriptions)
                 }else{
-                    setUserSubscriptions([])
+                    props.updateUserSubscriptions([])
                 }
             })
-        }else{
-            setUpcomingDances('')
         }
     }, [props.isLoggedIn])
     const logout = () => {
@@ -104,6 +104,9 @@ function Profile(props){
             setOpenAuthPopup(false)
         }
     }
+
+    const { upcomingDances, userSubscriptions } = props
+
     return(
         <section className="profile-section">
             <Container className="profile-container">
@@ -124,7 +127,7 @@ function Profile(props){
                             upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
                         }
                     </> : null}
-                    {(userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> : null}
+                    {(userSubscriptions && userSubscriptions.length) ? <SubscriptionAlert userSubscriptions={userSubscriptions} /> : null}
                     <Suspense fallback={<></>}>
                         {isVerified('phone') ? null : <AuthVerifyBlock type="phone number" handleClick={() => setVerifyPhone(true)} />}
                     </Suspense>
@@ -152,12 +155,22 @@ function Profile(props){
 }
 const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
-    userInfo: state.sharedReducers.userInfo
+    userInfo: state.sharedReducers.userInfo,
+    userSubscriptions: state.sharedReducers.userSubscriptions,
+    upcomingDances: state.sharedReducers.todayDanceClasses
 })
 const mapDispatchToProps = dispatch => ({
     updateUserInfo : (user) => dispatch({
         type: UPDATE_USERINFO,
         payload: user
+    }),
+    updateUserSubscriptions : (userSubscriptions) => dispatch({
+        type: UPDATE_SUBSCRIPTIONS,
+        payload: userSubscriptions
+    }),
+    updateTodaysDanceClasses : (todayDanceClasses) => dispatch({
+        type: UPDATE_TODAY_DANCECLASSES,
+        payload: todayDanceClasses
     })
 })
 

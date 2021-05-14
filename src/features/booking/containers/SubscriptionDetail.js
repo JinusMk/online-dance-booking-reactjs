@@ -39,7 +39,8 @@ export default function SubscriptionDetail(props){
                         }
                     })
                     console.log(`checkNumberOfDaysLeft(activeSubscription.endDate)`, checkNumberOfDaysLeft(activeSubscription.userSubscription?.endDate))
-                    setRenewal(checkNumberOfDaysLeft(activeSubscription.userSubscription?.endDate) <= 7 ? true : false)
+                    // setRenewal(checkNumberOfDaysLeft(activeSubscription.userSubscription?.endDate) <= 7 ? true : false)
+                    setRenewal(false)
                     setLoader(false)
                 }else{
                     setRenewal(false)
