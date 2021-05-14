@@ -64,6 +64,11 @@ function Booking(props){
     const onBack = () => {
         if(props.location.state && props.location.state.sectionId){
             props.history.push(`/schedule#${props.location.state.sectionId}`)
+        }else if(props.location.state && props.location.state.prevPath){
+            props.history.push({
+                pathname: props.location.state.prevPath,
+                state: { prevPath: props.location.state.secondaryPrevPath ? props.location.state.secondaryPrevPath : '/'}
+            })
         }else if(props.match.params.id){
             props.history.push(`/dance/${props.match.params.category}`)
         }else{

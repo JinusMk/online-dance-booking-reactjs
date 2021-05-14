@@ -42,7 +42,7 @@ class ErrorBoundary extends Component{
                             <Grid item xs={12} className="textCenter">
                                 <img src={`${imageBasePath}technical_error_icon.svg`}/>
                                 <h3 className="heading3">Technical error is inevitable</h3>
-                                <Link to="/" onClick={() => this.setState({hasError: false})} className="primaryBtn">RETRY</Link>
+                                <a href="/" onClick={() => this.setState({hasError: false})} className="primaryBtn">RETRY</a>
                             </Grid>
                         </Grid>
                     </Container>

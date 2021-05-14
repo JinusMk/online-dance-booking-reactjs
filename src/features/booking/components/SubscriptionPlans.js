@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import moment from 'moment'
@@ -7,6 +7,7 @@ import { currencySymbol } from '../../../constants';
 
 export default function SubscriptionPlans(props){
   let params = useParams()
+  let location = useLocation()
   const { subscriptions } = props
   const [subscriptionInfo, setSubscriptionInfo] = useState([])
   const [value, setValue] = useState('');
@@ -69,7 +70,7 @@ export default function SubscriptionPlans(props){
                 }
             </ul>
             <p className="link">
-                <Link to={`/subscription/${params.category}/${value}/booking`} className={`primaryBtn ${value ? '' : 'disabled'}`}>BUY SUBSCRIPTION</Link>
+                <Link to={{pathname: `/subscription/${params.category}/${value}/booking`, state: { prevPath: location.pathname, secondaryPrevPath: location.state?.prevPath }}} className={`primaryBtn ${value ? '' : 'disabled'}`}>BUY SUBSCRIPTION</Link>
             </p>
         </div>
     )
