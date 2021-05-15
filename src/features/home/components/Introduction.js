@@ -9,24 +9,25 @@ import { DanceAlert, SubscriptionAlert } from '../../../shared_elements';
 import { checkIsFinished } from '../../../utils';
 import { UPDATE_SUBSCRIPTIONS, UPDATE_TODAY_DANCECLASSES } from '../../../shared_elements/actions'
 
-const introductionData =[
-    {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
-    {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance Online - Learn from Expert Instructors'},
-    {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
-]
+// const introductionData =[
+//     {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
+//     {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance Online - Learn from Expert Instructors'},
+//     {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
+// ]
 
 function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
     // const [upcomingDances, setUpcomingDances] = useState('')
     // const [userSubscriptions, setUserSubscriptions] = useState([])
-    // const [introductionData, setIntroductionData] = useState([])
+    const [introductionData, setIntroductionData] = useState([])
     const [loader, setLoader] = useState(true)
+    const [showBanner, setShowBanner] = useState(true)
 
     useEffect(() => {
         globalGetService(`banners`)
         .then(response => {
             if(response.success === true){
-                // setIntroductionData(response.data)
+                setIntroductionData(response.data)
                 setLoader(false)
             }
         })
@@ -37,6 +38,7 @@ function Introduction(props){
             .then(response => {
                 if(response.success === true){
                     const userSubscriptions = response.data
+
                     props.updateUserSubscriptions(userSubscriptions)
                     // setUserSubscriptions(userSubscriptions)
                 }else{
@@ -67,13 +69,14 @@ function Introduction(props){
         <div className="introduction-blk">
            {upcomingDances && (upcomingDances.bookings.length || upcomingDances.subscriptions.length) ? <>
             {
-                upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" dance={dance} key={index}/> : null): null
+                upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" setShowBanner={setShowBanner} dance={dance} key={index}/> : null): null
             }
             {
-                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
+                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" setShowBanner={setShowBanner} dance={dance} key={index}/> : null): null
             }
            </> : null}
-           { (userSubscriptions && userSubscriptions.length) ? <SubscriptionAlert userSubscriptions={userSubscriptions} /> :  <Carousel 
+           { (userSubscriptions && userSubscriptions.length) ? <SubscriptionAlert setShowBanner={setShowBanner} userSubscriptions={userSubscriptions} /> :  null}
+           { showBanner ? <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}
@@ -82,22 +85,23 @@ function Introduction(props){
                 autoPlaySpeed={5000}
                 containerClass="carousel-container home"
             >
-                {
+                {/* {
                     introductionData.map((item, index) => <div className="carousel-item" key={index}>
                         {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
                         <img src={item.img} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.value}</p>
                     </div>)
-                }
+                } */}
 
-                {/* {
-                    loader ? [0,1,2].map(item => <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
-                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
-                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
+                {
+                    loader ? [0,1,2].map(item => <div key={item} style={{marginBottom: 8}}><Skeleton variant="rect" height={380}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
+                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={380}/></div> : null}
+                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 380}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.description}</p>
                     </div>)
-                } */}
-            </Carousel>}
+                }
+            </Carousel> : null
+           }
         </div>
     )
 }

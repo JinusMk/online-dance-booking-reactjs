@@ -14,6 +14,9 @@ export default function SubscriptionAlert(props){
             const activeSubscriptions = userSubscriptions.filter(sub => checkIsFinished(sub.endDate) == false)
             setActiveSubscriptions(activeSubscriptions)
             if(activeSubscriptions.length >= 1){ //atleast one active subscription
+                if(props.setShowBanner){
+                    props.setShowBanner(false)
+                }
                 if(activeSubscriptions.length >= 2){ // more than one active subscriptions
                     setSubscriptionStatus(1)
                 }

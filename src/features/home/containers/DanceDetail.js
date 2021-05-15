@@ -20,6 +20,18 @@ export default function DanceDetail(props){
     const [ danceInfo, setDanceInfo ] = useState({})
     const [ danceClasses, setDanceClasses ] = useState({})
 
+    const getDanceInfo = (danceClasses) => {//danceClasses, slug
+        const availableDates = Object.keys(danceClasses)
+        if(availableDates && availableDates.length){
+            let category = props.match.params.slug
+            const classArray = danceClasses[availableDates[0]][category]
+            if(classArray && classArray.length){
+                setDanceInfo(classArray[0])
+                setLoader(false)
+            }
+        }
+    }
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         const slug = props.match.params.slug
@@ -32,15 +44,6 @@ export default function DanceDetail(props){
             }
         })
     }, [])
-    const getDanceInfo = (danceClasses) => {//danceClasses, slug
-        const availableDates = Object.keys(danceClasses)
-        let category = props.match.params.slug
-        const classArray = danceClasses[availableDates[0]][category]
-        if(classArray && classArray.length){
-            setDanceInfo(classArray[0])
-            setLoader(false)
-        }
-    }
     return(
         <section className="dance-detail-section">
             <Header onBack={() => props.history.push('/')} title={category}/>

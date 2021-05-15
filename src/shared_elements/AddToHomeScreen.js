@@ -17,7 +17,6 @@ export default function AddToHomeScreen(props){
       }, []);
 
     const addToHomeScreen = (evt) => {
-        // console.log('addToHomeScreen clicked')
         evt.preventDefault();
         if (!promptInstall) {
             return;

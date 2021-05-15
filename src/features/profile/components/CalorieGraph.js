@@ -3,6 +3,7 @@ import { useParams, Link, useLocation } from 'react-router-dom'
 import { UserProgressDrawer, GRAPH_OPTONS } from './'
 import { globalGetService } from '../../../utils/globalApiServices';
 import { Chart } from "react-google-charts";
+import moment from 'moment'
 import { imageBasePath } from '../../../constants';
 
 export default function CalorieGraph(props){
@@ -53,7 +54,7 @@ export default function CalorieGraph(props){
                 })
                 updatedGraphData.forEach((option, index) => {
                     if(index >= 1){
-                        option[1] = instructorCalorieLogs.find(item => new Date(item.date) == option[0]) ? Number(instructorCalorieLogs.find(item => new Date(item.date) == option[0]).calories) : option[2]
+                        option[1] = instructorCalorieLogs.find(item => moment(item.date).format('DD-MM-YYYY') == moment(option[0]).format('DD-MM-YYYY')) ? Number(instructorCalorieLogs.find(item => moment(item.date).format('DD-MM-YYYY') == moment(option[0]).format('DD-MM-YYYY')).calories) : option[2]
                     }
                 })
                 // let hAxisTicks = []

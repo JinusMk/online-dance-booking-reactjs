@@ -27,6 +27,9 @@ export default function DanceAlert(props){
     }
     useEffect(() =>{
         setLoader(false)
+        if(type == "subscription" || type == "today"){
+            props.setShowBanner(false)
+        }
     }, [])
     return(
         <>
