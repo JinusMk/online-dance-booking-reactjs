@@ -8,6 +8,15 @@ export default function DanceAlert(props){
     const { dance, type } = props
     const [loader, setLoader] = useState(false)
 
+    const markAttendanceApi = (danceId) => {
+        globalPostService(`subscription/danceClass/attendance`, { danceClassId : danceId })
+        .then(response => {
+            if(response.success == true){
+                console.log('marked attendance successfully')
+            }
+        })
+    }
+    
     const handleClickJoinSubscriptionClass = (classId) => {
         // console.log('clicked join button with id', classId)
         setLoader(true)
@@ -17,6 +26,7 @@ export default function DanceAlert(props){
             if(response.success == true){
                 // setDanceInfo(response.data && response.data.length ? response.data[0] : {})
                 const danceInfo = response.data && response.data.length ? response.data[0] : {}
+                markAttendanceApi(danceInfo._id)
                 if(danceInfo.zoomLink){
                     window.open(danceInfo.zoomLink, '_blank');
                 }

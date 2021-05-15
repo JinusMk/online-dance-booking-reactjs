@@ -1,0 +1,18 @@
+@import 'variable';
+
+body{
+    .subscription-attendance-section{
+        .subscription-attendance-container{
+            padding: 0;
+            .screen-loader-wrapper{
+               p{
+                    position: relative;
+                    top: 40px;
+                    left: -100px;
+                    width: 100%;
+                    color: $color_info_text;
+               } 
+            }
+        }
+    }
+}

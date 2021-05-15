@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react'
 import { Header, DanceInformationCard, DanceInformationLoader } from  '../../../shared_elements'
-import { Container, Grid, CircularProgress, Radio, RadioGroup, FormControlLabel } from '@material-ui/core';
+import { Container, Grid, CircularProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { connect } from 'react-redux'
