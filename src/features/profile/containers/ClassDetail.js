@@ -90,7 +90,8 @@ function ClassDetail(props){
                                 name: danceInfo.instructor?.name,
                                 reviwed_by: danceInfo.instructor?.name,
                                 category: category,
-                                class_date: moment(danceInfo.eventDate).format('DD-MM-YYYY')
+                                class_date: moment(danceInfo.eventDate).format('DD-MM-YYYY'),
+                                img: danceInfo.instructor?.image
                             }} page="detail" type="instructor-review"/>
                         </div>
                     </Grid> : null}

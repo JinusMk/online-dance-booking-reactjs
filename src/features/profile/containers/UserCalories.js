@@ -21,7 +21,7 @@ export default function UserCalories(props){
         .then(response => {
             setLoader(false)
             if(response.success == true){
-                setUserCalories(response.data)
+                setUserCalories(response.data?.filter(item => item.createdBy == "user"))
             }else{
                 setUserCalories([])
             }
@@ -93,7 +93,7 @@ function UserCalorieItem(props){
         <Grid item xs={12}>
             <div className="user-calorie-item">
                 <h3 className="heading2">{data.calories} kcal</h3>
-                <p className="paragraph date">{moment(data.date).format(`DD MMM YYYY`)}</p>
+                <p className="paragraph date">{moment(data.createdAt).format(`DD MMM YYYY`)}</p>
                 <img src={`${imageBasePath}edit_icon_black.svg`} alt="" className={`editIcon ${actionLoader ? 'disabled' : ''}`} alt="" onClick={() => props.editCalorie(data)}/>
                 <img src={`${imageBasePath}close_icon.svg`} className={`closeIcon ${actionLoader ? 'disabled' : ''}`} onClick={() => props.deleteCalorieApi(data._id)} alt=""/>
             </div>

@@ -23,7 +23,7 @@ export default function AllTimeSummary(props){
         fetchCaloriesBurnt()
     }, [params.subscriptionId])
     const fetchCurrentWeight = () => {
-        globalGetService(`weightLog`)
+        globalGetService(`weightLog?sortBy=date&OrderBy=desc`)
         .then(response => {
             setLoader(false)
             if(response.success == true){

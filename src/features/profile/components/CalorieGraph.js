@@ -49,12 +49,20 @@ export default function CalorieGraph(props){
                     [{ type: 'date', label: '' }, 'INSTRUCTOR', 'YOU'],
                 ]
                 userCalorieLogs.forEach(item => {
-                    let option = [new Date(item.date), 0, Number(item.calories)]
+                    let option = [new Date(item.createdAt), null, Number(item.calories)]
                     updatedGraphData.push(option)
                 })
                 updatedGraphData.forEach((option, index) => {
                     if(index >= 1){
-                        option[1] = instructorCalorieLogs.find(item => moment(item.date).format('DD-MM-YYYY') == moment(option[0]).format('DD-MM-YYYY')) ? Number(instructorCalorieLogs.find(item => moment(item.date).format('DD-MM-YYYY') == moment(option[0]).format('DD-MM-YYYY')).calories) : option[2]
+                        let instructorCalorieObj = instructorCalorieLogs.find(item => moment(item.createdAt).format('DD-MM-YYYY') == moment(option[0]).format('DD-MM-YYYY'))
+                        option[1] =  instructorCalorieObj ? Number(instructorCalorieObj.calories) : instructorCalorieLogs.length ? null : option[2]
+                    }
+                })
+                instructorCalorieLogs.forEach(item => {
+                    if(userCalorieLogs.some(userItem => moment(userItem.createdAt).format('DD-MMM-YYYY') == moment(item.createdAt).format('DD-MMM-YYYY'))){
+                        return null
+                    }else{
+                        updatedGraphData.push([new Date(item.createdAt), Number(item.calories), userCalorieLogs.length ? null : Number(item.calories)])
                     }
                 })
                 // let hAxisTicks = []
@@ -67,6 +75,7 @@ export default function CalorieGraph(props){
                 //         ticks: hAxisTicks
                 //     }
                 // })
+                // console.log('updatedGraphData', updatedGraphData)
                 setGraphData(updatedGraphData)
                 setGraphLoader(false)
             }else{
