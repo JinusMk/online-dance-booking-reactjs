@@ -142,7 +142,7 @@ function Booking(props){
             "description": "Test Transaction",
             "image": `${imageBasePath}logo_512.png`,
             "handler": function (response){
-                console.log('handler response', response)
+                // console.log('handler response', response)
                 if(type == "danceBooking"){
                     createBookingApi({...formData, paymentId: response.razorpay_payment_id})
                 }else{

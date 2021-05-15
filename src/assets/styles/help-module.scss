@@ -20,10 +20,17 @@ body{
                 border-bottom: 1px solid #FFE5E9;
                 margin-bottom: 24px;
             }
-            .add-to-home-screen-blk{
+            .add-to-home-screen-blk, .invite-friends-blk{
                 padding: 0 16px 24px;
                 border-bottom: 1px solid #FFE5E9;
                 margin-bottom: 24px;
+                .inner-wrapper{
+                    .primaryBtn{
+                        background: $color_white;
+                        border: 1px solid $color_blue;
+                        color: $color_blue;
+                    }
+                }
             }
             .contact-us-blk{
                 padding-bottom: 0;
@@ -44,7 +51,7 @@ body{
                 .how-it-works-blk{
                     margin-bottom: 0;
                 }
-                .add-to-home-screen-blk{
+                .add-to-home-screen-blk, .invite-friends-blk{
                     margin: 0 150px;
                     padding: 64px 0;
                 }
@@ -63,7 +70,7 @@ body{
     body{
         .help-section{
             .help-container{
-                .add-to-home-screen-blk{
+                .add-to-home-screen-blk, .invite-friends-blk{
                     margin: 0 200px;
                 }
             }

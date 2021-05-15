@@ -799,8 +799,8 @@ body{
             }
         }
     }
-    .add-to-home-screen-blk{
-        .add-to-home-screen-wrapper{
+    .add-to-home-screen-blk, .invite-friends-blk{
+        .inner-wrapper{
             padding: 16px;
             box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
             border-radius: 8px;
@@ -813,6 +813,11 @@ body{
                 margin-bottom: 16px;
                 color: $color_gray;
             }
+        }
+    }
+    .invite-friends-blk{
+        .inner-wrapper{
+            
         }
     }
     .custom-toast-wrapper{
@@ -1033,5 +1038,41 @@ body{
                 }
             }
         }
+    }
+    .custom-dialog{
+        .content-wrapper{
+            padding: 40px 20px;
+        }
+       &.share-link-dialog{
+        .content-wrapper{
+            padding-bottom: 32px;
+            .inputGroup{
+                margin-bottom: 24px;
+                .copyBtn{
+                    position: absolute;
+                    top: 43px;
+                    right: 23px;
+                    max-width: 90px;
+                    padding: 10px 16px;
+                }
+            }
+            .share-buttons-list{
+                // padding: 0;
+                // li{
+                //     padding: 0 15px 0 0;
+                // }
+                text-align: center;
+                button{
+                    padding: 0 8px 8px 0 !important;
+                    &:last-child{
+                        padding: 0 !important;
+                    }
+                    &:hover{
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+       } 
     }
 }

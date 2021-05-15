@@ -4,9 +4,11 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import '../../../assets/styles/booking-success-module.scss'
 import { imageBasePath, currencySymbol } from '../../../constants';
+import AddToHomeScreen from '../../../shared_elements/AddToHomeScreen';
 
 const DanceInformationCard = lazy(() => import('../../../shared_elements/DanceInformationCard'))
-const AddToHomeScreen = lazy(() => import('../../../shared_elements/AddToHomeScreen'))
+// const AddToHomeScreen = lazy(() => import('../../../shared_elements/AddToHomeScreen'))
+const InviteFriends = lazy(() => import('../../../shared_elements/InviteFriends'))
 const SubscriptionInformation = lazy(() => import ('../components/SubscriptionInformation'))
 
 function BookingSuccess(props){
@@ -53,8 +55,9 @@ function BookingSuccess(props){
                         }
                     </div>
                     <Suspense fallback={<></>}>
-                        <AddToHomeScreen/>
+                        <InviteFriends/>
                     </Suspense>
+                    <AddToHomeScreen />
                     <div className="payment-method">
                         <p className="secondaryText">PAID ONLINE</p>
                         <p className="heading3"><span className="cost-old">{`${currencySymbol[selectedItem.currencyType]}${selectedItem.actualCost ? selectedItem.actualCost : selectedItem.cost_old}`}</span>{`${currencySymbol[selectedItem.currencyType]}${selectedItem.discountedCost ? selectedItem.discountedCost : selectedItem.cost}`}</p>
