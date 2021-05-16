@@ -53,7 +53,7 @@ export default function SubscriptionAttendance(props){
                 }
             }
         }else{
-            // props.history.push('/')
+            props.history.push('/')
         }
     }, [])
     return(
