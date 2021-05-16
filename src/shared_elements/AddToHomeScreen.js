@@ -23,9 +23,9 @@ export default function AddToHomeScreen(props){
         }
         promptInstall.prompt();
     }
-    // if (!supportsPWA) {
-    //     return null;
-    // }
+    if (!supportsPWA) {
+        return null;
+    }
     return(
         <div className="add-to-home-screen-blk">
             <div className="inner-wrapper">

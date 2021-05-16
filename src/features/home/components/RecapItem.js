@@ -49,7 +49,7 @@ export default function RecapItem(props){
                 onOpen={(e) => e.preventDefault()}
             >
                 <div className={`auth-popup-wrapper review recap`}>
-                    <div className="line"></div>
+                    {/* <div className="line"></div> */}
                     <h3 className="heading2">Watch recap</h3>
                     <video height="164" poster={`${publicLink}/${recap.image}`} controls className="custom-video" autoPlay>
                         <source src={`${publicLink}/${recap.video}`} type="video/mp4" />
