@@ -17,7 +17,7 @@ export default function UserSubscriptionOverview(props){
             .then(response => {
                 setLoader(false)
                 if(response.success == true){
-                    const calorieLog = response.data
+                    const calorieLog = response.data?.filter(item => item.createdBy == "user")
                     let sum = 0
                     calorieLog.forEach((log) => {
                         sum+=Number(log.calories)
