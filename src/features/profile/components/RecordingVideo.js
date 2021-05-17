@@ -9,7 +9,7 @@ export default function RecordingVideo(props){
     const [imgLoader, setImgLoader] = useState(true)
     return(
         <div className="recording-video-wrapper">
-            {
+            {/* {
                 play ? <video height="170" poster={recordingData.img} controls className="custom-video" autoPlay>
                     <source src={recordingData.media} type="video/mp4" />
                     <source src={recordingData.media} type="video/ogg" />
@@ -21,7 +21,12 @@ export default function RecordingVideo(props){
                     <img src={recordingData.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <img src={`${imageBasePath}play_icon.svg`} className="play-icon" onClick={() => setPlay(true)}/>
                 </div>
-            }
+            } */}
+            <video height="170" controls className="custom-video" autoPlay>
+                <source src={recordingData.media} type="video/mp4" />
+                <source src={recordingData.media} type="video/ogg" />
+                Your browser does not support the video tag.
+            </video>
             <div className="class-info">
                 <h3 className="heading3">{`${recordingData.category} | ${recordingData.instructor}`}</h3>
                 <p className="paragraph">{`${recordingData.participants} dancers | ${moment(recordingData.date).format('DD MMM YYYY')}`}</p>

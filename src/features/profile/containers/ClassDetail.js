@@ -111,7 +111,7 @@ function ClassDetail(props){
                                     }}
                                 /> 
                             </div>
-                        </Grid>: null}
+                        </Grid> : null}
                         {/* <Grid item xs={12}>
                             <div className="class-recording">
                                 <p className="secondaryText">CLASS RECORDING</p>
