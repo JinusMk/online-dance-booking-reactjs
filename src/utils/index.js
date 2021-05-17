@@ -41,3 +41,10 @@ export const checkNumberOfDaysLeft = (date1, date2=moment()) => {
   var days = a.diff(b, 'days') 
   return days
 }
+
+export const checkNumberOfMinutesLeft = (date1, date2=moment()) => {
+  var a = moment(date1);
+  var b = moment(date2);
+  var minutes = a.diff(b, 'minutes') 
+  return minutes
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Grid } from '@material-ui/core';
 import moment from 'moment'
-import { checkIsFinished, toastFlashMessage } from '../utils';
+import { checkIsFinished, toastFlashMessage, checkNumberOfMinutesLeft } from '../utils';
 import { globalPostService } from '../utils/globalApiServices';
 
 export default function DanceAlert(props){
@@ -45,7 +45,7 @@ export default function DanceAlert(props){
         <>
         {
             type == "subscription" ? <div className={`dance-alert-wrapper subscription`}> 
-                <h3 className="heading3">{checkIsFinished(dance.startTime) ? `Your ${dance.category} class has already started !`: `Your ${dance.category} class is about to start!`}</h3>
+                <h3 className="heading3">{checkIsFinished(dance.startTime) ? `Your ${dance.category} class has already started !`: checkNumberOfMinutesLeft(dance.startTime) <= 15 ? `Your ${dance.category} class is about to start!`: `You have an upcoming ${dance.category} class`}</h3>
                 <p className="paragraph">{`Class ${dance.danceClassNumber}/${dance.totalDanceClasses} of the ${dance.category} subscription`}</p>
                 <Grid container justify="" alignItems="center" className="alert-info">
                     <Grid item xs={6}>
@@ -56,7 +56,7 @@ export default function DanceAlert(props){
                     </Grid>
                 </Grid>
             </div> : <div className={`dance-alert-wrapper`}>
-                <h3 className="heading3">{checkIsFinished(dance.class_booked_start_time ? dance.class_booked_start_time : dance.danceClass?.startTime) ? `Your ${dance.category ? dance.category : dance.danceClass?.category?.name } class has already started !`: (moment().format('DD-MM-YYYY') == moment(dance.danceClass?.startTime).format(`DD-MM-YYYY`) || type == "today" ) ? `Your ${dance.category ? dance.category : dance.danceClass?.category?.name} class is about to start!` : `You have an upcoming ${dance.category ? dance.category : dance.danceClass?.category?.name} class`}</h3>
+                <h3 className="heading3">{checkIsFinished(dance.class_booked_start_time ? dance.class_booked_start_time : dance.danceClass?.startTime) ? `Your ${dance.category ? dance.category : dance.danceClass?.category?.name } class has already started !`: (moment().format('DD-MM-YYYY') == moment(dance.danceClass?.startTime).format(`DD-MM-YYYY`) || type == "today" ) ? checkNumberOfMinutesLeft(dance.class_booked_start_time ? dance.class_booked_start_time : dance.danceClass?.startTime) <= 15 ? `Your ${dance.category ? dance.category : dance.danceClass?.category?.name} class is about to start!` : `You have an upcoming ${dance.category ? dance.category : dance.danceClass?.category?.name} class` : `You have an upcoming ${dance.category ? dance.category : dance.danceClass?.category?.name} class`}</h3>
                 <Grid container justify="" alignItems="center" className="alert-info">
                     <Grid item xs={6}>
                         <p className="secondaryText">{checkIsFinished(dance.class_booked_start_time ? dance.class_booked_start_time : dance.danceClass?.startTime) ? 'STARTED ' : 'STARTS '}AT {moment(dance.class_booked_start_time ? dance.class_booked_start_time : dance.danceClass?.startTime).format('hh:mm A')}</p>
