@@ -11,26 +11,26 @@ export default function InstructorCard(props){
                 {
                     imgLoader ? <Skeleton variant="rect" className="profile-img" />: null
                 }
-                <img src={instructor.img} className="profile-img"  style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
-                <h3 className="heading3">{instructor.name}</h3>
+                <img src={instructor.instructor?.image} className="profile-img"  style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                <h3 className="heading3">{instructor.instructor?.name}</h3>
                 <p className="heading3 rating">
                     <img src={`${imageBasePath}star_icon.svg`} />
-                    <span>{instructor.rating}</span>
-                    <span className="rating">({instructor.rating_count} RATINGS)</span>
+                    <span>{instructor.averageRating}</span>
+                    <span className="rating">({instructor.totalRatings} RATINGS)</span>
                 </p>
             </div>
             <div className="info-blk">
                 <p className="paragraph">
                     <img src={`${imageBasePath}expert_icon.svg`}/>
-                    <span>{instructor.qualification}</span>
+                    <span>{instructor.certified}</span>
                 </p>
                 <p className="paragraph">
                     <img src={`${imageBasePath}experience_icon.svg`}/>
-                    <span>{instructor.experience} years experience</span>
+                    <span>{instructor.experience} experience</span>
                 </p>
                 <p className="paragraph">
                     <span className="live">LIVE</span>
-                    <span>{instructor.no_of_classes} classes on Letzdance</span>
+                    <span>{instructor.description}</span>
                 </p>
             </div>
         </div>

@@ -60,7 +60,7 @@ export default function SubscriptionInfo(props){
                         <h3 className="heading2">{subscription.title}</h3>
                         <p className="paragraph">{subscription.description}</p>
                         <p className="link">
-                            <Link onClick={goToBuySubscription} className="primaryBtn">BUY SUBSCRIPTION</Link>
+                            <a onClick={goToBuySubscription} className="primaryBtn">BUY SUBSCRIPTION</a>
                         </p>
                     </div>
                 </>

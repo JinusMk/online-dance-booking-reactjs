@@ -10,6 +10,7 @@ import UserSubscriptions from './containers/UserSubscriptions';
 import UserProgress from './containers/UserProgress';
 import UserWeights from './containers/UserWeights';
 import UserCalories from './containers/UserCalories';
+import SubscriptionAttendance from './containers/SubscriptionAttendance';
 
 export const profileRoutes = [
     {
@@ -76,5 +77,10 @@ export const profileRoutes = [
         path: '/user-weights',
         component: UserWeights,
         key: 'user-weights'
+    },
+    {
+        path: '/join-subscription-class',
+        component: pageLayoutHoc(SubscriptionAttendance),
+        key: 'join-subscription-class'
     },
 ]

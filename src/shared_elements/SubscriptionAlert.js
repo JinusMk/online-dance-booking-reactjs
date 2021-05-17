@@ -5,31 +5,36 @@ import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
 export default function SubscriptionAlert(props){
-    const { userSubscription } = props
+    const { userSubscriptions } = props
     const [subscriptionStatus, setSubscriptionStatus] = useState('')
     const [activeSubscriptions, setActiveSubscriptions] = useState([])
     
     useEffect(() => {
-        if(userSubscription && userSubscription.length){
-            const activeSubscriptions = userSubscription.filter(sub => checkIsFinished(sub.endDate) == false)
+        if(userSubscriptions && userSubscriptions.length){
+            const activeSubscriptions = userSubscriptions.filter(sub => checkIsFinished(sub.endDate) == false)
             setActiveSubscriptions(activeSubscriptions)
             if(activeSubscriptions.length >= 1){ //atleast one active subscription
+                if(props.setShowBanner){
+                    props.setShowBanner(false)
+                }
                 if(activeSubscriptions.length >= 2){ // more than one active subscriptions
                     setSubscriptionStatus(1)
-                }else if(activeSubscriptions.some(sub => checkNumberOfDaysLeft(sub.endDate) <= 7)){ //one active subcription which expires in 7 days 
-                    setSubscriptionStatus(2)
-                }else{ //one active subscription
+                }
+                // else if(activeSubscriptions.some(sub => checkNumberOfDaysLeft(sub.endDate) <= 7)){ //one active subcription which expires in 7 days 
+                //     setSubscriptionStatus(2)
+                // }
+                else{ //one active subscription
                     setSubscriptionStatus(3)
                 }
             }else{//no active subscription
-                if(userSubscription.length > 1){ // more than one expired subscription
+                if(userSubscriptions.length > 1){ // more than one expired subscription
                     setSubscriptionStatus(4)
                 }else{ // one expired subscription
                     setSubscriptionStatus(5)
                 }
             }
         }
-    }, [userSubscription])
+    }, [userSubscriptions])
     
     const renderSubscriptionAlert = (status) => {
         switch(status){
@@ -40,9 +45,9 @@ export default function SubscriptionAlert(props){
             case 3 : 
                 return <ActiveSubscriptions subscriptions={activeSubscriptions}/>
             case 4 :
-                return <ExpireSoonSubscription expired={true} subscription={userSubscription[0]} />
+                return <ExpireSoonSubscription expired={true} subscription={userSubscriptions[0]} />
             case 5 :
-                return <ExpireSoonSubscription expired={true} subscription={userSubscription[0]} />
+                return <ExpireSoonSubscription expired={true} subscription={userSubscriptions[0]} />
         }
     }
 
@@ -77,7 +82,7 @@ function ExpireSoonSubscription(props){
             {
                 expired ? <>
                     <h3 className="heading3">{`You’ve used up your ${subscription.subscription?.name} subscription`}</h3>
-                    <p className="paragraph">{`${subscription.danceClassesAttended} out of ${subscription.subscription?.danceClasses} classes completed`}</p>
+                    <p className="paragraph">{`${subscription.subscription?.danceClasses} out of ${subscription.subscription?.danceClasses} classes completed`}</p>
                     <p><Link to={`/subscription/${subscription.subscription.slug}`} className="primaryBtn">RENEW</Link></p>
                 </> : <><h3 className="heading3">{`Your ${subscription.subscription?.name} subscription is about to expire`}</h3>
                 <p className="paragraph">{`${subscription.danceClassesAttended} out of ${subscription.subscription?.danceClasses} classes completed`}</p>

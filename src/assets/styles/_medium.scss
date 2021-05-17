@@ -195,6 +195,12 @@
                 border-radius: 0;
                 padding: 16px;
                 width: 30%;
+                &.MuiDrawer-paperAnchorBottom{
+                    width: inherit !important;
+                }
+                &::before{
+                    display: none;
+                }
             }
         }
         .who-we-are-blk, .why-letzdance-blk, .how-it-works-blk, .common-questions-blk{

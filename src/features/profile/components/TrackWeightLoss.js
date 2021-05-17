@@ -29,7 +29,7 @@ export default function TrackWeightLoss(props){
         [{ type: 'date', label: '' }, 'GOAL', 'WEIGHT'],
     ])
     const fetchWeightLogs = (weightGoalData=[]) => {
-        globalGetService(`weightLog`)
+        globalGetService(`weightLog?sortBy=date&OrderBy=asc`)
         .then(response => {
             if(response.success == true){
                 setGraphLoader(true)

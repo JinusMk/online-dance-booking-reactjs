@@ -2,8 +2,8 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import {  DanceInfo } from '../components'
-import { instructorsData } from '../../../constants';
-import { globalPostService } from '../../../utils/globalApiServices';
+// import { instructorsData } from '../../../constants';
+import { globalPostService, globalGetService } from '../../../utils/globalApiServices';
 import '../../../assets/styles/dance-detail-module.scss'
 
 const InstructorCard = React.lazy(() => import('../components/InstructorCard'));
@@ -19,6 +19,19 @@ export default function DanceDetail(props){
     const [ loader, setLoader ] = useState(true)
     const [ danceInfo, setDanceInfo ] = useState({})
     const [ danceClasses, setDanceClasses ] = useState({})
+    const [instructor, setInstructor] = useState('')
+
+    const getDanceInfo = (danceClasses) => {//danceClasses, slug
+        const availableDates = Object.keys(danceClasses)
+        if(availableDates && availableDates.length){
+            let category = props.match.params.slug
+            const classArray = danceClasses[availableDates[0]][category]
+            if(classArray && classArray.length){
+                setDanceInfo(classArray[0])
+                setLoader(false)
+            }
+        }
+    }
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -32,15 +45,16 @@ export default function DanceDetail(props){
             }
         })
     }, [])
-    const getDanceInfo = (danceClasses) => {//danceClasses, slug
-        const availableDates = Object.keys(danceClasses)
-        let category = props.match.params.slug
-        const classArray = danceClasses[availableDates[0]][category]
-        if(classArray && classArray.length){
-            setDanceInfo(classArray[0])
-            setLoader(false)
-        }
-    }
+    useEffect(() => {
+        globalGetService(`category/${sessionStorage.getItem('categoryId')}`)
+        .then(response => {
+            if(response.success == true){
+                setInstructor(response.data?.length ? response.data[0] : '')
+            }else{
+                setInstructor('')
+            }
+        })
+    }, [])
     return(
         <section className="dance-detail-section">
             <Header onBack={() => props.history.push('/')} title={category}/>
@@ -50,10 +64,10 @@ export default function DanceDetail(props){
                         <Suspense fallback={<></>}>
                         {loader ? '' : <>
                                 <TimeSlots danceClasses={danceClasses} category={category}/>
-                                <div className="instructor block">
+                                {instructor ? <div className="instructor block">
                                     <h3 className="heading2 title">Instructor</h3>
-                                    <InstructorCard instructor={instructorsData.find(item => item.category == category)}/>
-                                </div>
+                                    <InstructorCard instructor={instructor}/>
+                                </div> : null}
                                 <Reviews category={category == "hiphop-kids" ? 'hip-hop' : category} />
                                 <DanceSubscription category={category}/>
                                 <HowWorks />

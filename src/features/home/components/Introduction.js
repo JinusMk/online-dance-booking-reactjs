@@ -3,30 +3,31 @@ import Carousel from "react-multi-carousel";
 import Skeleton from '@material-ui/lab/Skeleton';
 import { responsiveCarousel, imageBasePath } from '../../../constants'
 import "react-multi-carousel/lib/styles.css";
-import moment from 'moment'
-import { globalGetService } from '../../../utils/globalApiServices';
+import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import { connect } from 'react-redux'
 import { DanceAlert, SubscriptionAlert } from '../../../shared_elements';
 import { checkIsFinished } from '../../../utils';
+import { UPDATE_SUBSCRIPTIONS, UPDATE_TODAY_DANCECLASSES } from '../../../shared_elements/actions'
 
-const introductionData =[
-    {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
-    {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance Online - Learn from Expert Instructors'},
-    {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
-]
+// const introductionData =[
+//     {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
+//     {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance Online - Learn from Expert Instructors'},
+//     {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
+// ]
 
 function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
-    const [upcomingDances, setUpcomingDances] = useState('')
-    const [userSubsctiption, setUserSubscriptions] = useState([])
-    // const [introductionData, setIntroductionData] = useState([])
+    // const [upcomingDances, setUpcomingDances] = useState('')
+    // const [userSubscriptions, setUserSubscriptions] = useState([])
+    const [introductionData, setIntroductionData] = useState([])
     const [loader, setLoader] = useState(true)
+    const [showBanner, setShowBanner] = useState(true)
 
     useEffect(() => {
         globalGetService(`banners`)
         .then(response => {
             if(response.success === true){
-                // setIntroductionData(response.data)
+                setIntroductionData(response.data)
                 setLoader(false)
             }
         })
@@ -36,8 +37,12 @@ function Introduction(props){
             globalGetService(`userSubscriptions`)
             .then(response => {
                 if(response.success === true){
-                    const userSubsctiption = response.data
-                    setUserSubscriptions(userSubsctiption)
+                    const userSubscriptions = response.data
+
+                    props.updateUserSubscriptions(userSubscriptions)
+                    // setUserSubscriptions(userSubscriptions)
+                }else{
+                    props.updateUserSubscriptions([])
                 }
             })
         }
@@ -45,27 +50,33 @@ function Introduction(props){
 
     useEffect(() => {
         if(props.isLoggedIn){
-            globalGetService(`todayDanceClasses`)
+            globalPostService(`todayDanceClasses`, { date : new Date() })
             .then(response => {
                 if(response.success == true){
-                    setUpcomingDances(response.data)
+                    props.updateTodaysDanceClasses(response.data)
+                    // setUpcomingDances(response.data)
+                }else{
+                    props.updateTodaysDanceClasses('')
                 }
             })
         }
     }, [props.isLoggedIn])
 
+    const { upcomingDances, userSubscriptions } = props
+    
     return(
         // (upcomingDance && !checkIsFinished(upcomingDance.class_booked_end_time)) ? <DanceAlert dance={upcomingDance}/>
         <div className="introduction-blk">
            {upcomingDances && (upcomingDances.bookings.length || upcomingDances.subscriptions.length) ? <>
             {
-                upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" dance={dance} key={index}/> : null): null
+                upcomingDances.bookings && upcomingDances.bookings.length ? upcomingDances.bookings.map((dance, index) => !checkIsFinished(dance.danceClass?.endTime) ? <DanceAlert type="today" setShowBanner={setShowBanner} dance={dance} key={index}/> : null): null
             }
             {
-                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.time) ? <DanceAlert type="subscription" dance={dance} key={index}/> : null): null
+                upcomingDances.subscriptions && upcomingDances.subscriptions.length ? upcomingDances.subscriptions.map((dance, index) => !checkIsFinished(dance.endTime) ? <DanceAlert type="subscription" setShowBanner={setShowBanner} dance={dance} key={index}/> : null): null
             }
            </> : null}
-           { (userSubsctiption && userSubsctiption.length) ? <SubscriptionAlert userSubscription={userSubsctiption} /> :  <Carousel 
+           { (userSubscriptions && userSubscriptions.length) ? <SubscriptionAlert setShowBanner={setShowBanner} userSubscriptions={userSubscriptions} /> :  null}
+           { showBanner ? <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}
@@ -74,26 +85,39 @@ function Introduction(props){
                 autoPlaySpeed={5000}
                 containerClass="carousel-container home"
             >
-                {
+                {/* {
                     introductionData.map((item, index) => <div className="carousel-item" key={index}>
                         {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
                         <img src={item.img} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.value}</p>
                     </div>)
-                }
+                } */}
 
-                {/* {
-                    loader ? [0,1,2].map(item => <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
-                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
-                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
+                {
+                    loader ? [0,1,2].map(item => <div key={item} style={{marginBottom: 8}}><Skeleton variant="rect" height={`53vh`}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
+                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={'50vh'}/></div> : null}
+                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: '50vh'}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.description}</p>
                     </div>)
-                } */}
-            </Carousel>}
+                }
+            </Carousel> : null
+           }
         </div>
     )
 }
 const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
+    userSubscriptions: state.sharedReducers.userSubscriptions,
+    upcomingDances: state.sharedReducers.todayDanceClasses
 })
-export default connect(mapStateToProps, null)(Introduction)
+const mapDispatchToProps = dispatch => ({
+    updateUserSubscriptions : (userSubscriptions) => dispatch({
+        type: UPDATE_SUBSCRIPTIONS,
+        payload: userSubscriptions
+    }),
+    updateTodaysDanceClasses : (todayDanceClasses) => dispatch({
+        type: UPDATE_TODAY_DANCECLASSES,
+        payload: todayDanceClasses
+    })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Introduction)

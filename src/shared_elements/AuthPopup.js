@@ -100,7 +100,7 @@ function AuthPopup(props){
                     className="custom-drawer auth"
                 >
                     <div className="auth-popup-wrapper">
-                        <div className="line"></div>
+                        {/* <div className="line"></div> */}
                         {
                             phoneAuth ? <PhoneAuth handleBack={() => {
                                 if(props.type == "verifyPhone"){

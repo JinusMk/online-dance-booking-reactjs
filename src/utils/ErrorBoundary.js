@@ -40,9 +40,9 @@ class ErrorBoundary extends Component{
                     <Container fixed>
                         <Grid container justify="center" alignItems="center" spacing={2}>
                             <Grid item xs={12} className="textCenter">
-                                <img src={`${imageBasePath}technical_error_icon.svg`}/>
+                                <img src={`${imageBasePath}technical_error_icon.svg`} className="tech-error-img"/>
                                 <h3 className="heading3">Technical error is inevitable</h3>
-                                <Link to="/" onClick={() => this.setState({hasError: false})} className="primaryBtn">RETRY</Link>
+                                <a href="/" onClick={() => this.setState({hasError: false})} className="primaryBtn">RETRY</a>
                             </Grid>
                         </Grid>
                     </Container>

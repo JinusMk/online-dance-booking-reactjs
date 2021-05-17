@@ -33,7 +33,7 @@ export default function ReviewCard(props){
                 onOpen={(e) => e.preventDefault()}
             >
                 <div className={`auth-popup-wrapper review`}>
-                    <div className="line"></div>
+                    {/* <div className="line"></div> */}
                     <h3 className="heading2">Review</h3>
                     <ReviewInfo {...props} type="detail"/>
                 </div>

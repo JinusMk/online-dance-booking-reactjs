@@ -11,7 +11,7 @@ import { ToastNotify } from './shared_elements';
 import firebase from './utils/firebase'
 import Page404 from './Page404'
 import './assets/styles/app.scss';
-import { AUTH_STATUS_UPDATE, UPDATE_USERINFO } from './shared_elements/actions'
+import { AUTH_STATUS_UPDATE, UPDATE_USERINFO, UPDATE_SUBSCRIPTIONS, UPDATE_TODAY_DANCECLASSES } from './shared_elements/actions'
 
 const store = configureStore();
 
@@ -39,6 +39,14 @@ function App() {
       store.dispatch({
         type: AUTH_STATUS_UPDATE,
         payload: false
+      })
+      store.dispatch({
+        type: UPDATE_SUBSCRIPTIONS,
+        payload: []
+      })
+      store.dispatch({
+        type: UPDATE_TODAY_DANCECLASSES,
+        payload: ''
       })
       localStorage.removeItem('idToken')
     }

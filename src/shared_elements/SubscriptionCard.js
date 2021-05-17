@@ -11,7 +11,7 @@ export default function SubscriptionCard(props){
             {active ? <span className="activeLabel secondaryText">ACTIVE</span> : null}
             <div className="info-wrapper">
                 <h3 className="heading3">{subscriptionItem.name + ' Subscription'}</h3>
-                <p className="paragraph">{`Starting from ${currencySymbol[subscriptionItem.currencyType]}${subscriptionItem.actualCost}`}</p>
+                <p className="paragraph">{`Starting from ${currencySymbol[subscriptionItem.currencyType]}${subscriptionItem.discountedCost}`}</p>
                 <ul className="listUnstyled benefitsList">
                     {
                         subscriptionBenefits[subscriptionItem.slug]?.map((point, index) => index <= 1 && <li className="paragraph" key={index}>

@@ -17,7 +17,6 @@ export default function AddToHomeScreen(props){
       }, []);
 
     const addToHomeScreen = (evt) => {
-        // console.log('addToHomeScreen clicked')
         evt.preventDefault();
         if (!promptInstall) {
             return;
@@ -29,10 +28,10 @@ export default function AddToHomeScreen(props){
     }
     return(
         <div className="add-to-home-screen-blk">
-            <div className="add-to-home-screen-wrapper">
+            <div className="inner-wrapper">
                 <h3 className="heading3">Access Letzdance right from your homescreen</h3>
                 <p className="paragraph">This will add a shortcut icon on your homescreen</p>
-                <button className="secondaryBtn" onClick={addToHomeScreen}>ADD TO HOMESCREEN</button>
+                <button className="primaryBtn" onClick={addToHomeScreen}>ADD TO HOMESCREEN</button>
             </div>
         </div>
     )

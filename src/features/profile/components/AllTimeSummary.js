@@ -23,7 +23,7 @@ export default function AllTimeSummary(props){
         fetchCaloriesBurnt()
     }, [params.subscriptionId])
     const fetchCurrentWeight = () => {
-        globalGetService(`weightLog`)
+        globalGetService(`weightLog?sortBy=date&OrderBy=desc`)
         .then(response => {
             setLoader(false)
             if(response.success == true){
@@ -38,7 +38,8 @@ export default function AllTimeSummary(props){
             setLoader(false)
             if(response.success == true){
                 let sum = 0
-                response.data.forEach(cal => {
+                const userCalories = response.data?.filter(item => item.createdBy == "user")
+                userCalories.forEach(cal => {
                     sum += Number(cal.calories)
                 })
                 setCaloriesBurnt(sum)

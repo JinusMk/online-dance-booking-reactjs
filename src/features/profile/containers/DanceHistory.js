@@ -34,7 +34,7 @@ function DanceHistory(props){
                     Object.keys(dances).map((date, dateIndex) => (<div key={dateIndex} className="dance-history-item-wrapper">
                             <h3 className="heading2 heading">{moment().format('DD-MM-YYYY') == date ? 'Today' : moment(date, 'DD-MM-YYYY').format('DD MMM')}</h3>
                             {
-                                dances[date].map((dance, danceIndex) => checkIsFinished(dance.class_booked_end_time) ? <DanceHistoryCard key={danceIndex} dance={dance}/> : <DanceAlert dance={dance} />)
+                                dances[date].map((dance, danceIndex) => checkIsFinished(dance.class_booked_end_time) ? <DanceHistoryCard key={danceIndex} dance={dance}/> : <DanceAlert key={danceIndex} dance={dance} />)
                             }
                     </div>))}
                     {

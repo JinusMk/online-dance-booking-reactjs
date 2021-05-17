@@ -16,7 +16,7 @@ export default function UserWeights(props){
 
     const fetchWeightLogs = () => {
         setLoader(true)
-        globalGetService(`weightLog`)
+        globalGetService(`weightLog?sortBy=date&OrderBy=desc`)
         .then(response => {
             setLoader(false)
             if(response.success == true){
@@ -62,7 +62,7 @@ export default function UserWeights(props){
                 {
                     loader ? <Shimmer type="user-weights"/> : ((weightLog && weightLog.length) || weightGoal) ? <Grid container className="weightLogs-lsiting">
                         {
-                            weightLog && weightLog.length ? weightLog.map((item, index) => <WeightLogItem isLastItem={index == weightLog.length - 1 ? true : false} deleteLoader={deleteLoader} key={index} data={item} deleteWeightLog={deleteWeightLog}/>): null
+                            weightLog && weightLog.length ? weightLog.map((item, index) => <WeightLogItem isLastItem={(weightLog.length == 1) ? true : false} deleteLoader={deleteLoader} key={index} data={item} deleteWeightLog={deleteWeightLog}/>): null
                         }
                         {/* {
                             (weightGoal && weightGoal.length) ? <Grid item xs={12}>
