@@ -38,10 +38,16 @@ body{
                 }
             }
             .login-button-wrapper{
-                padding: 16px;
-                border-bottom: 1px solid #FFE5E9;
+                padding: 16px 16px 0;
+                // border-bottom: 1px solid #FFE5E9;
                 .secondaryText{
                     margin-bottom: 8px;
+                }
+                .login-link{
+                    a{
+                        color: $color_blue;
+                        text-decoration: underline;
+                    }
                 }
             }
             .logged-in-user-wrapper{
@@ -169,7 +175,7 @@ body{
                     }
                 }
                 .login-button-wrapper{
-                    padding: 24px 16px;
+                    padding: 24px 16px 0;
                 }
                 .user-information-form-wrapper{
                     padding: 24px 16px;

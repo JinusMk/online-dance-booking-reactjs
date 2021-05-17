@@ -234,8 +234,9 @@ function Booking(props){
                     { props.isLoggedIn ? <LoggedInUserInfo user={props.userInfo} logout={logout} handleSubmit={handleSubmit}/>: 
                     <>
                         <div className="login-button-wrapper">
-                            <p className="secondaryText">HAVE AN ACCOUNT ?</p>
-                            <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p>
+                            {/* <p className="secondaryText">HAVE AN ACCOUNT ?</p>
+                            <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p> */}
+                            <p className="login-link" onClick={() => setOpenAuthPopup(true)}><a>Already have an account? Click here to login</a></p>
                         </div>
                         <UserInformationForm handleSubmit={handleSubmit}/>                    
                     </>
