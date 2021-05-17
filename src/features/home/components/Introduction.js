@@ -95,8 +95,8 @@ function Introduction(props){
 
                 {
                     loader ? [0,1,2].map(item => <div key={item} style={{marginBottom: 8}}><Skeleton variant="rect" height={`53vh`}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
-                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={'53vh'}/></div> : null}
-                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: '53vh'}} onLoad={() => setImgLoader(false)}/>
+                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={'50vh'}/></div> : null}
+                        <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: '50vh'}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.description}</p>
                     </div>)
                 }
