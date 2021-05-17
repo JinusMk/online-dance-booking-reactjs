@@ -15,8 +15,9 @@ export default function RecordingVideo(props){
                     <source src={recordingData.media} type="video/ogg" />
                     Your browser does not support the video tag.
                 </video> : <div className="img-blk">
-                {imgLoader ? <div className="img-loader">
-                    <Skeleton variant="rect" height={170} /></div> : null}
+                    {imgLoader ? <div className="img-loader">
+                        <Skeleton variant="rect" height={170} />
+                    </div> : null}
                     <img src={recordingData.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <img src={`${imageBasePath}play_icon.svg`} className="play-icon" onClick={() => setPlay(true)}/>
                 </div>

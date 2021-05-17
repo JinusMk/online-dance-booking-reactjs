@@ -4,11 +4,11 @@ import { Header, DanceInformationCard, DanceInformationLoader } from  '../../../
 import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import moment from 'moment'
-import { AddReviewCard, ReviewDetails } from '../components'
+import { AddReviewCard, ReviewDetails, RecordingVideo } from '../components'
 import { toastFlashMessage } from '../../../utils';
 import { currencySymbol } from '../../../constants';
 import '../../../assets/styles/class-detail-module.scss'
-import { ReviewCard, RecapItem } from '../../home/components';
+import { ReviewCard } from '../../home/components';
 
 function ClassDetail(props){
     const [loader, setLoader] = useState(true)
@@ -97,16 +97,36 @@ function ClassDetail(props){
                                 }} page="detail" type="instructor-review"/>
                             </div>
                         </Grid> : null}
-                        {/* {danceInfo.record ? <RecordingVideo 
-                            recordingData={{
-                                // img: ,
-                                media: `${publicLink}/${danceInfo.record}`,
-                                category: danceInfo.category?.name,
-                                instructor: danceInfo.instructor?.name,
-                                participants: danceInfo.participants,
-                                date: danceInfo.eventDate
-                            }}
-                        /> : null} */}
+                        {danceInfo.record ? <Grid item xs={12}>
+                            <div className="class-recording">
+                                <p className="secondaryText">CLASS RECORDING</p>
+                                <RecordingVideo 
+                                    recordingData={{
+                                        // img: ,
+                                        media: `${publicLink}/${danceInfo.record}`,
+                                        category: danceInfo.category?.name,
+                                        instructor: danceInfo.instructor?.name,
+                                        participants: danceInfo.participants,
+                                        date: danceInfo.eventDate
+                                    }}
+                                /> 
+                            </div>
+                        </Grid>: null}
+                        {/* <Grid item xs={12}>
+                            <div className="class-recording">
+                                <p className="secondaryText">CLASS RECORDING</p>
+                                <RecordingVideo 
+                                    recordingData={{
+                                        img: `${publicLink}/17b43dd6d7444fedbbe7753a905d9be6.png`,
+                                        media: `${publicLink}/2131aed9284646c68a923915ba6d914c.mp4"`,
+                                        category: danceInfo.category?.name,
+                                        instructor: danceInfo.instructor?.name,
+                                        participants: danceInfo.participants,
+                                        date: danceInfo.eventDate
+                                    }}
+                                /> 
+                            </div>
+                        </Grid> */}
                         </> : <Grid item xs={12}>
                             <div className="payment-info">
                                 <p className="secondaryText">{'PAID ONLINE'}</p>
