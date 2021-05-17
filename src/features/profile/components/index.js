@@ -8,6 +8,7 @@ import UserProgressDrawer from './UserProgressDrawer'
 import LogCalorieForm from './LogCalorieForm'
 import WeightGoal from './WeightGoal'
 import Shimmer from './Shimmer'
+import RecordingVideo from './RecordingVideo'
 
 export { 
     DanceHistoryCard,
@@ -19,7 +20,8 @@ export {
     UserProgressDrawer,
     LogCalorieForm,
     WeightGoal,
-    Shimmer
+    Shimmer,
+    RecordingVideo
 }
 
 export const GRAPH_OPTONS = {

@@ -82,7 +82,7 @@ function ExpireSoonSubscription(props){
             {
                 expired ? <>
                     <h3 className="heading3">{`You’ve used up your ${subscription.subscription?.name} subscription`}</h3>
-                    <p className="paragraph">{`${subscription.danceClassesAttended} out of ${subscription.subscription?.danceClasses} classes completed`}</p>
+                    <p className="paragraph">{`${subscription.subscription?.danceClasses} out of ${subscription.subscription?.danceClasses} classes completed`}</p>
                     <p><Link to={`/subscription/${subscription.subscription.slug}`} className="primaryBtn">RENEW</Link></p>
                 </> : <><h3 className="heading3">{`Your ${subscription.subscription?.name} subscription is about to expire`}</h3>
                 <p className="paragraph">{`${subscription.danceClassesAttended} out of ${subscription.subscription?.danceClasses} classes completed`}</p>

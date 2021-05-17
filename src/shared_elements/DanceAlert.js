@@ -26,7 +26,7 @@ export default function DanceAlert(props){
             if(response.success == true){
                 // setDanceInfo(response.data && response.data.length ? response.data[0] : {})
                 const danceInfo = response.data && response.data.length ? response.data[0] : {}
-                markAttendanceApi(danceInfo._id)
+                markAttendanceApi(classId)
                 if(danceInfo.zoomLink){
                     window.open(danceInfo.zoomLink, '_blank');
                 }

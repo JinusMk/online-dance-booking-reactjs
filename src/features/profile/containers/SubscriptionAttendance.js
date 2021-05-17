@@ -16,7 +16,7 @@ export default function SubscriptionAttendance(props){
             if(response.success == true){
                 console.log('marked attendance successfully')
             }else if(response.message && !response.success){
-                toastFlashMessage(response.message, 'error')
+                // toastFlashMessage(response.message, 'error')
             }
         })
         
@@ -26,7 +26,7 @@ export default function SubscriptionAttendance(props){
         .then(response => {
             if(response.success == true){
                 const danceInfo = response.data && response.data.length ? response.data[0] : {}
-                markAttendanceApi()
+                markAttendanceApi(danceId)
                 if(danceInfo.zoomLink){
                     setLoaderStatus('Redirecting you to Zoom link ...')
                     setTimeout(() => {
@@ -47,7 +47,7 @@ export default function SubscriptionAttendance(props){
         if(location.search){
             const query = new URLSearchParams(location.search);
             if(query.get('token')){
-                localStorage.setItem('idToken', JSON.stringify(query.get('token')))
+                // localStorage.setItem('idToken', JSON.stringify(query.get('token')))
                 if(query.get('danceId')){
                     fetchDanceClassDetail(query.get('danceId'))
                 }
