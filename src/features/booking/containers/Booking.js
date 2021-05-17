@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import firebase from '../../../utils/firebase'
-import { toastFlashMessage } from '../../../utils'
+import { toastFlashMessage, checkIsFinished } from '../../../utils'
 import { globalGetService, globalPostService } from '../../../utils/globalApiServices';
 import Skeleton from '@material-ui/lab/Skeleton';
 import '../../../assets/styles/booking-module.scss'
@@ -28,6 +28,7 @@ function Booking(props){
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
+        setBookingLoader(false)
         if(props.match.params.id){
             setType('danceBooking')
             globalGetService(`dance-classes/${props.match.params.id}`, {})
@@ -109,17 +110,24 @@ function Booking(props){
         setBookingLoader(true)
         // console.log('booking continue clicked', userInfo)
         if(type == "danceBooking"){
-            let formData = {
-                dance_id: selectedItem.id,
-                name: userInfo.displayName,
-                email: userInfo.email,
-                mobile: userInfo.phoneNumber,
-                paymentId: ''
-            }
-            if(payment == "online"){
-                setupOnlinePayment(formData, userInfo)
+            if(checkIsFinished(selectedItem.endTime)){
+                toastFlashMessage(`OOPS!! The Dance class your're trying to book has been over already!`, 'error')
+                setTimeout(() => {
+                    props.history.push(`/schedule`)
+                }, 500);
             }else{
-                createBookingApi(formData)
+                let formData = {
+                    dance_id: selectedItem.id,
+                    name: userInfo.displayName,
+                    email: userInfo.email,
+                    mobile: userInfo.phoneNumber,
+                    paymentId: ''
+                }
+                if(payment == "online"){
+                    setupOnlinePayment(formData, userInfo)
+                }else{
+                    createBookingApi(formData)
+                }
             }
         }else{
             setBookingLoader(true)

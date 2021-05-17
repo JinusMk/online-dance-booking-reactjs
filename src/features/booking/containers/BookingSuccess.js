@@ -55,7 +55,7 @@ function BookingSuccess(props){
                         }
                     </div>
                     <Suspense fallback={<></>}>
-                        <InviteFriends/>
+                        <InviteFriends type={type}/>
                     </Suspense>
                     <AddToHomeScreen />
                     <div className="payment-method">

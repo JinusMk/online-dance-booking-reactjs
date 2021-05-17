@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Dialog, DialogContent, TextField, ListItem, List } from '@material-ui/core';
 import { toastFlashMessage } from '../utils';
 import { 
@@ -23,7 +23,7 @@ export default function ShareDialog(props){
     const [ size ] = useState(40)
     const [ borderRadius ] = useState(8)
     const [ title ] = useState(`Learn Dance online, Zumba, Live Classes`)
-    const [ url ] = useState(`https://letzdance.co/`)
+    const [ url, setUrl ] = useState(props.url)
     const [ description ] = useState(`Learn Dance & Zumba from the comfort of your home through Letzdance Online Live Dance Classes.  Have fun while you get fit through interactive Live Classes on Zoom.`)
 
     const handleCopy = () => {
@@ -38,6 +38,9 @@ export default function ShareDialog(props){
         /* Alert the copied text */
         toastFlashMessage('COPIED TO YOUR CLIPBOARD', 'success')
     }
+    useEffect(() => {
+        setUrl(props.url)
+    }, [props.url])
     return(
         <Dialog
             open={open}
@@ -52,7 +55,7 @@ export default function ShareDialog(props){
                 <div className="inputGroup">
                     <TextField 
                         id="myInput"
-                        value={`https://letzdance.co/`}
+                        value={url}
                     />
                     <p className="copyBtn primaryBtn">
                         <a onClick={handleCopy}>Copy</a>
