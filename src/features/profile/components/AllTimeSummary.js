@@ -14,7 +14,7 @@ export default function AllTimeSummary(props){
     useEffect(() => {
         if(props.subscriptionInfo && props.subscriptionInfo?.danceClassesAttended){
             setLoader(false)
-            setAttendedCount(props.subscriptionInfo?.danceClassesAttended) 
+            setAttendedCount(props.subscriptionInfo?.danceClassNumber ? props.subscriptionInfo?.danceClassNumber : props.subscriptionInfo?.danceClassesAttended) 
         }
     }, [props.subscriptionInfo])
 

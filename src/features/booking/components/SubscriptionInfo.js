@@ -47,7 +47,7 @@ export default function SubscriptionInfo(props){
                 active ? <div className="user-subscription-info">
                     <h3 className="heading2">{subscription.name}</h3>
                     <p className="heading3 classInfo">{`${subscription?.months} ${subscription?.months > 1 ? 'months' : 'month'} - ${subscription?.danceClasses} classes`}<span className={`activeLabel ${checkNumberOfDaysLeft(subscription.endDate) <= 7 ? 'danger' : ''}`}>{ checkNumberOfDaysLeft(subscription.endDate) <= 7 ? `EXPIRING SOON` : `ACTIVE`}</span></p>
-                    <LinearProgressBar className={`progress-bar ${checkNumberOfDaysLeft(subscription.endDate) <= 7 ? 'danger' : ''}`} variant="determinate" value={(subscription.danceClassesAttended / subscription?.danceClasses) * 100} />
+                    <LinearProgressBar className={`progress-bar ${checkNumberOfDaysLeft(subscription.endDate) <= 7 ? 'danger' : ''}`} variant="determinate" value={(subscription.danceClassNumber ? subscription.danceClassNumber : subscription.danceClassesAttended / subscription?.danceClasses) * 100} />
                     <p className="secondaryText date">{moment(subscription.startDate).format(`DD MMM YYYY`)}<span>{moment(subscription.endDate).format(`DD MMM YYYY`)}</span></p>
                     <p className="link textCenter">
                         <Link to={{ pathname: `/user-subscriptions/${subscription._id}/progress`, state: { prevPath: `${location.pathname}` }}} className="primaryBtn">SEE MY PROGRESS</Link>
