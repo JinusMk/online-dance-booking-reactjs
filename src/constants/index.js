@@ -306,13 +306,6 @@ export const danceCategory = {
   4: 'bollywood-kids',
   5: 'hiphop-kids'
 };
-export const categorySlug = {
-  bollywood: 1,
-  'hip-hop': 2,
-  zumba: 3,
-  'bollywood-kids': 4,
-  'hiphop-kids': 5
-};
 
 export const USER_AUTH_ERRORCODE = {
   email: {

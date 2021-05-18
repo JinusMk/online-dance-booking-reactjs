@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel, reviewsData, imageBasePath, categorySlug } from '../../../constants'
+import { responsiveCarousel, reviewsData, imageBasePath } from '../../../constants'
 import { ReviewCard } from './index'
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
@@ -31,7 +31,7 @@ export default function Reviews(props){
 
     return(
         <div className="reviews block">
-            <h3 className="heading2 title">{props.category ? <><span style={{textTransform: 'capitalize'}}>{props.category}</span> dancers speak</>: 'Letzdancers speak'} {props.category ? null : <Link to="/reviews" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link>}</h3>
+            <h3 className="heading2 title">{props.title ? <><span style={{textTransform: 'capitalize'}}>{props.title}</span> dancers speak</>: 'Letzdancers speak'} {props.category ? null : <Link to="/reviews" className="see-all paragraph"><span>See all </span><img src={`${imageBasePath}right_arrow_icon.svg`} /></Link>}</h3>
             <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
@@ -46,7 +46,7 @@ export default function Reviews(props){
                 renderDotsOutside={true}
             >
                 {
-                    props.category ? reviews.filter(review => (review.category == props.category || review.status == "Approved")).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) :reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
+                    props.category ? reviews.filter(review => (review.category == props.category || review.status == "Approved")).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) : reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
                 }
             </Carousel>
         </div>

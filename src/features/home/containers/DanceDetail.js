@@ -57,7 +57,7 @@ export default function DanceDetail(props){
     }, [])
     return(
         <section className="dance-detail-section">
-            <Header onBack={() => props.history.push('/')} title={category}/>
+            <Header onBack={() => props.history.push('/')} title={danceInfo?.title}/>
             <Container className="dance-detail-container">
                     {/* <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/> */}
                     <DanceInfo dance={danceInfo} category={category} loader={loader}/>
@@ -68,7 +68,7 @@ export default function DanceDetail(props){
                                     <h3 className="heading2 title">Instructor</h3>
                                     <InstructorCard instructor={instructor}/>
                                 </div> : null}
-                                <Reviews category={category == "hiphop-kids" ? 'hip-hop' : category} />
+                                <Reviews title={danceInfo?.title} category={category == "hiphop-kids" ? 'hip-hop' : category} />
                                 <DanceSubscription category={category}/>
                                 <HowWorks />
                                 <ContactUs /> 

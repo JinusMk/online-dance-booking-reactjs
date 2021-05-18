@@ -13,7 +13,7 @@ export default function DanceHistoryCard(props){
         <div className="dance-history-card">
             <div className="title-block">
                 {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8, marginRight: 16}}/></div> : null}
-                <img src={`${imageBasePath}${danceCategory[dance.category_id]}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                <img src={dance?.danceClass?.category?.image} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <div>
                     <h3 className="heading2 title">{dance.category}</h3>
                     <p className="heading3">{`${moment(dance.class_booked_start_time).format('DD MMM')}, ${moment(dance.class_booked_start_time).format('hh:mm A')}`}</p>
@@ -21,10 +21,10 @@ export default function DanceHistoryCard(props){
             </div>
             <Grid container spacing={2} alignItems="center">
                 <Grid item xs={6}>
-                    {(dance.review && dance.review.danceRating >= 0) ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.review?.danceRating}</span></h3> : <p><Link to={{pathname: `/dance/${danceCategory[dance.category_id]}/${dance.dance_id}/review`, state: { prevPath: location.pathname }}} className="secondaryBtn">ADD A REVIEW</Link></p>}
+                    {(dance.review && dance.review.danceRating >= 0) ? <h3 className="heading2 rating"><img src={`${imageBasePath}star_icon.svg`}/><span>{dance.review?.danceRating}</span></h3> : <p><Link to={{pathname: `/dance/${dance?.danceClass?.category?.slug}/${dance.dance_id}/review`, state: { prevPath: location.pathname }}} className="secondaryBtn">ADD A REVIEW</Link></p>}
                 </Grid>
                 <Grid item xs={6}>
-                    <p><Link className="secondaryBtn" to={{pathname: `/dance/${danceCategory[dance.category_id]}/${dance.dance_id}`, state: { prevPath: location.pathname }}}>VIEW DETAILS</Link></p>
+                    <p><Link className="secondaryBtn" to={{pathname: `/dance/${dance?.danceClass?.category?.slug}/${dance.dance_id}`, state: { prevPath: location.pathname }}}>VIEW DETAILS</Link></p>
                 </Grid>
             </Grid>
         </div>

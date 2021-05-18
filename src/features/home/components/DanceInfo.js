@@ -25,7 +25,7 @@ export default function DanceInfo(props){
                         <img src={`${imageBasePath}clock_icon_active.svg`} style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name}`}</span></p></li> 
                     <li><p className="paragraph">
                     {imgLoader ? <Skeleton variant="rect" height={18} width={18} /> : null}
-                        <img src={`${imageBasePath}participants_icon.svg`} style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> <span>{`${dance.participants == 0 ? participantsCount[props.category]: dance.participants} satisfied dancers last week`}</span></p></li>
+                        <img src={`${imageBasePath}participants_icon.svg`} style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> <span>{`${dance.participants} satisfied dancers last week`}</span></p></li>
                     <li><p className="paragraph"><span className="live">LIVE</span> <span>{`Completely online`}</span></p></li>
                 </ul>
                 </>

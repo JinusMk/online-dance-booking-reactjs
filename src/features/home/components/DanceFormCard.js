@@ -15,7 +15,6 @@ export default function DanceFormCard(props){
         }}>
                 <div className="top-blk">
                     {imgLoader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : null}
-                    {/* <img src={`${imageBasePath}${danceCategory[dance.category_id]}_logo_1.svg`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> */}
                     <img src={dance.image} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <span className="secondaryText">{dance.label}</span>
                     <div className="title-wrapper">
@@ -41,7 +40,7 @@ export default function DanceFormCard(props){
                             </li>
                         
                         */}
-                        <li style={{width: '100%', padding: 0, margin: 0}}><a className="secondaryBtn round" style={{borderRadius: 4}}>{`BOOK ${dance.category.toUpperCase()} CLASS`}</a></li>
+                        <li style={{width: '100%', padding: 0, margin: 0}}><a className="secondaryBtn round" style={{borderRadius: 4}}>{`BOOK ${dance?.name?.toUpperCase()} CLASS`}</a></li>
                     </ul>
                 </div>
             </div>
