@@ -8,31 +8,48 @@ import { globalGetService } from '../../../utils/globalApiServices';
 import { imageBasePath } from '../../../constants';
 import '../../../assets/styles/schedule-module.scss'
 import ScheduleLoader from '../components/ScheduleLoader';
+import { UPDATE_SCHEDULE } from '../actions'
+import { connect } from 'react-redux'
 
-export default function Schedule(props){
+function Schedule(props){
     const [loader, setLoader] = useState(true)
     const [scheduleData, setScheduleData] = useState({})
+    
+    const navigateToDate = () => {
+        const location = props.location
+        let hash = location.hash;
+        hash = hash.substring(1, hash.length);
+        const element = document.getElementById(`${hash}`);
+        if(element){
+            const yOffset = -170; 
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        }else{
+            window.scrollTo({ top: 1, behavior: 'smooth' });
+        }
+    }
+
     useEffect(() => {
+        // if(props.scheduleData && Object.keys(props.scheduleData) && Object.keys(props.scheduleData).length){
+        //     setScheduleData(props.scheduleData)
+        //     setLoader(false)
+        //     console.log('inside this1')
+        //     navigateToDate()
+        // }
         globalGetService('schedule', {})
         .then(response => {
             if(response.success == true){
                 setScheduleData(response.data.dance_classes)
+                // props.updateScheduleData(response.data.dance_classes)
                 setLoader(false)
-                const location = props.location
-                let hash = location.hash;
-                hash = hash.substring(1, hash.length);
-                const element = document.getElementById(`${hash}`);
-                if(element){
-                    const yOffset = -170; 
-                    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                    window.scrollTo({top: y, behavior: 'smooth'});
-                }else{
-                    window.scrollTo({ top: 1, behavior: 'smooth' });
-                }
+                navigateToDate()
+                // if(!(props.scheduleData && Object.keys(props.scheduleData) && Object.keys(props.scheduleData).length)){
+                //     console.log('inside this2')
+                //     navigateToDate()
+                // }
             }
         })
     }, [])
-    
     return(
         <section className="schedule-section">
             <Container className="schedule-container">
@@ -88,3 +105,13 @@ export default function Schedule(props){
         </section>
     )
 }
+const mapStateToProps = state => ({
+    scheduleData : state.scheduleReducer?.scheduleData
+})
+const mapDispatchToProps = dispatch => ({
+    updateScheduleData : (scheduleData) => dispatch({
+        type: UPDATE_SCHEDULE,
+        payload: scheduleData
+    })
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Schedule)
