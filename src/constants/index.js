@@ -180,139 +180,6 @@ export const reviewsData = [
   }
 ];
 
-export const instructorsData = [
-  {
-    id: '',
-    name: 'Angel Bensy',
-    qualification: 'ZIN Certified',
-    experience: '5',
-    rating: '4.5',
-    rating_count: 23,
-    no_of_classes: 51,
-    category: 'zumba',
-    img: `${imageBasePath}Angel_zumba.jpg`
-  },
-  {
-    id: '',
-    name: 'Manas',
-    qualification: 'Guinness Record Holder',
-    experience: '10',
-    rating: '5',
-    rating_count: 57,
-    no_of_classes: 79,
-    category: 'bollywood',
-    img: `${imageBasePath}Manas_bollywood.jpg`
-  },
-  {
-    id: '',
-    name: 'Arun',
-    qualification: 'Expert Dance Master',
-    experience: '6',
-    rating: '4.5',
-    rating_count: 27,
-    no_of_classes: 31,
-    category: 'bollywood-kids',
-    img: `${imageBasePath}Arun_bollywood-kids.jpeg`
-  },
-  {
-    id: '',
-    name: 'Tony',
-    qualification: 'Award winning Choreographer ',
-    experience: '9',
-    rating: '4.5',
-    rating_count: 34,
-    no_of_classes: 43,
-    category: 'hip-hop',
-    img: `${imageBasePath}Deena_hiphop.jpg`
-  },
-  {
-    id: '',
-    name: 'Tony',
-    qualification: 'Award winning Choreographer ',
-    experience: '9',
-    rating: '4.5',
-    rating_count: 34,
-    no_of_classes: 43,
-    category: 'hiphop-kids',
-    img: `${imageBasePath}Deena_hiphop.jpg`
-  }
-];
-
-export const lastWeekRecapVideos = [
-    {
-      id: '',
-      img: `${imageBasePath}zumba_logo_2.svg`,
-      category: 'zumba',
-      instructor: 'Angel Bensy',
-      participants: '22',
-      date: '14 Apr 2021',
-      media: `${imageBasePath}zumba_recap_1.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}bollywood_logo_2.svg`,
-      category: 'bollywood',
-      instructor: 'Manas',
-      participants: '21',
-      date: '16 Apr 2021',
-      media: `${imageBasePath}bollywood_recap_1.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}hip-hop_logo_2.svg`,
-      category: 'hip-hop',
-      instructor: 'Tony',
-      participants: '12',
-      date: '15 Apr 2021',
-      media: `${imageBasePath}hip-hop_recap_1.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}bollywood-kids_logo_2.svg`,
-      category: 'bollywood-kids',
-      instructor: 'Manas',
-      participants: '12',
-      date: '12 Apr 2021',
-      media: `${imageBasePath}bollywood-kids_recap_1.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}zumba_logo_1.svg`,
-      category: 'zumba',
-      instructor: 'Angel Bensy',
-      participants: '27',
-      date: '17 Apr 2021',
-      media: `${imageBasePath}zumba_recap_2.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}hip-hop_logo_1.svg`,
-      category: 'hip-hop',
-      instructor: 'Tony',
-      participants: '16',
-      date: '16 Apr 2021',
-      media: `${imageBasePath}hip-hop_recap_2.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}bollywood_logo_1.svg`,
-      category: 'bollywood',
-      instructor: 'Manas',
-      participants: '23',
-      date: '18 Apr 2021',
-      media: `${imageBasePath}bollywood_recap_2.mp4`
-    },
-    {
-      id: '',
-      img: `${imageBasePath}bollywood-kids_logo_1.svg`,
-      category: 'bollywood-kids',
-      instructor: 'Manas',
-      participants: '19',
-      date: '14 Apr 2021',
-      media: `${imageBasePath}bollywood-kids_recap_2.mp4`
-    }
-];
-
 export const danceCategory = {
   1: 'bollywood',
   2: 'hip-hop',
@@ -378,13 +245,13 @@ export const privacyPolicyData = [
   }
 ];
 
-export const participantsCount = {
-  zumba: 102,
-  bollywood: 93,
-  'hip-hop': 75,
-  'bollywood-kids': 126,
-  'hiphop-kids': 97
-};
+// export const participantsCount = {
+//   zumba: 102,
+//   bollywood: 93,
+//   'hip-hop': 75,
+//   'bollywood-kids': 126,
+//   'hiphop-kids': 97
+// };
 
 export const subscriptionBenefitsGeneral = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
 
