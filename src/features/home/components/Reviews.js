@@ -12,7 +12,7 @@ export default function Reviews(props){
     const [reviews, setReviews] = useState(reviewsData)
 
     useEffect(() => {
-        if(props.category){
+        if(props.categoryId){
             globalGetService(`review-list/${sessionStorage.getItem('categoryId')}`)
             .then(response => {
                 if(response.success === true){
@@ -46,7 +46,7 @@ export default function Reviews(props){
                 renderDotsOutside={true}
             >
                 {
-                    props.category ? reviews.filter(review => (review.category == props.category || review.status == "Approved")).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) : reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
+                    props.categoryId ? reviews.filter(review => (review.categoryId == props.categoryId || review.status == "Approved")).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) : reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
                 }
             </Carousel>
         </div>

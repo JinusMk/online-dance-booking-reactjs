@@ -60,7 +60,7 @@ export default function DanceDetail(props){
             <Header onBack={() => props.history.push('/')} title={danceInfo?.title}/>
             <Container className="dance-detail-container">
                     {/* <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/> */}
-                    <DanceInfo dance={danceInfo} category={category} loader={loader}/>
+                    <DanceInfo dance={danceInfo} loader={loader}/>
                         <Suspense fallback={<></>}>
                         {loader ? '' : <>
                                 <TimeSlots danceClasses={danceClasses} category={category}/>
@@ -68,7 +68,7 @@ export default function DanceDetail(props){
                                     <h3 className="heading2 title">Instructor</h3>
                                     <InstructorCard instructor={instructor}/>
                                 </div> : null}
-                                <Reviews title={danceInfo?.title} category={category == "hiphop-kids" ? 'hip-hop' : category} />
+                                <Reviews title={danceInfo?.title} categoryId={sessionStorage.getItem('categoryId') == "602243825d42a126b059ec28" ? '602243485d42a126b059ec27' : sessionStorage.getItem('categoryId')} />
                                 <DanceSubscription category={category}/>
                                 <HowWorks />
                                 <ContactUs /> 

@@ -52,7 +52,9 @@ export const reviewsData = [
     description:
       'I have been attending Zumba for couple of years, I came across this site for online Zumba. The instructor was good, the session was peppy and a good workout.',
     class_date: '20-04-2021',
-    category: 'zumba'
+    category: 'zumba',
+    categoryId : '',
+    categoryId: '602240785d42a126b059ec24'
   },
   {
     id: '',
@@ -62,7 +64,8 @@ export const reviewsData = [
     description:
       'The Zumba session was fab… awesome energy and super workout. The instructor guided us with the steps and checked if we are doing it right.. thank u..',
     class_date: '20-04-2021',
-    category: 'zumba'
+    category: 'zumba',
+    categoryId: '602240785d42a126b059ec24'
   },
   {
     id: '',
@@ -72,7 +75,8 @@ export const reviewsData = [
     description:
       'This is the first time I am attending Zumba, when the session started I was feeling it’s high intensity but eventually when I took few breaks for a min and continued i had so much fun and its helping me in my weight loss. can’t wait for my next session.',
     class_date: '19-04-2021',
-    category: 'zumba'
+    category: 'zumba',
+    categoryId: '602240785d42a126b059ec24'
   },
   {
     id: '',
@@ -82,7 +86,8 @@ export const reviewsData = [
     description:
       'The instructor gave clear step by step instruction and made it super easy to learn. I thought I had a left feet but the first class gave me an enormous confidence.',
     class_date: '18-04-2021',
-    category: 'bollywood'
+    category: 'bollywood',
+    categoryId: '602242c35d42a126b059ec25'
   },
   {
     id: '',
@@ -92,7 +97,8 @@ export const reviewsData = [
     description:
       'Loved the way how every part of choreography was easily broken down to easy simple steps. I am super happy that I am able to dance to my favourite song now! Thank you!',
     class_date: '17-04-2021',
-    category: 'bollywood'
+    category: 'bollywood',
+    categoryId: '602242c35d42a126b059ec25'
   },
   {
     id: '',
@@ -102,7 +108,8 @@ export const reviewsData = [
     description:
       'I had a very good online Bollywood class with Manas, can’t wait for my next..',
     class_date: '17-04-2021',
-    category: 'bollywood'
+    category: 'bollywood',
+    categoryId: '602242c35d42a126b059ec25'
   },
   {
     id: '',
@@ -112,7 +119,8 @@ export const reviewsData = [
     description:
       'Loved the hiphop class, awesome instructor. I would like to join the regular sessions and learn hiphop. thank you.',
     class_date: '15-04-2021',
-    category: 'hip-hop'
+    category: 'hip-hop',
+    categoryId: '602243485d42a126b059ec27'
   },
   {
     id: '',
@@ -122,7 +130,9 @@ export const reviewsData = [
     description:
       'I booked the class for my son who has a passion to dance but gets bored very quickly, I found this class more convenient as its online from home. my son seems to be interested as they introduce new steps and style in every class.',
     class_date: '15-04-2021',
-    category: 'hip-hop'
+    category: 'hip-hop',
+    categoryId: '602243485d42a126b059ec27'
+
   },
   {
     id: '',
@@ -132,7 +142,8 @@ export const reviewsData = [
     description:
       'This is the first time I am trying an online Hiphop session, I never thought it would be so much fun! The instructor was so patient and he taught every step until everyone got it right. Its rare to find someone so patient and motivating. Thanks for a wonderful session…',
     class_date: '12-04-2021',
-    category: 'hip-hop'
+    category: 'hip-hop',
+    categoryId: '602243485d42a126b059ec27'
   },
   {
     id: '',
@@ -142,7 +153,8 @@ export const reviewsData = [
     description:
       'Great option to keep the kids active and learn dancing from home. Its very convenient no worry of being late or traffic! She is enjoying every class.. Looking forward to more classes.',
     class_date: '02-04-2021',
-    category: 'bollywood-kids'
+    category: 'bollywood-kids',
+    categoryId: '602243025d42a126b059ec26'
   },
   {
     id: '',
@@ -152,7 +164,8 @@ export const reviewsData = [
     description:
       'Very nice concept, my daughter enjoyed the class… very convenient. The instructor is very good and polite. Thank you.',
     class_date: '12-03-2021',
-    category: 'bollywood-kids'
+    category: 'bollywood-kids',
+    categoryId: '602243025d42a126b059ec26'
   },
   {
     id: '',
@@ -162,7 +175,8 @@ export const reviewsData = [
     description:
       'I never though I can make my kid be attentive for an online class as he is always running around but you guys proved me wrong. He stayed the whole time during the online dance session and he thoroughly enjoyed. Thank you.',
     class_date: '06-03-2021',
-    category: 'bollywood-kids'
+    category: 'bollywood-kids',
+    categoryId: '602243025d42a126b059ec26'
   }
 ];
 

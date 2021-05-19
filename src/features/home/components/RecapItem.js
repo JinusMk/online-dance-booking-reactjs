@@ -31,7 +31,7 @@ export default function RecapItem(props){
         <>
         <div className="last-week-recap-item" onClick={() => setOpenRecap(true)}>
             <div className="img-blk">
-                {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={179} /></div> : null}
+                {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={161} /></div> : null}
                 {/* <img src={recap.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> */}
                 <img src={`${publicLink}/${recap.image}`} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <img src={`${imageBasePath}play_icon.svg`} className="play-icon"/>
