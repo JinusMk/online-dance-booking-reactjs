@@ -46,11 +46,11 @@ export const regExpression = {
 export const reviewsData = [
   {
     id: '',
-    reviwed_by: 'Neeti Singh',
+    reviwed_by: 'Priya',
     rating: '4',
     media: '',
     description:
-      'I have been attending Zumba for couple of years, I came across this site for online Zumba. The instructor was good, the session was peppy and a good workout.',
+      'I have been attending Online Zumba with you for a year now! I can’t believe I have transformed so much. I get so many complements from my friends. Keep it up 😊',
     class_date: '20-04-2021',
     category: 'zumba',
     categoryId : '',
@@ -58,34 +58,56 @@ export const reviewsData = [
   },
   {
     id: '',
-    reviwed_by: 'Amrita',
+    reviwed_by: 'Tinie',
     rating: '5',
     media: '',
     description:
-      'The Zumba session was fab… awesome energy and super workout. The instructor guided us with the steps and checked if we are doing it right.. thank u..',
-    class_date: '20-04-2021',
+      'Online Zumba is so easy I am saving lot of time which I used to spend travelling to my class.',
+    class_date: '08-04-2021',
     category: 'zumba',
     categoryId: '602240785d42a126b059ec24'
   },
   {
     id: '',
-    reviwed_by: 'Shruti Nair',
+    reviwed_by: 'Sonakshi Manra',
+    rating: '5',
+    media: '',
+    description:
+      'Thank you Manas for an amazing Zumba session😊 Cheers👍',
+    class_date: '01-04-2021',
+    category: 'zumba',
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    id: '',
+    reviwed_by: 'Kathryn',
     rating: '4',
     media: '',
     description:
-      'This is the first time I am attending Zumba, when the session started I was feeling it’s high intensity but eventually when I took few breaks for a min and continued i had so much fun and its helping me in my weight loss. can’t wait for my next session.',
-    class_date: '19-04-2021',
+      'I have lost 4 kgs just through Your Zumba classes. Happy😊👍 ',
+    class_date: '25-03-2021',
     category: 'zumba',
     categoryId: '602240785d42a126b059ec24'
   },
   {
     id: '',
-    reviwed_by: 'Vivek Kumar',
+    reviwed_by: 'Pooja',
+    rating: '4',
+    media: '',
+    description:
+      'Nice workout session. Please introduce Bharatanatyam.',
+    class_date: '14-03-2021',
+    category: 'zumba',
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    id: '',
+    reviwed_by: 'Reeta Kaur',
     rating: '5',
     media: '',
     description:
-      'The instructor gave clear step by step instruction and made it super easy to learn. I thought I had a left feet but the first class gave me an enormous confidence.',
-    class_date: '18-04-2021',
+      'Had a fun session with my friends dancing online in your app. Please provide more group classes.',
+    class_date: '01-03-2021',
     category: 'bollywood',
     categoryId: '602242c35d42a126b059ec25'
   },
@@ -96,40 +118,51 @@ export const reviewsData = [
     media: '',
     description:
       'Loved the way how every part of choreography was easily broken down to easy simple steps. I am super happy that I am able to dance to my favourite song now! Thank you!',
-    class_date: '17-04-2021',
+    class_date: '16-02-2021',
     category: 'bollywood',
     categoryId: '602242c35d42a126b059ec25'
   },
   {
     id: '',
-    reviwed_by: 'Shilpa Raheja',
+    reviwed_by: 'Ary Liew',
     rating: '5',
     media: '',
     description:
-      'I had a very good online Bollywood class with Manas, can’t wait for my next..',
-    class_date: '17-04-2021',
+      'My kids really enjoyed the Online Bollywood class. Thank you 🙏🏻',
+    class_date: '02-02-2021',
     category: 'bollywood',
     categoryId: '602242c35d42a126b059ec25'
   },
   {
     id: '',
-    reviwed_by: 'Priyanka Bhavani',
+    reviwed_by: 'Dhanshika',
+    rating: '5',
+    media: '',
+    description:
+      'I am a Bollywood regular student attending classes for 7 months now. My dancing has improved so much over the months. The recorded sessions are helpful to practice at home',
+    class_date: '29-01-2021',
+    category: 'bollywood',
+    categoryId: '602242c35d42a126b059ec25'
+  },
+  {
+    id: '',
+    reviwed_by: 'Paramjiit Kaur',
     rating: '4',
     media: '',
     description:
-      'Loved the hiphop class, awesome instructor. I would like to join the regular sessions and learn hiphop. thank you.',
-    class_date: '15-04-2021',
+      'I have always wanted to learn Hiphop but was not sure if would be able to, but the Hiphop trial class was helpful in checking if in can. It so easy than I thought. Now I can join full time with you guys 😊 ',
+    class_date: '20-01-2021',
     category: 'hip-hop',
     categoryId: '602243485d42a126b059ec27'
   },
   {
     id: '',
-    reviwed_by: 'Nilesh',
+    reviwed_by: 'Vamsi',
     rating: '5',
     media: '',
     description:
-      'I booked the class for my son who has a passion to dance but gets bored very quickly, I found this class more convenient as its online from home. my son seems to be interested as they introduce new steps and style in every class.',
-    class_date: '15-04-2021',
+      'Happy that I am able to clear my doubts then and there with the instructor while dancing. Good initiative👍',
+    class_date: '05-01-2021',
     category: 'hip-hop',
     categoryId: '602243485d42a126b059ec27'
 
@@ -141,7 +174,29 @@ export const reviewsData = [
     media: '',
     description:
       'This is the first time I am trying an online Hiphop session, I never thought it would be so much fun! The instructor was so patient and he taught every step until everyone got it right. Its rare to find someone so patient and motivating. Thanks for a wonderful session…',
-    class_date: '12-04-2021',
+    class_date: '20-12-2020',
+    category: 'hip-hop',
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    id: '',
+    reviwed_by: 'Yunus Ali',
+    rating: '5',
+    media: '',
+    description:
+      'Good instructor 👍',
+    class_date: '12-12-2020',
+    category: 'hip-hop',
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    id: '',
+    reviwed_by: 'Kalpana',
+    rating: '5',
+    media: '',
+    description:
+      'Super app ideal during a pandemic situation. Dance from home, good concept. All the best👍',
+    class_date: '01-12-2020',
     category: 'hip-hop',
     categoryId: '602243485d42a126b059ec27'
   },
@@ -152,7 +207,7 @@ export const reviewsData = [
     media: '',
     description:
       'Great option to keep the kids active and learn dancing from home. Its very convenient no worry of being late or traffic! She is enjoying every class.. Looking forward to more classes.',
-    class_date: '02-04-2021',
+    class_date: '25-11-2020',
     category: 'bollywood-kids',
     categoryId: '602243025d42a126b059ec26'
   },
@@ -163,7 +218,7 @@ export const reviewsData = [
     media: '',
     description:
       'Very nice concept, my daughter enjoyed the class… very convenient. The instructor is very good and polite. Thank you.',
-    class_date: '12-03-2021',
+    class_date: '02-11-2020',
     category: 'bollywood-kids',
     categoryId: '602243025d42a126b059ec26'
   },
@@ -174,10 +229,32 @@ export const reviewsData = [
     media: '',
     description:
       'I never though I can make my kid be attentive for an online class as he is always running around but you guys proved me wrong. He stayed the whole time during the online dance session and he thoroughly enjoyed. Thank you.',
-    class_date: '06-03-2021',
+    class_date: '06-10-2020',
     category: 'bollywood-kids',
     categoryId: '602243025d42a126b059ec26'
-  }
+  },
+  {
+    id: '',
+    reviwed_by: 'Chandu',
+    rating: '5',
+    media: '',
+    description:
+      'Very interactive online dance class. Limited crowd. Was able to learn better. Instructor cleared all my doubts.',
+    class_date: '20-09-2020',
+    category: 'bollywood-kids',
+    categoryId: '602243025d42a126b059ec26'
+  },
+  {
+    id: '',
+    reviwed_by: 'Kshitija Mandavkar',
+    rating: '5',
+    media: '',
+    description:
+      'Me and my daughter had a fun Bollywood session. Good activity for parents with their kids from home.',
+    class_date: '01-09-2020',
+    category: 'bollywood-kids',
+    categoryId: '602243025d42a126b059ec26'
+  },
 ];
 
 export const danceCategory = {

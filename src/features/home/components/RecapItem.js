@@ -37,7 +37,7 @@ export default function RecapItem(props){
                 <img src={`${imageBasePath}play_icon.svg`} className="play-icon"/>
             </div>
             <h3 className="heading3">{`${recap.category?.name} | ${recap.instructor?.name}`}</h3>
-            <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.createdAt).format('DD MMM YYYY')}`}</p>
+            <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.danceClassDate).format('DD MMM YYYY')}`}</p>
         </div>
         {[isMobile ? 'bottom': 'right'].map((anchor) => (
             <SwipeableDrawer
@@ -58,7 +58,7 @@ export default function RecapItem(props){
                     </video>
                     <div className="class-info">
                         <h3 className="heading3">{`${recap.category?.name} by ${recap.instructor?.name}`}</h3>
-                        <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.createdAt).format('DD MMM YYYY')}`}</p>
+                        <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.danceClassDate).format('DD MMM YYYY')}`}</p>
                     </div>
                 </div>
                 <div className="footer-review-card">

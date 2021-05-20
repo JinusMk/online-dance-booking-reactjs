@@ -13,7 +13,7 @@ export default function InviteFriends(props){
             navigator.share({
               title: document.title,
               text: "Learn Dance & Zumba from the comfort of your home through Letzdance Online Live Dance Classes.  Have fun while you get fit through interactive Live Classes on Zoom.",
-              url: type == "danceBooking" ? `https://letzdance.co/dance/${params.category}/${params.id}/booking` : type == "subscription" ? `https://letzdance.co/subscription/${params.category}/${params.subsctiptionId}/booking` : `https://letzdance.co/`
+              url: type == "danceBooking" ? `https://letzdance.co/dance/${params.category}/${params.id}/booking` : type == "subscription" ? `https://letzdance.co/subscription/${params.category}` : `https://letzdance.co/`
             })
             .then(() => console.log('Successful share'))
             .catch(error => console.log('Error sharing:', error));
@@ -36,7 +36,7 @@ export default function InviteFriends(props){
         <ShareDialog
             open={openShareDialog}
             handleClose={() => setOpenShareDialog(false)}
-            url={type == "danceBooking" ? `https://letzdance.co/dance/${params.category}/${params.id}/booking` : type == "subscription" ? `https://letzdance.co/subscription/${params.category}/${params.subsctiptionId}/booking` : `https://letzdance.co/`}
+            url={type == "danceBooking" ? `https://letzdance.co/dance/${params.category}/${params.id}/booking` : type == "subscription" ? `https://letzdance.co/subscription/${params.category}` : `https://letzdance.co/`}
         />
         </>
     )
