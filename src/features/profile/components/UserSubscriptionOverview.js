@@ -17,12 +17,14 @@ export default function UserSubscriptionOverview(props){
             .then(response => {
                 setLoader(false)
                 if(response.success == true){
-                    const calorieLog = response.data?.filter(item => item.createdBy == "user")
+                    const calorieLog = response.data?.userCalories ? response.data?.userCalories : []
                     let sum = 0
                     calorieLog.forEach((log) => {
                         sum+=Number(log.calories)
                     })
                     setCaloriesBurnt(sum)
+                }else{
+                    setCaloriesBurnt(0)
                 }
             })
         }
@@ -44,7 +46,7 @@ export default function UserSubscriptionOverview(props){
                     </Grid>
                     <Grid item xs={4} >
                         <div className="overview-item textCenter">
-                            <h1 className="heading1">{loader ? '--' : caloriesBurnt ? caloriesBurnt : 0}<span>k</span></h1>
+                            <h1 className="heading1">{loader ? '--' : caloriesBurnt ? caloriesBurnt : '--'}<span>k</span></h1>
                             <p className="secondaryText">CALORIES <br/> BURNED</p>
                         </div>
                     </Grid>

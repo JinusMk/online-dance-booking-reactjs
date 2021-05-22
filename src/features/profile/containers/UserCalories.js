@@ -21,7 +21,7 @@ export default function UserCalories(props){
         .then(response => {
             setLoader(false)
             if(response.success == true){
-                setUserCalories(response.data?.filter(item => item.createdBy == "user"))
+                setUserCalories(response.data?.userCalories ? response.data?.userCalories : [])
             }else{
                 setUserCalories([])
             }

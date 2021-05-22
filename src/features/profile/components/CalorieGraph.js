@@ -43,8 +43,8 @@ export default function CalorieGraph(props){
             setLoader(false)
             if(response.success == true){
                 setGraphLoader(true)
-                let userCalorieLogs = response.data.filter(log => log.createdBy == "user")
-                let instructorCalorieLogs = response.data.filter(log => log.createdBy == "instructor")
+                let userCalorieLogs = response.data?.userCalories ? response.data?.userCalories : []
+                let instructorCalorieLogs = response.data?.instructorCalories ? response.data?.instructorCalories : []
                 let updatedGraphData = [
                     [{ type: 'date', label: '' }, 'INSTRUCTOR', 'YOU'],
                 ]
