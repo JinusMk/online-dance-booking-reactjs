@@ -3,7 +3,7 @@ import { Header } from  '../../../shared_elements'
 import { Container } from '@material-ui/core';
 import '../../../assets/styles/subscription-detail-module.scss'
 import { globalGetService } from '../../../utils/globalApiServices';
-import { checkNumberOfDaysLeft } from '../../../utils';
+import { checkNumberOfDaysLeft, toastFlashMessage } from '../../../utils';
 import Shimmer from '../components/Shimmer'
 
 const SubscriptionInfo = lazy(() => import('../components/SubscriptionInfo'));
@@ -22,7 +22,7 @@ export default function SubscriptionDetail(props){
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        globalGetService(`subscriptionsBySlug/${props.match.params.category}`)
+        globalGetService(`subscriptions/category/${sessionStorage.getItem('subscriptionId')}`)
         .then(response => {
             if(response.success === true){
                 setSubscriptionInfo(response.data)
@@ -47,6 +47,8 @@ export default function SubscriptionDetail(props){
                     setActiveSubscription('')
                     setLoader(false)
                 }
+            }else if(!response.success && response.message){
+                toastFlashMessage(response.message, 'error')
             }
         })
     }, [])
