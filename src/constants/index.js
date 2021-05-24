@@ -333,10 +333,9 @@ export const privacyPolicyData = [
 export const subscriptionBenefitsGeneral = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
 
 export const subscriptionBenefits = {
-  'zumba': [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`],
-  'bollywood': [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "hip-hop" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "bollywood-kids": [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "hiphop-kids" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "hip-hop-kids" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  '602240785d42a126b059ec24': [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`],
+  '602242c35d42a126b059ec25': [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  "602243485d42a126b059ec27" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  "602243025d42a126b059ec26": [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
+  "602243825d42a126b059ec28" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`]
 }

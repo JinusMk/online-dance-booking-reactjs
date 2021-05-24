@@ -12,11 +12,11 @@ export default function AllTimeSummary(props){
     const [weightInfo, setWeightInfo] = useState('')
 
     useEffect(() => {
-        if(props.subscriptionInfo && props.subscriptionInfo?.danceClassesAttended){
+        if(subscriptionInfo && subscriptionInfo?.danceClassNumber){
+            setAttendedCount(props.subscriptionInfo?.danceClassNumber) 
             setLoader(false)
-            setAttendedCount(props.subscriptionInfo?.danceClassNumber ? props.subscriptionInfo?.danceClassNumber : props.subscriptionInfo?.danceClassesAttended) 
         }
-    }, [props.subscriptionInfo])
+    }, [subscriptionInfo])
 
     useEffect(() => {
         setLoader(true)

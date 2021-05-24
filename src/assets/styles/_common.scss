@@ -1036,11 +1036,20 @@ body{
                                 .MuiTypography-root{
                                     @include fontStyle(
                                         $fontFamily:$font_RobotoCondensed,
+                                        $weight: $boldFont
                                     );
                                 }
                             }
                             &.MuiPickersDay-daySelected{
                                 background-color: $color_primary;   
+                            }
+                            &.MuiPickersDay-dayDisabled{
+                                .MuiIconButton-label{
+                                    .MuiTypography-root{
+                                        font-weight: 300;
+                                        opacity: 0.6;
+                                    }
+                                }
                             }
                         }
                     }

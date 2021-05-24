@@ -69,7 +69,7 @@ export default function DanceDetail(props){
                                     <InstructorCard instructor={instructor}/>
                                 </div> : null}
                                 <Reviews title={danceInfo?.title} categoryId={sessionStorage.getItem('categoryId') == "602243825d42a126b059ec28" ? '602243485d42a126b059ec27' : sessionStorage.getItem('categoryId')} />
-                                <DanceSubscription category={category}/>
+                                <DanceSubscription categoryId={sessionStorage.getItem('categoryId')}/>
                                 <HowWorks />
                                 <ContactUs /> 
                             </>
