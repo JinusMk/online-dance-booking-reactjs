@@ -25,7 +25,9 @@ export default function RecapItem(props){
     };
     const handleClick = (recap) => {
         sessionStorage.setItem('categoryId', recap.category?._id);
-        history.push(`/dance/${recap.category?.slug ? recap.category?.slug : recap.category.name?.toLowerCase()}`)
+        if(recap.category?.slug){
+            history.push(`/dance/${recap.category?.slug}`)
+        }
     }
     return(
         <>
