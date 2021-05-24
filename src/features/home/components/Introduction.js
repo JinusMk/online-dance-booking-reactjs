@@ -7,30 +7,28 @@ import { globalGetService, globalPostService } from '../../../utils/globalApiSer
 import { connect } from 'react-redux'
 import { DanceAlert, SubscriptionAlert } from '../../../shared_elements';
 import { checkIsFinished } from '../../../utils';
+import { UPDATE_BANNER } from '../actions'
 import { UPDATE_SUBSCRIPTIONS, UPDATE_TODAY_DANCECLASSES } from '../../../shared_elements/actions'
-
-// const introductionData =[
-//     {id: '', img: `${imageBasePath}intro_img_1.svg`, value: 'Dance Online - Learn | Have Fun | Get Fit'},
-//     {id: '', img: `${imageBasePath}intro_img_3.svg`, value: 'Dance Online - Learn from Expert Instructors'},
-//     {id: '', img: `${imageBasePath}intro_img_2.svg`, value: 'Dance Online - Exclusive Kids Batch available'},
-// ]
 
 function Introduction(props){
     const [imgLoader, setImgLoader] = useState(true)
-    // const [upcomingDances, setUpcomingDances] = useState('')
-    // const [userSubscriptions, setUserSubscriptions] = useState([])
-    const [introductionData, setIntroductionData] = useState([])
+    // const [introductionData, setIntroductionData] = useState([])
     const [loader, setLoader] = useState(true)
     const [showBanner, setShowBanner] = useState(true)
 
     useEffect(() => {
-        globalGetService(`banners`)
-        .then(response => {
-            if(response.success === true){
-                setIntroductionData(response.data)
-                setLoader(false)
-            }
-        })
+        if(!(props.bannerData && props.bannerData.length)){
+            globalGetService(`banners`)
+            .then(response => {
+                if(response.success === true){
+                    props.updateBanner(response.data)
+                    // setIntroductionData(response.data)
+                    setLoader(false)
+                }else{
+                    props.updateBanner('')
+                }
+            })
+        }
     }, [])
     useEffect(() => {
         if(props.isLoggedIn){
@@ -38,7 +36,6 @@ function Introduction(props){
             .then(response => {
                 if(response.success === true){
                     const userSubscriptions = response.data
-
                     props.updateUserSubscriptions(userSubscriptions)
                     // setUserSubscriptions(userSubscriptions)
                 }else{
@@ -85,20 +82,12 @@ function Introduction(props){
                 autoPlaySpeed={5000}
                 containerClass="carousel-container home"
             >
-                {/* {
-                    introductionData.map((item, index) => <div className="carousel-item" key={index}>
-                        {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={280}/></div> : null}
-                        <img src={item.img} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: 280}} onLoad={() => setImgLoader(false)}/>
-                        <p className="heading1">{item.value}</p>
-                    </div>)
-                } */}
-
                 {
-                    loader ? [0,1,2].map(item => <div key={item} style={{marginBottom: 8}}><Skeleton variant="rect" height={`53vh`}/></div>) : introductionData.map((item, index) => <div className="carousel-item" key={index}>
+                    props.bannerData && props.bannerData.length ?  props.bannerData.map((item, index) => <div className="carousel-item" key={index}>
                         {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={'50vh'}/></div> : null}
                         <img src={item.image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: '50vh'}} onLoad={() => setImgLoader(false)}/>
                         <p className="heading1">{item.description}</p>
-                    </div>)
+                    </div>) : [0,1,2].map(item => <div key={item} style={{marginBottom: 8}}><Skeleton variant="rect" height={`53vh`}/></div>)
                 }
             </Carousel> : null
            }
@@ -108,7 +97,8 @@ function Introduction(props){
 const mapStateToProps = state => ({
     isLoggedIn: state.sharedReducers.isLoggedIn,
     userSubscriptions: state.sharedReducers.userSubscriptions,
-    upcomingDances: state.sharedReducers.todayDanceClasses
+    upcomingDances: state.sharedReducers.todayDanceClasses,
+    bannerData: state.homeReducer.bannerData
 })
 const mapDispatchToProps = dispatch => ({
     updateUserSubscriptions : (userSubscriptions) => dispatch({
@@ -118,6 +108,10 @@ const mapDispatchToProps = dispatch => ({
     updateTodaysDanceClasses : (todayDanceClasses) => dispatch({
         type: UPDATE_TODAY_DANCECLASSES,
         payload: todayDanceClasses
+    }),
+    updateBanner : (bannerData) => dispatch({
+        type: UPDATE_BANNER,
+        payload: bannerData
     })
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Introduction)

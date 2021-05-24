@@ -23,7 +23,7 @@ export default function Schedule(props){
                 hash = hash.substring(1, hash.length);
                 const element = document.getElementById(`${hash}`);
                 if(element){
-                    const yOffset = -170; 
+                    const yOffset = -150; 
                     const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
                     window.scrollTo({top: y, behavior: 'smooth'});
                 }else{

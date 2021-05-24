@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 export default function Gallery(props){
     return(
         <div className="gallery block">
-            <Carousel 
+            {/* <Carousel 
                 responsive={responsiveCarousel}
                 swipeable={true}
                 showDots={false}
@@ -23,7 +23,7 @@ export default function Gallery(props){
                 {props.loader ? [0,1].map((item, index) => <div key={index} className="gallery-skeleton-wrapper">
                     <Skeleton variant="rect" height={170}/>
                 </div>): lastWeekRecapVideos.filter(item => item.category == props.category).map((item, index) => <GalleryItem key={index} recap={item}/>)}
-            </Carousel>
+            </Carousel> */}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { responsiveCarousel, imageBasePath, subscriptionBenefits } from '../../../constants'
 import Carousel from "react-multi-carousel";
 import { globalGetService } from '../../../utils/globalApiServices';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import "react-multi-carousel/lib/styles.css";
 
 export default function DanceSubscription(props){
@@ -12,7 +12,7 @@ export default function DanceSubscription(props){
     const [active, setActive] = useState(false)
 
     useEffect(() => {
-        globalGetService(`subscriptionsBySlug/${props.category}`)
+        globalGetService(`subscriptions/category/${sessionStorage.getItem('categoryId')}`)
         .then(response => {
             setLoader(false)
             if(response.success == true){
@@ -49,7 +49,7 @@ export default function DanceSubscription(props){
                     containerClass="carousel-container dance-subscription"
                 >
                     {
-                        subscriptionBenefits[props.category]?.map((item, index) => <div key={index} className="subscription-info-card">
+                        subscriptionBenefits[props.categoryId]?.map((item, index) => <div key={index} className="subscription-info-card">
                             <img className="" src={`${imageBasePath}fun_icon.svg`} />
                             <p className="heading3">{item}</p>
                         </div>)
@@ -58,7 +58,7 @@ export default function DanceSubscription(props){
                 </Carousel>
             </div>
             <p>
-                {active ? <Link to={{pathname: `/user-subscriptions/${subscription.userSubscription?._id}/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
+                {active ? <Link to={{pathname: `/user-subscriptions/${subscription.userSubscription?._id}/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} onClick={() => sessionStorage.setItem('categoryId', subscription.category?._id)} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
             </p>
         </div> : ''}
         </>

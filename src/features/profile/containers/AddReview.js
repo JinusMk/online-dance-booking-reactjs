@@ -19,7 +19,6 @@ function AddReview(props){
         description: '',
         dance_id: props.match.params.danceId,
     })
-    const [category, setCategory] = useState(props.match.params.danceCategory)
     const [error, setError] = useState({})
     const [reviewLoader, setReviewLoader] = useState(false)
     const [formWidth, setFormWidth] = useState(0)
@@ -102,7 +101,7 @@ function AddReview(props){
                                 <Grid item xs={12}>
                                     <div className="dance-info wrapper flexCentered">
                                         {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8, marginRight: 16}}/></div> : null}
-                                        <img src={`${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                                        <img src={danceInfo?.category?.image} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                                         <div className="info">
                                             <h3 className="heading2">{danceInfo.title}</h3>
                                             <p className="heading3">{`${moment(danceInfo.class_start_time).format('DD MMM')}, ${moment(danceInfo.class_start_time).format(`hh:mm A`)}`}</p>

@@ -12,11 +12,11 @@ export default function AllTimeSummary(props){
     const [weightInfo, setWeightInfo] = useState('')
 
     useEffect(() => {
-        if(props.subscriptionInfo && props.subscriptionInfo?.danceClassesAttended){
+        if(subscriptionInfo && subscriptionInfo?.danceClassNumber){
+            setAttendedCount(props.subscriptionInfo?.danceClassNumber) 
             setLoader(false)
-            setAttendedCount(props.subscriptionInfo?.danceClassesAttended) 
         }
-    }, [props.subscriptionInfo])
+    }, [subscriptionInfo])
 
     useEffect(() => {
         setLoader(true)
@@ -38,7 +38,7 @@ export default function AllTimeSummary(props){
             setLoader(false)
             if(response.success == true){
                 let sum = 0
-                const userCalories = response.data?.filter(item => item.createdBy == "user")
+                const userCalories = response.data?.userCalories ? response.data?.userCalories : []
                 userCalories.forEach(cal => {
                     sum += Number(cal.calories)
                 })
@@ -74,7 +74,7 @@ export default function AllTimeSummary(props){
                 </Grid>
                 <Grid item xs={4}>
                     <div className="summary-item textCenter">
-                        <h1 className="heading1">{`${loader ? '--' : caloriesBurnt ? caloriesBurnt : 0}`}<span>k</span></h1>
+                        <h1 className="heading1">{`${loader ? '--' : caloriesBurnt ? caloriesBurnt : "--"}`}<span>k</span></h1>
                         <p className="secondaryText">CALORIES <br/> BURNED</p>
                     </div>
                 </Grid>

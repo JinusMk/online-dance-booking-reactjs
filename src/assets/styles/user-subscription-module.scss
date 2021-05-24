@@ -6,6 +6,12 @@ body{
             padding: 0;
             .shimmer-wrapper{
                 padding: 16px;
+                .user-subscriptions-loader{
+                    .MuiSkeleton-root{
+                        box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                        border: 1px solid $color_light_gray;
+                    }
+                }
             }
             .user-subscription-listing{
                 .user-subscription-list-item{

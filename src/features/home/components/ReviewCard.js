@@ -39,7 +39,7 @@ export default function ReviewCard(props){
                 </div>
                 {
                     props.page == "detail" ? null : <div className="footer-review-card">
-                        <Link to={review.category_id ? `/dance/${review.category?.toLowerCase()}` : '/schedule'} onClick={() => sessionStorage.setItem('categoryId', review.category_id)} className="primaryBtn">{`Book ${review.category} class`.toUpperCase()}</Link>
+                        <Link to={review.category_id ? `/dance/${review.category?.toLowerCase()}` : '/schedule'} onClick={() => sessionStorage.setItem('categoryId', review.category_id)} className="primaryBtn">{`Book ${review.danceClass?.category?.name ? review.danceClass?.category?.name : review.category} class`.toUpperCase()}</Link>
                     </div>
                 }
             </SwipeableDrawer>
@@ -62,7 +62,7 @@ function ReviewInfo(props){
                         </p> : null}
                     </div>
                     <p className="paragraph text">{(props.type != "detail" && review.description.length > 160) ? `${review.description.slice(0,155)}...` : review.description}</p>
-                    {(props.type == "detail" || review.description.length < 160) ? null : <p className="paragraph read-more" onClick={handleOpen}>
+                    {(props.type == "detail" || review.description.length <= 160) ? null : <p className="paragraph read-more" onClick={handleOpen}>
                         <span>Read more</span>
                         <img src={`${imageBasePath}right_arrow_icon.svg`}/>
                     </p>
@@ -71,10 +71,10 @@ function ReviewInfo(props){
                 }
             </div>
             <div className="user-info">
-                {review.img ? <Avatar src={review.img} className="user-avatar" /> : <Avatar className="user-avatar">{review.name ? review.name[0]: 'L'}</Avatar>}
+                {review.img ? <Avatar src={review.img} className="user-avatar" /> : <Avatar className="user-avatar">{review.name ? review.name[0]: review.reviwed_by ? review.reviwed_by[0] : 'L'}</Avatar>}
                 <div className="name-wrapper">
                     <h3 className="heading3">{review.reviwed_by}</h3>
-                    <p>Took <span style={{textTransform: 'capitalize'}}>{review.category}</span> class on {review._id ? moment(review.class_date).format(`DD MMM YYYY`) : moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
+                    <p>Taken <span style={{textTransform: 'capitalize'}}>{review.danceClass?.category?.name ? review.danceClass?.category?.name : review.category}</span> class on {review._id ? moment(review.class_date).format(`DD MMM YYYY`) : moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
                 </div>
             </div>
         </div>

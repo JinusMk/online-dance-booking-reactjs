@@ -24,20 +24,22 @@ export default function RecapItem(props){
         setState({ ...state, [anchor]: open });
     };
     const handleClick = (recap) => {
-        sessionStorage.setItem('categoryId', recap._id);
-        history.push(`/dance/${recap.category?.slug ? recap.category?.slug : recap.category.name?.toLowerCase()}`)
+        sessionStorage.setItem('categoryId', recap.category?._id);
+        if(recap.category?.slug){
+            history.push(`/dance/${recap.category?.slug}`)
+        }
     }
     return(
         <>
         <div className="last-week-recap-item" onClick={() => setOpenRecap(true)}>
             <div className="img-blk">
-                {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={179} /></div> : null}
+                {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={161} /></div> : null}
                 {/* <img src={recap.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> */}
                 <img src={`${publicLink}/${recap.image}`} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <img src={`${imageBasePath}play_icon.svg`} className="play-icon"/>
             </div>
             <h3 className="heading3">{`${recap.category?.name} | ${recap.instructor?.name}`}</h3>
-            <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.createdAt).format('DD MMM YYYY')}`}</p>
+            <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.danceClassDate).format('DD MMM YYYY')}`}</p>
         </div>
         {[isMobile ? 'bottom': 'right'].map((anchor) => (
             <SwipeableDrawer
@@ -58,7 +60,7 @@ export default function RecapItem(props){
                     </video>
                     <div className="class-info">
                         <h3 className="heading3">{`${recap.category?.name} by ${recap.instructor?.name}`}</h3>
-                        <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.createdAt).format('DD MMM YYYY')}`}</p>
+                        <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.danceClassDate).format('DD MMM YYYY')}`}</p>
                     </div>
                 </div>
                 <div className="footer-review-card">

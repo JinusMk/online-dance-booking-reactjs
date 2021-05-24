@@ -10,7 +10,7 @@ export default function DanceInformationCard(props){
         <div className="dance-information-card">
             <div className="top-blk flexCentered">
                 {imgLoader ? <div><Skeleton variant="rect" height={72} width={72} style={{borderRadius: 8}}/></div> : null}
-                <img src={dance.category?.image ? dance.category?.image : `${imageBasePath}${category}_card_logo.svg`} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
+                <img src={dance.category?.image} className="logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                 <div className="content">
                     <h3 className="heading2">{dance.title ? dance.title : dance.category?.name ? dance.category?.name : category}</h3>
                     <h3 className="heading3">
@@ -26,7 +26,7 @@ export default function DanceInformationCard(props){
                     <p className="paragraph"><img src={`${imageBasePath}clock_icon_active.svg`} /> <span>{`${dance.duration} class by ${dance.instructor && dance.instructor.name}`}</span></p>
                 </li>
                 <li>
-                    <p className="paragraph"><img src={`${imageBasePath}participants_icon.svg`} /> <span>{`${dance.participants == 0 ? participantsCount[props.category]: dance.participants} satisfied dancers last week`}</span></p>
+                    <p className="paragraph"><img src={`${imageBasePath}participants_icon.svg`} /> <span>{dance.participants} satisfied dancers last week</span></p>
                 </li>
                 <li>
                     <p className="paragraph"><span className="live">LIVE</span> <span>{`Completely online`}</span></p>
