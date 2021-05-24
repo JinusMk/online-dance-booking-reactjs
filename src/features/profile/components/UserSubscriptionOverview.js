@@ -40,7 +40,7 @@ export default function UserSubscriptionOverview(props){
                 <Grid className="overview-info" container spacing={0}>
                     <Grid item xs={4}>
                         <div className="overview-item textCenter">
-                            <h1 className="heading1">{subscription.danceClassNumber ? subscription.danceClassNumber : subscription.danceClassesAttended}<span>/{subscription.subscription?.danceClasses}</span></h1>
+                            <h1 className="heading1">{subscription.danceClassNumber}<span>/{subscription.subscription?.danceClasses}</span></h1>
                             <p className="secondaryText">CLASSES <br/>COMPLETED</p>
                         </div>
                     </Grid>

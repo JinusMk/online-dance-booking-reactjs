@@ -32,7 +32,6 @@ export default function SubscriptionDetail(props){
                         ...activeSubscription,
                         userSubscription: {
                             ...activeSubscription.userSubscription,
-                            danceClassesAttended: activeSubscription.danceClassNumber ? activeSubscription.danceClassNumber : activeSubscription.danceClassesAttended,
                             months: activeSubscription.months,
                             name: activeSubscription.name,
                             danceClasses: activeSubscription.danceClasses
