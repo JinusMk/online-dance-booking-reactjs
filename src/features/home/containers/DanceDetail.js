@@ -24,7 +24,7 @@ export default function DanceDetail(props){
     const getDanceInfo = (danceClasses) => {//danceClasses, slug
         const availableDates = Object.keys(danceClasses)
         if(availableDates && availableDates.length){
-            let category = props.match.params.slug
+            let category = Object.keys(danceClasses[availableDates[0]]) && Object.keys(danceClasses[availableDates[0]]).length ? Object.keys(danceClasses[availableDates[0]])[0] : props.match.params.slug
             const classArray = danceClasses[availableDates[0]][category]
             if(classArray && classArray.length){
                 setDanceInfo(classArray[0])
@@ -55,9 +55,16 @@ export default function DanceDetail(props){
             }
         })
     }, [])
+    const handleGoBack = () => {
+        if(props.location.state && props.location.state.prevPath){
+            props.history.push(`${props.location.state.prevPath}`)
+        }else{
+            props.history.push('/')
+        }
+    }
     return(
         <section className="dance-detail-section">
-            <Header onBack={() => props.history.push('/')} title={danceInfo?.title}/>
+            <Header onBack={handleGoBack} title={danceInfo?.title}/>
             <Container className="dance-detail-container">
                     {/* <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/> */}
                     <DanceInfo dance={danceInfo} loader={loader}/>

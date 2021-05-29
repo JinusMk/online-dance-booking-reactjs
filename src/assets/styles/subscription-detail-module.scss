@@ -2,6 +2,11 @@
 
 body{
     .subscription-detail-section{
+        header{
+            .heading2{
+                font-size: 24px;
+            }
+        }
         .subscription-detail-container{
             padding: 0;
             .shimmer-wrapper{

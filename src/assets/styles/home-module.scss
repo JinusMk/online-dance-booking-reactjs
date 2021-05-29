@@ -375,6 +375,9 @@ body{
                     margin-bottom: 0;
                     padding-bottom: 0;
                     box-shadow: none;
+                    .bannerImgWrapper{
+                        margin: 0 150px;
+                    }
                     .carousel-container{
                         .react-multiple-carousel__arrow {
                             border: 1px solid $color_primary;
@@ -440,6 +443,9 @@ body{
                    margin: 0 200px;
                 }
                 .introduction-blk{
+                    .bannerImgWrapper{
+                        margin: 0 200px 0;
+                    }
                     .subscription-alert-wrapper{
                         margin: 64px 200px 0;
                     }

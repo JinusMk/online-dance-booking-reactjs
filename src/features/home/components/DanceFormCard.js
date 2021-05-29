@@ -14,7 +14,7 @@ export default function DanceFormCard(props){
             history.push(`/dance/${dance.category}`)
         }}>
                 <div className="top-blk">
-                    {imgLoader ? <Skeleton variant="rect" height={isMobile ? 182 : 144} className="img-loader"/> : null}
+                    {imgLoader ? <Skeleton variant="rect" height={isMobile ? 160 : 144} className="img-loader"/> : null}
                     <img src={dance.image} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                     <span className="secondaryText">{dance.label}</span>
                     <div className="title-wrapper">
@@ -25,10 +25,10 @@ export default function DanceFormCard(props){
                     <h3 className="heading3">
                         <img src={`${imageBasePath}star_icon.svg`} />
                         <span>{dance.rating}</span>
-                        <span className="rating">({dance.rating_count} RATINGS)</span>
+                        <span className="rating">({dance.rating_count ? dance.rating_count : '--'} RATINGS)</span>
                     </h3>
-                    <p className="heading3 cost"><span>{`${currencySymbol[dance.currencyType]}${dance.cost_old}`}</span>{`${currencySymbol[dance.currencyType]}${dance.cost}`}</p>
-                    <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration} class by ${dance.instructor ? dance.instructor.name: ''}`}</span></p>
+                    <p className="heading3 cost"><span>{`${currencySymbol[dance.currencyType]}${dance.cost_old ? dance.cost_old : '--'}`}</span>{`${currencySymbol[dance.currencyType]}${dance.cost ? dance.cost : '--'}`}</p>
+                    <p className="subHeading"><img src={`${imageBasePath}clock_icon.svg`} /> <span>{`${dance.duration ? dance.duration : '1 hour'} class by ${dance.instructor && dance.instructor?.name ? dance.instructor?.name: '--'}`}</span></p>
                     <ul className="listInline">
                         {/* 
                             dance.buttons.map((item, index) => (index < (dance.buttons.length <= 3 ? 3 : 2)) &&  <li key={index}>
