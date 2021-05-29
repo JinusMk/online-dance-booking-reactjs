@@ -181,7 +181,7 @@ body{
                                     }
                                 }
                                 .subHeading{
-                                    margin-bottom: 16px;
+                                    margin-bottom: 8px;
                                     span{
                                         color: $color_info_text;
                                         font-weight: $regularFont;
@@ -191,6 +191,19 @@ body{
                                     img{
                                         vertical-align: middle;
                                         width: 18px;
+                                    }
+                                }
+                                .description{
+                                    margin-bottom: 16px;
+                                    position: relative;
+                                    svg{
+                                        width: 19px;
+                                        fill: #999999;
+                                        position: absolute;
+                                    }
+                                    span{
+                                        display: inline-block;
+                                        margin-left: 23px;
                                     }
                                 }
                                 ul{
