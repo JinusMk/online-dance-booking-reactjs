@@ -73,7 +73,11 @@ function Introduction(props){
             }
            </> : null}
            { (userSubscriptions && userSubscriptions.length) ? <SubscriptionAlert setShowBanner={setShowBanner} userSubscriptions={userSubscriptions} /> :  null}
-           { showBanner ? <Carousel 
+           { showBanner ? props.bannerData && props.bannerData.length == 1 ? <div className="bannerImgWrapper">
+                {imgLoader ? <div style={{marginBottom: 8}}><Skeleton variant="rect" height={'50vh'}/></div> : null}
+                <img src={props.bannerData[0].image} alt="#" style={imgLoader ? {display: 'none'} : {minHeight: '50vh'}} onLoad={() => setImgLoader(false)}/>
+                <p className="heading1">{props.bannerData[0].description}</p>
+           </div>: <Carousel 
                 responsive={{...responsiveCarousel, superLargeDesktop: {...responsiveCarousel.superLargeDesktop, items: 2}}}
                 swipeable={true}
                 showDots={false}
