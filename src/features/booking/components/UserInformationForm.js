@@ -98,7 +98,7 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className="inputGroup">
-                    <label className={error.password ? 'error': ''}>{error.password ? error.password : 'PASSWORD'}</label>
+                    <label className={error.password ? 'error': ''}>{error.password ? error.password : 'CREATE PASSWORD'}</label>
                     <TextField 
                         value={userInfo.password}
                         onChange={(e) => handleChange('password', e.target.value)}

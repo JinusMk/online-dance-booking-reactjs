@@ -35,7 +35,7 @@ body{
                 box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
                 .bannerImgWrapper{
                     box-sizing: border-box;
-                    text-align: center;
+                    // text-align: center;
                     img{
                         width: 100%;
                         margin-bottom: 8px;
@@ -390,6 +390,7 @@ body{
                     box-shadow: none;
                     .bannerImgWrapper{
                         margin: 0 150px;
+                        text-align: center;
                     }
                     .carousel-container{
                         .react-multiple-carousel__arrow {
