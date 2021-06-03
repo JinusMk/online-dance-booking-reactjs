@@ -46,7 +46,7 @@ export default function SubscriptionBenefits(props){
             <h3 className="title heading2">Subscription benefits</h3>
             <ul className="listUnstyled benefits-list">
                 {
-                    benefitsData.map((item, index) => category == "zumba" && item.img == "record_icon.svg" ? null : <li key={index} className="benefit-item-wrapper">
+                    benefitsData.map((item, index) => category == "zumba" && (item.img == "record_icon.svg" || item.img == "choreography_icon.svg.svg") ? null : <li key={index} className="benefit-item-wrapper">
                         {imgLoader ? <Skeleton variant="rect" width={isMobile ? 60 : 60} className="img-loader"/> : null}
                         <img src={`${imageBasePath}${item.img}`} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
                         <h3 className="heading3">{([`hip-hop`, `bollywoord`, 'hiphop-kids'].includes(category) && item.img == "classes_count_icon.svg")  ? `8 classes a month` : item.text}</h3>
