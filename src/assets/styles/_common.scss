@@ -41,6 +41,28 @@ body{
             left: 20px;
             cursor: pointer;
         }
+        .whatsappFlotingBtn{
+            a{
+                position: fixed;
+                width: 60px;
+                height: 60px;
+                bottom: 80px;
+                right: 40px;
+                background-color: #25d366;
+                color: #FFF;
+                border-radius: 20px;
+                text-align: center;
+                font-size: 30px;
+                box-shadow: 2px 2px 3px #999;
+                z-index: 100;
+                svg{
+                    fill: #fff;
+                    padding: 4px 3px 4px 4px;
+                    box-sizing: border-box;
+                    width: 60px;
+                }
+            }
+        }
     }
     .bottom-navigation{
         position: fixed;
