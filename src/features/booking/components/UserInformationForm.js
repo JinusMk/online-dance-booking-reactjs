@@ -6,6 +6,7 @@ import { fieldValidation } from '../../../utils/formValidation';
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils';
 import { USER_AUTH_ERRORCODE } from '../../../constants'
+// import { globalPostService } from '../../../utils/globalApiServices';
 
 export default function UserInformationForm(props){
     const [userInfo, setUserInfo] = useState({

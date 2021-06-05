@@ -1,6 +1,6 @@
 export const imageBasePath = 'https://letzdance-fe.s3.us-east-2.amazonaws.com/';
 export const DEV_BASE_URL = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : 'https://admin2.letzdance.co/api/4/' ;
-export const RAZOR_PAY_KEY = process.env.REACT_APP_RAZOR_PAY_KEY ? process.env.REACT_APP_RAZOR_PAY_KEY : 'rzp_test_NKXGcWEaRQd4SH'
+export const RAZOR_PAY_KEY = process.env.REACT_APP_RAZOR_PAY_KEY ? process.env.REACT_APP_RAZOR_PAY_KEY : 'rzp_live_UtKx1JTAC4kVlY'
 
 export const currencySymbol = {
   INR: '₹',
