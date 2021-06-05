@@ -49,7 +49,7 @@ export default function Header(props){
                 </Grid>
             </Grid>
         </Hidden>
-        <div className="whatsappFlotingBtn">
+        <div className={`whatsappFlotingBtn ${props.isHoc ? 'hoc' : ''}`}>
             <a
                 href="https://wa.me/+6590023563"
                 target="_blank"

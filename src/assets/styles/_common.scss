@@ -46,8 +46,8 @@ body{
                 position: fixed;
                 width: 60px;
                 height: 60px;
-                bottom: 84px;
-                right: 20px;
+                bottom: 40px;
+                right: 25px;
                 background-color: #25d366;
                 color: #FFF;
                 border-radius: 50%;
@@ -61,6 +61,11 @@ body{
                     box-sizing: border-box;
                     width: 60px;
                     height: 60px;
+                }
+            }
+            &.hoc{
+                a{
+                    bottom: 84px;
                 }
             }
         }
