@@ -70,7 +70,7 @@ export default function SubscriptionPlans(props){
                 }
             </ul>
             <p className="link">
-                <Link to={{pathname: `/subscription/${params.category}/${value}/booking`, state: { prevPath: location.pathname, secondaryPrevPath: location.state?.prevPath }}} className={`primaryBtn ${value ? '' : 'disabled'}`}>BUY SUBSCRIPTION</Link>
+                <Link to={{pathname: `/subscription/${params.category}/${params.categoryId}/${value}/booking`, state: { prevPath: location.pathname, secondaryPrevPath: location.state?.prevPath }}} className={`primaryBtn ${value ? '' : 'disabled'}`}>BUY SUBSCRIPTION</Link>
             </p>
         </div>
     )

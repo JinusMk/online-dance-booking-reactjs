@@ -37,7 +37,7 @@ export default function DanceDetail(props){
         window.scrollTo({ top: 0, behavior: 'smooth' });
         const slug = props.match.params.slug
         setCategory(slug)
-        globalPostService(`dance/category/1`, { categoryId: sessionStorage.getItem('categoryId') })
+        globalPostService(`dance/category/1`, { categoryId: props.match.params.categoryId })
         .then(response => {
             if(response.success == true){
                 setDanceClasses(response.data.dance_classes)
@@ -46,7 +46,7 @@ export default function DanceDetail(props){
         })
     }, [])
     useEffect(() => {
-        globalGetService(`category/${sessionStorage.getItem('categoryId')}`)
+        globalGetService(`category/${props.match.params.categoryId}`)
         .then(response => {
             if(response.success == true){
                 setInstructor(response.data?.length ? response.data[0] : '')
@@ -75,8 +75,8 @@ export default function DanceDetail(props){
                                     <h3 className="heading2 title">Instructor</h3>
                                     <InstructorCard instructor={instructor}/>
                                 </div> : null}
-                                <Reviews title={danceInfo?.title} categoryId={sessionStorage.getItem('categoryId') == "602243825d42a126b059ec28" ? '602243485d42a126b059ec27' : sessionStorage.getItem('categoryId')} />
-                                <DanceSubscription categoryId={sessionStorage.getItem('categoryId')}/>
+                                <Reviews title={danceInfo?.title} categoryId={props.match.params.categoryId == "602243825d42a126b059ec28" ? '602243485d42a126b059ec27' : props.match.params.categoryId} />
+                                <DanceSubscription categoryId={props.match.params.categoryId}/>
                                 <HowWorks />
                                 <ContactUs /> 
                             </>

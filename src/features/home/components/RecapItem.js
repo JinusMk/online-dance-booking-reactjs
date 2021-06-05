@@ -24,9 +24,8 @@ export default function RecapItem(props){
         setState({ ...state, [anchor]: open });
     };
     const handleClick = (recap) => {
-        sessionStorage.setItem('categoryId', recap.category?._id);
         if(recap.category?.slug){
-            history.push(`/dance/${recap.category?.slug}`)
+            history.push(`/dance/${recap.category?.slug}/${recap.category?._id}`)
         }
     }
     return(

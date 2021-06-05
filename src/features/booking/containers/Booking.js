@@ -42,7 +42,7 @@ function Booking(props){
             //get subscription details api
             setType('subscription')
             setCategory(props.match.params.category)
-            globalGetService(`subscriptionsById/${props.match.params.subsctiptionId}`)
+            globalGetService(`subscriptionsById/${props.match.params.subscriptionId}`)
             .then(response => {
                 if(response.success == true){
                     setLoader(false)
@@ -73,7 +73,7 @@ function Booking(props){
         }else if(props.match.params.id){
             props.history.push(`/dance/${props.match.params.category}`)
         }else{
-            props.history.push(`/subscription/${props.match.params.category}`)
+            props.history.push(`/subscription/${props.match.params.category}/${props.match.params.categoryId}`)
         }
     }
     const logout = () => {
@@ -132,7 +132,7 @@ function Booking(props){
         }else{
             setBookingLoader(true)
             let formData = {
-                subscriptionId: props.match.params.subsctiptionId,
+                subscriptionId: props.match.params.subscriptionId,
                 name: userInfo.displayName,
                 email: userInfo.email,
                 mobile: userInfo.phoneNumber

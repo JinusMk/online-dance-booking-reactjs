@@ -39,7 +39,7 @@ export default function ReviewCard(props){
                 </div>
                 {
                     props.page == "detail" ? null : <div className="footer-review-card">
-                        <Link to={`/dance/${review.category?.toLowerCase()}`} onClick={() => sessionStorage.setItem('categoryId', review.category_id ? review.category_id : review.categoryId)} className="primaryBtn">{`Book ${review.danceClass?.category?.name ? review.danceClass?.category?.name : review.categoryName} class`.toUpperCase()}</Link>
+                        <Link to={`/dance/${review.category?.toLowerCase()}/${review.category_id ? review.category_id : review.categoryId}`} className="primaryBtn">{`Book ${review.danceClass?.category?.name ? review.danceClass?.category?.name : review.categoryName} class`.toUpperCase()}</Link>
                     </div>
                 }
             </SwipeableDrawer>

@@ -6,13 +6,14 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import "react-multi-carousel/lib/styles.css";
 
 export default function DanceSubscription(props){
+    let params = useParams()
     let location = useLocation()
     const [loader, setLoader] = useState(true)
     const [subscription, setSubscription] = useState('')
     const [active, setActive] = useState(false)
 
     useEffect(() => {
-        globalGetService(`subscriptions/category/${sessionStorage.getItem('categoryId')}`)
+        globalGetService(`subscriptions/category/${params.categoryId}`)
         .then(response => {
             setLoader(false)
             if(response.success == true){
@@ -58,7 +59,7 @@ export default function DanceSubscription(props){
                 </Carousel>
             </div>
             <p>
-                {active ? <Link to={{pathname: `/user-subscriptions/${subscription.userSubscription?._id}/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}`, state: { prevPath: `${location.pathname}`}}} onClick={() => sessionStorage.setItem('categoryId', subscription.category?._id)} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
+                {active ? <Link to={{pathname: `/user-subscriptions/${subscription.userSubscription?._id}/progress`, state: { prevPath:  `${location.pathname}` }}} className="secondaryBtn">SEE MY PROGRESS</Link> : <Link to={{pathname: `/subscription/${subscription.slug}/${subscription.category?._id}`, state: { prevPath: `${location.pathname}`}}} className="secondaryBtn">{`GET ${subscription.name?.toUpperCase()} SCBSCRIPTION`}</Link>}
             </p>
         </div> : ''}
         </>

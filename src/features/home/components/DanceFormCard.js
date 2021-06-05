@@ -9,10 +9,7 @@ export default function DanceFormCard(props){
     const { dance } = props
     const [imgLoader, setImgLoader] = useState(true)
     return(
-        <div className="card" onClick={() => {
-            sessionStorage.setItem('categoryId', dance._id);
-            history.push(`/dance/${dance.category}`)
-        }}>
+        <div className="card" onClick={() => { history.push(`/dance/${dance.category}/${dance._id}`) }}>
                 <div className="top-blk">
                     {imgLoader ? <Skeleton variant="rect" height={isMobile ? 160 : 144} className="img-loader"/> : null}
                     <img src={dance.image} className="logo" alt="#" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>

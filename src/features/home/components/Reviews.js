@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
 import { responsiveCarousel, newReviewsData, imageBasePath } from '../../../constants'
 import { ReviewCard } from './index'
@@ -9,11 +9,12 @@ import { globalGetService } from '../../../utils/globalApiServices';
 
 
 export default function Reviews(props){
+    let params = useParams()
     const [reviews, setReviews] = useState(newReviewsData)
 
     useEffect(() => {
         if(props.categoryId){
-            globalGetService(`review-list/${sessionStorage.getItem('categoryId')}`)
+            globalGetService(`review-list/${params.categoryId}`)
             .then(response => {
                 if(response.success === true){
                     setReviews([...response.data.filter(item => item.description ), ...newReviewsData])
