@@ -90,7 +90,6 @@ function ClassDetail(props){
                                 <ReviewCard review={{
                                     description: danceInfo.instructor?.feedback,
                                     name: danceInfo.instructor?.name,
-                                    reviwed_by: danceInfo.instructor?.name,
                                     category: category,
                                     class_date: moment(danceInfo.eventDate).format('DD-MM-YYYY'),
                                     img: danceInfo.instructor?.image

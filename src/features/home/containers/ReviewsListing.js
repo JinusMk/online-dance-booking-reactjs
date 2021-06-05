@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Container, Grid } from '@material-ui/core';
 import { Header } from '../../../shared_elements';
 import { globalGetService } from '../../../utils/globalApiServices';
-import { reviewsData } from '../../../constants'
+import { newReviewsData } from '../../../constants'
 import '../../../assets/styles/reviews-listing-module.scss'
 import { ReviewCard, ReviewsListingLoader } from '../components';
 
 export default function ReviewsListing(props){
-    const [reviews, setReviews] = useState(reviewsData)
+    const [reviews, setReviews] = useState(newReviewsData)
     const [loader, setLoader] = useState(true)
 
     useEffect(() => {
         globalGetService(`review-list`)
         .then(response => {
             if(response.success === true){
-                setReviews([...response.data.filter(item => item.description ), ...reviewsData])
+                setReviews([...response.data.filter(item => item.description ), ...newReviewsData])
                 setLoader(false)
             }
         })

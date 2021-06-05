@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Carousel from "react-multi-carousel";
-import { responsiveCarousel, reviewsData, imageBasePath } from '../../../constants'
+import { responsiveCarousel, newReviewsData, imageBasePath } from '../../../constants'
 import { ReviewCard } from './index'
 import { isMobile } from 'react-device-detect'
 import "react-multi-carousel/lib/styles.css";
@@ -9,21 +9,21 @@ import { globalGetService } from '../../../utils/globalApiServices';
 
 
 export default function Reviews(props){
-    const [reviews, setReviews] = useState(reviewsData)
+    const [reviews, setReviews] = useState(newReviewsData)
 
     useEffect(() => {
         if(props.categoryId){
             globalGetService(`review-list/${sessionStorage.getItem('categoryId')}`)
             .then(response => {
                 if(response.success === true){
-                    setReviews([...response.data.filter(item => item.description ), ...reviewsData])
+                    setReviews([...response.data.filter(item => item.description ), ...newReviewsData])
                 }
             })
         }else{
             globalGetService(`review-list`)
             .then(response => {
                 if(response.success === true){
-                    setReviews([...response.data.filter(item => item.description ), ...reviewsData])
+                    setReviews([...response.data.filter(item => item.description ), ...newReviewsData])
                 }
             })
         }
@@ -46,7 +46,7 @@ export default function Reviews(props){
                 renderDotsOutside={true}
             >
                 {
-                    props.categoryId ? reviews.filter(review => (review.categoryId == props.categoryId || review.status == "Approved")).map((item, index) => <ReviewCard key={index} review={item} page="detail"/>) : reviews.map((item, index) => <ReviewCard key={index} review={item}/>)
+                    props.categoryId ? reviews.filter(review => (review.categoryId == props.categoryId || review.status == "Approved")).map((item, index) => index < 20 && <ReviewCard key={index} review={item} page="detail"/>) : reviews.map((item, index) => index < 20 && <ReviewCard key={index} review={item}/>)
                 }
             </Carousel>
         </div>
