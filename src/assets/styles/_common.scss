@@ -46,18 +46,18 @@ body{
                 position: fixed;
                 width: 60px;
                 height: 60px;
-                bottom: 80px;
-                right: 40px;
+                bottom: 84px;
+                right: 20px;
                 background-color: #25d366;
                 color: #FFF;
-                border-radius: 20px;
+                border-radius: 50%;
                 text-align: center;
                 font-size: 30px;
                 box-shadow: 2px 2px 3px #999;
                 z-index: 100;
                 svg{
                     fill: #fff;
-                    padding: 4px 3px 4px 4px;
+                    padding: 5px;
                     box-sizing: border-box;
                     width: 60px;
                 }
