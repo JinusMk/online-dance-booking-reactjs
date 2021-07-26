@@ -552,3 +552,26 @@ export const subscriptionBenefits = {
   "602243025d42a126b059ec26": [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 to 12 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
   "602243825d42a126b059ec28" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone']
 }
+
+export const subscriptionCategories = [
+  {
+    label: 'Zumba',
+    value: '602240785d42a126b059ec24'
+  },
+  {
+    label: 'Bollywood',
+    value: '602242c35d42a126b059ec25'
+  },
+  {
+    label: 'Hip-Hop',
+    value: '602243485d42a126b059ec27'
+  },
+  {
+    label: 'Bollywood-kids',
+    value: '602243025d42a126b059ec26'
+  },
+  {
+    label: 'Hip-hop-kids',
+    value: '602243825d42a126b059ec28'
+  },
+]

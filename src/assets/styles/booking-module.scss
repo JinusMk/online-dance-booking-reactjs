@@ -128,27 +128,6 @@ body{
             }
             .payment-options-wrapper{
                 padding: 16px;
-                .radioGroup{
-                    flex-direction: row;
-                    label{
-                        .MuiButtonBase-root{
-                            padding: 0 9px;
-                        }
-                        &:last-child{
-                            margin: 0;
-                        }
-                        .label{
-                            p{
-                                color: $color_gray;
-                            }
-                            &.active{
-                                p{
-                                    color: $color_black;
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
     }

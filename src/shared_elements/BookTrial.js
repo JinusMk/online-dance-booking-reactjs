@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { SwipeableDrawer, TextField, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import { SwipeableDrawer, TextField, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from '@material-ui/core';
 import { toastFlashMessage } from '../utils'
 import { connect } from 'react-redux'
 import { isMobile } from 'react-device-detect'
 import PhoneInput from 'react-phone-input-2'
+import { subscriptionCategories } from '../constants';
 
 function BookTrial(props){
     const { open } = props
@@ -98,7 +99,21 @@ function BookTrial(props){
                                 />
                             </div>
                             <div className="inputGroup">
-                                <RadioGroup aria-label="payment-options" name="payment-options" className="radioGroup" value={userData.preferedDay} onChange={(e) => handleChange('preferedDay', e.target.value)}>
+                                <label className={error.subscription ? 'error': ''}>{error.subscription ? error.subscription: 'SUBSCRIPTION'}</label>
+                                <Select
+                                    error={ error.subscription ? true :false }
+                                    value={ userData.subscription }
+                                    id="subscription"
+                                    fullWidth={true}
+                                    inputProps={{ 'aria-label': 'subscription' }}
+                                    onChange={(event) => handleChange('subscription', event.target.value)}
+                                    className="custom-select"
+                                    >
+                                    {subscriptionCategories?.map((item, index) => <MenuItem key={item.value} value={item.value}>{`${item.label} Subscription`}</MenuItem>)}
+                                </Select>
+                            </div>
+                            <div className="radioGroupInput">
+                                <RadioGroup aria-label="preferred-day" name="preferred-day" className="radioGroup" value={userData.preferedDay} onChange={(e) => handleChange('preferedDay', e.target.value)}>
                                     <FormControlLabel value="Weekend" control={<Radio />} label={<div className={`label ${userData.preferedDay === 'Weekend' ? 'active': ''}`}>
                                         <p className="secondaryText">WEEKEND</p>
                                     </div>} />

@@ -779,6 +779,33 @@ body{
                 }
             }
         }
+        .radioGroupInput{
+            margin-bottom: 32px;
+            .radioGroup{
+                
+            }
+        }
+    }
+    .radioGroup{
+        flex-direction: row;
+        label{
+            .MuiButtonBase-root{
+                padding: 0 9px;
+            }
+            &:last-child{
+                margin: 0;
+            }
+            .label{
+                p{
+                    color: $color_gray;
+                }
+                &.active{
+                    p{
+                        color: $color_black;
+                    }
+                }
+            }
+        }
     }
     .footer-review-card{
         padding: 12px 16px;
@@ -1055,6 +1082,13 @@ body{
             }
             .activeStatus{
                 background-color: $color_400190;
+            }
+        }
+        .buttonWrapper{
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            a{
+                max-width: 48%;
             }
         }
     }
