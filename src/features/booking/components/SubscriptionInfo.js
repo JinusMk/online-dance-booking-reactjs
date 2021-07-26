@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Skeleton from '@material-ui/lab/Skeleton';
 import { isMobile } from 'react-device-detect'
 import { Link, useLocation } from 'react-router-dom'
@@ -15,11 +15,17 @@ export default function SubscriptionInfo(props){
     // const [userSubscription, setUserSubscription] = useState('')
     const [imgLoader, setImgLoader] = useState(true)
 
-    const goToBuySubscription = () => {
+    const goToBuySubscription = useCallback(() => {
         document.getElementById('subscription-plans').scrollIntoView({
             behavior: 'smooth'
         })
-    }
+    }, [])
+    const goToBookTrial = useCallback(() => {
+        window.scrollTo({
+            top: document.getElementById('book-trial')?.getBoundingClientRect().top - 55,
+            behavior: "smooth"
+        });
+    }, [])
 
     // useEffect(() => {
     //     if(active && subscription){
@@ -59,9 +65,14 @@ export default function SubscriptionInfo(props){
                     <div className="info-wrapper">
                         <h3 className="heading2">{subscription.title}</h3>
                         <p className="paragraph">{subscription.description}</p>
-                        <p className="link">
-                            <a onClick={goToBuySubscription} className="primaryBtn">BUY SUBSCRIPTION</a>
-                        </p>
+                        <div className="flexCentered buttonWrapper">
+                            <p className="link">
+                                <a onClick={goToBookTrial} className="secondaryBtn">BOOK TRIAL</a>
+                            </p>
+                            <p className="link">
+                                <a onClick={goToBuySubscription} className="primaryBtn">BUY SUBSCRIPTION</a>
+                            </p>
+                        </div>
                     </div>
                 </>
             }
