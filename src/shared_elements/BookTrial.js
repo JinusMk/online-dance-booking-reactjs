@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { SwipeableDrawer, TextField, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from '@material-ui/core';
 import { toastFlashMessage } from '../utils'
+import { fieldValidation } from '../utils/formValidation'
 import { connect } from 'react-redux'
 import { isMobile } from 'react-device-detect'
 import PhoneInput from 'react-phone-input-2'
-import { subscriptionCategories } from '../constants';
+import { subscriptionCategories, USER_AUTH_ERRORCODE as errorCode } from '../constants';
+import { globalPostService } from '../utils/globalApiServices';
 
 function BookTrial(props){
-    const { open } = props
+    const { open, userInfo, subscriptionCategory } = props
     const [state, setState] = useState({
         bottom: false,
         right: false
@@ -41,7 +43,59 @@ function BookTrial(props){
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+        setLoader(true)
+        const validateNewInput = Object.keys(userData).reduce((res, item) => ({
+            ...res,
+            [item]: errorCode[item === 'mobile' ? 'phone' : item] ? errorCode[item === 'mobile' ? 'phone' : item][fieldValidation({...errorCode[item === 'mobile' ? 'phoneObj' : item + 'Obj'], fieldval: userData[item]})]: userData[item] ? '' : `ENTER YOUR ${item}`
+        }), {})
+        if(Object.keys(validateNewInput).every(key => validateNewInput[key] === '')){
+            bookSubscriptionTrialApi()
+        }else{
+            setLoader(false);
+            setError(validateNewInput)
+        }
     }
+    const bookSubscriptionTrialApi = () => {
+        globalPostService(`subscriptionTrial`, userData)
+        .then(response => {
+            setLoader(false)
+            if(response.success == true){
+                toastFlashMessage('SUBSCRIPTION TRIAL BOOKED SUCCESSFULLY', 'success')
+                props.handleClose()
+            }else if(response.message && !response.success){
+                toastFlashMessage(response.message, 'error')
+            }else if(response.error){
+                toastFlashMessage(response.error, 'error')
+            }
+        })
+        .catch(err => {
+            setLoader(false)
+            toastFlashMessage('Something went wrong, Please try again!', 'error')
+        })
+    }
+    useEffect(() => {
+        if(open){
+            if(userInfo){
+                setUserData({
+                    email: userInfo?.email || '',
+                    name: userInfo?.displayName || '',
+                    mobile: userInfo?.phoneNumber || '',
+                    subscription: subscriptionCategory,
+                    preferedDay: 'Weekend'
+                })
+            }else{
+                setUserData({
+                    email: '',
+                    name: '',
+                    mobile: '',
+                    subscription: subscriptionCategory,
+                    preferedDay: 'Weekend'
+                })
+            }
+            setError({})
+            setLoader(false)
+        }
+    }, [open, userInfo])
     return(
         <>
         {
@@ -78,7 +132,7 @@ function BookTrial(props){
                                 />
                             </div>
                             <div className="inputGroup">
-                                <label className={error.phone ? 'error': ''}>{error.phone ? error.phone: 'YOUR MOBILE NUMBER'}</label>
+                                <label className={error.mobile ? 'error': ''}>{error.mobile ? error.mobile: 'YOUR MOBILE NUMBER'}</label>
                                 <PhoneInput
                                     country={'in'}
                                     disableSearchIcon={true}
@@ -90,12 +144,12 @@ function BookTrial(props){
                                     inputProps={
                                         {
                                             required: true,
-                                            className: error.phone ? 'error' : ''
+                                            className: error.mobile ? 'error' : ''
                                         }
                                     }
                                     searchPlaceholder="Search countries"
                                     enableSearch={true}
-                                    isValid={error.phone ? false : true}
+                                    isValid={error.mobile ? false : true}
                                 />
                             </div>
                             <div className="inputGroup">
@@ -125,7 +179,7 @@ function BookTrial(props){
                             <ul className="listInline footer">
                                 <li>
                                     <p>
-                                        <a className={`secondaryBtn ${loader ? 'disabled': ''}`} onClick={toggleDrawer(anchor, false)}>BACK</a>
+                                        <a className={`secondaryBtn`} onClick={toggleDrawer(anchor, false)}>BACK</a>
                                     </p>
                                 </li>
                                 <li>

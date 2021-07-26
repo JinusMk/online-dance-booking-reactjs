@@ -1050,6 +1050,9 @@ body{
             border-radius: 4px;
             right: 8px;
             top: 8px;
+            &.danger{
+                background: $color_error;
+            }
         }
         .info-wrapper{
             margin-top: 90px;

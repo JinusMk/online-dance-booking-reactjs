@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { imageBasePath, currencySymbol, subscriptionBenefits } from '../constants'
 import { BookTrial } from '.'
+import { checkNumberOfDaysLeft } from '../utils'
 
 export default function SubscriptionCard(props){
     let location = useLocation()
@@ -11,7 +12,7 @@ export default function SubscriptionCard(props){
         <>
         <div className="subcription-card-wrapper" style={{backgroundImage: `url(${subscriptionItem.image})`}}>
             {/* <img src={subscriptionItem.image}/> */}
-            {active ? <span className="activeLabel secondaryText">ACTIVE</span> : null}
+            {active ? <span className={`activeLabel secondaryText ${checkNumberOfDaysLeft(subscriptionItem?.endTime) <= 7 ? 'danger': ''}`}>{checkNumberOfDaysLeft(subscriptionItem?.endTime) < 0 ? `EXPIRED` : checkNumberOfDaysLeft(subscriptionItem?.endTime) <= 7 ? `EXPIRING SOON` : `ACTIVE`}</span> : null}
             <div className="info-wrapper">
                 <h3 className="heading3">{subscriptionItem.name + ' Subscription'}</h3>
                 <p className="paragraph">{`Starting from ${currencySymbol[subscriptionItem.currencyType]}${subscriptionItem.discountedCost}`}</p>
@@ -35,6 +36,7 @@ export default function SubscriptionCard(props){
         <BookTrial
             open={openTrialForm}
             handleClose={() => setOpenTrialForm(false)}
+            subscriptionCategory={subscriptionItem?.category?._id}
         />
         </>
     )

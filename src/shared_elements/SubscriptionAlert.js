@@ -83,7 +83,7 @@ function ExpireSoonSubscription(props){
                 expired ? <>
                     <h3 className="heading3">{`You’ve used up your ${subscription.subscription?.name} subscription`}</h3>
                     <p className="paragraph">{`${subscription.subscription?.danceClasses} out of ${subscription.subscription?.danceClasses} classes completed`}</p>
-                    <p><Link to={`/subscription/${subscription.subscription.slug}`} className="primaryBtn">RENEW</Link></p>
+                    <p><Link to={`/subscription/${subscription.subscription?.slug}/${subscription.subscription?.category?._id}`} className="primaryBtn">RENEW</Link></p>
                 </> : <><h3 className="heading3">{`Your ${subscription.subscription?.name} subscription is about to expire`}</h3>
                 <p className="paragraph">{`${subscription.danceClassNumber ? subscription.danceClassNumber : subscription.danceClassesAttended} out of ${subscription.subscription?.danceClasses} classes completed`}</p>
                 <Grid container justify="" alignItems="center" className="alert-info">
@@ -91,7 +91,7 @@ function ExpireSoonSubscription(props){
                         <p className="secondaryText">{`Expires in ${checkNumberOfDaysLeft(subscription.endDate)} Days`}</p>
                     </Grid>
                     <Grid item xs={6}>
-                        <p><Link to={{pathname: `/subscription/${subscription.subscription.slug}`, state: { prevPath: `${location.pathname}`}}} className="primaryBtn">RENEW</Link></p>
+                        <p><Link to={{pathname: `/subscription/${subscription.subscription?.slug}/${subscription.subscription?.category?._id}`, state: { prevPath: `${location.pathname}`}}} className="primaryBtn">RENEW</Link></p>
                     </Grid>
                 </Grid>
                 </>
