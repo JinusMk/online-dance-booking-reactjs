@@ -51,7 +51,7 @@ export default function DanceSubscription(props){
                 >
                     {
                         subscriptionBenefits[props.categoryId]?.map((item, index) => <div key={index} className="subscription-info-card">
-                            <img className="" src={`${imageBasePath}fun_icon.svg`} />
+                            <img className="" src={`${imageBasePath}fun_icon.svg`} alt=""/>
                             <p className="heading3">{item}</p>
                         </div>)
                     }

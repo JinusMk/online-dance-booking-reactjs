@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense, lazy } from 'react'
 import { Header, DanceInformationCard, DanceInformationLoader } from  '../../../shared_elements'
-import { Container, Grid, CircularProgress } from '@material-ui/core';
+import { Container, Grid, CircularProgress, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { connect } from 'react-redux'
@@ -93,7 +93,7 @@ function Booking(props){
         .then(response => {
             // console.log('response booking', response)
             setBookingLoader(false)
-            if(response.success == true){
+            if(response.success === true){
                 history.push({pathname: `${props.location.pathname}/success`, state: { selectedItem: {...selectedItem, payment_method: (response.data && response.data.payment_method) ? response.data.payment_method : 'online' }}})
             }else if(response.message && !response.success){
                 toastFlashMessage(response.message, 'error')
@@ -109,29 +109,30 @@ function Booking(props){
     const handleSubmit = (userInfo) => {
         setBookingLoader(true)
         // console.log('booking continue clicked', userInfo)
-        if(type == "danceBooking"){
+        if(type === "danceBooking"){
             if(checkIsFinished(selectedItem.endTime)){
                 toastFlashMessage(`OOPS!! The Dance class your're trying to book has been over already!`, 'error')
                 setTimeout(() => {
                     props.history.push(`/schedule`)
                 }, 500);
             }else{
-                let formData = {
+                const formData = {
                     dance_id: selectedItem.id,
                     name: userInfo.displayName,
                     email: userInfo.email,
                     mobile: userInfo.phoneNumber,
-                    paymentId: ''
+                    paymentId: '',
+                    paymentType: 'online'
                 }
-                if(payment == "online"){
+                if(payment === "online"){
                     setupOnlinePayment(formData, userInfo)
                 }else{
-                    createBookingApi(formData)
+                    createBookingApi({...formData, paymentType: 'offline'})
                 }
             }
         }else{
             setBookingLoader(true)
-            let formData = {
+            const formData = {
                 subscriptionId: props.match.params.subscriptionId,
                 name: userInfo.displayName,
                 email: userInfo.email,
@@ -151,14 +152,15 @@ function Booking(props){
             "image": `${imageBasePath}logo_512.png`,
             "handler": function (response){
                 // console.log('handler response', response)
-                if(type == "danceBooking"){
+                if(type === "danceBooking"){
                     createBookingApi({...formData, paymentId: response.razorpay_payment_id})
                 }else{
                     buySubscriptionApi({...formData, paymentId: response.razorpay_payment_id})
                 }
             },
             "modal": {
-                "ondismiss": function(){
+                "ondismiss": function(params){
+                    console.log('onDismiss', params)
                     setBookingLoader(false)
                 }
             },
@@ -178,15 +180,8 @@ function Booking(props){
         }
         let rzp = new window.Razorpay(params);
         rzp.on('payment.failed', function (response){
-            console.log('response err', response)
+            console.log('payment.failed', response)
             setBookingLoader(false)
-            alert(response.error.code);
-            alert(response.error.description);
-            alert(response.error.source);
-            alert(response.error.step);
-            alert(response.error.reason);
-            alert(response.error.metadata.order_id);
-            alert(response.error.metadata.payment_id);
         });
         rzp.open();
     }
@@ -238,20 +233,23 @@ function Booking(props){
                             <p><a className="secondaryBtn" onClick={() => setOpenAuthPopup(true)}>TAP HERE TO LOGIN</a></p> */}
                             <p className="login-link" onClick={() => setOpenAuthPopup(true)}><a>Already have an account? Click here to login</a></p>
                         </div>
-                        <UserInformationForm handleSubmit={handleSubmit}/>                    
+                        <UserInformationForm 
+                            handleSubmit={handleSubmit}
+                            handleOpenAuth={() => setOpenAuthPopup(true)}
+                        />                    
                     </>
                     }
                 </Suspense>
-                {/* <div className="payment-options-wrapper">
+                {type === "danceBooking" && <div className="payment-options-wrapper">
                     <RadioGroup aria-label="payment-options" name="payment-options" className="radioGroup" value={payment} onChange={handleChangePayment}>
-                        <FormControlLabel value="online" control={<Radio />} label={<div className={`label ${payment == "online" ? 'active': ''}`}>
+                        <FormControlLabel value="online" control={<Radio />} label={<div className={`label ${payment === "online" ? 'active': ''}`}>
                             <p className="secondaryText">PAY ONLINE</p>
                         </div>} />
-                        <FormControlLabel value="offline" control={<Radio />} label={<div className={`label ${payment == "offline" ? 'active': ''}`}>
+                        <FormControlLabel value="offline" control={<Radio />} label={<div className={`label ${payment === "offline" ? 'active': ''}`}>
                             <p className="secondaryText">PAY AT CLASS</p>
                         </div>} />
                     </RadioGroup>
-                </div> */}
+                </div>}
             </Container>
             {
                 bookingLoader ? <div className="screen-loader-wrapper">

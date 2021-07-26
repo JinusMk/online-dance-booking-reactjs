@@ -57,6 +57,7 @@ export default function UserInformationForm(props){
                 setLoader(false)
                 if(error.message){
                     toastFlashMessage(error.message, 'error')
+                    props.handleOpenAuth()
                 }
             })
         }else{
@@ -70,7 +71,7 @@ export default function UserInformationForm(props){
         }, 500);
     }, [])
     const getClientWidth = () => {
-        const width = document.getElementById('user-form').clientWidth
+        const width = document.getElementById('user-form')?.clientWidth
         setFormWidth(width)
     }
     return(

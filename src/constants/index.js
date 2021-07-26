@@ -546,9 +546,9 @@ export const privacyPolicyData = [
 export const subscriptionBenefitsGeneral = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
 
 export const subscriptionBenefits = {
-  '602240785d42a126b059ec24': [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`],
-  '602242c35d42a126b059ec25': [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "602243485d42a126b059ec27" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "602243025d42a126b059ec26": [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "602243825d42a126b059ec28" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`]
+  '602240785d42a126b059ec24': [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`, '8 to 12 classes a month', 'Personalized attention and instructor feedback', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  '602242c35d42a126b059ec25': [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 to 12 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  "602243485d42a126b059ec27" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  "602243025d42a126b059ec26": [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 to 12 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  "602243825d42a126b059ec28" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone']
 }
