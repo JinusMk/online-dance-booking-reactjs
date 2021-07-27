@@ -22,14 +22,14 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   function (response) {
     // if(response.data.statusCode >= 200 && response.data.statusCode < 300){
-    if (response.data.success == true) {
-      return response.data;
+    if (response?.data?.success == true) {
+      return response?.data;
     } else {
-      return response.data;
+      return response?.data;
     }
   },
   function (error) {
-    return error.response.data;
+    return error?.response?.data;
   }
 );
 

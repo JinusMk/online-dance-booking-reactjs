@@ -2,6 +2,11 @@
 
 body{
     .subscription-detail-section{
+        header{
+            .heading2{
+                font-size: 24px;
+            }
+        }
         .subscription-detail-container{
             padding: 0;
             .shimmer-wrapper{
@@ -70,9 +75,15 @@ body{
                     p{
                         margin-bottom: 24px;
                         &.link{
-                            max-width: 80%;
-                            margin: 0 auto;
+                            // max-width: 80%;
+                            // margin: 0 auto;
                             margin-bottom: 8px;
+                        }
+                    }
+                    .buttonWrapper{
+                        justify-content: space-between;
+                        .link{
+                            width: 49%;
                         }
                     }
                 }

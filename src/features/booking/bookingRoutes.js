@@ -15,17 +15,17 @@ export const bookingRoutes = [
         key: 'booking-success'
     },
     {
-        path: '/subscription/:category',
+        path: '/subscription/:category/:categoryId',
         component: SubscriptionDetail,
         key: 'subscription-detail'
     },
     {
-        path: '/subscription/:category/:subsctiptionId/booking',
+        path: '/subscription/:category/:categoryId/:subscriptionId/booking',
         component: Booking,
         key: 'subscription-detail'
     },
     {
-        path: '/subscription/:category/:subsctiptionId/booking/success',
+        path: '/subscription/:category/:categoryId/:subscriptionId/booking/success',
         component: pageLayoutHoc(BookingSuccess),
         key: 'subscription-detail'
     },

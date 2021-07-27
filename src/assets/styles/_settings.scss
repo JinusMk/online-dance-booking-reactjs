@@ -408,4 +408,17 @@ body{
             }
           }
     }
+    .MuiMenu-paper{
+      .MuiMenu-list{
+        .MuiMenuItem-root{
+          @include fontStyle(
+            $fontFamily:$font_RobotoCondensed,
+            $size:$font16,
+            $weight:$boldFont,
+            $color: $color_black,
+            $lineHeight: $lineHeight20
+          );
+        }
+      }
+    }
 }

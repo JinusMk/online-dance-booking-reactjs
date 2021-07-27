@@ -6,6 +6,7 @@ import { fieldValidation } from '../../../utils/formValidation';
 import firebase from '../../../utils/firebase'
 import { toastFlashMessage } from '../../../utils';
 import { USER_AUTH_ERRORCODE } from '../../../constants'
+// import { globalPostService } from '../../../utils/globalApiServices';
 
 export default function UserInformationForm(props){
     const [userInfo, setUserInfo] = useState({
@@ -56,6 +57,7 @@ export default function UserInformationForm(props){
                 setLoader(false)
                 if(error.message){
                     toastFlashMessage(error.message, 'error')
+                    props.handleOpenAuth()
                 }
             })
         }else{
@@ -69,7 +71,7 @@ export default function UserInformationForm(props){
         }, 500);
     }, [])
     const getClientWidth = () => {
-        const width = document.getElementById('user-form').clientWidth
+        const width = document.getElementById('user-form')?.clientWidth
         setFormWidth(width)
     }
     return(
@@ -98,7 +100,7 @@ export default function UserInformationForm(props){
                     />
                 </div>
                 <div className="inputGroup">
-                    <label className={error.password ? 'error': ''}>{error.password ? error.password : 'PASSWORD'}</label>
+                    <label className={error.password ? 'error': ''}>{error.password ? error.password : 'CREATE PASSWORD'}</label>
                     <TextField 
                         value={userInfo.password}
                         onChange={(e) => handleChange('password', e.target.value)}

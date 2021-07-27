@@ -1,6 +1,6 @@
 export const imageBasePath = 'https://letzdance-fe.s3.us-east-2.amazonaws.com/';
 export const DEV_BASE_URL = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : 'https://admin2.letzdance.co/api/4/' ;
-export const RAZOR_PAY_KEY = process.env.REACT_APP_RAZOR_PAY_KEY ? process.env.REACT_APP_RAZOR_PAY_KEY : 'rzp_test_NKXGcWEaRQd4SH'
+export const RAZOR_PAY_KEY = process.env.REACT_APP_RAZOR_PAY_KEY ? process.env.REACT_APP_RAZOR_PAY_KEY : 'rzp_live_UtKx1JTAC4kVlY'
 
 export const currencySymbol = {
   INR: '₹',
@@ -257,6 +257,219 @@ export const reviewsData = [
   },
 ];
 
+export const newReviewsData = [
+  {
+    name: 'Varun',
+    rating: '5',
+    media: '',
+    description:"Both my sons are enjoying the class every week, the regular classes are better than the 1 hr class we attended",
+    class_date: '20-04-2021',
+    category: 'onlinehip-hop-kids',
+    categoryName: "Online Hip-hop-kids",
+    categoryId: '602243825d42a126b059ec28'
+  },
+  {
+    name: 'Urvi Ashar',
+    rating: '4.5',
+    media: '',
+    description:'Very good class by the instructor, he taught us step by step, very easy to follow. Thank you.',
+    class_date: '17-04-2021',
+    category: 'onlinehip-hop',
+    categoryName: "Online Hip-hop",
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    name: 'Vanya jain',
+    rating: '4.9',
+    media: '',
+    description:'Class was nice. Not as difficult as I thought. ',
+    class_date: '26-03-2021',
+    category: 'onlinehip-hop',
+    categoryName: "Online Hip-hop",
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    name: 'Ramesh',
+    rating: '4.9',
+    media: '',
+    description:"I like this class because theta teach you step by step and they follow a hip-hop syllabus,ideal for kids",
+    class_date: '21-03-2021',
+    category: 'onlinehip-hop-kids',
+    categoryName: "Online Hip-hop-kids",
+    categoryId: '602243825d42a126b059ec28'
+  },
+  {
+    name: 'Anjali Arora',
+    rating: '5',
+    media: '',
+    description:"Completely satisfied with your class, what fun i had. Always thought choreographies were difficult but I guess I was wrong. It was super easy.",
+    class_date: '20-03-2021',
+    category: 'onlinebollywood',
+    categoryName: "Online Bollywood",
+    categoryId: '602242c35d42a126b059ec25'
+  },
+  {
+    name: "Norainei",
+    rating: '3.5',
+    media: '',
+    description:'Enjoyed the workout, I felt tired after 40mins. May be as it’s my first time',
+    class_date: '05-03-2021',
+    category: 'onlinezumba',
+    categoryName: "Online Zumba",
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    name: "Alyn Wong",
+    rating: '4.9',
+    media: '',
+    description:'Nice workout. Burnt 300 KCALs.',
+    class_date: '03-03-2021',
+    category: 'onlinezumba',
+    categoryName: "Online Zumba",
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    name: 'Mrinalini',
+    rating: '4.9',
+    media: '',
+    description:'Had two Trial sessions for Zumba and Bollywood this helped me decide what’s right for me to achieve desired weight. Thanks.',
+    class_date: '21-02-2021',
+    category: 'onlinezumba',
+    categoryName: "Online Zumba",
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    name: "Nanthini",
+    rating: '4.9',
+    media: '',
+    description:'Fun workout session. Great group workout!',
+    class_date: '12-02-2021',
+    category: 'onlinezumba',
+    categoryName: "Online Zumba",
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    name: 'Neeta',
+    rating: '5',
+    media: '',
+    description:`Very ideal for kids, as they can learn from home. My kids really enjoyed your class`,
+    class_date: "02-02-2021",
+    category: 'onlinebollywood-kids ',
+    categoryName: "Online Bollywood-kids",
+    categoryId: '602243025d42a126b059ec26'
+  },
+  {
+    name: 'Anish Gupta',
+    rating: '4.8',
+    media: '',
+    description:`My son was so adamant to join this hip-hop, Iwas initially doubtful but I should say I am so happy I found the right class for my kid. Very talented and patient instructor `,
+    class_date: '21-01-2021',
+    category: 'onlinehip-hop-kids',
+    categoryName: `Online Hip-hop-kids`,
+    categoryId: '602243825d42a126b059ec28'
+  },
+  {
+    name: 'Ananya',
+    rating: '4.5',
+    media: '',
+    description:`Hiphop is good, my daughter was doing bollywood dance before now doing Hip-hop, very nice`,
+    class_date: '13-01-2021',
+    category: 'onlinehip-hop-kids',
+    categoryName: `Online Hip-hop-kids`,
+    categoryId: '602243825d42a126b059ec28'
+  },
+  {
+    name: 'Kavya',
+    rating: '4.9',
+    media: '',
+    description:'Very good hip-hop class, it was very easy to pick up steps.',
+    class_date: '07-01-2021',
+    category: 'onlinehip-hop',
+    categoryName: `Online Hip-hop`,
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    name: 'Prita',
+    rating: '4.8',
+    media: '',
+    description:`My son was so adamant to join this hip-hop, Iwas initially doubtful but I should say I am so happy I found the right class for my kid. Very talented and patient instructor `,
+    class_date: '02-01-2021',
+    category: 'onlinehip-hop-kids',
+    categoryName: `Online Hip-hop-kids`,
+    categoryId: '602243825d42a126b059ec28'
+  },
+  {
+    name: `Sarita`,
+    rating: '4.5',
+    media: '',
+    description:'Peppy songs, energetic dance workout session!',
+    class_date: '30-12-2020',
+    category: 'onlinezumba',
+    categoryName: `Online Zumba`,
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    name: `Divya`,
+    rating: '4.2',
+    media: '',
+    description:'I have been attending your class for 6 months now, this has really helped me in toning up and not just losing weight.',
+    class_date: '01-12-2020',
+    category: 'onlinezumba',
+    categoryName: `Online Zumba`,
+    categoryId: '602240785d42a126b059ec24'
+  },
+  {
+    name: 'Sangeetha',
+    rating: '4.8',
+    media: '',
+    description:`Very good initiative, it's so easy for me to learn online as with my college timings it was difficult for me to attend offline classes.`,
+    class_date: '26-11-2020',
+    category: 'onlinehip-hop',
+    categoryName: `Online Hip-hop`,
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    name: 'Yashika Yadav ',
+    rating: '4.5',
+    media: '',
+    description:'Had fun dancing to my favourite Bollywood song. Please teach Garmi song!',
+    class_date: '10-10-2020',
+    category: 'onlinebollywood',
+    categoryName: `Online Bollywood`,
+    categoryId: '602242c35d42a126b059ec25'
+  },
+  {
+    name: 'Dinesh',
+    rating: '4.5',
+    media: '',
+    description:'Good Hiphop class. Easy to learn',
+    class_date: '05-10-2020',
+    category: 'onlinehip-hop',
+    categoryName: "Online Hip-Hop",
+    categoryId: '602243485d42a126b059ec27',
+  },
+  {
+    name: 'Kalpana',
+    rating: '4.9',
+    media: '',
+    description:'Super app ideal during a pandemic situation. Dance from home, good concept. All the best👍',
+    class_date: '24-08-2020',
+    category: 'onlinehip-hop',
+    categoryName: `Online Hip-hop`,
+    categoryId: '602243485d42a126b059ec27'
+  },
+  {
+    name: 'Reshmi',
+    rating: '4.9',
+    media: '',
+    description:'Good Zumba session helped me relax 😊',
+    class_date: '21-08-2020',
+    category: 'onlinezumba',
+    categoryName: "Online Zumba",
+    categoryId: '602240785d42a126b059ec24'
+  }
+]
+
 export const danceCategory = {
   1: 'bollywood',
   2: 'hip-hop',
@@ -333,9 +546,32 @@ export const privacyPolicyData = [
 export const subscriptionBenefitsGeneral = ['All dance levels - from beginner to expert', '8 to 12 classes a month','All dance levels - from beginner to expert', '8 to 12 classes a month']
 
 export const subscriptionBenefits = {
-  '602240785d42a126b059ec24': [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`],
-  '602242c35d42a126b059ec25': [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "602243485d42a126b059ec27" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "602243025d42a126b059ec26": [`All dance levels - from beginner to expert`, `Class recording provided after every class`],
-  "602243825d42a126b059ec28" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`]
+  '602240785d42a126b059ec24': [`Achieve fitness goal with our health tracker `, `Flexible timings on weekdays & Weekends`, '8 to 12 classes a month', 'Personalized attention and instructor feedback', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  '602242c35d42a126b059ec25': [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 to 12 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  "602243485d42a126b059ec27" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  "602243025d42a126b059ec26": [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 to 12 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone'],
+  "602243825d42a126b059ec28" : [`All dance levels - from beginner to expert`, `Class recording provided after every class`, '8 classes a month', 'Flexible timing on weekdays and weekends', 'Personalized attention and instructor feedback', 'Learn two complete song choreography', 'Calorie count, progress tracker, and detailed statistics', 'Certification after every successful milestone']
 }
+
+export const subscriptionCategories = [
+  {
+    label: 'Zumba',
+    value: '602240785d42a126b059ec24'
+  },
+  {
+    label: 'Bollywood',
+    value: '602242c35d42a126b059ec25'
+  },
+  {
+    label: 'Hip-Hop',
+    value: '602243485d42a126b059ec27'
+  },
+  {
+    label: 'Bollywood-kids',
+    value: '602243025d42a126b059ec26'
+  },
+  {
+    label: 'Hip-hop-kids',
+    value: '602243825d42a126b059ec28'
+  },
+]

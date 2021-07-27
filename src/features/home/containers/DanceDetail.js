@@ -24,7 +24,7 @@ export default function DanceDetail(props){
     const getDanceInfo = (danceClasses) => {//danceClasses, slug
         const availableDates = Object.keys(danceClasses)
         if(availableDates && availableDates.length){
-            let category = props.match.params.slug
+            let category = Object.keys(danceClasses[availableDates[0]]) && Object.keys(danceClasses[availableDates[0]]).length ? Object.keys(danceClasses[availableDates[0]])[0] : props.match.params.slug
             const classArray = danceClasses[availableDates[0]][category]
             if(classArray && classArray.length){
                 setDanceInfo(classArray[0])
@@ -37,7 +37,7 @@ export default function DanceDetail(props){
         window.scrollTo({ top: 0, behavior: 'smooth' });
         const slug = props.match.params.slug
         setCategory(slug)
-        globalPostService(`dance/category/1`, { categoryId: sessionStorage.getItem('categoryId') })
+        globalPostService(`dance/category/1`, { categoryId: props.match.params.categoryId })
         .then(response => {
             if(response.success == true){
                 setDanceClasses(response.data.dance_classes)
@@ -46,7 +46,7 @@ export default function DanceDetail(props){
         })
     }, [])
     useEffect(() => {
-        globalGetService(`category/${sessionStorage.getItem('categoryId')}`)
+        globalGetService(`category/${props.match.params.categoryId}`)
         .then(response => {
             if(response.success == true){
                 setInstructor(response.data?.length ? response.data[0] : '')
@@ -55,9 +55,16 @@ export default function DanceDetail(props){
             }
         })
     }, [])
+    const handleGoBack = () => {
+        if(props.location.state && props.location.state.prevPath){
+            props.history.push(`${props.location.state.prevPath}`)
+        }else{
+            props.history.push('/')
+        }
+    }
     return(
         <section className="dance-detail-section">
-            <Header onBack={() => props.history.push('/')} title={danceInfo?.title}/>
+            <Header onBack={handleGoBack} title={danceInfo?.title}/>
             <Container className="dance-detail-container">
                     {/* <Gallery category={category == "hiphop-kids" ? 'hip-hop' : category} loader={loader}/> */}
                     <DanceInfo dance={danceInfo} loader={loader}/>
@@ -68,8 +75,8 @@ export default function DanceDetail(props){
                                     <h3 className="heading2 title">Instructor</h3>
                                     <InstructorCard instructor={instructor}/>
                                 </div> : null}
-                                <Reviews title={danceInfo?.title} categoryId={sessionStorage.getItem('categoryId') == "602243825d42a126b059ec28" ? '602243485d42a126b059ec27' : sessionStorage.getItem('categoryId')} />
-                                <DanceSubscription categoryId={sessionStorage.getItem('categoryId')}/>
+                                <Reviews title={danceInfo?.title} categoryId={props.match.params.categoryId == "602243825d42a126b059ec28" ? '602243485d42a126b059ec27' : props.match.params.categoryId} />
+                                <DanceSubscription categoryId={props.match.params.categoryId}/>
                                 <HowWorks />
                                 <ContactUs /> 
                             </>

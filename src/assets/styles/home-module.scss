@@ -33,6 +33,21 @@ body{
                 padding-bottom: 8px;
                 margin-bottom: 16px;
                 box-shadow: 0px 2px 8px rgba(34, 34, 34, 0.04);
+                .bannerImgWrapper{
+                    box-sizing: border-box;
+                    // text-align: center;
+                    img{
+                        width: 100%;
+                        margin-bottom: 8px;
+                        max-height: 50vh !important;
+                    }
+                    .heading1{
+                        // text-align: center;
+                        font-size: 27px;
+                        color: $color_black;
+                        padding-left: 16px;
+                    }
+                }
                 .carousel-container{
                     .carousel-item{
                         box-sizing: border-box;
@@ -166,7 +181,7 @@ body{
                                     }
                                 }
                                 .subHeading{
-                                    margin-bottom: 16px;
+                                    margin-bottom: 8px;
                                     span{
                                         color: $color_info_text;
                                         font-weight: $regularFont;
@@ -176,6 +191,19 @@ body{
                                     img{
                                         vertical-align: middle;
                                         width: 18px;
+                                    }
+                                }
+                                .description{
+                                    margin-bottom: 16px;
+                                    position: relative;
+                                    svg{
+                                        width: 19px;
+                                        fill: #999999;
+                                        position: absolute;
+                                    }
+                                    span{
+                                        display: inline-block;
+                                        margin-left: 23px;
                                     }
                                 }
                                 ul{
@@ -360,6 +388,10 @@ body{
                     margin-bottom: 0;
                     padding-bottom: 0;
                     box-shadow: none;
+                    .bannerImgWrapper{
+                        margin: 0 150px;
+                        text-align: center;
+                    }
                     .carousel-container{
                         .react-multiple-carousel__arrow {
                             border: 1px solid $color_primary;
@@ -425,6 +457,9 @@ body{
                    margin: 0 200px;
                 }
                 .introduction-blk{
+                    .bannerImgWrapper{
+                        margin: 0 200px 0;
+                    }
                     .subscription-alert-wrapper{
                         margin: 64px 200px 0;
                     }

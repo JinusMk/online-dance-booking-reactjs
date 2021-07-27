@@ -22,7 +22,7 @@ export default function SubscriptionDetail(props){
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        globalGetService(`subscriptions/category/${sessionStorage.getItem('categoryId')}`)
+        globalGetService(`subscriptions/category/${props.match.params.categoryId}`)
         .then(response => {
             if(response.success === true){
                 setSubscriptionInfo(response.data)

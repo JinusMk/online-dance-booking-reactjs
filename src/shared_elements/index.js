@@ -14,6 +14,7 @@ import SubscriptionAlert from './SubscriptionAlert'
 import SubscriptionCard from './SubscriptionCard'
 import LinearProgressBar from './LinearProgressBar'
 import InviteFriends from './InviteFriends'
+import BookTrial from './BookTrial'
 
 export {
     Header,
@@ -31,5 +32,6 @@ export {
     SubscriptionAlert,
     SubscriptionCard,
     LinearProgressBar,
-    InviteFriends
+    InviteFriends,
+    BookTrial
 }

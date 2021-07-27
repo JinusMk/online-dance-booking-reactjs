@@ -26,6 +26,6 @@ export default function ContactUs(props){
                 <a target="__blank" href="https://www.youtube.com/channel/UCqaZ4SR-Z7isiCQ9hk1bekw/"><img src={`${imageBasePath}youtube_logo.svg`}/></a>
             </li>
         </ul>
-        <p className="paragraph">© Letzdance | <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={handleClick}>Privacy Policy and T&C</span></p>
+        <p className="paragraph">© 2021 Letzdance - Prodtechery Online Services Pvt. Ltd. | <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={handleClick}>Privacy Policy and T&C</span></p>
     </div>)
 }

@@ -39,7 +39,7 @@ export default function ReviewCard(props){
                 </div>
                 {
                     props.page == "detail" ? null : <div className="footer-review-card">
-                        <Link to={review.category_id ? `/dance/${review.category?.toLowerCase()}` : '/schedule'} onClick={() => sessionStorage.setItem('categoryId', review.category_id)} className="primaryBtn">{`Book ${review.danceClass?.category?.name ? review.danceClass?.category?.name : review.category} class`.toUpperCase()}</Link>
+                        <Link to={`/dance/${review.category?.toLowerCase()}/${review.category_id ? review.category_id : review.categoryId}`} className="primaryBtn">{`Book ${review.danceClass?.category?.name ? review.danceClass?.category?.name : review.categoryName} class`.toUpperCase()}</Link>
                     </div>
                 }
             </SwipeableDrawer>
@@ -73,8 +73,8 @@ function ReviewInfo(props){
             <div className="user-info">
                 {review.img ? <Avatar src={review.img} className="user-avatar" /> : <Avatar className="user-avatar">{review.name ? review.name[0]: review.reviwed_by ? review.reviwed_by[0] : 'L'}</Avatar>}
                 <div className="name-wrapper">
-                    <h3 className="heading3">{review.reviwed_by}</h3>
-                    <p>Taken <span style={{textTransform: 'capitalize'}}>{review.danceClass?.category?.name ? review.danceClass?.category?.name : review.category}</span> class on {review._id ? moment(review.class_date).format(`DD MMM YYYY`) : moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
+                    <h3 className="heading3">{review.reviwed_by ? review.reviwed_by : review.name}</h3>
+                    <p>Taken <span style={{textTransform: 'capitalize'}}>{review.danceClass?.category?.name ? review.danceClass?.category?.name : review.categoryName}</span> class on {review._id ? moment(review.class_date).format(`DD MMM YYYY`) : moment(review.class_date, 'DD-MM-YYYY').format('DD MMM YYYY')}</p>
                 </div>
             </div>
         </div>
