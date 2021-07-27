@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { SwipeableDrawer } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { imageBasePath } from '../../../constants'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { isMobile } from 'react-device-detect'
 import moment from 'moment'
 
@@ -14,7 +14,6 @@ export default function RecapItem(props){
         bottom: false,
         right: false
     })
-    const [vidLoader, setVidLoader] = useState(true)
     const [openRecap, setOpenRecap] = useState(false)
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -34,8 +33,8 @@ export default function RecapItem(props){
             <div className="img-blk">
                 {imgLoader ? <div className="img-loader"><Skeleton variant="rect" height={161} /></div> : null}
                 {/* <img src={recap.img} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/> */}
-                <img src={`${publicLink}/${recap.image}`} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)}/>
-                <img src={`${imageBasePath}play_icon.svg`} className="play-icon"/>
+                <img src={`${publicLink}/${recap.image}`} className="dance-logo" style={imgLoader ? {display: 'none'}: {}} onLoad={() => setImgLoader(false)} alt=""/>
+                <img src={`${imageBasePath}play_icon.svg`} className="play-icon" alt=""/>
             </div>
             <h3 className="heading3">{`${recap.category?.name} | ${recap.instructor?.name}`}</h3>
             <p className="paragraph">{`${recap.totalUsers} dancers | ${moment(recap.danceClassDate).format('DD MMM YYYY')}`}</p>

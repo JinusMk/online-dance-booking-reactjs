@@ -15,6 +15,7 @@ import ReviewCard from './ReviewCard'
 import RecapItem from './RecapItem'
 import ReviewsListingLoader from './ReviewsListingLoader'
 import LastWeekRecap from './LastWeekRecap'
+import InstructorVideo from './InstructorVideo'
 
 export {
     Introduction,
@@ -33,5 +34,6 @@ export {
     ReviewCard,
     RecapItem,
     ReviewsListingLoader,
-    LastWeekRecap
+    LastWeekRecap,
+    InstructorVideo
 }
