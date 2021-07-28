@@ -28,10 +28,18 @@ export default function InstructorCard(props){
                     <img src={`${imageBasePath}experience_icon.svg`} alt=""/>
                     <span>{instructor.experience} experience</span>
                 </p>
-                <p className="paragraph">
+                <p className="paragraph description">
                     <span className="live">LIVE</span>
-                    <span>{instructor.description}</span>
+                    {instructor.description?.length > 90 ? <>
+                        <span>{instructor.description.slice(0,90)}...</span>
+                    </> : <span>{instructor.description}</span>}
                 </p>
+                {
+                    instructor.description?.length > 90 && props.handleInstructorClick ? <p className="read-more">
+                        <span>Read more</span>
+                        <img src={`${imageBasePath}right_arrow_icon.svg`} alt=""/>
+                    </p> : null
+                }
             </div>
         </div>
     )

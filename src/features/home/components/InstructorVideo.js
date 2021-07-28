@@ -38,10 +38,11 @@ export default function InstructorVideo(props){
                     <div className="class-info">
                         <h3 className="heading3">{`${instructor.category?.name} by ${instructor.instructor?.name}`}</h3>
                         <p className="paragraph">{`${instructor.certified} | ${instructor.experience} experience`}</p>
+                        <p className="paragraph description">{instructor.description}</p>
                     </div>
                 </div>
                 <div className="footer-review-card">
-                    <Link to={`dance/${instructor.category?.slug}/${instructor.category?._id}`} className="primaryBtn">{`Book ${instructor.category?.name} class`.toUpperCase()}</Link>
+                    <Link to={`dance/${instructor.category?.slug}/${instructor.category?._id}`} className="primaryBtn">{`Book ${instructor?.instructor?.name}`.toUpperCase()}</Link>
                 </div>
             </SwipeableDrawer>
         ))}

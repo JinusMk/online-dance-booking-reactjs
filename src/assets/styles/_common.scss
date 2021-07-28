@@ -322,6 +322,8 @@ body{
         }
         .info-blk{
             padding: 16px;
+            // height: 133px;
+            box-sizing: border-box;
             p{
                 margin-bottom: 8px;
                 &:last-child{
@@ -337,12 +339,29 @@ body{
                 span{
                     &.live{
                         background: $color_primary;
-                        padding: 1px 4px 2px;
+                        padding: 0 4px;
                         font-size: 6px;
                         color: $color_white;
                         border-radius: 1px;
                         margin-right: 5px;
+                        margin-top: 2px;
+                        line-height: 12px;
                     }
+                }
+            }
+            .description{
+                display: flex;
+                align-items: flex-start;
+            }
+            .read-more{
+                margin-left: 24px !important;
+                margin-top: -8px !important;
+                span{
+                    color: $color_primary;
+                }
+                img{
+                    width: 7px;
+                    margin: 4px 0 0 5px;
                 }
             }
         }
@@ -761,7 +780,11 @@ body{
             }
         }
         &.instructor-video{
-            
+            .class-info{
+                .description{
+                    margin-top: 8px;
+                }
+            }
         }
     }
     .book-trial-wrapper{
