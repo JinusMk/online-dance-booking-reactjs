@@ -25,7 +25,7 @@ export default function ClassBookingAlert(props){
         <BookTrial 
             open={openTrialForm}
             handleClose={() => setOpenTrialForm(false)}
-            subscriptionCategory={subscription?.category?._id}
+            subscriptionId={subscription?._id}
         />
         </>
     )

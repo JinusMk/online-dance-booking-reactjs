@@ -36,7 +36,7 @@ export default function DanceFormCard(props){
                             </li>) : null
                         }
                         {
-                            dance.timeSlots.length > 3 ? <li key={2}>
+                            dance.timeSlots?.length > 3 ? <li key={2}>
                                 <a className="secondaryBtn round">+{dance.buttons.length - 2} MORE</a>
                             </li> : null
                         }

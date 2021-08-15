@@ -36,7 +36,7 @@ export default function SubscriptionCard(props){
         <BookTrial
             open={openTrialForm}
             handleClose={() => setOpenTrialForm(false)}
-            subscriptionCategory={subscriptionItem?.category?._id}
+            subscriptionId={subscriptionItem?._id}
         />
         </>
     )

@@ -5,11 +5,12 @@ import { fieldValidation } from '../utils/formValidation'
 import { connect } from 'react-redux'
 import { isMobile } from 'react-device-detect'
 import PhoneInput from 'react-phone-input-2'
-import { subscriptionCategories, USER_AUTH_ERRORCODE as errorCode } from '../constants';
-import { globalPostService } from '../utils/globalApiServices';
+import { USER_AUTH_ERRORCODE as errorCode } from '../constants';
+import { globalPostService, globalGetService } from '../utils/globalApiServices';
 
 function BookTrial(props){
-    const { open, userInfo, subscriptionCategory } = props
+    const { open, userInfo, subscriptionId } = props
+    const [subscriptions, setSubscriptions] = useState([])
     const [state, setState] = useState({
         bottom: false,
         right: false
@@ -80,7 +81,7 @@ function BookTrial(props){
                     email: userInfo?.email || '',
                     name: userInfo?.displayName || '',
                     mobile: userInfo?.phoneNumber || '',
-                    subscription: subscriptionCategory,
+                    subscription: subscriptionId,
                     preferedDay: 'Weekend'
                 })
             }else{
@@ -88,7 +89,7 @@ function BookTrial(props){
                     email: '',
                     name: '',
                     mobile: '',
-                    subscription: subscriptionCategory,
+                    subscription: subscriptionId,
                     preferedDay: 'Weekend'
                 })
             }
@@ -96,6 +97,20 @@ function BookTrial(props){
             setLoader(false)
         }
     }, [open, userInfo])
+    useEffect(() => {
+        if(open && !subscriptions?.length){
+            fetchSubscriptions()
+        }
+    }, [open])
+    const fetchSubscriptions = () => {
+        globalGetService(`subscriptions`)
+        .then(response => {
+            if(response.success == true){
+                const subscriptions = Object.keys(response.data)?.reduce((res, cat) =>  [...res, { label: cat, value: response.data[cat][0]?._id}], [])
+                setSubscriptions(subscriptions)
+            }
+        })
+    }
     return(
         <>
         {
@@ -163,7 +178,7 @@ function BookTrial(props){
                                     onChange={(event) => handleChange('subscription', event.target.value)}
                                     className="custom-select"
                                     >
-                                    {subscriptionCategories?.map((item, index) => <MenuItem key={item.value} value={item.value}>{`${item.label} Subscription`}</MenuItem>)}
+                                    {subscriptions?.map((item, index) => <MenuItem key={item.value} value={item.value}>{`${item.label} Subscription`}</MenuItem>)}
                                 </Select>
                             </div>
                             <div className="radioGroupInput">
